@@ -8,6 +8,21 @@
 >
 > 기록부터 선택까지, 온스가 함께합니다.
 
+## NYAN-DORID
+### Fascinating Member
+- **이현우**
+    - Ounce/Maru 안드로이드 개발
+    - Ounce의 Android Lead
+    - 끊임없는 성장을 추구합니다
+- **강민구**
+    - Crecker/Ounce/Sangle 안드로이드 개발
+    - 26기 SOPT Android MVP
+    - 27기 SOPT Android 파트장
+    - 실력/외모/인성 3박자를 고루 갖춘 Ounce 안드로이드 팀의 정신적 지주
+- **박주예**
+    - Ounce 안드로이드 개발
+    - Ounce의 **독보적인** 귀여움 담당
+
 ## OUNCE's Commit Convention
 ### Basic Struture
 ```
@@ -42,3 +57,75 @@ footer(optional)
 
 ### Footer
 - Issue Tracker IDs를 적을 때 사용
+
+## OUNCE's Coding Convention For Clean Code
+### Kotlin Style Guide
+OUNCE는 [Google의 Kotlin Coding Style Guide](https://developer.android.com/kotlin/style-guide)를 따릅니다
+
+### Class Layout
+다음과 같은 순서 클래스를 구성합니다
+- Property 선언과 초기화 블럭(intializer blocks)
+- 추가적인 생성자
+- 메소드 정의
+- 컴패니언 오브젝트(Companion object)
+
+### Naming Rule
+#### Package
+- 패키지의 이름은 항상 소문자로 하고, 밑줄을 사용하지 않습니다
+- 두 개 이상의 단어를 한 번에 사용하는 것을 금지합니다
+
+#### Class/Object
+- Pascal Case
+```
+open class SampleName { /* ... */ }
+object MoreSampleName : SampleName() { /* ... */ }
+```
+
+#### Function/Parameter/Variable
+- Camel Case
+```
+val initList = mutableList<SampleData>()
+fun getList: List<SampleData>() { /* ... */ }
+```
+#### Constant
+- Upper Snake Case
+- 상수는 companion objet에 넣어 보관합니다
+```
+companion object {
+    const val MAX_COUNT = 8
+}
+```
+
+### Formatting
+#### Indenting
+Tab 키를 써서 Indenting 합니다
+
+#### 중괄호
+괄호 뒤에 한 칸을 띄우고 사용합니다
+```
+if (elements != null) {
+    for (element in elements) {
+        // ...
+    }
+}
+```
+
+#### 괄호
+- Control문(if/while/for)
+    - 한 칸 띄어씁니다
+- 생성자/Method
+    - 붙여씁니다
+```
+if (isSpacing == true) { /*...*/ }
+fun isSpacing() { /*...*/ }
+```
+
+#### Colon(:)
+- 변수의 타입/함수 리턴 타입 결정
+    - 콜론을 앞에 붙인다
+- 상속받은 클래스/인터페이스 구분
+    - 한 칸 띄어쓴다
+```
+fun isSpacing(): Boolean { /*...*/ }
+class MainActivity : AppCompatActivity()
+```
