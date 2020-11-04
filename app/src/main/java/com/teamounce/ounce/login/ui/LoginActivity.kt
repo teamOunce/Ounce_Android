@@ -9,6 +9,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.teamounce.ounce.R
 import com.teamounce.ounce.databinding.ActivityLoginBinding
 import com.teamounce.ounce.login.viewmodel.LoginViewModel
+import com.teamounce.ounce.util.TransparentStatusBarObject
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -18,6 +19,9 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        TransparentStatusBarObject.setStatusBar(this)
+
         loginViewModel.initOnBoardingInfoList()
 
         val onBoardingPagerAdapter = ScreenSlidePagerAdapter(this)
