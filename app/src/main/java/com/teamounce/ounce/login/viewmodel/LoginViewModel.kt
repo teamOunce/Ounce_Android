@@ -9,6 +9,10 @@ class LoginViewModel : ViewModel() {
     val onBoardingInfoList: List<OnBoardingData>
         get() = _onBoardingInfoList
 
+    init {
+        initOnBoardingInfoList()
+    }
+
     fun initOnBoardingInfoList() {
         _onBoardingInfoList.apply {
             add(
