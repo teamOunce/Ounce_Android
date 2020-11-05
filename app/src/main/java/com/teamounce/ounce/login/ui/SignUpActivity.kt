@@ -11,6 +11,5 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_welcome)
 
         TransparentStatusBarObject.setStatusBar(this)
-
     }
 }

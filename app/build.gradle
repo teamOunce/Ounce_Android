@@ -63,6 +63,12 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
-    // Feature module Support
+    // Navigation - Feature module Support
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+
+    // Kakao Login - Gson, Retrofit, OkHttp
+    implementation "com.kakao.sdk:v2-user:2.0.5"
+
+    // AndroidX Security - EncryptedSharedPreferences
+    implementation "androidx.security:security-crypto:1.0.0-rc03"
 }
