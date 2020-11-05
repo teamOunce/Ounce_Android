@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="16dp"
+    tools:context=".login.ui.RegisterFragment">
+
+    <TextView
+        android:id="@+id/txt_register_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/notosanskr_regular"
+        android:includeFontPadding="false"
+        android:text="고양이의 정보를 작성해주세요"
+        android:textColor="@color/text_color_black"
+        android:textFontWeight="700"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15" />
+
+    <TextView
+        android:id="@+id/txt_register_caution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/notosanskr_regular"
+        android:includeFontPadding="false"
+        android:letterSpacing="0"
+        android:text="한 번 등록한 고양이의 정보는 수정할 수 없어요"
+        android:textColor="@color/text_color_gray"
+        android:textFontWeight="400"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_register_title" />
+
+    <TextView
+        android:id="@+id/txt_register_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/notosanskr_regular"
+        android:includeFontPadding="false"
+        android:text="이름"
+        android:textColor="@color/text_color_black"
+        android:textFontWeight="600"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_register_caution" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtlayout_register_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/notosanskr_regular"
+        android:hint="한글로 작성해주세요"
+        android:includeFontPadding="false"
+        app:counterEnabled="true"
+        app:counterMaxLength="6"
+        app:errorEnabled="true"
+        app:layout_constraintTop_toBottomOf="@+id/txt_register_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/txt_register_meetdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/notosanskr_regular"
+        android:includeFontPadding="false"
+        android:letterSpacing="0"
+        android:text="만난 날짜"
+        android:textColor="@color/text_color_black"
+        android:textFontWeight="600"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtlayout_register_name" />
+
+    <DatePicker
+        android:id="@+id/datepicker_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_register_meetdate" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

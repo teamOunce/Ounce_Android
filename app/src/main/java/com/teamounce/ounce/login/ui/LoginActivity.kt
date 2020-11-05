@@ -1,24 +1,25 @@
 package com.teamounce.ounce.login.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.teamounce.ounce.R
 import com.teamounce.ounce.databinding.ActivityLoginBinding
 import com.teamounce.ounce.login.viewmodel.LoginViewModel
+import com.teamounce.ounce.util.TransparentStatusBarObject
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val loginViewModel: LoginViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
-        loginViewModel.initOnBoardingInfoList()
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+
+        TransparentStatusBarObject.setStatusBar(this)
 
         val onBoardingPagerAdapter = ScreenSlidePagerAdapter(this)
         binding.vpLoginOnboarding.adapter = onBoardingPagerAdapter
