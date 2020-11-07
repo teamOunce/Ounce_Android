@@ -129,3 +129,17 @@ fun isSpacing() { /*...*/ }
 fun isSpacing(): Boolean { /*...*/ }
 class MainActivity : AppCompatActivity()
 ```
+
+## Open Source Library
+
+라이브러리                                                                                                                          | 목적
+---------------------------------------------------------------------------------------------------------------------------------- | -----------------------------------------------------------------
+[DotIndicator](https://github.com/tommybuonomo/dotsindicator?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=7127) | 뷰페이저 인디케이터
+[Activity-KTX](https://developer.android.com/jetpack/androidx/releases/activity)                                                   | Activity에서 ViewModel 초기화위해 사용
+[Navigation](https://developer.android.com/jetpack/androidx/releases/navigation)                                                   | Fragment간 화면 전환 용이
+[Kakao SDK](https://developers.kakao.com/docs/latest/en/getting-started/sdk-android)                                               | Kakao Login 구현
+[Retrofit2](https://github.com/square/retrofit)                                                                                    | 서버 통신
+[Gson](https://github.com/google/gson)                                                                                             | 서버에서 받아온 Json 객체를 Gson으로 변환
+[OkHttp](https://square.github.io/okhttp/)                                                                                         | HTTP 통신
+[EncryptedSharedPreference](https://developer.android.com/jetpack/androidx/releases/security)                                      | 중요 정보 암호화하여 기기 내에 저장
+[TedKeyboardObserver](https://github.com/ParkSangGwon/TedKeyboardObserver)                                                         | 키보드 show/hide 리스너
