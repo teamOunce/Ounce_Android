@@ -6,30 +6,35 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".OunceApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.OUNCE"
-        android:name=".OunceApplication">
+        android:theme="@style/Theme.OUNCE">
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="@string/native_app_key"/>
+            android:value="@string/native_app_key" />
+
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <data android:host="oauth"
-                    android:scheme="kakao7171285de2b4a7896ab049321ffc8ed6"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="oauth"
+                    android:scheme="kakao7171285de2b4a7896ab049321ffc8ed6" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.ui.SignUpActivity">
-
-        </activity>
-        <activity android:name=".login.ui.LoginActivity">
+        <activity
+            android:name=".login.ui.SignUpActivity"
+            android:exported="true" />
+        <activity
+            android:name=".login.ui.LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
