@@ -56,14 +56,16 @@
         <Button
             android:id="@+id/btn_register_start"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:backgroundTint="@color/text_color_black"
+            android:layout_height="52dp"
+            android:layout_marginBottom="64dp"
+            android:background="@drawable/button_enabled"
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
             android:letterSpacing="0"
             android:lineHeight="24sp"
             android:text="시작하기"
             android:textSize="20sp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent" />
 
 
