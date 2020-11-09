@@ -71,4 +71,7 @@ dependencies {
 
     // AndroidX Security - EncryptedSharedPreferences
     implementation "androidx.security:security-crypto:1.0.0-rc03"
+
+    // TedKeyboardObserver
+    implementation 'gun0912.ted:tedkeyboardobserver:1.0.2'
 }
