@@ -1,6 +1,7 @@
 package com.teamounce.ounce.login.ui
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
@@ -33,6 +34,11 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnLoginKakao.setOnClickListener {
             kakaoLoginCall(this)
+        }
+
+        binding.btnTempNext.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
         }
     }
 
