@@ -11,10 +11,10 @@
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
-            android:id="@+id/action_welcomeFragment_to_registerFragment"
-            app:destination="@id/registerFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
+            android:id="@+id/action_welcomeFragment_to_ownerInfoFragment"
+            app:destination="@id/ownerInfoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
@@ -23,4 +23,16 @@
         android:name="com.teamounce.ounce.login.ui.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/ownerInfoFragment"
+        android:name="com.teamounce.ounce.login.ui.OwnerInfoFragment"
+        android:label="OwnerInfoFragment" >
+        <action
+            android:id="@+id/action_ownerInfoFragment_to_registerFragment"
+            app:destination="@id/registerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
 </navigation>

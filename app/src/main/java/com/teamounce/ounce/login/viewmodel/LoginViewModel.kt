@@ -1,8 +1,12 @@
 package com.teamounce.ounce.login.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.teamounce.ounce.R
 import com.teamounce.ounce.login.model.OnBoardingData
+import java.text.SimpleDateFormat
+import java.util.*
 
 class LoginViewModel : ViewModel() {
     private val _onBoardingInfoList = mutableListOf<OnBoardingData>()
@@ -13,7 +17,7 @@ class LoginViewModel : ViewModel() {
         initOnBoardingInfoList()
     }
 
-    fun initOnBoardingInfoList() {
+    private fun initOnBoardingInfoList() {
         _onBoardingInfoList.apply {
             add(
                 OnBoardingData(
