@@ -3,15 +3,18 @@ package com.teamounce.ounce.login.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseUser
 import com.teamounce.ounce.R
 import com.teamounce.ounce.login.model.OnBoardingData
-import java.text.SimpleDateFormat
-import java.util.*
 
 class LoginViewModel : ViewModel() {
     private val _onBoardingInfoList = mutableListOf<OnBoardingData>()
     val onBoardingInfoList: List<OnBoardingData>
         get() = _onBoardingInfoList
+
+    private var _currentUser = MutableLiveData<FirebaseUser?>()
+    val currentUser: LiveData<FirebaseUser?>
+        get() = _currentUser
 
     init {
         initOnBoardingInfoList()
@@ -41,5 +44,9 @@ class LoginViewModel : ViewModel() {
                 )
             )
         }
+    }
+
+    fun setCurrentUser(user: FirebaseUser?) {
+        _currentUser.value = user
     }
 }
