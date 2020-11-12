@@ -57,7 +57,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun observeKeyboard() {
-        activity?.let{
+        activity?.let {
             TedKeyboardObserver(it)
                 .listen { isShow ->
                     if (!isShow) {
