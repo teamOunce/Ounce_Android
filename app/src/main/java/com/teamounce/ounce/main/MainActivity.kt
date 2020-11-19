@@ -15,26 +15,26 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        bottomSheet =BottomSheetBehavior.from<View>(bottom_sheet_view)
+        bottomSheet = BottomSheetBehavior.from<View>(bottom_sheet_view)
         bottomSheet.state = BottomSheetBehavior.STATE_DRAGGING
 
 
         operateBottomSheet()
     }
 
-    fun operateBottomSheet(){
+    fun operateBottomSheet() {
 
-        bottomSheet.addBottomSheetCallback(object :BottomSheetBehavior.BottomSheetCallback(){
+        bottomSheet.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
             }
 
             override fun onStateChanged(bottomSheet: View, newState: Int) {
-                when(newState){
+                when (newState) {
                     BottomSheetBehavior.STATE_COLLAPSED -> {
                         bottom_sheet_bulr.visibility = View.VISIBLE
                         bottom_sheet_view.visibility = View.VISIBLE
                     }
-                    BottomSheetBehavior.STATE_HIDDEN ->{
+                    BottomSheetBehavior.STATE_HIDDEN -> {
                         bottom_sheet_bulr.visibility = View.GONE
                         bottom_sheet_view.visibility = View.GONE
 
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     override fun onTouchEvent(event: MotionEvent): Boolean {
         return super.onTouchEvent(event)
 
-        when(event.action){
+        when (event.action) {
             MotionEvent.ACTION_UP -> {
                 bottomSheet.state = BottomSheetBehavior.STATE_COLLAPSED
             }

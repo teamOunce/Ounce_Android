@@ -48,15 +48,15 @@
             android:id="@+id/textview_cat_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/applesdgothicneob"
+            android:fontFamily="@font/notosans_bold"
             android:text="이겨울"
-            android:textSize="26sp"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.098"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/toolbar_register"
-            app:layout_constraintVertical_bias="0.182" />
+            app:layout_constraintVertical_bias="0.1" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -71,9 +71,9 @@
             android:id="@+id/textview_cat_dday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/applesdgothicneob"
+            android:fontFamily="@font/notosans_bold"
             android:text="만난지 1000일 째"
-            android:textSize="26sp"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textview_cat_name"
             app:layout_constraintTop_toBottomOf="@id/textview_cat_name"
@@ -89,7 +89,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.15"
+            app:layout_constraintVertical_bias="0.1"
             app:layout_constraintDimensionRatio="1:1"/>
 
         <ImageView
@@ -105,12 +105,12 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_one_more"
+            android:id="@+id/home_btn_record"
             android:background="@drawable/login_bt_start_activation"
             app:layout_constraintTop_toBottomOf="@id/main_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.35"
+            app:layout_constraintVertical_bias="0.3"
             app:layout_constraintBottom_toBottomOf="parent" />
 
 
