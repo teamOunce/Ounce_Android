@@ -129,36 +129,21 @@
                 android:layout_marginTop="60dp"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
-                android:text="나이"
+                android:text="태어난 년도"
                 android:textColor="@color/text_color_black"
                 android:textFontWeight="600"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linear_buttons" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtlayout_owner_age"
+            <NumberPicker
+                android:id="@+id/picker_owner_born_year"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="132dp"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/notosanskr_regular"
-                android:hint="한글로 작성해주세요"
-                android:includeFontPadding="false"
-                app:boxStrokeColor="#343434"
-                app:errorEnabled="true"
-                app:errorTextAppearance="@style/Error"
-                app:hintEnabled="false"
-                app:layout_constraintTop_toBottomOf="@+id/tv_owner_age">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_owner_age"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosanskr_regular"
-                    android:hint="숫자로 작성해주세요"
-                    android:includeFontPadding="false" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                app:layout_constraintTop_toBottomOf="@+id/tv_owner_age" />
 
             <TextView
                 android:id="@+id/txt_skip"
@@ -169,7 +154,6 @@
                 android:includeFontPadding="false"
                 android:letterSpacing="0"
                 android:paddingHorizontal="30dp"
-                android:paddingTop="30dp"
                 android:text="건너뛰기"
                 android:textColor="@color/text_color_gray"
                 app:layout_constraintBottom_toTopOf="@+id/btn_owner_next"
@@ -180,12 +164,11 @@
                 android:id="@+id/btn_owner_next"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:layout_marginBottom="64dp"
+                android:layout_marginBottom="24dp"
                 android:background="@drawable/button_enabled"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
                 android:letterSpacing="0"
-                android:lineHeight="24sp"
                 android:text="다음"
                 android:textColor="@color/white"
                 android:textSize="20sp"
