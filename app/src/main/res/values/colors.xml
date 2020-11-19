@@ -12,4 +12,9 @@
     <color name="text_color_gray">#979797</color>
     <color name="not_selected">#E1E1E1</color>
     <color name="red">#FF0000</color>
+    <color name="orangey_red">#ff5a27</color>
+    <color name="grapefruit">#ff5454</color>
+    <color name="very_light_pink">#e1e1e1</color>
+    <color name="brown_gray">#979797</color>
+    <color name="background_gray">#dadada</color>
 </resources>
