@@ -25,6 +25,8 @@ class OwnerInfoFragment : Fragment() {
         binding.txtSkip.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_ownerInfoFragment_to_registerFragment)
         }
+        binding.pickerOwnerBornYear.maxValue = 2020
+        binding.pickerOwnerBornYear.minValue = 1900
         return binding.root
     }
 }
