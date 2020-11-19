@@ -2,52 +2,50 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".login.ui.OnBoardingFragment">
-
-    <ImageView
-        android:id="@+id/img_onboarding_explain"
-        android:layout_width="220dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@id/txt_onboarding_title"
-        app:layout_constraintDimensionRatio="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/img_dummy" />
 
     <TextView
         android:id="@+id/txt_onboarding_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="52dp"
         android:fontFamily="@font/notosanskr_regular"
         android:includeFontPadding="false"
-        android:lineHeight="20sp"
         android:textColor="@color/text_color_black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/img_onboarding_explain"
-        app:layout_constraintStart_toStartOf="@id/img_onboarding_explain"
-        app:layout_constraintTop_toBottomOf="@id/img_onboarding_explain"
+        android:textFontWeight="700"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/img_onboarding_explain"
         tools:text="집사를 위한 기록장" />
 
     <TextView
         android:id="@+id/txt_onboarding_explain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/notosanskr_regular"
         android:includeFontPadding="false"
-        android:lineHeight="20sp"
-        android:textAlignment="center"
         android:textColor="@color/text_color_gray"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@id/img_onboarding_explain"
-        app:layout_constraintStart_toStartOf="@id/img_onboarding_explain"
-        app:layout_constraintTop_toBottomOf="@id/txt_onboarding_title"
+        android:textFontWeight="400"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/txt_onboarding_title"
+        app:layout_constraintTop_toBottomOf="@+id/txt_onboarding_title"
         tools:text="우리 고양이의 입맛을 기록해요" />
+
+    <ImageView
+        android:id="@+id/img_onboarding_explain"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="32dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_onboarding_explain"
+        tools:src="@drawable/img_dummy" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
