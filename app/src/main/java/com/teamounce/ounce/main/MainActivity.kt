@@ -8,6 +8,7 @@ import androidx.core.view.MotionEventCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 import com.teamounce.ounce.R
+import com.teamounce.ounce.util.TransparentStatusBarObject
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         bottomSheet = BottomSheetBehavior.from<View>(bottom_sheet_view)
         bottomSheet.state = BottomSheetBehavior.STATE_DRAGGING
-
+        TransparentStatusBarObject.setStatusBar(this)
 
         operateBottomSheet()
     }
