@@ -10,6 +10,9 @@
     <color name="login_background">#FFFFFF</color>
     <color name="text_color_black">#343434</color>
     <color name="text_color_gray">#979797</color>
+    <color name ="text_color_lightgray">#BFBFBF</color>
     <color name="not_selected">#E1E1E1</color>
     <color name="red">#FF0000</color>
+    <color name="orange">#FF7246</color>
+
 </resources>
