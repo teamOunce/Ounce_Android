@@ -103,15 +103,16 @@
             app:layout_constraintEnd_toEndOf="@id/main_image"/>
 
         <Button
+            android:id="@+id/home_btn_record"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/home_btn_record"
-            android:background="@drawable/login_bt_start_activation"
-            app:layout_constraintTop_toBottomOf="@id/main_image"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/home_bt_record"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.3"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageview_cat"
+            app:layout_constraintVertical_bias="0.631" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

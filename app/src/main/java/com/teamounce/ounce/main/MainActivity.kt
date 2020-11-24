@@ -6,6 +6,7 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.core.view.MotionEventCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+
 import com.teamounce.ounce.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -51,7 +52,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        return super.onTouchEvent(event)
 
         when (event.action) {
             MotionEvent.ACTION_UP -> {
