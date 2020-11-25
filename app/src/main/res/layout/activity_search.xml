@@ -5,9 +5,6 @@
 
     <data>
 
-        <variable
-            name="searchViewModel"
-            type="com.teamounce.ounce.review.viewmodel.SearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -88,28 +85,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_review_search">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/btn_layout_grid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/ic_search_grid"
-                android:tint="@color/search_type_selector" />
+                android:src="@drawable/ic_search_grid" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/btn_layout_list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/ic_search_linear"
-                android:tint="@color/search_type_selector" />
+                android:src="@drawable/ic_search_linear" />
 
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@android:color/transparent"
+            android:background="@color/background_gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linear_review_search_type">
 
