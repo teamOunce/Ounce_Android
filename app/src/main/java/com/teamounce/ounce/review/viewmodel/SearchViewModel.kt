@@ -8,6 +8,9 @@ class SearchViewModel : ViewModel() {
     private val _isListSearch = MutableLiveData(true)
     val isListSearch: LiveData<Boolean>
         get() = _isListSearch
+    private val _isNetworkAccess = MutableLiveData(true)
+    val isNetworkAccess: LiveData<Boolean>
+        get() = _isNetworkAccess
 
     fun changeSearchTypeToGrid() {
         _isListSearch.value = false
@@ -15,5 +18,13 @@ class SearchViewModel : ViewModel() {
 
     fun changeSearchTypeToList() {
         _isListSearch.value = true
+    }
+
+    fun isNetworkConnected() {
+        _isNetworkAccess.postValue(true)
+    }
+
+    fun isNetworkDisconnected() {
+        _isNetworkAccess.postValue(false)
     }
 }
