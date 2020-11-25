@@ -56,7 +56,7 @@ class ListFoodSearchAdapter(
     inner class ListFoodSearchViewHolder(private val binding: ViewDataBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(catFood: CatFood) {
-            when(binding) {
+            when (binding) {
                 is ItemFoodSearchGridBinding -> binding.catFood = catFood
                 is ItemFoodSearchLinearBinding -> binding.catFood = catFood
             }
