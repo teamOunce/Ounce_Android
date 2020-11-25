@@ -115,7 +115,6 @@ class SearchActivity : AppCompatActivity() {
         data: MutableList<CatFood>
     ) {
         binding.btnLayoutList.setOnClickListener {
-            searchViewModel.changeSearchTypeToList()
             searchLinearAdapter.datas.clear()
             searchLinearAdapter.datas = data.toMutableList()
             binding.rvReviewSearchLinear.adapter = searchLinearAdapter
@@ -125,7 +124,6 @@ class SearchActivity : AppCompatActivity() {
         }
 
         binding.btnLayoutGrid.setOnClickListener {
-            searchViewModel.changeSearchTypeToGrid()
             searchLinearAdapter.datas.clear()
             searchLinearAdapter.datas = data.toMutableList()
             binding.rvReviewSearchLinear.adapter = searchLinearAdapter
