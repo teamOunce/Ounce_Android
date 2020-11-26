@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OUNCE">
-        <activity android:name=".settings.SettingsCareActivity"></activity>
+        <activity android:name=".settings.AlertActivity"></activity>
+        <activity android:name=".settings.SettingsCareActivity" />
         <activity android:name=".settings.SettingsActivity" />
 
         <meta-data
