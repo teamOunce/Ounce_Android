@@ -16,5 +16,6 @@
     <color name="orange">#FF7246</color>
     <color name="dark_peach">#FF7246</color>
     <color name="gray_three">#3E3E3E </color>
+    <color name = "gray_two">#676767</color>
 
 </resources>
