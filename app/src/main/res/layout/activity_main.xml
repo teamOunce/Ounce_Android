@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity = "center"
-                android:src="@drawable/ic_ounce_logo" />
+                android:src="@drawable/main_ounce_title" />
 
             <ImageView
                 android:id="@+id/btn_drawer"
