@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -92,7 +93,8 @@ dependencies {
 
     // Rating Bar Library
     implementation 'com.hedgehog.ratingbar:app:1.1.2'
-}
 
-// Google Play Services Gradle Plugin
-apply plugin: 'com.google.gms.google-services'
+    // Android Dagger-Hilt
+    implementation "com.google.dagger:hilt-android:2.28-alpha"
+    kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
+}
