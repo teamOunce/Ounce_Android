@@ -1,7 +1,12 @@
 package com.teamounce.ounce.singleton
 
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import androidx.databinding.InverseBindingAdapter
+import androidx.databinding.InverseBindingListener
 import com.bumptech.glide.Glide
 
 object CustomAdapter {
@@ -11,5 +16,25 @@ object CustomAdapter {
         Glide.with(view.context)
             .load(url)
             .into(view)
+    }
+
+    @InverseBindingAdapter(attribute = "android:text", event = "textAttrChanged")
+    @JvmStatic
+    fun getTextString(view: EditText): String {
+        return view.text.toString()
+    }
+
+    @JvmStatic
+    @BindingAdapter("textAttrChanged")
+    fun setTextWatcher(view: EditText, textAttrChagned: InverseBindingListener){
+        view.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) { }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                textAttrChagned?.onChange();
+            }
+        })
     }
 }
