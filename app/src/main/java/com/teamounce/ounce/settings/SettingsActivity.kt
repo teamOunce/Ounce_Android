@@ -30,29 +30,34 @@ class SettingsActivity : AppCompatActivity() {
         datas.apply {
             add(
                 SettingButtonData(
+                    R.drawable.ic_cat,
                     "고양이 관리"
                 )
             )
             add(
                 SettingButtonData(
+                    R.drawable.ic_notice,
                     "공지사항"
                 )
             )
 
             add(
                 SettingButtonData(
+                    R.drawable.ic_tos,
                     "이용약관"
                 )
             )
 
             add(
                 SettingButtonData(
+                    R.drawable.ic__question,
                     "문의하기"
                 )
             )
 
             add(
                 SettingButtonData(
+                    R.drawable.ic_backup,
                     "기록 백업 및 복원"
                 )
             )

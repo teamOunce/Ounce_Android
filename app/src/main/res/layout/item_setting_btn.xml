@@ -10,7 +10,6 @@
         android:layout_height="match_parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/setting_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -20,6 +19,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/notosans_bold"
         android:textSize="16sp"
+        android:includeFontPadding="false"
         android:text="Button Name"
         android:layout_marginStart="12dp"
         app:layout_constraintTop_toTopOf="@id/imageview_button"
