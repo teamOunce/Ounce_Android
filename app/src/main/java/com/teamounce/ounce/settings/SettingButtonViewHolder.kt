@@ -14,5 +14,6 @@ class SettingButtonViewHolder (itemView:View): RecyclerView.ViewHolder(itemView)
     fun bind(settingButtonData:SettingButtonData){
         buttonName.text = settingButtonData.buttonName
         Glide.with(itemView).load(settingButtonData.buttonImage).into(buttonImage)
+
     }
 }

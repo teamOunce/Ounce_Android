@@ -1,8 +1,11 @@
 package com.teamounce.ounce.settings
 
+import android.content.Context
+import android.content.pm.PackageInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.common.wrappers.Wrappers.packageManager
 import com.teamounce.ounce.R
 import com.teamounce.ounce.util.VerticalItemDecoration
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -16,6 +19,7 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_settings)
 
         settingButton()
+        ounceversion(this)
     }
 
     fun settingButton(){
@@ -23,6 +27,7 @@ class SettingsActivity : AppCompatActivity() {
         recyclerview_setting_buttons.adapter = settingButtonAdapter
         recyclerview_setting_buttons.addItemDecoration(VerticalItemDecoration(12))
         loadSettingButton()
+
     }
 
 
@@ -65,5 +70,11 @@ class SettingsActivity : AppCompatActivity() {
             settingButtonAdapter.datas = datas
             settingButtonAdapter.notifyDataSetChanged()
         }
+    }
+    fun ounceversion(context:Context){
+        val info:PackageInfo = context.packageManager.getPackageInfo(context.packageName,0)
+        val version = info.versionName
+
+        txt_ounceversion.text = version
     }
 }

@@ -1,6 +1,7 @@
 package com.teamounce.ounce.settings
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -14,8 +15,18 @@ class SettingButtonAdapter (private val context:Context): RecyclerView.Adapter<S
         return SettingButtonViewHolder(view)
     }
 
-    override fun onBindViewHolder(p0: SettingButtonViewHolder, p1: Int) {
-        p0.bind(datas[p1])
+    override fun onBindViewHolder(holder: SettingButtonViewHolder, position: Int) {
+        holder.bind(datas[position])
+
+        holder.itemView.setOnClickListener {
+            when(position) {
+                0 -> {
+                    val intent = Intent(context, SettingsCareActivity::class.java)
+                    context.startActivity(intent)
+                }
+            }
+        }
+
     }
 
     override fun getItemCount() = datas.size
