@@ -24,7 +24,7 @@ class SettingCareAdapter (private val context : Context) :
     RecyclerView.Adapter<SettingCareViewHolder>() {
 
     var datas = mutableListOf<SettingCareCatData>()
-    val fragmentManager = (context as SettingsCareActivity).supportFragmentManager
+    private val fragmentManager = (context as SettingsCareActivity).supportFragmentManager
 
     override fun getItemCount(): Int {
         return datas.size

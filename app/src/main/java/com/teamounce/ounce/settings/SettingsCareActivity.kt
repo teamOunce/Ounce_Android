@@ -1,5 +1,6 @@
 package com.teamounce.ounce.settings
 
+import android.app.ProgressDialog.show
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,7 @@ import com.teamounce.ounce.settings.ui.SettingCareAdapter
 import com.teamounce.ounce.settings.ui.SettingCareCatData
 import kotlinx.android.synthetic.main.activity_settings_care.*
 import kotlinx.android.synthetic.main.bottom_sheet_main.*
+import kotlinx.android.synthetic.main.item_setting_catcare.*
 
 class  SettingsCareActivity : AppCompatActivity() {
     lateinit var settingcareAdapter: SettingCareAdapter
@@ -27,6 +29,8 @@ class  SettingsCareActivity : AppCompatActivity() {
         }
 
         //고양이 삭제시, 1마리일 때와 2마리 이상일때
+
+
     }
 
     fun initSettingCareRecyclerView() {
