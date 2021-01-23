@@ -1,5 +1,6 @@
 package com.teamounce.ounce.settings
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,13 @@ class  SettingsCareActivity : AppCompatActivity() {
 
         initSettingCareRecyclerView()
         loadDatas()
+
+        btn_setting_back.setOnClickListener{
+            val intent = Intent(this,SettingsActivity::class.java )
+            startActivity(intent)
+        }
+
+        //고양이 삭제시, 1마리일 때와 2마리 이상일때
     }
 
     fun initSettingCareRecyclerView() {
@@ -36,13 +44,27 @@ class  SettingsCareActivity : AppCompatActivity() {
             )
             add(
                 SettingCareCatData(
-                    "박주예",
+                    "주예",
                     "만난지 63일째"
                 )
             )
+            add(
+                SettingCareCatData(
+                    "애옹",
+                    "만난지 3970일째"
+                )
+            )
+            add (
+                SettingCareCatData(
+                    "예인",
+                    "만난지 300일"
+                )
+            )
+
         }
         settingcareAdapter.datas = datas
         settingcareAdapter.notifyDataSetChanged()
     }
+
 
 }

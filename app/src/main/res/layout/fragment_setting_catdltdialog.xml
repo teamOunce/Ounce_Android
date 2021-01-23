@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white_two"
+    android:orientation="vertical">
+
+
+    
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity = "center"
+        android:text="정말 지우시겠어요?"
+        android:textSize="17sp"
+        android:fontFamily="@font/notosans_bold"
+        android:textColor="@color/gray_three"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/dialog_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="유일한 고양이에요.\n저장했던 기록들도 함께 사라져요."
+        android:fontFamily="@font/notosans_regular"
+        android:textColor="@color/gray_two"
+        android:gravity="center"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/dialog_title"
+        app:layout_constraintStart_toStartOf="@id/dialog_title"
+        app:layout_constraintEnd_toEndOf="@id/dialog_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintTop_toBottomOf="@id/dialog_subtitle"
+        app:layout_constraintStart_toStartOf="@id/dialog_subtitle"
+        app:layout_constraintEnd_toEndOf="@id/dialog_subtitle">
+
+        <TextView
+            android:id="@+id/settingcare_dialog_yes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="네"
+            android:textColor="@color/gray_three"
+            android:fontFamily="@font/notosans_regular"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white_two"/>
+
+        <TextView
+            android:id="@+id/settingcare_dialog_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="잘못 눌렀어요"
+            android:textColor="@color/white"
+            android:background="@color/orange"
+            android:fontFamily="@font/notosans_regular"/>
+
+
+    </LinearLayout>
+
+
+
+    
+    
+    
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
