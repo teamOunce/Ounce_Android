@@ -1,23 +1,25 @@
 package com.teamounce.ounce.settings
 
+import android.content.Context
+import android.graphics.Color
+import android.graphics.Point
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
 import android.os.Bundle
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.teamounce.ounce.R
 import kotlinx.android.synthetic.main.fragment_setting_catdltdialog.*
 
-class SettingCustomDialog : DialogFragment(){
-    var title :String?= null
-    var subtitle :String?= null
-    var positiveButton : String?= null
-    var negativeButton : String?= null
-    var listener : SettingCustomDialogListener? = null
+class SettingCustomDialog() : DialogFragment() {
+    var title: String? = null
+    var subtitle: String? = null
+    var positiveButton: String? = null
+    var negativeButton: String? = null
+    var listener: SettingCustomDialogListener? = null
+    private var deviceSizeX: Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,7 +27,12 @@ class SettingCustomDialog : DialogFragment(){
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        val view = inflater.inflate(R.layout.fragment_setting_catdltdialog,container,false)
+        val view = inflater.inflate(R.layout.fragment_setting_catdltdialog, container, false)
+
+        //customdialog
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
+
         return view.rootView
     }
 
@@ -36,29 +43,44 @@ class SettingCustomDialog : DialogFragment(){
             findViewById<TextView>(R.id.dialog_subtitle)?.text = subtitle
             findViewById<TextView>(R.id.settingcare_dialog_yes)?.text = positiveButton
 
-            findViewById<TextView>(R.id.settingcare_dialog_yes)?.setOnClickListener{
+            findViewById<TextView>(R.id.settingcare_dialog_yes)?.setOnClickListener {
                 dismiss()
                 listener?.onClickPositiveButton()
             }
 
             findViewById<TextView>(R.id.settingcare_dialog_no)?.text = negativeButton
 
-            findViewById<TextView>(R.id.settingcare_dialog_no)?.setOnClickListener{
+            findViewById<TextView>(R.id.settingcare_dialog_no)?.setOnClickListener {
                 dismiss()
                 listener?.onClickNegativeButton()
             }
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        // 레이아웃 크기 및 위치 조정
-        val width = ViewGroup.LayoutParams.MATCH_PARENT
-        val height = ViewGroup.LayoutParams.WRAP_CONTENT
-        dialog?.window?.setLayout(width, height)
-        dialog?.window?.setGravity(Gravity.CENTER)
-        cardview_dialog.setBackgroundResource(R.drawable.dialog_box)
+    override fun onResume() {
+        super.onResume()
+        if (deviceSizeX == null) {
+            if(context == null) {
+                return
+            }
+            val size = Point()
+            if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R){
+                context?.display
+            } else{
+                (context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
+            }?.getRealSize(size)
+            deviceSizeX = size.x
+        }
+        if(deviceSizeX == null){
+            return
+        }
+        val params = dialog?.window?.attributes
+        params?.width = (deviceSizeX!!* DIALOG_WIDTH_RATIO).toInt()
+        dialog?.window?.attributes = params as WindowManager.LayoutParams
 
     }
 
+    companion object{
+        private const val DIALOG_WIDTH_RATIO = 0.9
+    }
 }
