@@ -11,7 +11,7 @@ class BottomSheetAdapter(private val context : Context) :
 
     RecyclerView.Adapter<BottomSheetViewHolder>() {
 
-    private var datas = mutableListOf<SettingCareCatData>()
+    var datas = mutableListOf<SettingCareCatData>()
 
     override fun getItemCount(): Int {
         return datas.size
