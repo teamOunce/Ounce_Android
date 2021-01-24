@@ -45,24 +45,24 @@ class  SettingsCareActivity : AppCompatActivity() {
                     "만난지 1030일째"
                 )
             )
-//            add(
-//                SettingCareCatData(
-//                    "주예",
-//                    "만난지 63일째"
-//                )
-//            )
-//            add(
-//                SettingCareCatData(
-//                    "애옹",
-//                    "만난지 3970일째"
-//                )
-//            )
-//            add (
-//                SettingCareCatData(
-//                    "예인",
-//                    "만난지 300일"
-//                )
-//            )
+            add(
+                SettingCareCatData(
+                    "주예",
+                    "만난지 63일째"
+                )
+            )
+            add(
+                SettingCareCatData(
+                    "애옹",
+                    "만난지 3970일째"
+                )
+            )
+            add (
+                SettingCareCatData(
+                    "예인",
+                    "만난지 300일"
+                )
+            )
 
         }
         settingcareAdapter.datas = datas

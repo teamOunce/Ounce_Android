@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.teamounce.ounce.R
+import com.teamounce.ounce.settings.ui.SettingCareCatData
 
 class BottomSheetAdapter(private val context : Context) :
 
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    RecyclerView.Adapter<BottomSheetViewHolder>() {
 
-    var datas = mutableListOf<BottomSheetData>()
+    private var datas = mutableListOf<SettingCareCatData>()
 
     override fun getItemCount(): Int {
         return datas.size
@@ -20,32 +21,13 @@ class BottomSheetAdapter(private val context : Context) :
         parent: ViewGroup,
         viewType: Int
     ): BottomSheetViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.fragment_bottom_main,parent,false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_bottom_main,parent,false)
         return BottomSheetViewHolder(view)
     }
 
-    fun onBindViewHolder(
-        holder: BottomSheetViewHolder,
-        position: Int,
-        payloads: MutableList<Any>
-    ) {
+    override fun onBindViewHolder(holder: BottomSheetViewHolder, position: Int) {
         holder.bind(datas[position])
-
     }
-
-     class ViewHolder (parent : ViewGroup, viewType: Int) {
-        fun bind(bottomSheetData: BottomSheetData) {
-
-        }
-
-
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        TODO("Not yet implemented")
-    }
-
-
 }
 
 

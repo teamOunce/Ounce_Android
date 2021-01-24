@@ -14,9 +14,7 @@
         android:theme="@style/Theme.OUNCE">
         <activity android:name=".settings.SettingsCareActivity" />
         <activity android:name=".settings.SettingsActivity">
-
         </activity>
-
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/native_app_key" />

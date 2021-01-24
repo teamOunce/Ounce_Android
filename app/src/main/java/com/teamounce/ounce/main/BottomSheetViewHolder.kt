@@ -4,14 +4,17 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.teamounce.ounce.R
-import kotlinx.android.synthetic.main.fragment_bottom_main.view.*
+import com.teamounce.ounce.settings.ui.SettingCareCatData
+import kotlinx.android.synthetic.main.item_bottom_main.view.*
 
 class BottomSheetViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-    val cat_name = itemView.findViewById<TextView>(R.id.cat_name)
-    val cat_dday = itemView.findViewById<TextView>(R.id.cat_dday)
-    val cat_selected_btn = itemView.findViewById<TextView>(R.id.cat_select_btn)
+    val catName = itemView.findViewById<TextView>(R.id.cat_name)
+    val catDday = itemView.findViewById<TextView>(R.id.cat_dday)
 
-    fun bind(bottomSheetData: BottomSheetData) {
+
+    fun bind(settingCareCatData: SettingCareCatData) {
+        catName.text = settingCareCatData.setting_catname
+        catDday.text = settingCareCatData.setting_catdday
 
     }
 

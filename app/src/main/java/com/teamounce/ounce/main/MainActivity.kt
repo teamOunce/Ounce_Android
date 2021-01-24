@@ -1,68 +1,82 @@
 package com.teamounce.ounce.main
 
+import android.content.Context
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
-import androidx.core.content.ContextCompat
-import androidx.core.view.MotionEventCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 import com.teamounce.ounce.R
+import com.teamounce.ounce.settings.ui.SettingCareCatData
 import com.teamounce.ounce.util.TransparentStatusBarObject
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.bottom_sheet_main.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var bottomSheet: BottomSheetBehavior<View>
     var reviewCount = 2
+    lateinit var bottomSheetAdapter: BottomSheetAdapter
+    var datas = mutableListOf<SettingCareCatData>()
+    val bottomSheetFragment = BottomSheetFragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        bottomSheet = BottomSheetBehavior.from<View>(bottom_sheet_view)
-        bottomSheet.state = BottomSheetBehavior.STATE_DRAGGING
+
+//        bottomSheet = BottomSheetBehavior.from<View>(bottom_sheet_view)
+//        bottomSheet.state = BottomSheetBehavior.STATE_DRAGGING
         TransparentStatusBarObject.setStatusBar(this)
 
-        operateBottomSheet()
+//        operateBottomSheet()
         setBackGroundColor()
+
+//        home_btn_record.setOnClickListener {
+//            bottomSheetFragment.show(supportFragmentManager,"tag")
+//        }
+
     }
-
-    fun operateBottomSheet() {
-
-        bottomSheet.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-            }
-
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-                when (newState) {
-                    BottomSheetBehavior.STATE_COLLAPSED -> {
-                        bottom_sheet_bulr.visibility = View.VISIBLE
-                        bottom_sheet_view.visibility = View.VISIBLE
-                    }
-                    BottomSheetBehavior.STATE_HIDDEN -> {
-                        bottom_sheet_bulr.visibility = View.GONE
-                        bottom_sheet_view.visibility = View.GONE
-
-                    }
-                }
-            }
-        })
-
-        bottomSheet.state = BottomSheetBehavior.STATE_DRAGGING
-
-        bottom_sheet_bulr.setOnClickListener {
-            bottomSheet.state = BottomSheetBehavior.STATE_HIDDEN
-        }
-    }
-
+//    fun operateBottomSheet() {
+//
+//        bottomSheet.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+//            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+//            }
+//
+//            override fun onStateChanged(bottomSheet: View, newState: Int) {
+//                when (newState) {
+//                    BottomSheetBehavior.STATE_COLLAPSED -> {
+//                        bottom_sheet_bulr.visibility = View.VISIBLE
+//                        bottom_sheet_view.visibility = View.VISIBLE
+//                    }
+//                    BottomSheetBehavior.STATE_HIDDEN -> {
+//                        bottom_sheet_bulr.visibility = View.GONE
+//                        bottom_sheet_view.visibility = View.GONE
+//
+//                    }
+//                }
+//
+//                bottomSheetAdapter = BottomSheetAdapter(this@MainActivity)
+//                bottomSheet.recyclerview_catlist.adapter = bottomSheetAdapter
+//                bottomSheetView(this@MainActivity)
+//            }
+//        })
+//
+//        bottomSheet.state = BottomSheetBehavior.STATE_DRAGGING
+//
+//        bottom_sheet_bulr.setOnClickListener {
+//            bottomSheet.state = BottomSheetBehavior.STATE_HIDDEN
+//        }
+//    }
+//
     override fun onTouchEvent(event: MotionEvent): Boolean {
 
         when (event.action) {
             MotionEvent.ACTION_UP -> {
-                bottomSheet.state = BottomSheetBehavior.STATE_COLLAPSED
+                bottomSheetFragment.show(supportFragmentManager,"tag")
             }
             MotionEvent.ACTION_DOWN -> {
-                bottomSheet.state = BottomSheetBehavior.STATE_HIDDEN
+                bottomSheetFragment.dismiss()
             }
         }
         return true
