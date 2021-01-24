@@ -20,4 +20,9 @@
     <color name = "gray_one">#7E7E7E</color>
     <color name = "gray_zero">#E7E7E7</color>
     <color name = "white_two">#F1F1F1 </color>
+    <color name="orangey_red">#ff5a27</color>
+    <color name="grapefruit">#ff5454</color>
+    <color name="very_light_pink">#e1e1e1</color>
+    <color name="brown_gray">#979797</color>
+    <color name="background_gray">#dadada</color>
 </resources>
