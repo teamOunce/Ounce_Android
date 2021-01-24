@@ -40,7 +40,14 @@ class SettingCustomDialog() : DialogFragment() {
         super.onActivityCreated(savedInstanceState)
         view?.apply {
             findViewById<TextView>(R.id.dialog_title)?.text = title
-            findViewById<TextView>(R.id.dialog_subtitle)?.text = subtitle
+
+            if(subtitle.isNullOrBlank()) {
+                dialog_subtitle.visibility = View.GONE
+            } else {
+                dialog_subtitle.visibility = View.VISIBLE
+                findViewById<TextView>(R.id.dialog_subtitle)?.text = subtitle
+            }
+
             findViewById<TextView>(R.id.settingcare_dialog_yes)?.text = positiveButton
 
             findViewById<TextView>(R.id.settingcare_dialog_yes)?.setOnClickListener {

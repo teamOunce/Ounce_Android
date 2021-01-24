@@ -42,23 +42,43 @@ class SettingCareAdapter (private val context : Context) :
         holder.bind(datas[position])
 
         holder.itemView.setting_catdlt.setOnClickListener {
-            val dialog = SettingCustomDialogBuilder()
-                .setTitle("정말 지우시겠어요?")
-                .setSubTitle("유일한 고양이에요.\n저장했던 기록들도 함께 사라져요.")
-                .setPositiveButton("네")
-                .setNegativeButton("잘못 눌렀어요")
-                .setButtonClickListener(object : SettingCustomDialogListener{
-                    override fun onClickPositiveButton() {
-                        Toast.makeText(context,"고양이를 삭제했습니다.",Toast.LENGTH_SHORT).show()
-                    }
+            if (datas.size == 1){
+                val dialog = SettingCustomDialogBuilder()
+                    .setTitle("정말 지우시겠어요?")
+                    .setSubTitle("유일한 고양이에요.\n저장했던 기록들도 함께 사라져요.")
+                    .setPositiveButton("네")
+                    .setNegativeButton("잘못 눌렀어요")
+                    .setButtonClickListener(object : SettingCustomDialogListener{
+                        override fun onClickPositiveButton() {
+                            Toast.makeText(context,"고양이를 삭제했습니다.",Toast.LENGTH_SHORT).show()
+                        }
 
-                    override fun onClickNegativeButton() {
-                        Toast.makeText(context,"ㅇㅇㅇ",Toast.LENGTH_SHORT).show()
-                    }
-                })
-                .create()
+                        override fun onClickNegativeButton() {
+                            Toast.makeText(context,"ㅇㅇㅇ",Toast.LENGTH_SHORT).show()
+                        }
+                    })
+                    .create()
 
-            dialog.show(fragmentManager, dialog.tag)
+                dialog.show(fragmentManager, dialog.tag)
+            } else {
+                val dialog = SettingCustomDialogBuilder()
+                    .setTitle("정말 지우시겠어요?")
+                    .setSubTitle("저장했던 기록들도 함께 사라져요.")
+                    .setPositiveButton("네")
+                    .setNegativeButton("잘못 눌렀어요")
+                    .setButtonClickListener(object : SettingCustomDialogListener{
+                        override fun onClickPositiveButton() {
+                            Toast.makeText(context,"고양이를 삭제했습니다.",Toast.LENGTH_SHORT).show()
+                        }
+
+                        override fun onClickNegativeButton() {
+                            Toast.makeText(context,"ㅇㅇㅇ",Toast.LENGTH_SHORT).show()
+                        }
+                    })
+                    .create()
+
+                dialog.show(fragmentManager, dialog.tag)
+            }
        }
     }
 }

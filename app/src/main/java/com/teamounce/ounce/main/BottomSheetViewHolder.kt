@@ -12,6 +12,7 @@ class BottomSheetViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
     val cat_selected_btn = itemView.findViewById<TextView>(R.id.cat_select_btn)
 
     fun bind(bottomSheetData: BottomSheetData) {
+
     }
 
 }

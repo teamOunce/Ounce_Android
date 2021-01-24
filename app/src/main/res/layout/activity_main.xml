@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main_background"
     tools:context=".main.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -84,7 +85,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:id="@+id/main_image"
-            android:src="@drawable/home_img_area"
             app:layout_constraintTop_toBottomOf="@id/textview_cat_dday"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
