@@ -125,7 +125,8 @@
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_detail_brand_name" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_detail_brand_name"
+            tools:listitem="@layout/item_detail_tag" />
 
 
         <com.hedgehog.ratingbar.RatingBar
