@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".feed.ui.FoodDetailActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_detail"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:contentInsetStart="0dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_detail_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_detail_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanskr"
+                    android:includeFontPadding="false"
+                    android:text="기록 한 스푼"
+                    android:textColor="@color/text_color_black"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/img_detail_options"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/ic_options"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp_detail_image_slider"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_detail" />
+
+        <TextView
+            android:id="@+id/txt_detail_brand_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:text="브랜드이름"
+            android:textColor="@color/gray2"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vp_detail_image_slider" />
+
+        <TextView
+            android:id="@+id/txt_detail_brand_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/notosanskr"
+            android:includeFontPadding="false"
+            android:textColor="@color/text_color_black"
+            android:textFontWeight="700"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_detail_brand_title"
+            tools:text="로얄캐닌 키튼 4kg" />
+
+        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+            android:id="@+id/indicator_detail_slider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:dotsColor="@color/dot_not_selected"
+            app:dotsSize="8dp"
+            app:dotsSpacing="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vp_detail_image_slider"
+            app:selectedDotColor="@color/orange" />
+
+        <View
+            android:id="@+id/view_detail_rating_background"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/background_orange"
+            app:layout_constraintTop_toBottomOf="@+id/txt_detail_brand_name"
+            tools:layout_editor_absoluteX="24dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_detail_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_detail_brand_name" />
+
+
+        <com.hedgehog.ratingbar.RatingBar
+            android:id="@+id/ratingbar_detail_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/view_detail_rating_background"
+            app:layout_constraintStart_toStartOf="@+id/view_detail_rating_background"
+            app:layout_constraintTop_toTopOf="@+id/view_detail_rating_background"
+            app:starCount="5"
+            app:starEmpty="@drawable/ic_foot_empty"
+            app:starFill="@drawable/ic_foot_fill"
+            app:starImageHeight="32dp"
+            app:starImageWidth="32dp" />
+
+        <TextView
+            android:id="@+id/txt_detail_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/notosanskr"
+            android:includeFontPadding="false"
+            android:text="먹을만 하지만 뭔가 부족해"
+            android:textColor="@color/gray1.5"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/view_detail_rating_background"
+            app:layout_constraintStart_toStartOf="@+id/view_detail_rating_background"
+            app:layout_constraintTop_toBottomOf="@+id/ratingbar_detail_rating" />
+
+        <TextView
+            android:id="@+id/txt_detail_opinion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/notosanskr"
+            android:includeFontPadding="false"
+            android:text="특별히 기호성이 좋은 것은 아니지만 겨울기가 거부감 없이 잘 먹는다"
+            android:textColor="@color/gray2"
+            app:layout_constraintTop_toBottomOf="@+id/view_detail_rating_background" />
+
+        <TextView
+            android:id="@+id/txt_detail_created_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/notosanskr"
+            android:includeFontPadding="false"
+            android:text="만든 날짜: 2020년 11월 11일"
+            android:textColor="@color/gray0.5"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_detail_rating_background" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

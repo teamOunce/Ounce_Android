@@ -1,11 +1,11 @@
 package com.teamounce.ounce
 
 import android.app.Application
-import android.util.Log
 import com.kakao.sdk.common.KakaoSdk
-import com.kakao.sdk.common.util.Utility
 import com.teamounce.ounce.singleton.KeyPref
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class OunceApplication : Application() {
     override fun onCreate() {
         super.onCreate()

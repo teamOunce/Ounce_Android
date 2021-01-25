@@ -138,13 +138,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view" />
 
+        <TextView
+            android:id="@+id/txt_record_preference_explain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_record_preference"
+            tools:text="기호도를 선택하세요" />
+
         <com.hedgehog.ratingbar.RatingBar
             android:id="@+id/rating_record_preference"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_record_preference"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/txt_record_preference_explain"
+            app:layout_constraintStart_toStartOf="@+id/txt_record_preference_explain"
+            app:layout_constraintTop_toBottomOf="@+id/txt_record_preference_explain"
             hedgehog:clickable="true"
             hedgehog:halfstart="true"
             hedgehog:starCount="5"

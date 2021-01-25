@@ -15,9 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OUNCE"
         tools:replace="android:theme">
+        <activity android:name=".feed.ui.FoodDetailActivity"></activity>
         <activity
             android:name=".review.ui.RecordActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".review.ui.SearchActivity"
             android:exported="true" />
@@ -43,7 +44,7 @@
             android:exported="true" />
         <activity
             android:name=".login.ui.LoginActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
