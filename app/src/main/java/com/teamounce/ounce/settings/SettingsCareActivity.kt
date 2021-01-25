@@ -4,8 +4,10 @@ import android.app.ProgressDialog.show
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.teamounce.ounce.R
+import com.teamounce.ounce.login.ui.SignUpActivity
 import com.teamounce.ounce.settings.ui.SettingCareAdapter
 import com.teamounce.ounce.settings.ui.SettingCareCatData
 import kotlinx.android.synthetic.main.activity_settings_care.*
@@ -28,7 +30,13 @@ class  SettingsCareActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
+        //고양이 최대 4마리까지만 등록 가능
+        if(datas.size < MAX_CAT_RESISTERED){
+            val intent = Intent(this,SignUpActivity::class.java )
+            startActivity(intent)
+        }else{
+            Toast.makeText(this, "고양이는 최대 4마리까지 등록 가능합니다.", Toast.LENGTH_SHORT)
+        }
 
     }
 
@@ -69,5 +77,8 @@ class  SettingsCareActivity : AppCompatActivity() {
         settingcareAdapter.notifyDataSetChanged()
     }
 
+    companion object {
+        private const val MAX_CAT_RESISTERED = 4
+    }
 
 }

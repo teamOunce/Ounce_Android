@@ -16,10 +16,8 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/cat_dday"
@@ -27,10 +25,10 @@
         android:layout_height="wrap_content"
         android:text="만난지 10000일 째"
         android:layout_marginTop="7dp"
+        android:fontFamily="@font/notosans_regular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/cat_name"
-        app:layout_constraintTop_toBottomOf="@+id/cat_name"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/cat_name" />
 
     <Button
         android:id="@+id/cat_select_btn"
@@ -39,6 +37,7 @@
         android:background="@drawable/radio_bt_checked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

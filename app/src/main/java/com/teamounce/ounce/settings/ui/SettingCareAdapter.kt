@@ -24,10 +24,11 @@ class SettingCareAdapter (private val context : Context) :
     RecyclerView.Adapter<SettingCareViewHolder>() {
 
     var datas = mutableListOf<SettingCareCatData>()
+    private var limit = 4
     private val fragmentManager = (context as SettingsCareActivity).supportFragmentManager
 
     override fun getItemCount(): Int {
-        return datas.size
+            return datas.size
     }
 
     override fun onCreateViewHolder(
@@ -54,7 +55,7 @@ class SettingCareAdapter (private val context : Context) :
                         }
 
                         override fun onClickNegativeButton() {
-                            Toast.makeText(context,"ㅇㅇㅇ",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context,"",Toast.LENGTH_SHORT).show()
                         }
                     })
                     .create()
@@ -72,7 +73,7 @@ class SettingCareAdapter (private val context : Context) :
                         }
 
                         override fun onClickNegativeButton() {
-                            Toast.makeText(context,"ㅇㅇㅇ",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context,"",Toast.LENGTH_SHORT).show()
                         }
                     })
                     .create()
@@ -81,4 +82,6 @@ class SettingCareAdapter (private val context : Context) :
             }
        }
     }
+
+
 }
