@@ -2,6 +2,7 @@ package com.teamounce.ounce.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
 
         }
-        operatebottomSheet()
+//        operatebottomSheet()
 
         //수첩 아이콘 눌렀을 때, FeedActivity
 //        btn_drawer.setOnClickListener{
@@ -84,6 +85,16 @@ class MainActivity : AppCompatActivity() {
             activityMainBinding.imageviewCat.setImageDrawable(getDrawable(R.drawable.ic_home_img_step_five))
 
         }
+    }
+
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+
+        when(event.action){
+            MotionEvent.ACTION_UP -> {
+                bottomSheetFragment.show(supportFragmentManager,"tag")
+            }
+        }
+        return true
     }
 
 

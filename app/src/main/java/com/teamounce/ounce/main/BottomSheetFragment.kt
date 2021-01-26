@@ -28,15 +28,15 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //dialog?.window?.setBackgroundDrawableResource(R.drawable.bottom_sheet_box)
-        bottomSheetView(view)
+        bottomSheetView()
 
     }
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
 
 
-    fun bottomSheetView(view:View){
-        bottomSheetAdapter = BottomSheetAdapter(view.context)
+    fun bottomSheetView(){
+        bottomSheetAdapter = BottomSheetAdapter()
         recyclerview_catlist.adapter = bottomSheetAdapter
 
         loadDatas()
@@ -63,7 +63,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
                 "만난지 1030일째"
             )
         )
-        bottomSheetAdapter.datas = datas
+        bottomSheetAdapter.settingCareCatData = datas
         bottomSheetAdapter.notifyDataSetChanged()
 
     }
