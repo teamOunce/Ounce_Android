@@ -32,6 +32,8 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
     }
 
+    override fun getTheme(): Int = R.style.BottomSheetDialogTheme
+
 
     fun bottomSheetView(view:View){
         bottomSheetAdapter = BottomSheetAdapter(view.context)
@@ -42,35 +44,27 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
 
     fun loadDatas(){
-        datas.apply {
-            add(
-                SettingCareCatData(
-                    "이겨울",
-                    "만난지 1030일째"
-                )
-            )
-            add(
-                SettingCareCatData(
-                    "주예",
-                    "만난지 63일째"
-                )
-            )
-            add(
-                SettingCareCatData(
-                    "애옹",
-                    "만난지 3970일째"
-                )
-            )
-            add (
-                SettingCareCatData(
-                    "예인",
-                    "만난지 300일"
-                )
-            )
 
-            bottomSheetAdapter.datas = datas
-            bottomSheetAdapter.notifyDataSetChanged()
-        }
+        datas = mutableListOf(
+            SettingCareCatData(
+                "이겨울",
+                "만난지 1030일째"
+            ),
+            SettingCareCatData(
+                "이겨울",
+                "만난지 1030일째"
+            ),
+            SettingCareCatData(
+                "이겨울",
+                "만난지 1030일째"
+            ),
+            SettingCareCatData(
+                "이겨울",
+                "만난지 1030일째"
+            )
+        )
+        bottomSheetAdapter.datas = datas
+        bottomSheetAdapter.notifyDataSetChanged()
 
     }
 }

@@ -30,7 +30,7 @@
         app:layout_constraintStart_toStartOf="@+id/cat_name"
         app:layout_constraintTop_toBottomOf="@+id/cat_name" />
 
-    <Button
+    <RadioButton
         android:id="@+id/cat_select_btn"
         android:layout_width="0dp"
         android:layout_height="0dp"
