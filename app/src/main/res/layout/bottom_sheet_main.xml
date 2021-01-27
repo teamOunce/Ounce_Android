@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/underline_catist"
         android:orientation="vertical"
+        android:paddingHorizontal="20dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_bottom_main"
         app:layout_constraintTop_toTopOf="parent"

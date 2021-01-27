@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import android.widget.RadioButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -15,38 +16,50 @@ import kotlinx.android.synthetic.main.item_bottom_main.view.*
 class BottomSheetAdapter : RecyclerView.Adapter<BottomSheetAdapter.BottomSheetViewHolder>() {
 
     var settingCareCatData = mutableListOf<SettingCareCatData>()
-    var lastSelectionPosition = -1
+    private var checkedRadioButton: CompoundButton? = null
 
-    override fun getItemCount(): Int {
-        return settingCareCatData.size
-    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): BottomSheetViewHolder {
-        val binding = ItemBottomMainBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemBottomMainBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return BottomSheetViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: BottomSheetViewHolder, position: Int) {
         holder.bind(settingCareCatData[position])
 
-            holder.binding.catSelectBtn.isChecked = lastSelectionPosition == position
+        holder.binding.catSelectBtn.setOnCheckedChangeListener(checkedChangedListener)
 
+        if (holder.binding.catSelectBtn.isChecked) checkedRadioButton = holder.binding.catSelectBtn
+
+
+    }
+
+
+    override fun getItemCount(): Int {
+        return settingCareCatData.size
+    }
+
+
+    private val checkedChangedListener =
+        CompoundButton.OnCheckedChangeListener { compoundButton, isChecked ->
+            checkedRadioButton?.apply {
+                setChecked(!isChecked)
+            }
+            checkedRadioButton = compoundButton.apply {
+                setChecked(isChecked)
+            }
 
         }
 
-    inner class BottomSheetViewHolder(var binding: ItemBottomMainBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class BottomSheetViewHolder(var binding: ItemBottomMainBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(settingCareCatData: SettingCareCatData) {
             binding.settingCareCatData = settingCareCatData
-
-            binding.catSelectBtn.setOnClickListener {
-                lastSelectionPosition = adapterPosition
-                notifyDataSetChanged()
-            }
-
         }
     }
 }

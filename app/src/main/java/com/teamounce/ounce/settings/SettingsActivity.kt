@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.common.wrappers.Wrappers.packageManager
 import com.teamounce.ounce.R
+import com.teamounce.ounce.main.MainActivity
 import com.teamounce.ounce.util.VerticalItemDecoration
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.fragment_setting_catdltdialog.*
@@ -26,6 +27,13 @@ class SettingsActivity : AppCompatActivity() {
 
         settingButton()
         ounceversion(this)
+
+        //설정뷰에 오른쪽 화살표 눌렀을때 MainActivity
+        btn_drawer.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java )
+            startActivity(intent)
+        }
+
 
         //로그아웃 버튼 눌렀을 때
         txt_ouncelogout.setOnClickListener {

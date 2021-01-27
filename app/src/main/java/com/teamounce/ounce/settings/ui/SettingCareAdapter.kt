@@ -17,7 +17,6 @@ class SettingCareAdapter (private val context : Context) :
     RecyclerView.Adapter<SettingCareViewHolder>() {
 
     var datas = mutableListOf<SettingCareCatData>()
-    private var limit = 4
     private val fragmentManager = (context as SettingsCareActivity).supportFragmentManager
 
     override fun getItemCount(): Int {
@@ -32,6 +31,11 @@ class SettingCareAdapter (private val context : Context) :
         return SettingCareViewHolder(view)
     }
 
+    fun removeCatInfoClick(position: Int){
+        datas.removeAt(position)
+        notifyDataSetChanged()
+    }
+
     override fun onBindViewHolder(holder: SettingCareViewHolder, position: Int) {
         holder.bind(datas[position])
 
@@ -44,6 +48,8 @@ class SettingCareAdapter (private val context : Context) :
                     .setNegativeButton("잘못 눌렀어요")
                     .setButtonClickListener(object : SettingCustomDialogListener{
                         override fun onClickPositiveButton() {
+                            removeCatInfoClick(position)
+
                             Toast.makeText(context,"고양이를 삭제했습니다.",Toast.LENGTH_SHORT).show()
                         }
 
@@ -62,6 +68,7 @@ class SettingCareAdapter (private val context : Context) :
                     .setNegativeButton("잘못 눌렀어요")
                     .setButtonClickListener(object : SettingCustomDialogListener{
                         override fun onClickPositiveButton() {
+                            removeCatInfoClick(position)
                             Toast.makeText(context,"고양이를 삭제했습니다.",Toast.LENGTH_SHORT).show()
                         }
 
