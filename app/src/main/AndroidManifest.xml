@@ -14,6 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OUNCE">
+        <activity android:name=".settings.SettingsCareActivity" />
+        <activity android:name=".settings.SettingsActivity">
+        </activity>
         <activity android:name=".review.ui.SearchActivity"
             android:exported="true"/>
         <meta-data
@@ -37,9 +40,7 @@
             android:exported="true" />
         <activity
             android:name=".login.ui.LoginActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
