@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/notosans_bold"
             android:text="만난지 1000일 째"
-            android:textSize="24sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textview_cat_name"
             app:layout_constraintTop_toBottomOf="@id/textview_cat_name"
