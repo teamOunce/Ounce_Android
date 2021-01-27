@@ -15,7 +15,7 @@ data class Review(
         @SerializedName("memo")
         val memo: String,
         @SerializedName("myImg")
-        val myImg: String?,
+        val myImg: String,
         @SerializedName("preference")
         val preference: Int,
         @SerializedName("productImg")

@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.teamounce.ounce.R
 import com.teamounce.ounce.databinding.FragmentImageSliderBinding
-import com.teamounce.ounce.singleton.CustomAdapter
+import com.teamounce.ounce.singleton.BindingAdapters
 
 class ImageSliderFragment(private val uri: String) : Fragment() {
     private lateinit var binding: FragmentImageSliderBinding
@@ -19,7 +19,7 @@ class ImageSliderFragment(private val uri: String) : Fragment() {
     ): View? {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_image_slider, container, false)
-        CustomAdapter.setSrcFromUrl(binding.imgSlider, uri)
+        BindingAdapters.setSrcFromUrl(binding.imgSlider, uri)
         return binding.root
     }
 

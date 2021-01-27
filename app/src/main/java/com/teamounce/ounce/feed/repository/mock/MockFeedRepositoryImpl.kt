@@ -3,8 +3,11 @@ package com.teamounce.ounce.feed.repository.mock
 import com.teamounce.ounce.feed.model.RequestReview
 import com.teamounce.ounce.feed.model.Review
 import com.teamounce.ounce.feed.repository.FeedRepository
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MockFeedRepositoryImpl : FeedRepository {
+@Singleton
+class MockFeedRepositoryImpl @Inject constructor() : FeedRepository {
     override suspend fun getFoodReviewList(reviewIndex: RequestReview): Review {
         return Review(
             responseMessage = "리뷰리스트 가져오기 성공",
@@ -19,7 +22,6 @@ class MockFeedRepositoryImpl : FeedRepository {
                 tag1 = "JMT",
                 tag2 = "",
                 tag3 = ""
-
             )
         )
     }

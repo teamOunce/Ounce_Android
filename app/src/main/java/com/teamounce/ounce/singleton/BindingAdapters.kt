@@ -9,7 +9,7 @@ import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import com.bumptech.glide.Glide
 
-object CustomAdapter {
+object BindingAdapters {
     @BindingAdapter("setSrcFromUrl")
     @JvmStatic
     fun setSrcFromUrl(view: ImageView, url: String) {
