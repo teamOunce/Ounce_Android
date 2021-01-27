@@ -25,6 +25,14 @@
     <color name="very_light_pink">#e1e1e1</color>
     <color name="brown_gray">#979797</color>
     <color name="background_gray">#dadada</color>
+    <color name="gray0.5">#cccccc</color>
+    <color name="gray1">#bfbfbf</color>
+    <color name="gray1.5">#7e7e7e</color>
+    <color name="gray2">#676767</color>
+    <color name="gray0">#e7e7e7</color>
+    <color name="orange">#ff7246</color>
+    <color name="dot_not_selected">#667e7e7e</color>
+    <color name="background_orange">#33f8a185</color>
     <color name = "mainbackground_one">#FFF9F3</color>
     <color name = "mainbackground_two">#FFE9E0</color>
     <color name = "mainbackground_three">#2963A2</color>

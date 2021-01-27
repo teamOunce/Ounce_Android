@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -87,7 +88,16 @@ dependencies {
 
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
-}
 
-// Google Play Services Gradle Plugin
-apply plugin: 'com.google.gms.google-services'
+    // Rating Bar Library
+    implementation 'com.hedgehog.ratingbar:app:1.1.2'
+
+    // Android Dagger-Hilt
+    implementation "com.google.dagger:hilt-android:2.28-alpha"
+    kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
+
+    // Android Dagger-Hilt for ViewModelInject
+    implementation "androidx.hilt:hilt-common:1.0.0-alpha02"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02"
+    kapt "androidx.hilt:hilt-compiler:1.0.0-alpha02"
+}
