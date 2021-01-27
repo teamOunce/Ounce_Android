@@ -36,19 +36,11 @@ class MainActivity : AppCompatActivity() {
 
         TransparentStatusBarObject.setStatusBar(this)
         setMainViewRetrofit()
-        //한입더! 버튼 눌렀을 때, SearchActivity
-        activityMainBinding.homeBtnRecord.setOnClickListener {
-            val intent = Intent(this, SearchActivity::class.java )
-            startActivity(intent)
-        }
 
-        //햄버거바 눌렀을 때, SettingActivity
-        activityMainBinding.btnMenu.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java )
-            startActivity(intent)
+        goToSearchActivity()
+        goToSettingsActivity()
 
 
-        }
 //        operatebottomSheet()
 
         //수첩 아이콘 눌렀을 때, FeedActivity
@@ -59,11 +51,27 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun goToSearchActivity() {
+        //한입더! 버튼 눌렀을 때, SearchActivity
+        activityMainBinding.homeBtnRecord.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    fun goToSettingsActivity() {
+        //햄버거바 눌렀을 때, SettingActivity
+        activityMainBinding.btnMenu.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
     fun operatebottomSheet() {
-        activityMainBinding.mainBackground.setOnTouchListener(object: OnSwipeTouchListener(this){
+        activityMainBinding.mainBackground.setOnTouchListener(object : OnSwipeTouchListener(this) {
             override fun onSwipeUp() {
                 super.onSwipeUp()
-                bottomSheetFragment.show(supportFragmentManager,"tag")
+                bottomSheetFragment.show(supportFragmentManager, "tag")
             }
         })
     }
@@ -93,21 +101,30 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun setCatName(name: String) {
+        activityMainBinding.textviewCatName.text = name
+    }
+
+    fun setCatDday(dday: Int){
+        activityMainBinding.textviewCatDday.text = "만난지 ${dday}일 "
+    }
+
     override fun onTouchEvent(event: MotionEvent): Boolean {
 
-        when(event.action){
+        when (event.action) {
             MotionEvent.ACTION_UP -> {
-                bottomSheetFragment.show(supportFragmentManager,"tag")
+                bottomSheetFragment.show(supportFragmentManager, "tag")
             }
         }
         return true
     }
-    fun setMainViewRetrofit(){
+
+    fun setMainViewRetrofit() {
 
         mainViewRetrofitInterface = RetrofitService.create(MainViewRetrofitInterface::class.java)
         mainViewRetrofitInterface.mainViewRetrofit(
             5
-        ).enqueue(object: retrofit2.Callback<MainViewResponseData>{
+        ).enqueue(object : retrofit2.Callback<MainViewResponseData> {
             override fun onFailure(call: Call<MainViewResponseData>, t: Throwable) {
                 Log.d("서버통신 실패", "${t}")
             }
@@ -116,17 +133,19 @@ class MainActivity : AppCompatActivity() {
                 call: Call<MainViewResponseData>,
                 response: Response<MainViewResponseData>
             ) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     setBackGroundColor()
+                    setCatName(response.body()!!.data.catName)
+                    setCatDday(response.body()!!.data.fromMeet)
+
                     Log.d("이것은 서버통신 성공", "이것이 서버")
                     Log.d("고양이 이름", response.body().toString())
-                }else {
+                } else {
                     Log.d("이것도 실패", response.body().toString())
                 }
             }
         })
     }
-
 
 
 }
