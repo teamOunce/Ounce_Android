@@ -8,7 +8,7 @@
 온스 이용약관\n
 \n
 제 1 조 (목적)\n
-이 약관은 온스(이하 "회사”라 합니다)에서 제공하는 온스(OUNCE) 서비스(이하 "서비스”라 합니다)와 관련하여, 회사와 이용 고객간에 서비스의 이용조건 및 절차, 회사와 회원간의 권리, 의무 및 기타 필요한 사항을 규정함을 목적으로 합니다. 본 약관은 PC통신, 스마트폰(안드로이드폰, 아이폰 등) 앱 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 준용됩니다.\n
+이 약관은 온스(이하 "회사”라 합니다)이 제공하는 온스(OUNCE) 서비스(이하 "서비스”라 합니다)와 관련하여, 회사와 이용 고객간에 서비스의 이용조건 및 절차, 회사와 회원간의 권리, 의무 및 기타 필요한 사항을 규정함을 목적으로 합니다. 본 약관은 PC통신, 스마트폰(안드로이드폰, 아이폰 등) 앱 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 준용됩니다.\n
 \n
 제 2 조 (용어의 정의)\n
 1. “회원”이라 함은 “온스”에 개인정보를 제공하여 회원등록을 한 자로서, “온스”의 정보를 지속적으로 제공받으며, “온스”이 제공하는 서비스를 계속적으로 이용할 수 있는 자를 의미합니다.\n
@@ -162,4 +162,10 @@
 
 &lt;부칙&gt;\n
 1. 이 약관은 2021년 2월 11일부터 시행됩니다.\n</string>
+    <string name="title_activity_settings_private_policy">SettingsPrivatePolicyActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 </resources>
