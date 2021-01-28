@@ -132,7 +132,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/notosans_bold"
-        android:text="오픈소스 라이센"
+        android:text="오픈소스 라이센스"
         android:textColor="@color/gray_two"
         app:layout_constraintStart_toStartOf="@id/txt_ouncepolicy"
         app:layout_constraintTop_toBottomOf="@id/txt_ouncepolicy" />

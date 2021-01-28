@@ -2,9 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.teamounce.ounce">
 
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <uses-feature android:name="android.hardware.type.watch" /> <!-- 인터넷 사용 권한 설정 -->
+    <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 네트워크 연결 상태 확인 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -19,26 +17,10 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".settings.SettingsPolicyActivity"></activity>
 
-        <uses-library
-            android:name="com.google.android.wearable"
-            android:required="true" />
-        <!--
-               Set to true if your app is Standalone, that is, it does not require the handheld
-               app to run.
-        -->
         <meta-data
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
-        <activity
-            android:name=".settings.SettingsPrivatePolicyActivity"
-            android:label="@string/title_activity_settings_private_policy">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".settings.SettingsAgreeActivity" />
         <activity android:name=".settings.SettingsCareActivity" />
         <activity android:name=".settings.SettingsActivity" />

@@ -140,17 +140,14 @@ class MainActivity : AppCompatActivity() {
                 response: Response<MainViewResponseData>
             ) {
                 if (response.isSuccessful) {
-                    var checkedCatName = response.body()!!.data.catName
-                    var checkedCatFromMeet = response.body()!!.data.fromMeet
-
                     setBackGroundColor()
-                    setCatName(checkedCatName)
-                    setCatDday(checkedCatFromMeet)
+                    setCatName(response.body()!!.data.catName)
+                    setCatDday(response.body()!!.data.fromMeet)
 
                     Log.d("이것은 서버통신 성공", "이것이 서버")
                     Log.d("고양이 이름", response.body().toString())
                 } else {
-                    Log.d("이것도 실패", response.body().toString())
+                    Log.d("에러", response.body()!!.toString())
                 }
             }
         })
