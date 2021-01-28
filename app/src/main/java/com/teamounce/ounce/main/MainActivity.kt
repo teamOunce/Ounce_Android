@@ -1,5 +1,8 @@
 package com.teamounce.ounce.main
 
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -23,11 +26,15 @@ import javax.security.auth.callback.Callback
 class MainActivity : AppCompatActivity() {
     lateinit var bottomSheet: BottomSheetBehavior<View>
     var reviewCount = 8
+
     lateinit var bottomSheetAdapter: BottomSheetAdapter
-    var datas = mutableListOf<SettingCareCatData>()
     val bottomSheetFragment = BottomSheetFragment()
     lateinit var activityMainBinding: ActivityMainBinding
     private lateinit var mainViewRetrofitInterface: MainViewRetrofitInterface
+
+    companion object{
+        var bottomSheetProfileData: BottomSheetProfileData? = null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +42,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
 
         TransparentStatusBarObject.setStatusBar(this)
-        setMainViewRetrofit()
-
+        setMainViewRetrofit(9)
         goToSearchActivity()
         goToSettingsActivity()
 
@@ -119,11 +125,11 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    fun setMainViewRetrofit() {
+    fun setMainViewRetrofit(catIndex: Int) {
 
         mainViewRetrofitInterface = RetrofitService.create(MainViewRetrofitInterface::class.java)
         mainViewRetrofitInterface.mainViewRetrofit(
-            5
+            catIndex
         ).enqueue(object : retrofit2.Callback<MainViewResponseData> {
             override fun onFailure(call: Call<MainViewResponseData>, t: Throwable) {
                 Log.d("서버통신 실패", "${t}")
@@ -134,9 +140,12 @@ class MainActivity : AppCompatActivity() {
                 response: Response<MainViewResponseData>
             ) {
                 if (response.isSuccessful) {
+                    var checkedCatName = response.body()!!.data.catName
+                    var checkedCatFromMeet = response.body()!!.data.fromMeet
+
                     setBackGroundColor()
-                    setCatName(response.body()!!.data.catName)
-                    setCatDday(response.body()!!.data.fromMeet)
+                    setCatName(checkedCatName)
+                    setCatDday(checkedCatFromMeet)
 
                     Log.d("이것은 서버통신 성공", "이것이 서버")
                     Log.d("고양이 이름", response.body().toString())
@@ -146,6 +155,4 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
-
 }

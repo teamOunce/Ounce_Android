@@ -1,6 +1,8 @@
 package com.teamounce.ounce.main
 
+import android.app.Activity
 import android.content.Context
+import android.content.ContextWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,15 +11,14 @@ import android.widget.RadioButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.teamounce.ounce.R
+import com.teamounce.ounce.databinding.ActivityMainBinding
 import com.teamounce.ounce.databinding.ItemBottomMainBinding
 import com.teamounce.ounce.settings.ui.SettingCareCatData
 import kotlinx.android.synthetic.main.item_bottom_main.view.*
 
-class BottomSheetAdapter : RecyclerView.Adapter<BottomSheetAdapter.BottomSheetViewHolder>() {
-
-    var settingCareCatData = mutableListOf<SettingCareCatData>()
+class BottomSheetAdapter(private var context: Context) : RecyclerView.Adapter<BottomSheetAdapter.BottomSheetViewHolder>() {
+    var bottomSheetProfileData = mutableListOf<BottomSheetProfileData>()
     private var checkedRadioButton: CompoundButton? = null
-
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -29,20 +30,18 @@ class BottomSheetAdapter : RecyclerView.Adapter<BottomSheetAdapter.BottomSheetVi
     }
 
     override fun onBindViewHolder(holder: BottomSheetViewHolder, position: Int) {
-        holder.bind(settingCareCatData[position])
-
+        holder.bind(bottomSheetProfileData[position])
         holder.binding.catSelectBtn.setOnCheckedChangeListener(checkedChangedListener)
 
-        if (holder.binding.catSelectBtn.isChecked) checkedRadioButton = holder.binding.catSelectBtn
+        if (holder.binding.catSelectBtn.isChecked) {
+            checkedRadioButton = holder.binding.catSelectBtn
 
-
+        }
     }
-
 
     override fun getItemCount(): Int {
-        return settingCareCatData.size
+        return bottomSheetProfileData.size
     }
-
 
     private val checkedChangedListener =
         CompoundButton.OnCheckedChangeListener { compoundButton, isChecked ->
@@ -51,6 +50,8 @@ class BottomSheetAdapter : RecyclerView.Adapter<BottomSheetAdapter.BottomSheetVi
             }
             checkedRadioButton = compoundButton.apply {
                 setChecked(isChecked)
+
+                (context as MainActivity).setMainViewRetrofit(18)
             }
 
         }
@@ -58,8 +59,8 @@ class BottomSheetAdapter : RecyclerView.Adapter<BottomSheetAdapter.BottomSheetVi
     inner class BottomSheetViewHolder(var binding: ItemBottomMainBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(settingCareCatData: SettingCareCatData) {
-            binding.settingCareCatData = settingCareCatData
+        fun bind(bottomSheetProfileData: BottomSheetProfileData) {
+            binding.bottomSheetProfileData = bottomSheetProfileData
         }
     }
 }

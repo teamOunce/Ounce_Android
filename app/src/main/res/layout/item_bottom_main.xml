@@ -4,8 +4,8 @@
 <layout>
     <data>
         <variable
-            name="settingCareCatData"
-            type="com.teamounce.ounce.settings.ui.SettingCareCatData" />
+            name="bottomSheetProfileData"
+            type="com.teamounce.ounce.main.BottomSheetProfileData" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -21,7 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/notosans_bold"
-            android:text="@{settingCareCatData.setting_catname}"
+            android:text="@{bottomSheetProfileData.catName}"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +32,7 @@
             android:id="@+id/cat_dday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{settingCareCatData.setting_catdday}"
+            android:text='@{"만난지 " + bottomSheetProfileData.fromMeet+"일 째"}'
             android:layout_marginTop="7dp"
             android:fontFamily="@font/notosans_regular"
             app:layout_constraintBottom_toBottomOf="parent"

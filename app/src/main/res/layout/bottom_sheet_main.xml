@@ -9,6 +9,16 @@
     android:background="@drawable/bottom_sheet_box"
     app:behavior_hideable="true"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+    <View
+        android:id="@+id/bottomsheet_upbar"
+        android:layout_marginTop="9dp"
+        android:layout_width="50dp"
+        android:layout_height="4dp"
+        android:background="@color/gray_one_opacity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_catlist"

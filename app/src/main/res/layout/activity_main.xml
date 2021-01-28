@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/notosans_bold"
             android:text="이겨울"
-            android:textSize="24sp"
+            android:textSize="26sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.098"
@@ -96,22 +96,21 @@
             android:src="@drawable/image_cat"
             app:layout_constraintBottom_toBottomOf="@id/main_image"
             app:layout_constraintEnd_toEndOf="@id/main_image"
-            app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="@id/main_image"
-            app:layout_constraintTop_toTopOf="@id/main_image"
-            app:layout_constraintVertical_bias="0.476" />
+            app:layout_constraintTop_toTopOf="@id/main_image" />
 
-        <Button
-            android:id="@+id/home_btn_record"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/home_bt_record"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageview_cat"
-            app:layout_constraintVertical_bias="0.631" />
+    <ImageView
+        android:id="@+id/home_btn_record"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/home_bt_record"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:0.3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageview_cat"
+        app:layout_constraintVertical_bias="0.308"
+        app:layout_constraintWidth_percent="0.41" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
