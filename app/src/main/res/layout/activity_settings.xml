@@ -104,6 +104,27 @@
         app:layout_constraintBottom_toBottomOf="@+id/txt_ouncever"
         app:layout_constraintStart_toEndOf="@id/txt_ouncever"
         app:layout_constraintTop_toTopOf="@+id/txt_ouncever" />
+    <TextView
+        android:id="@+id/txt_ounceagree"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/notosans_bold"
+        android:text="이용약관"
+        android:textColor="@color/gray_two"
+        app:layout_constraintStart_toStartOf="@id/txt_ouncever"
+        app:layout_constraintTop_toBottomOf="@id/txt_ouncever" />
+
+    <TextView
+        android:id="@+id/txt_ouncepolicy"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/notosans_bold"
+        android:text="개인정보 처리방침"
+        android:textColor="@color/gray_two"
+        app:layout_constraintStart_toStartOf="@id/txt_ounceagree"
+        app:layout_constraintTop_toBottomOf="@id/txt_ounceagree" />
 
     <TextView
         android:id="@+id/txt_ounceopensrc"
@@ -111,10 +132,10 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/notosans_bold"
-        android:text="오픈소스 라이센스"
+        android:text="오픈소스 라이센"
         android:textColor="@color/gray_two"
-        app:layout_constraintStart_toStartOf="@id/txt_ouncever"
-        app:layout_constraintTop_toBottomOf="@id/txt_ouncever" />
+        app:layout_constraintStart_toStartOf="@id/txt_ouncepolicy"
+        app:layout_constraintTop_toBottomOf="@id/txt_ouncepolicy" />
 
     <ImageView
         android:id="@+id/img_settingunbar"

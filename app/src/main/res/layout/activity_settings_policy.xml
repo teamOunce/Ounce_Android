@@ -48,7 +48,7 @@
             android:id="@+id/txt_setting_agreement"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/setting_agreement"/>
+            android:text="@string/setting_policy"/>
 
 
 
