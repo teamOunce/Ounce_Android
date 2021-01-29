@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.teamounce.ounce">
-
     <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 네트워크 연결 상태 확인 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -15,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OUNCE"
         android:usesCleartextTraffic="true">
-        <activity android:name=".settings.SettingsPolicyActivity"></activity>
+        <activity android:name=".settings.SettingsOpensourceActivity"></activity>
+        <activity android:name=".settings.SettingsPolicyActivity" />
 
         <meta-data
             android:name="com.google.android.wearable.standalone"

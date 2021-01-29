@@ -153,7 +153,8 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/notosans_bold"
         android:text="로그아웃"
-        android:textColor="@color/gray_two"
+        android:textSize="15dp"
+        android:textColor="@color/gray_one"
         app:layout_constraintStart_toStartOf="@id/img_settingunbar"
         app:layout_constraintTop_toBottomOf="@id/img_settingunbar" />
 
@@ -164,7 +165,8 @@
         android:layout_marginTop="12dp"
         android:fontFamily="@font/notosans_bold"
         android:text="탈퇴하기"
-        android:textColor="@color/gray_two"
+        android:textSize="15dp"
+        android:textColor="@color/gray_one"
         app:layout_constraintStart_toStartOf="@id/txt_ouncelogout"
         app:layout_constraintTop_toBottomOf="@id/txt_ouncelogout"/>
 

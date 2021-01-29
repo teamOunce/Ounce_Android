@@ -34,6 +34,21 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        txt_ounceagree.setOnClickListener {
+            val intent = Intent(this, SettingsAgreeActivity::class.java)
+            startActivity(intent)
+        }
+
+        txt_ouncepolicy.setOnClickListener {
+            val intent = Intent(this, SettingsPolicyActivity::class.java)
+            startActivity(intent)
+        }
+
+        txt_ounceopensrc.setOnClickListener {
+            val intent = Intent( this, SettingsOpensourceActivity::class.java)
+            startActivity(intent)
+        }
+
 
         //로그아웃 버튼 눌렀을 때
         txt_ouncelogout.setOnClickListener {
@@ -105,14 +120,7 @@ class SettingsActivity : AppCompatActivity() {
             add(
                 SettingButtonData(
                     R.drawable.ic_notice,
-                    "공지사항"
-                )
-            )
-
-            add(
-                SettingButtonData(
-                    R.drawable.ic_tos,
-                    "이용약관"
+                    "인스타그램 및 공지"
                 )
             )
 

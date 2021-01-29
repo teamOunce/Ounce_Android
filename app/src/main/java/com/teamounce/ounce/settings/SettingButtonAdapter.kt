@@ -25,11 +25,8 @@ class SettingButtonAdapter (private val context:Context): RecyclerView.Adapter<S
                     val intent = Intent(context, SettingsCareActivity::class.java)
                     context.startActivity(intent)
                 }
-                2 -> {
-                    val intent = Intent(context, SettingsAgreeActivity::class.java)
-                    context.startActivity(intent)
-                }
-                4->{
+
+                3->{
                     Toast.makeText(context,"준비중인 기능입니다.",Toast.LENGTH_SHORT).show()
                 }
             }

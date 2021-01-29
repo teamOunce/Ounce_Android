@@ -57,29 +57,11 @@ class BottomSheetAdapter(private var context: Context) : RecyclerView.Adapter<Bo
     }
 
     fun changeCat(position: Int){
-        val mainRetrofitInterface = RetrofitService.create(MainViewRetrofitInterface::class.java)
         val mContext = getActivity(context)
-
-        mainRetrofitInterface.mainViewRetrofit(
-            bottomSheetProfileData[position].catIndex
-        ).enqueue(object: Callback<MainViewResponseData>{
-            override fun onFailure(call: Call<MainViewResponseData>, t: Throwable) {
-                Log.d("서버 실패", "서버 실")
-            }
-
-            override fun onResponse(
-                call: Call<MainViewResponseData>,
-                response: Response<MainViewResponseData>
-            ) {
-                if(response.isSuccessful){
-                    Log.d("서버는 접근", response.body()!!.data.toString())
-                    mContext.textview_cat_name.text = response.body()!!.data.catName
-                    mContext.textview_cat_dday.text = "만난지 ${response.body()!!.data.fromMeet}일"
-                } else {
-                    Log.d("서버는 닿았으나 뭔가 잘못됨", response.body()!!.data.toString())
-                }
-            }
-        })
+        if(mContext is MainActivity) {
+            mContext.setMainViewRetrofit(bottomSheetProfileData[position].catIndex)
+            mContext.bottomSheetFragment.dismiss()
+        }
     }
 
     private val checkedChangedListener =
