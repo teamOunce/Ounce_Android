@@ -1,5 +1,6 @@
 package com.teamounce.ounce.settings
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.teamounce.ounce.R
@@ -7,7 +8,9 @@ import com.teamounce.ounce.settings.ui.SettingCareAdapter
 import com.teamounce.ounce.settings.ui.SettingCareCatData
 import com.teamounce.ounce.util.VerticalItemDecoration
 import kotlinx.android.synthetic.main.activity_settings.*
+import kotlinx.android.synthetic.main.activity_settings_agree.*
 import kotlinx.android.synthetic.main.activity_settings_care.*
+import kotlinx.android.synthetic.main.activity_settings_care.btn_setting_back
 import kotlinx.android.synthetic.main.activity_settings_opensource.*
 
 class SettingsOpensourceActivity : AppCompatActivity() {
@@ -18,6 +21,11 @@ class SettingsOpensourceActivity : AppCompatActivity() {
         setContentView(R.layout.activity_settings_opensource)
         setOpenSourceRecyclerItem()
         loadDatas()
+
+        btn_opensource_back.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+        }
     }
     fun setOpenSourceRecyclerItem() {
         settingsOpenSourceAdapter = SettingsOpensourceAdapter(this)
