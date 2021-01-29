@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.teamounce.ounce.R
+import com.teamounce.ounce.login.ui.RegisterFragment
 import com.teamounce.ounce.login.ui.SignUpActivity
 import com.teamounce.ounce.settings.ui.SettingCareAdapter
 import com.teamounce.ounce.settings.ui.SettingCareCatData
@@ -24,6 +25,12 @@ class  SettingsCareActivity : AppCompatActivity() {
 
         initSettingCareRecyclerView()
         loadDatas()
+
+        //추가하기 눌렀을 때, 고양이 등록 페이지로 이동
+        btn_catcare_add.setOnClickListener {
+            val intent = Intent(this, RegisterFragment::class.java)
+            startActivity(intent)
+        }
 
         btn_setting_back.setOnClickListener{
             val intent = Intent(this,SettingsActivity::class.java )

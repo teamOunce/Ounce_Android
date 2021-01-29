@@ -1,14 +1,10 @@
 package com.teamounce.ounce.main
 
-import android.app.Activity
-import android.content.Context
-import android.content.ContextWrapper
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.teamounce.ounce.R
@@ -16,31 +12,26 @@ import com.teamounce.ounce.RetrofitService
 import com.teamounce.ounce.databinding.ActivityMainBinding
 import com.teamounce.ounce.review.ui.SearchActivity
 import com.teamounce.ounce.settings.SettingsActivity
-import com.teamounce.ounce.settings.ui.SettingCareCatData
 import com.teamounce.ounce.util.OnSwipeTouchListener
+import com.teamounce.ounce.util.SharedPreferences
 import com.teamounce.ounce.util.TransparentStatusBarObject
 import retrofit2.Call
 import retrofit2.Response
-import javax.security.auth.callback.Callback
 
 class MainActivity : AppCompatActivity() {
-    lateinit var bottomSheet: BottomSheetBehavior<View>
-    var reviewCount = 8
 
-    lateinit var bottomSheetAdapter: BottomSheetAdapter
+    var reviewCount = 8
     val bottomSheetFragment = BottomSheetFragment()
     lateinit var activityMainBinding: ActivityMainBinding
     private lateinit var mainViewRetrofitInterface: MainViewRetrofitInterface
+    private lateinit var sharedPreferences: SharedPreferences
 
-    companion object{
-        var bottomSheetProfileData: BottomSheetProfileData? = null
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
-
+        sharedPreferences = SharedPreferences(this)
         TransparentStatusBarObject.setStatusBar(this)
         setMainViewRetrofit(9)
         goToSearchActivity()
@@ -74,12 +65,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun operatebottomSheet() {
-        activityMainBinding.mainBackground.setOnTouchListener(object : OnSwipeTouchListener(this) {
-            override fun onSwipeUp() {
-                super.onSwipeUp()
-                bottomSheetFragment.show(supportFragmentManager, "tag")
-            }
-        })
+//        activityMainBinding.mainBackground.setOnTouchListener(object : OnSwipeTouchListener(this) {
+//            override fun onSwipeUp() {
+//                super.onSwipeUp()
+//                bottomSheetFragment.show(supportFragmentManager, "tag")
+//            }
+//        })
+
+
+        activityMainBinding.textviewCatName.setOnClickListener {
+            bottomSheetFragment.show(supportFragmentManager, "bottomsheet")
+        }
+
+        activityMainBinding.imageviewDropbox.setOnClickListener {
+            bottomSheetFragment.show(supportFragmentManager, "bottomsheet")
+        }
     }
 
     fun setBackGroundColor() {
@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding.textviewCatName.text = name
     }
 
-    fun setCatDday(dday: Int){
+    fun setCatDday(dday: Int) {
         activityMainBinding.textviewCatDday.text = "만난지 ${dday}일 "
     }
 
@@ -126,7 +126,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setMainViewRetrofit(catIndex: Int) {
-
         mainViewRetrofitInterface = RetrofitService.create(MainViewRetrofitInterface::class.java)
         mainViewRetrofitInterface.mainViewRetrofit(
             catIndex
@@ -144,6 +143,9 @@ class MainActivity : AppCompatActivity() {
                     setCatName(response.body()!!.data.catName)
                     setCatDday(response.body()!!.data.fromMeet)
 
+                    if (sharedPreferences.getCatPositionSelected() == null) {
+                        sharedPreferences.setCatPositionSelected(0)
+                    }
                     Log.d("이것은 서버통신 성공", "이것이 서버")
                     Log.d("고양이 이름", response.body().toString())
                 } else {
