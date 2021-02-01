@@ -22,10 +22,11 @@
             android:name=".review.ui.RecordActivity"
             android:exported="true" />
         <activity android:name=".settings.SettingsCareActivity" />
-        <activity android:name=".settings.SettingsActivity">
-        </activity>
-        <activity android:name=".review.ui.SearchActivity"
-            android:exported="true"/>
+        <activity android:name=".settings.SettingsActivity" />
+        <activity
+            android:name=".review.ui.SearchActivity"
+            android:exported="true" />
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/native_app_key" />
