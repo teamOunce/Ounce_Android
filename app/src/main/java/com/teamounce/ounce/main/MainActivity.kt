@@ -1,5 +1,6 @@
 package com.teamounce.ounce.main
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
@@ -62,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     fun setBackGroundColor() {
         if (reviewCount == 0) {
             activityMainBinding.mainBackground.setBackgroundColor(getColor(R.color.white))
