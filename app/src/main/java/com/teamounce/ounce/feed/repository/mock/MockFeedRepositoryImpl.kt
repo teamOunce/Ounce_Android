@@ -15,7 +15,7 @@ class MockFeedRepositoryImpl @Inject constructor() : FeedRepository {
                 manufacturer = "내추럴발란스",
                 memo = "미안해 이건 너무 맛있다",
                 myImg = "https://image.auction.co.kr/itemimage/10/1f/c3/101fc35e36.jpg",
-                preference = 4,
+                preference = 5,
                 productImg = "https://image.auction.co.kr/itemimage/10/1f/c3/101fc35e36.jpg",
                 productName = "수제스튜 참치새우연어",
                 reviewMoment = "2021-01-23 16:03:18",
