@@ -35,6 +35,11 @@ class FoodDetailActivity :
             binding.executePendingBindings()
 
             setDateTopMargin(it.catFoodReview.memo.isEmpty())
+            with(it.catFoodReview.preference) {
+                setCommentText(this)
+                binding.ratingbarDetailRating.setStar(this.toFloat())
+            }
+            binding.ratingbarDetailRating.setmClickable(false)
 
             val tagList = listOf(
                 it.catFoodReview.tag1,
@@ -75,5 +80,10 @@ class FoodDetailActivity :
             false -> dateLayoutParams.setMargins(0, 80.dp, 20.dp, 0)
         }
         binding.txtDetailCreatedDate.layoutParams = dateLayoutParams
+    }
+
+    private fun setCommentText(preference: Int) {
+        val comment = Preference.setCommentByPreference(preference)
+        binding.txtDetailComment.text = comment
     }
 }
