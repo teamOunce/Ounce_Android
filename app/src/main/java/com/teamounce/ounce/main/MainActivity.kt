@@ -19,13 +19,11 @@ import retrofit2.Call
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
-
-    var reviewCount = 8
     val bottomSheetFragment = BottomSheetFragment()
     lateinit var activityMainBinding: ActivityMainBinding
     private lateinit var mainViewRetrofitInterface: MainViewRetrofitInterface
     private lateinit var sharedPreferences: SharedPreferences
-
+    private var reviewCount = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +31,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
         sharedPreferences = SharedPreferences(this)
         TransparentStatusBarObject.setStatusBar(this)
-        setMainViewRetrofit(9)
+
+        setMainViewRetrofit(18)
         goToSearchActivity()
         goToSettingsActivity()
 
@@ -83,36 +82,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setBackGroundColor() {
-        if (reviewCount == 0) {
-            activityMainBinding.mainBackground.setBackgroundColor(getColor(R.color.white))
-            activityMainBinding.imageviewCat.setImageDrawable(getDrawable(R.drawable.ic_home_img_noth))
-        } else if (reviewCount >= 1 && reviewCount <= 5) {
-            activityMainBinding.mainBackground.setBackgroundColor(getColor(R.color.mainbackground_one))
-            activityMainBinding.imageviewCat.setImageDrawable(getDrawable(R.drawable.ic_home_img_stepone))
-        } else if (reviewCount >= 6 && reviewCount <= 10) {
-            activityMainBinding.mainBackground.setBackgroundColor(getColor(R.color.mainbackground_two))
-            activityMainBinding.imageviewCat.setImageDrawable(getDrawable(R.drawable.ic_home_img_step_two))
 
-        } else if (reviewCount >= 11 && reviewCount <= 15) {
-            activityMainBinding.mainBackground.setBackgroundColor(getColor(R.color.mainbackground_three))
-            activityMainBinding.imageviewCat.setImageDrawable(getDrawable(R.drawable.ic_home_img_step_three))
-
-        } else if (reviewCount >= 16 && reviewCount <= 20) {
-            activityMainBinding.mainBackground.setBackgroundColor(getColor(R.color.mainbackground_four))
-            activityMainBinding.imageviewCat.setImageDrawable(getDrawable(R.drawable.ic_home_img_step_four))
-        } else {
-            activityMainBinding.mainBackground.setBackgroundColor(getColor(R.color.mainbackground_five))
-            activityMainBinding.imageviewCat.setImageDrawable(getDrawable(R.drawable.ic_home_img_step_five))
-
+        when(reviewCount) {
+            0 -> setBackgroundResource(R.color.white, R.drawable.ic_home_img_noth)
+            in BACKGROUND_ONE_RANGE -> setBackgroundResource(R.color.mainbackground_one, R.drawable.ic_home_img_stepone)
+            in BACKGROUND_TWO_RANGE -> setBackgroundResource(R.color.mainbackground_two, R.drawable.ic_home_img_step_two)
+            in BACKGROUND_THREE_RANGE -> setBackgroundResource(R.color.mainbackground_three, R.drawable.ic_home_img_step_three)
+            in BACKGROUND_FOUR_RANGE -> setBackgroundResource(R.color.mainbackground_four, R.drawable.ic_home_img_step_four)
+            else -> setBackgroundResource(R.color.mainbackground_five, R.drawable.ic_home_img_step_five)
         }
     }
+
+    fun setBackgroundResource(backgroundColor: Int, backgroundResource: Int ){
+        activityMainBinding.mainBackground.setBackgroundColor(getColor(backgroundColor))
+        activityMainBinding.imageviewCat.setImageDrawable(getDrawable(backgroundResource))
+    }
+
+
 
     fun setCatName(name: String) {
         activityMainBinding.textviewCatName.text = name
     }
 
     fun setCatDday(dday: Int) {
-        activityMainBinding.textviewCatDday.text = "만난지 ${dday}일 "
+        activityMainBinding.textviewCatDday.text = "만난지 ${dday}일 째"
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -126,6 +119,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setMainViewRetrofit(catIndex: Int) {
+
+
         mainViewRetrofitInterface = RetrofitService.create(MainViewRetrofitInterface::class.java)
         mainViewRetrofitInterface.mainViewRetrofit(
             catIndex
@@ -139,9 +134,12 @@ class MainActivity : AppCompatActivity() {
                 response: Response<MainViewResponseData>
             ) {
                 if (response.isSuccessful) {
-                    setBackGroundColor()
                     setCatName(response.body()!!.data.catName)
                     setCatDday(response.body()!!.data.fromMeet)
+                    reviewCount = response.body()!!.data.reviewCount
+
+                    setBackGroundColor()
+
 
                     if (sharedPreferences.getCatPositionSelected() == null) {
                         sharedPreferences.setCatPositionSelected(0)
@@ -153,5 +151,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    companion object {
+        private val BACKGROUND_ONE_RANGE = 1..5
+        private val BACKGROUND_TWO_RANGE = 6..10
+        private val BACKGROUND_THREE_RANGE = 11..15
+        private val BACKGROUND_FOUR_RANGE = 16..20
     }
 }

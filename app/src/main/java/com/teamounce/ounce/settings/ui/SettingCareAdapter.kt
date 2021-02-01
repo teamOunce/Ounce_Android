@@ -9,11 +9,13 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.teamounce.ounce.R
 import com.teamounce.ounce.RetrofitService
+import com.teamounce.ounce.main.BottomSheetProfileData
 import com.teamounce.ounce.main.MainDeleteResponseData
 import com.teamounce.ounce.main.MainViewRetrofitInterface
 import com.teamounce.ounce.settings.SettingCustomDialogBuilder
 import com.teamounce.ounce.settings.SettingCustomDialogListener
 import com.teamounce.ounce.settings.SettingsCareActivity
+import com.teamounce.ounce.util.SharedPreferences
 import kotlinx.android.synthetic.main.item_setting_catcare.view.*
 import retrofit2.Call
 import retrofit2.Response
@@ -22,9 +24,9 @@ class SettingCareAdapter (private val context : Context) :
     RecyclerView.Adapter<SettingCareViewHolder>() {
 
     private lateinit var mainDeleteRetrofitInterface: MainViewRetrofitInterface
+    private val prefs = SharedPreferences(context as SettingsCareActivity)
 
-
-    var datas = mutableListOf<SettingCareCatData>()
+    var datas = mutableListOf<BottomSheetProfileData>()
     private val fragmentManager = (context as SettingsCareActivity).supportFragmentManager
 
     override fun getItemCount(): Int {
@@ -100,6 +102,7 @@ class SettingCareAdapter (private val context : Context) :
             ) {
                 if(response.isSuccessful){
                     Log.d("고양이 삭제 성공", response.body()!!.data.toString())
+
                     removeCatInfoClick(catIndex)
                 } else {
                     Log.d("서버에러", response.body()!!.responseMessage)
@@ -111,6 +114,7 @@ class SettingCareAdapter (private val context : Context) :
 
     fun removeCatInfoClick(position: Int){
         datas.removeAt(position)
+        prefs.setCatList(datas)
         notifyDataSetChanged()
     }
 

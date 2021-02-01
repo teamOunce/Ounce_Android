@@ -12,6 +12,7 @@ import com.teamounce.ounce.R
 import com.teamounce.ounce.RetrofitService
 import com.teamounce.ounce.settings.SettingCustomDialog
 import com.teamounce.ounce.settings.ui.SettingCareCatData
+import com.teamounce.ounce.util.SharedPreferences
 import com.teamounce.ounce.util.VerticalItemDecoration
 import kotlinx.android.synthetic.main.bottom_sheet_main.*
 import retrofit2.Call
@@ -22,6 +23,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     lateinit var bottomSheetAdapter: BottomSheetAdapter
     var bottomSheetDatas = mutableListOf<BottomSheetProfileData>()
     lateinit var mainViewRetrofitInterface:MainViewRetrofitInterface
+    private lateinit var  prefs: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +34,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        prefs = SharedPreferences(view.context)
         //dialog?.window?.setBackgroundDrawableResource(R.drawable.bottom_sheet_box)
         bottomSheetView(view)
 
@@ -48,6 +51,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
 
     fun loadBottomsheetDatas(){
+
         mainViewRetrofitInterface = RetrofitService.create(MainViewRetrofitInterface::class.java)
         mainViewRetrofitInterface.bottomSheetProfileRetrofit(
             9
@@ -63,6 +67,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
                 if (response.isSuccessful){
                     bottomSheetDatas = response.body()!!.data
                     bottomSheetAdapter.bottomSheetProfileData = bottomSheetDatas
+                    prefs.setCatList(bottomSheetDatas)
                     Log.d("datas", response.body()!!.data.toString())
                     bottomSheetAdapter.notifyDataSetChanged()
                 }
