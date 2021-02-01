@@ -4,16 +4,22 @@ import android.app.ProgressDialog.show
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.teamounce.ounce.R
+import com.teamounce.ounce.RetrofitService
 import com.teamounce.ounce.login.ui.RegisterFragment
 import com.teamounce.ounce.login.ui.SignUpActivity
+import com.teamounce.ounce.main.MainDeleteResponseData
+import com.teamounce.ounce.main.MainViewRetrofitInterface
 import com.teamounce.ounce.settings.ui.SettingCareAdapter
 import com.teamounce.ounce.settings.ui.SettingCareCatData
 import kotlinx.android.synthetic.main.activity_settings_care.*
 import kotlinx.android.synthetic.main.bottom_sheet_main.*
 import kotlinx.android.synthetic.main.item_setting_catcare.*
+import retrofit2.Call
+import retrofit2.Response
 
 class  SettingsCareActivity : AppCompatActivity() {
     lateinit var settingcareAdapter: SettingCareAdapter
@@ -22,7 +28,6 @@ class  SettingsCareActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings_care)
-
         initSettingCareRecyclerView()
         loadDatas()
 
@@ -87,5 +92,4 @@ class  SettingsCareActivity : AppCompatActivity() {
     companion object {
         private const val MAX_CAT_RESISTERED = 4
     }
-
 }
