@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OUNCE"
         android:usesCleartextTraffic="true">
-        <activity android:name=".settings.SettingsOpensourceActivity"></activity>
+        <activity android:name=".settings.SettingInstagramActivity"></activity>
+        <activity android:name=".settings.SettingsOpensourceActivity" />
         <activity android:name=".settings.SettingsPolicyActivity" />
 
         <meta-data
