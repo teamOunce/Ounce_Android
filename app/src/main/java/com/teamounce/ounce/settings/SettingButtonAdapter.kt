@@ -37,6 +37,21 @@ class SettingButtonAdapter (private val context:Context): RecyclerView.Adapter<S
                     }catch (e:ActivityNotFoundException){
                         startActivity ( context ,forApp , null )
                     }
+                }
+                2 -> {
+                    val intent = Intent(Intent.ACTION_SEND)
+                    intent.type ="plain/text"
+                    intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("ounceforyou@gmail.com"))
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "ounceforyou 문의사항")
+                    intent.putExtra(Intent.EXTRA_TEXT, "세세하게 적어주시면 빠른 처리가 가능합니다.:) \n" +
+                        "앱버전: \n" +
+                        "휴대폰 기종 및 OS: \n"+
+                        "유저: \n"+
+                        "\n"+
+                        "문의 내용: \n"
+                    )
+                    intent.type = "message/rfc822"
+                    context.startActivity(intent)
 
                 }
 
