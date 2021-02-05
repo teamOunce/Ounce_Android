@@ -1,4 +1,4 @@
-package com.teamounce.ounce.singleton
+package com.teamounce.ounce.util
 
 import android.text.Editable
 import android.text.TextWatcher

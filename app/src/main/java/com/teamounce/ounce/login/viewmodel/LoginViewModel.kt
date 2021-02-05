@@ -1,13 +1,17 @@
 package com.teamounce.ounce.login.viewmodel
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseUser
 import com.teamounce.ounce.R
+import com.teamounce.ounce.data.remote.repository.LoginRepository
 import com.teamounce.ounce.login.model.OnBoardingData
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel @ViewModelInject constructor(
+    private val loginRepository: LoginRepository
+) : ViewModel() {
     private val _onBoardingInfoList = mutableListOf<OnBoardingData>()
     val onBoardingInfoList: List<OnBoardingData>
         get() = _onBoardingInfoList

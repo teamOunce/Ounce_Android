@@ -2,7 +2,7 @@ package com.teamounce.ounce
 
 import android.app.Application
 import com.kakao.sdk.common.KakaoSdk
-import com.teamounce.ounce.singleton.KeyPref
+import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.util.PixelRatio
 import dagger.hilt.android.HiltAndroidApp
 
@@ -11,8 +11,8 @@ class OunceApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         initPixelUtil()
-        KeyPref.init(this)
-        KakaoSdk.init(this, KeyPref.getKey())
+        OunceLocalRepository.init(this)
+        KakaoSdk.init(this, OunceLocalRepository.getKey())
     }
 
     private fun initPixelUtil() {

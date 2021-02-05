@@ -26,12 +26,12 @@ import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
 import com.teamounce.ounce.R
+import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.databinding.ActivityLoginBinding
 import com.teamounce.ounce.login.viewmodel.LoginViewModel
 import com.teamounce.ounce.util.TransparentStatusBarObject
 
-class LoginActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityLoginBinding
+class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
     private val loginViewModel: LoginViewModel by viewModels()
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
@@ -43,7 +43,6 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         TransparentStatusBarObject.setStatusBar(this)
         val onBoardingPagerAdapter = ScreenSlidePagerAdapter(this)

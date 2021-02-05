@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.teamounce.ounce.R
 import com.teamounce.ounce.databinding.FragmentImageSliderBinding
-import com.teamounce.ounce.singleton.BindingAdapters
+import com.teamounce.ounce.util.BindingAdapters
 
 class ImageSliderFragment(private val uri: String) : Fragment() {
     private lateinit var binding: FragmentImageSliderBinding
