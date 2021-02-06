@@ -6,18 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
@@ -28,9 +20,12 @@ import com.kakao.sdk.user.UserApiClient
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.databinding.ActivityLoginBinding
+import com.teamounce.ounce.login.adapter.OnBoardingAdapter
 import com.teamounce.ounce.login.viewmodel.LoginViewModel
-import com.teamounce.ounce.util.TransparentStatusBarObject
+import com.teamounce.ounce.util.StatusBarUtil
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
     private val loginViewModel: LoginViewModel by viewModels()
     private lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -44,9 +39,10 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        TransparentStatusBarObject.setStatusBar(this)
-        val onBoardingPagerAdapter = ScreenSlidePagerAdapter(this)
-        binding.vpLoginOnboarding.adapter = onBoardingPagerAdapter
+        StatusBarUtil.setStatusBar(this)
+        val onBoardingAdapter = OnBoardingAdapter()
+        binding.vpLoginOnboarding.adapter = onBoardingAdapter
+        onBoardingAdapter.replaceList(loginViewModel.onBoardingInfoList)
 
         binding.dotsLoginOnboarding.setViewPager2(binding.vpLoginOnboarding)
 
@@ -111,16 +107,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
             }
     }
 
-    private inner class ScreenSlidePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
-        private val onBoardingInfoList = loginViewModel.onBoardingInfoList
-        override fun getItemCount() = NUM_PAGES
-
-        override fun createFragment(position: Int): Fragment {
-            return OnBoardingFragment(onBoardingInfoList[position])
-        }
-
-    }
-
     private fun kakaoLoginCall(context: Context) {
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if (error != null) Log.e("Kakao", "로그인 실패", error)
@@ -155,7 +141,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     }
 
     companion object {
-        private const val NUM_PAGES = 3
         private const val RC_SIGN_IN = 9001
     }
 }

@@ -9,7 +9,7 @@ import com.teamounce.ounce.databinding.ActivityFoodDetailBinding
 import com.teamounce.ounce.feed.adapter.FoodImageSliderAdapter
 import com.teamounce.ounce.feed.adapter.TagAdapter
 import com.teamounce.ounce.feed.viewmodel.FeedViewModel
-import com.teamounce.ounce.util.TransparentStatusBarObject
+import com.teamounce.ounce.util.StatusBarUtil
 import com.teamounce.ounce.util.dp
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,7 +20,7 @@ class FoodDetailActivity :
     private val feedViewModel: FeedViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        TransparentStatusBarObject.setStatusBar(this)
+        StatusBarUtil.setStatusBar(this)
         binding.lifecycleOwner = this
         feedViewModel.fetchReviewData()
 

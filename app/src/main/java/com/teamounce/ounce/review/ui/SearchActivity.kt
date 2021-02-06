@@ -17,7 +17,7 @@ import com.teamounce.ounce.databinding.ActivitySearchBinding
 import com.teamounce.ounce.review.adapter.ListFoodSearchAdapter
 import com.teamounce.ounce.review.model.CatFood
 import com.teamounce.ounce.review.viewmodel.SearchViewModel
-import com.teamounce.ounce.util.TransparentStatusBarObject
+import com.teamounce.ounce.util.StatusBarUtil
 
 class SearchActivity : AppCompatActivity() {
     private val searchViewModel: SearchViewModel by viewModels()
@@ -30,7 +30,7 @@ class SearchActivity : AppCompatActivity() {
             lifecycleOwner = this@SearchActivity
             searchViewModel = searchViewModel
         }
-        TransparentStatusBarObject.setStatusBar(this)
+        StatusBarUtil.setStatusBar(this)
 
         val data = mutableListOf<CatFood>()
         addDummyData(data)

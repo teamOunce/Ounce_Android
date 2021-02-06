@@ -4,11 +4,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 
 
@@ -36,8 +35,14 @@ object BindingAdapters {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                textAttrChagned?.onChange();
+                textAttrChagned.onChange();
             }
         })
+    }
+
+    @JvmStatic
+    @BindingAdapter("login:setLottie")
+    fun setLottieFile(view: LottieAnimationView, file: String) {
+        view.setAnimation(file)
     }
 }

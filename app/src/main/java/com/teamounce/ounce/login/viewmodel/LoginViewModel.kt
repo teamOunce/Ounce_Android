@@ -28,21 +28,21 @@ class LoginViewModel @ViewModelInject constructor(
         _onBoardingInfoList.apply {
             add(
                 OnBoardingData(
-                    img_onboarding_explain = R.drawable.img_dummy,
+                    img_onboarding_explain = "onboarding_img_01.json",
                     txt_onboarding_title = "집사를 위한 기록장",
                     txt_onboarding_explain = "우리 고양이의 입맛을 기록해요"
                 )
             )
             add(
                 OnBoardingData(
-                    img_onboarding_explain = R.drawable.img_dummy,
+                    img_onboarding_explain = "onboarding_img_02.json",
                     txt_onboarding_title = "나만의 태그",
                     txt_onboarding_explain = "자신만의 기준으로 기록을 분류하세요"
                 )
             )
             add(
                 OnBoardingData(
-                    img_onboarding_explain = R.drawable.img_dummy,
+                    img_onboarding_explain = "onboarding_img_03.json",
                     txt_onboarding_title = "행복의 여정",
                     txt_onboarding_explain = "차곡차곡 쌓인 기록들로\n다음 캣푸드를 찾아 떠나요"
                 )

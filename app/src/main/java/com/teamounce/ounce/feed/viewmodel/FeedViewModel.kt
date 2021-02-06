@@ -1,14 +1,18 @@
 package com.teamounce.ounce.feed.viewmodel
 
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.teamounce.ounce.feed.model.RequestReview
 import com.teamounce.ounce.feed.model.Review
 import com.teamounce.ounce.feed.repository.FeedRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FeedViewModel @ViewModelInject constructor(
+@HiltViewModel
+class FeedViewModel @Inject constructor(
     private val feedRepository: FeedRepository
 ) : ViewModel() {
     private val _foodReview = MutableLiveData<Review>()
