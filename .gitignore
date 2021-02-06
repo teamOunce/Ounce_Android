@@ -165,6 +165,7 @@ obj/
 .idea/dynamic.xml
 .idea/uiDesigner.xml
 .idea/jarRepositories.xml
+.idea/sonarlint/
 
 # OS-specific files
 .DS_Store
