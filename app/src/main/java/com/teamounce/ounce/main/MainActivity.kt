@@ -13,7 +13,7 @@ import com.teamounce.ounce.review.ui.SearchActivity
 import com.teamounce.ounce.settings.SettingsActivity
 import com.teamounce.ounce.settings.ui.SettingCareCatData
 import com.teamounce.ounce.util.OnSwipeTouchListener
-import com.teamounce.ounce.util.TransparentStatusBarObject
+import com.teamounce.ounce.util.StatusBarUtil
 
 class MainActivity : AppCompatActivity() {
     lateinit var bottomSheet: BottomSheetBehavior<View>
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
-        TransparentStatusBarObject.setStatusBar(this)
+        StatusBarUtil.setStatusBar(this)
         setBackGroundColor()
 
         //한입더! 버튼 눌렀을 때, SearchActivity
