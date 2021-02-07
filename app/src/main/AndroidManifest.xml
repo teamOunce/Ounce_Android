@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OUNCE"
         tools:replace="android:theme">
-        <activity android:name=".feed.ui.FeedActivity" android:exported="true"/>
+        <activity android:name=".feed.ui.FeedActivity"
+            android:theme="@style/FeedTheme"
+            android:exported="true"/>
         <activity
             android:name=".feed.ui.FoodDetailActivity"
             android:exported="true" />

@@ -5,7 +5,9 @@
     tools:ignore="HardcodedText,UnusedAttribute,ContentDescription">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.teamounce.ounce.feed.viewmodel.FeedActivityViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -84,6 +86,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
+            android:overScrollMode="never"
+            app:setFeedList="@{viewModel.feedList}"
+            tools:listitem="@layout/item_feed_list"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
