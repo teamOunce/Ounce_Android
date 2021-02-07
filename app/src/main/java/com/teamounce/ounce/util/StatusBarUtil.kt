@@ -5,7 +5,7 @@ import android.app.Activity
 import android.graphics.Color
 import android.view.View
 
-object TransparentStatusBarObject {
+object StatusBarUtil {
     @SuppressLint("InlinedApi")
     @Suppress("DEPRECATION")
     fun setStatusBar(activity: Activity){

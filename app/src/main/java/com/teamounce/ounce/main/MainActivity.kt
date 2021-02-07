@@ -1,5 +1,6 @@
 package com.teamounce.ounce.main
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -14,9 +15,10 @@ import com.teamounce.ounce.review.ui.SearchActivity
 import com.teamounce.ounce.settings.SettingsActivity
 import com.teamounce.ounce.util.OnSwipeTouchListener
 import com.teamounce.ounce.util.SharedPreferences
-import com.teamounce.ounce.util.TransparentStatusBarObject
 import retrofit2.Call
 import retrofit2.Response
+import com.teamounce.ounce.util.StatusBarUtil
+
 
 class MainActivity : AppCompatActivity() {
     val bottomSheetFragment = BottomSheetFragment()
@@ -30,7 +32,16 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
         sharedPreferences = SharedPreferences(this)
-        TransparentStatusBarObject.setStatusBar(this)
+
+
+        StatusBarUtil.setStatusBar(this)
+        setBackGroundColor()
+
+        //한입더! 버튼 눌렀을 때, SearchActivity
+        activityMainBinding.homeBtnRecord.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java )
+            startActivity(intent)
+        }
 
         setMainViewRetrofit(18)
         goToSearchActivity()
@@ -81,6 +92,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     fun setBackGroundColor() {
 
         when(reviewCount) {

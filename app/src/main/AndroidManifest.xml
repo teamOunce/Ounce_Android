@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.teamounce.ounce">
     <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 네트워크 연결 상태 확인 -->
@@ -12,15 +13,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OUNCE"
+        tools:replace="android:theme"
         android:usesCleartextTraffic="true">
+        
         <activity android:name=".settings.SettingsOpensourceActivity" />
         <activity android:name=".settings.SettingsPolicyActivity" />
         <activity android:name=".settings.SettingsAgreeActivity" />
+
+        <activity
+            android:name=".feed.ui.FoodDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".review.ui.RecordActivity"
+            android:exported="true" />
         <activity android:name=".settings.SettingsCareActivity" />
         <activity android:name=".settings.SettingsActivity" />
         <activity
             android:name=".review.ui.SearchActivity"
             android:exported="true" />
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/native_app_key" />
