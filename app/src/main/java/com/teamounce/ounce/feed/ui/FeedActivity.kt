@@ -13,5 +13,13 @@ class FeedActivity :BindingActivity<ActivityFeedBinding>(R.layout.activity_feed)
         binding.apply {
             lifecycleOwner = this@FeedActivity
         }
+
+        setToolBar()
+    }
+
+    private fun setToolBar() {
+        binding.feedToolBar.setNavigationOnClickListener {
+            finish()
+        }
     }
 }
