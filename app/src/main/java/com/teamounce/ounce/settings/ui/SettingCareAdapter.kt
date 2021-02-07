@@ -2,6 +2,7 @@ package com.teamounce.ounce.settings.ui
 
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -43,6 +44,12 @@ class SettingCareAdapter (private val context : Context) :
 
     override fun onBindViewHolder(holder: SettingCareViewHolder, position: Int) {
         holder.bind(datas[position])
+
+
+        if(datas[position].catIndex == prefs.getSelectedCatIdx()){
+            holder.itemView.setting_catdlt.setBackgroundResource(R.drawable.ic_cat_gray_selected)
+
+        }
 
         holder.itemView.setting_catdlt.setOnClickListener {
             if (datas.size == 1){
@@ -87,10 +94,10 @@ class SettingCareAdapter (private val context : Context) :
        }
     }
 
-    fun setMainDeleteRetrofit(catIndex : Int) {
+    fun setMainDeleteRetrofit(position : Int) {
         mainDeleteRetrofitInterface = RetrofitService.create(MainViewRetrofitInterface::class.java)
         mainDeleteRetrofitInterface.mainDeleteRetrofit(
-            catIndex
+            datas[position].catIndex
         ).enqueue(object : retrofit2.Callback<MainDeleteResponseData> {
             override fun onFailure(call: Call<MainDeleteResponseData>, t: Throwable) {
                 Log.d("서버 통신 실패","${t}")
@@ -103,7 +110,7 @@ class SettingCareAdapter (private val context : Context) :
                 if(response.isSuccessful){
                     Log.d("고양이 삭제 성공", response.body()!!.data.toString())
 
-                    removeCatInfoClick(catIndex)
+                    removeCatInfoClick(position)
                 } else {
                     Log.d("서버에러", response.body()!!.responseMessage)
                 }
@@ -117,7 +124,4 @@ class SettingCareAdapter (private val context : Context) :
         prefs.setCatList(datas)
         notifyDataSetChanged()
     }
-
-
-
 }

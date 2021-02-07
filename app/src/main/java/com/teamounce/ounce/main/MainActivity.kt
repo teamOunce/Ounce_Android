@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.teamounce.ounce.R
@@ -18,6 +19,8 @@ import com.teamounce.ounce.util.SharedPreferences
 import retrofit2.Call
 import retrofit2.Response
 import com.teamounce.ounce.util.StatusBarUtil
+import okhttp3.ResponseBody
+import org.json.JSONObject
 
 
 class MainActivity : AppCompatActivity() {
@@ -43,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        setMainViewRetrofit(18)
+        setMainViewRetrofit(sharedPreferences.getSelectedCatIdx()!!)
         goToSearchActivity()
         goToSettingsActivity()
 
@@ -94,7 +97,6 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     fun setBackGroundColor() {
-
         when(reviewCount) {
             0 -> setBackgroundResource(R.color.white, R.drawable.ic_home_img_noth)
             in BACKGROUND_ONE_RANGE -> setBackgroundResource(R.color.mainbackground_one, R.drawable.ic_home_img_stepone)
@@ -152,17 +154,22 @@ class MainActivity : AppCompatActivity() {
 
                     setBackGroundColor()
 
-
                     if (sharedPreferences.getCatPositionSelected() == null) {
                         sharedPreferences.setCatPositionSelected(0)
                     }
                     Log.d("이것은 서버통신 성공", "이것이 서버")
                     Log.d("고양이 이름", response.body().toString())
                 } else {
-                    Log.d("에러", response.body()!!.toString())
+                    showError(response.errorBody())
                 }
             }
         })
+    }
+
+    private fun showError(error : ResponseBody?){
+        val e = error ?: return
+        val ob = JSONObject(e.string())
+        Log.d("errorbody ----> ", ob.getString("responseMessage"))
     }
 
     companion object {
