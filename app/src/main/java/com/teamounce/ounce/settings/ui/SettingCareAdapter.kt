@@ -2,22 +2,31 @@ package com.teamounce.ounce.settings.ui
 
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.teamounce.ounce.R
+import com.teamounce.ounce.RetrofitService
+import com.teamounce.ounce.main.BottomSheetProfileData
+import com.teamounce.ounce.main.MainDeleteResponseData
+import com.teamounce.ounce.main.MainViewRetrofitInterface
 import com.teamounce.ounce.settings.SettingCustomDialogBuilder
 import com.teamounce.ounce.settings.SettingCustomDialogListener
 import com.teamounce.ounce.settings.SettingsCareActivity
+import com.teamounce.ounce.util.SharedPreferences
 import kotlinx.android.synthetic.main.item_setting_catcare.view.*
+import retrofit2.Call
+import retrofit2.Response
 
 class SettingCareAdapter (private val context : Context) :
-
     RecyclerView.Adapter<SettingCareViewHolder>() {
 
-    var datas = mutableListOf<SettingCareCatData>()
-    private var limit = 4
+    private lateinit var mainDeleteRetrofitInterface: MainViewRetrofitInterface
+    private val prefs = SharedPreferences(context as SettingsCareActivity)
+
+    var datas = mutableListOf<BottomSheetProfileData>()
     private val fragmentManager = (context as SettingsCareActivity).supportFragmentManager
 
     override fun getItemCount(): Int {
@@ -44,6 +53,7 @@ class SettingCareAdapter (private val context : Context) :
                     .setNegativeButton("잘못 눌렀어요")
                     .setButtonClickListener(object : SettingCustomDialogListener{
                         override fun onClickPositiveButton() {
+                            setMainDeleteRetrofit(position)
                             Toast.makeText(context,"고양이를 삭제했습니다.",Toast.LENGTH_SHORT).show()
                         }
 
@@ -62,6 +72,7 @@ class SettingCareAdapter (private val context : Context) :
                     .setNegativeButton("잘못 눌렀어요")
                     .setButtonClickListener(object : SettingCustomDialogListener{
                         override fun onClickPositiveButton() {
+                            setMainDeleteRetrofit(position)
                             Toast.makeText(context,"고양이를 삭제했습니다.",Toast.LENGTH_SHORT).show()
                         }
 
@@ -75,6 +86,38 @@ class SettingCareAdapter (private val context : Context) :
             }
        }
     }
+
+    fun setMainDeleteRetrofit(catIndex : Int) {
+        mainDeleteRetrofitInterface = RetrofitService.create(MainViewRetrofitInterface::class.java)
+        mainDeleteRetrofitInterface.mainDeleteRetrofit(
+            catIndex
+        ).enqueue(object : retrofit2.Callback<MainDeleteResponseData> {
+            override fun onFailure(call: Call<MainDeleteResponseData>, t: Throwable) {
+                Log.d("서버 통신 실패","${t}")
+            }
+
+            override fun onResponse(
+                call: Call<MainDeleteResponseData>,
+                response: Response<MainDeleteResponseData>
+            ) {
+                if(response.isSuccessful){
+                    Log.d("고양이 삭제 성공", response.body()!!.data.toString())
+
+                    removeCatInfoClick(catIndex)
+                } else {
+                    Log.d("서버에러", response.body()!!.responseMessage)
+                }
+            }
+        })
+
+    }
+
+    fun removeCatInfoClick(position: Int){
+        datas.removeAt(position)
+        prefs.setCatList(datas)
+        notifyDataSetChanged()
+    }
+
 
 
 }

@@ -5,7 +5,6 @@
     <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 네트워크 연결 상태 확인 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
         android:name=".OunceApplication"
         android:allowBackup="true"
@@ -14,7 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OUNCE"
-        tools:replace="android:theme">
+        tools:replace="android:theme"
+        android:usesCleartextTraffic="true">
+        
+        <activity android:name=".settings.SettingsOpensourceActivity" />
+        <activity android:name=".settings.SettingsPolicyActivity" />
+        <activity android:name=".settings.SettingsAgreeActivity" />
+
         <activity
             android:name=".feed.ui.FoodDetailActivity"
             android:exported="true" />
@@ -30,14 +35,11 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/native_app_key" />
-
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data
                     android:host="oauth"
                     android:scheme="kakao7171285de2b4a7896ab049321ffc8ed6" />
@@ -52,10 +54,8 @@
         <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
