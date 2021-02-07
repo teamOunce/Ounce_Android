@@ -101,7 +101,15 @@
                 android:layout_height="match_parent"
                 android:layoutDirection="locale"
                 app:chipSpacingHorizontal="6dp"
+                android:paddingVertical="4dp"
                 app:singleLine="true">
+
+                <com.google.android.material.chip.Chip
+                    android:theme="@style/FeedTheme"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Test"/>
 
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
