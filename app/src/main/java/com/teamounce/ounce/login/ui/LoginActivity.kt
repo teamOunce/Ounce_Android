@@ -60,7 +60,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
             startActivity(intent)
         }
         binding.btnLoginGoogle.setOnClickListener { googleSignIn() }
-        binding.btnTempDisconnectGoogle.setOnClickListener { disconnectGoogle() }
     }
 
     private fun setObserver() {
@@ -72,12 +71,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
-        }
-    }
-
-    private fun disconnectGoogle() {
-        googleSignInClient.revokeAccess().addOnCompleteListener(this) {
-            Toast.makeText(this, "Disconnect From Google", Toast.LENGTH_SHORT).show()
         }
     }
 
