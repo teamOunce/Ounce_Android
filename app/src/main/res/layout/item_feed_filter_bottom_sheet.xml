@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="HardcodedText,UnusedAttribute,ContentDescription">
+
+    <ImageView
+        android:id="@+id/feed_bottom_sheet_down_bar"
+        android:layout_width="51dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/downbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.13" />
+
+    <View
+        android:id="@+id/feed_bottom_sheet_guide_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/very_light_pink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/feed_bottom_sheet_down_bar" />
+
+    <CheckBox
+        android:id="@+id/feed_bottom_sheet_filter_dry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/feed_bottom_sheet_filter_dry_box"
+        android:button="@null"
+        android:drawableStart="@drawable/ic_dry_state"
+        android:drawablePadding="20dp"
+        android:fontFamily="@font/apple_sd_gothic"
+        android:lineSpacingExtra="11sp"
+        android:paddingHorizontal="40dp"
+        android:text="건식"
+        android:textColor="@color/feed_bottom_sheet_select_color"
+        android:textFontWeight="700"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/feed_bottom_sheet_filter_wet"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feed_bottom_sheet_guide_line" />
+
+    <CheckBox
+        android:id="@+id/feed_bottom_sheet_filter_wet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/feed_bottom_sheet_filter_wet_box"
+        android:button="@null"
+        android:drawableStart="@drawable/ic_wet_state"
+        android:drawablePadding="20dp"
+        android:fontFamily="@font/apple_sd_gothic"
+        android:lineSpacingExtra="11sp"
+        android:paddingHorizontal="40dp"
+        android:text="습식"
+        android:textColor="@color/feed_bottom_sheet_select_color"
+        android:textFontWeight="700"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/feed_bottom_sheet_filter_dry"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/feed_bottom_sheet_filter_dry"
+        app:layout_constraintTop_toTopOf="@+id/feed_bottom_sheet_filter_dry" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
