@@ -22,56 +22,67 @@ import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.databinding.ActivityLoginBinding
 import com.teamounce.ounce.login.adapter.OnBoardingAdapter
 import com.teamounce.ounce.login.viewmodel.LoginViewModel
+import com.teamounce.ounce.main.MainActivity
 import com.teamounce.ounce.util.StatusBarUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
     private val loginViewModel: LoginViewModel by viewModels()
-    private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
-
-    override fun onStart() {
-        super.onStart()
-        val account = GoogleSignIn.getLastSignedInAccount(this)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         StatusBarUtil.setStatusBar(this, resources.getColor(R.color.login_background, null))
-        val onBoardingAdapter = OnBoardingAdapter()
-        binding.vpLoginOnboarding.adapter = onBoardingAdapter
-        onBoardingAdapter.replaceList(loginViewModel.onBoardingInfoList)
-
-        binding.dotsLoginOnboarding.setViewPager2(binding.vpLoginOnboarding)
-
-        binding.btnLoginKakao.setOnClickListener { kakaoLoginCall(this) }
-
-        binding.btnTempNext.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
-        }
-
+        setOnboardingAdapter()
+        setUIButtonClickListener()
+        setObserver()
         val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-        mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
-        binding.btnLoginGoogle.setOnClickListener { signIn() }
+        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
         auth = Firebase.auth
+    }
 
+    private fun setOnboardingAdapter() {
+        val onBoardingAdapter = OnBoardingAdapter()
+        binding.vpLoginOnboarding.adapter = onBoardingAdapter
+        onBoardingAdapter.replaceList(loginViewModel.onBoardingInfoList)
+        binding.dotsLoginOnboarding.setViewPager2(binding.vpLoginOnboarding)
+    }
+
+    private fun setUIButtonClickListener() {
+        binding.btnLoginKakao.setOnClickListener { kakaoLoginCall(this) }
+        binding.btnTempNext.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnLoginGoogle.setOnClickListener { signIn() }
         binding.btnTempDisconnectGoogle.setOnClickListener { disconnectGoogle() }
     }
 
+    private fun setObserver() {
+        loginViewModel.isCatNull.observe(this) {
+            if (it) {
+                val intent = Intent(this, SignUpActivity::class.java)
+                startActivity(intent)
+            } else {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
+        }
+    }
+
     private fun disconnectGoogle() {
-        mGoogleSignInClient.revokeAccess().addOnCompleteListener(this) {
+        googleSignInClient.revokeAccess().addOnCompleteListener(this) {
             Toast.makeText(this, "Disconnect From Google", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun signIn() {
-        val signInIntent = mGoogleSignInClient.signInIntent
+        val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
@@ -93,9 +104,8 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
-                if(task.isSuccessful) {
+                if (task.isSuccessful) {
                     val user = auth.currentUser
-                    //updateUI(user)
                     loginViewModel.setCurrentUser(user)
                     val intent = Intent(this, SignUpActivity::class.java)
                     Toast.makeText(this, "${user?.email}", Toast.LENGTH_SHORT).show()
@@ -132,6 +142,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
             } else if (user != null) {
                 if (user.kakaoAccount?.emailNeedsAgreement == false) Log.d("Kakao", "사용자계정에 이메일 없음")
                 else if (user.kakaoAccount?.emailNeedsAgreement == true) Log.d("Kakao", "사용자에게")
+                loginViewModel.kakaoLogin(user.id.toString())
                 Log.i(
                     "Kakao",
                     "${user.id}, ${user.kakaoAccount?.email}, ${user.kakaoAccount?.profile?.nickname}"

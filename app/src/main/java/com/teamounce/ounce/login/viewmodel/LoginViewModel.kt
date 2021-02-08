@@ -1,24 +1,30 @@
 package com.teamounce.ounce.login.viewmodel
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
-import com.teamounce.ounce.R
+import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.data.remote.repository.LoginRepository
 import com.teamounce.ounce.login.model.OnBoardingData
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel @ViewModelInject constructor(
+@HiltViewModel
+class LoginViewModel @Inject constructor(
     private val loginRepository: LoginRepository
 ) : ViewModel() {
     private val _onBoardingInfoList = mutableListOf<OnBoardingData>()
     val onBoardingInfoList: List<OnBoardingData>
         get() = _onBoardingInfoList
-
     private var _currentUser = MutableLiveData<FirebaseUser?>()
     val currentUser: LiveData<FirebaseUser?>
         get() = _currentUser
+    private val _isCatNull = MutableLiveData<Boolean>()
+    val isCatNull: LiveData<Boolean>
+        get() = _isCatNull
 
     init {
         initOnBoardingInfoList()
@@ -52,5 +58,22 @@ class LoginViewModel @ViewModelInject constructor(
 
     fun setCurrentUser(user: FirebaseUser?) {
         _currentUser.value = user
+    }
+
+    fun kakaoLogin(id: String) = viewModelScope.launch {
+        runCatching {
+            loginRepository.kakaoLogin(id)
+        }.onSuccess {
+            OunceLocalRepository.apply {
+                userAccessToken = it.data.token
+                userRefreshToken = it.data.refresh
+            }
+            when (it.data.catCount) {
+                0 -> _isCatNull.value = true
+                else -> _isCatNull.value = false
+            }
+        }.onFailure {
+            it.printStackTrace()
+        }
     }
 }
