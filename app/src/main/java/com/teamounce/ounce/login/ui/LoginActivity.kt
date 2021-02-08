@@ -59,7 +59,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
-        binding.btnLoginGoogle.setOnClickListener { signIn() }
+        binding.btnLoginGoogle.setOnClickListener { googleSignIn() }
         binding.btnTempDisconnectGoogle.setOnClickListener { disconnectGoogle() }
     }
 
@@ -81,14 +81,13 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         }
     }
 
-    private fun signIn() {
+    private fun googleSignIn() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
@@ -104,16 +103,8 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    loginViewModel.setCurrentUser(user)
-                    val intent = Intent(this, SignUpActivity::class.java)
-                    Toast.makeText(this, "${user?.email}", Toast.LENGTH_SHORT).show()
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(this, "Auth Fail", Toast.LENGTH_SHORT).show()
-                }
-
+                if (task.isSuccessful) { loginViewModel.googleLogin(idToken) }
+                else { Toast.makeText(this, "Auth Fail", Toast.LENGTH_SHORT).show() }
             }
     }
 
@@ -143,10 +134,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                 if (user.kakaoAccount?.emailNeedsAgreement == false) Log.d("Kakao", "사용자계정에 이메일 없음")
                 else if (user.kakaoAccount?.emailNeedsAgreement == true) Log.d("Kakao", "사용자에게")
                 loginViewModel.kakaoLogin(user.id.toString())
-                Log.i(
-                    "Kakao",
-                    "${user.id}, ${user.kakaoAccount?.email}, ${user.kakaoAccount?.profile?.nickname}"
-                )
             }
         }
     }

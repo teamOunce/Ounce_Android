@@ -76,4 +76,21 @@ class LoginViewModel @Inject constructor(
             it.printStackTrace()
         }
     }
+
+    fun googleLogin(token: String) = viewModelScope.launch {
+        runCatching {
+            loginRepository.googleLogin(token)
+        }.onSuccess {
+            OunceLocalRepository.apply {
+                userAccessToken = it.data.token
+                userRefreshToken = it.data.refresh
+            }
+            when (it.data.catCount) {
+                0 -> _isCatNull.value = true
+                else -> _isCatNull.value = false
+            }
+        }.onFailure {
+            it.printStackTrace()
+        }
+    }
 }
