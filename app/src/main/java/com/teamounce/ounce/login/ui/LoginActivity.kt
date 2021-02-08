@@ -39,7 +39,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        StatusBarUtil.setStatusBar(this)
+        StatusBarUtil.setStatusBar(this, resources.getColor(R.color.login_background, null))
         val onBoardingAdapter = OnBoardingAdapter()
         binding.vpLoginOnboarding.adapter = onBoardingAdapter
         onBoardingAdapter.replaceList(loginViewModel.onBoardingInfoList)

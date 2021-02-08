@@ -2,6 +2,8 @@ package com.teamounce.ounce.data.local.singleton
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.security.keystore.KeyGenParameterSpec
+import android.security.keystore.KeyProperties
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 
@@ -11,8 +13,7 @@ object OunceLocalRepository {
     private const val REFRESH_TOKEN_KEY = "refresh"
     private const val USER_TOKEN_KEY = "access"
 
-    private val keyGenParameterSpec = MasterKeys.AES256_GCM_SPEC
-    private val masterKeyAlias = MasterKeys.getOrCreate(keyGenParameterSpec)
+    private val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
     private lateinit var encryptedRepository: SharedPreferences
 
     fun init(context: Context) {
