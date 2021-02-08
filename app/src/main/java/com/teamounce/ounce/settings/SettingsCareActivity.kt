@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.teamounce.ounce.R
-import com.teamounce.ounce.login.ui.SignUpActivity
 import com.teamounce.ounce.main.BottomSheetProfileData
 import com.teamounce.ounce.settings.ui.SettingCareAdapter
-import com.teamounce.ounce.settings.ui.SettingCareCatData
 import com.teamounce.ounce.util.SharedPreferences
 import kotlinx.android.synthetic.main.activity_settings_care.*
 

@@ -1,8 +1,8 @@
-package com.teamounce.ounce.feed.repository.mock
+package com.teamounce.ounce.data.remote.repository.mock
 
 import com.teamounce.ounce.feed.model.RequestReview
 import com.teamounce.ounce.feed.model.Review
-import com.teamounce.ounce.feed.repository.FeedRepository
+import com.teamounce.ounce.data.remote.repository.FeedRepository
 import javax.inject.Inject
 import javax.inject.Singleton
 

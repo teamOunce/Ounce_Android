@@ -1,4 +1,4 @@
-package com.teamounce.ounce.login.ui
+package com.teamounce.ounce.register.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

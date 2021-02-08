@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.teamounce.ounce.login.ui.WelcomeFragment"
+        android:name="com.teamounce.ounce.register.ui.WelcomeFragment"
         android:label="fragment_welcome"
-        tools:layout="@layout/fragment_welcome" >
+        tools:layout="@layout/fragment_welcome" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.teamounce.ounce.register.ui.CatInfoFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_cat_info" >
         <action
-            android:id="@+id/action_welcomeFragment_to_ownerInfoFragment"
-            app:destination="@id/ownerInfoFragment"
+            android:id="@+id/action_registerFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.teamounce.ounce.login.ui.RegisterFragment"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
-    <fragment
         android:id="@+id/ownerInfoFragment"
-        android:name="com.teamounce.ounce.login.ui.OwnerInfoFragment"
+        android:name="com.teamounce.ounce.register.ui.UserInfoFragment"
         android:label="OwnerInfoFragment" >
         <action
             android:id="@+id/action_ownerInfoFragment_to_registerFragment"

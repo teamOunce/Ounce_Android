@@ -1,4 +1,4 @@
-package com.teamounce.ounce.login.ui
+package com.teamounce.ounce.register.ui
 
 import android.os.Bundle
 import android.text.Editable
@@ -6,21 +6,18 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import com.teamounce.ounce.R
-import com.teamounce.ounce.databinding.FragmentRegisterBinding
+import com.teamounce.ounce.base.BindingFragment
+import com.teamounce.ounce.databinding.FragmentCatInfoBinding
 import gun0912.tedkeyboardobserver.TedKeyboardObserver
 import java.util.*
 
-class RegisterFragment : Fragment() {
-    private lateinit var binding: FragmentRegisterBinding
-
+class CatInfoFragment : BindingFragment<FragmentCatInfoBinding>(R.layout.fragment_cat_info) {
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container, false)
+    ): View {
         setError()
         setMaxDate()
         observeKeyboard()

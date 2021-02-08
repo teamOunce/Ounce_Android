@@ -23,6 +23,7 @@ import com.teamounce.ounce.databinding.ActivityLoginBinding
 import com.teamounce.ounce.login.adapter.OnBoardingAdapter
 import com.teamounce.ounce.login.viewmodel.LoginViewModel
 import com.teamounce.ounce.main.MainActivity
+import com.teamounce.ounce.register.ui.SignUpActivity
 import com.teamounce.ounce.util.StatusBarUtil
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -65,6 +66,8 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                 startActivity(intent)
             } else {
                 val intent = Intent(this, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
             }
         }
