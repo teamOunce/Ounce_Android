@@ -55,10 +55,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
 
     private fun setUIButtonClickListener() {
         binding.btnLoginKakao.setOnClickListener { kakaoLoginCall(this) }
-        binding.btnTempNext.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
-        }
         binding.btnLoginGoogle.setOnClickListener { googleSignIn() }
     }
 
@@ -112,10 +108,9 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                 requestAdditionalUserInfo()
             }
         }
-        if (LoginClient.instance.isKakaoTalkLoginAvailable(context)) LoginClient.instance.loginWithKakaoTalk(
-            context,
-            callback = callback
-        )
+        if (LoginClient.instance.isKakaoTalkLoginAvailable(context)) {
+            LoginClient.instance.loginWithKakaoTalk(context, callback = callback)
+        }
         else LoginClient.instance.loginWithKakaoAccount(context, callback = callback)
     }
 

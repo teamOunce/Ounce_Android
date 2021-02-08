@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.auth.FirebaseUser
 import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.data.remote.repository.LoginRepository
 import com.teamounce.ounce.login.model.OnBoardingData
@@ -19,9 +18,6 @@ class LoginViewModel @Inject constructor(
     private val _onBoardingInfoList = mutableListOf<OnBoardingData>()
     val onBoardingInfoList: List<OnBoardingData>
         get() = _onBoardingInfoList
-    private var _currentUser = MutableLiveData<FirebaseUser?>()
-    val currentUser: LiveData<FirebaseUser?>
-        get() = _currentUser
     private val _isCatNull = MutableLiveData<Boolean>()
     val isCatNull: LiveData<Boolean>
         get() = _isCatNull
@@ -54,10 +50,6 @@ class LoginViewModel @Inject constructor(
                 )
             )
         }
-    }
-
-    fun setCurrentUser(user: FirebaseUser?) {
-        _currentUser.value = user
     }
 
     fun kakaoLogin(id: String) = viewModelScope.launch {
