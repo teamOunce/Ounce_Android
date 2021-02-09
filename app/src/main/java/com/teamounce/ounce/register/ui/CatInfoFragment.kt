@@ -6,18 +6,24 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingFragment
 import com.teamounce.ounce.databinding.FragmentCatInfoBinding
+import com.teamounce.ounce.register.viewmodel.RegisterViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import gun0912.tedkeyboardobserver.TedKeyboardObserver
 import java.util.*
 
+@AndroidEntryPoint
 class CatInfoFragment : BindingFragment<FragmentCatInfoBinding>(R.layout.fragment_cat_info) {
+    private val registerViewModel by activityViewModels<RegisterViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
         setError()
         setMaxDate()
         observeKeyboard()
