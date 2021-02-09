@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingFragment
 import com.teamounce.ounce.databinding.FragmentCatInfoBinding
@@ -24,10 +25,24 @@ class CatInfoFragment : BindingFragment<FragmentCatInfoBinding>(R.layout.fragmen
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
+        binding.apply {
+            viewModel = registerViewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
+        setUIListener()
         setError()
         setMaxDate()
         observeKeyboard()
         return binding.root
+    }
+
+    private fun setUIListener() {
+        binding.datepickerRegister.setOnDateChangedListener { _, year, month, day ->
+            registerViewModel.meetDate.value = "$year-$month-$day"
+        }
+        binding.btnRegisterComplete.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_registerFragment_to_welcomeFragment)
+        }
     }
 
     private fun setMaxDate() {
@@ -63,9 +78,7 @@ class CatInfoFragment : BindingFragment<FragmentCatInfoBinding>(R.layout.fragmen
         activity?.let {
             TedKeyboardObserver(it)
                 .listen { isShow ->
-                    if (!isShow) {
-                        binding.txtCatName.clearFocus()
-                    }
+                    if (!isShow) { binding.txtCatName.clearFocus() }
                 }
         }
     }

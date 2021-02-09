@@ -20,6 +20,9 @@ class RegisterViewModel @Inject constructor(
         addSourceList(isMale, agreePersonalInfoTerm) { isValidTransferToCatInfo() }
     }
 
+    val catName = MutableLiveData<String>("")
+    val meetDate = MutableLiveData<String>()
+
     private fun isValidTransferToCatInfo() =
         (isMale.value != null && isFemale.value != null) && agreePersonalInfoTerm.value!!
 }
