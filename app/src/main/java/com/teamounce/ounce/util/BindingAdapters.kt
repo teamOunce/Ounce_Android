@@ -2,11 +2,14 @@ package com.teamounce.ounce.util
 
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.ToggleButton
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
+import androidx.lifecycle.MutableLiveData
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 
@@ -44,5 +47,20 @@ object BindingAdapters {
     @BindingAdapter("login:setLottie")
     fun setLottieFile(view: LottieAnimationView, file: String) {
         view.setAnimation(file)
+    }
+
+    @JvmStatic
+    @BindingAdapter("user:setEnabled")
+    fun setButtonEnabled(view: Button, attr: MutableLiveData<Boolean>) {
+        attr.value?.let { view.isEnabled = it }
+    }
+
+    @JvmStatic
+    @BindingAdapter("toggleButtonText")
+    fun setToggleButtonText(view: ToggleButton, text: String) {
+        view.apply {
+            textOn = text
+            textOff = text
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.teamounce.ounce.login.ui
+package com.teamounce.ounce.register.ui
 
 import android.os.Bundle
 import android.text.Editable
@@ -6,25 +6,43 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import com.teamounce.ounce.R
-import com.teamounce.ounce.databinding.FragmentRegisterBinding
+import com.teamounce.ounce.base.BindingFragment
+import com.teamounce.ounce.databinding.FragmentCatInfoBinding
+import com.teamounce.ounce.register.viewmodel.RegisterViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import gun0912.tedkeyboardobserver.TedKeyboardObserver
 import java.util.*
 
-class RegisterFragment : Fragment() {
-    private lateinit var binding: FragmentRegisterBinding
-
+@AndroidEntryPoint
+class CatInfoFragment : BindingFragment<FragmentCatInfoBinding>(R.layout.fragment_cat_info) {
+    private val registerViewModel by activityViewModels<RegisterViewModel>()
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container, false)
+    ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
+        binding.apply {
+            viewModel = registerViewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
+        setUIListener()
         setError()
         setMaxDate()
         observeKeyboard()
         return binding.root
+    }
+
+    private fun setUIListener() {
+        binding.datepickerRegister.setOnDateChangedListener { _, year, month, day ->
+            registerViewModel.meetDate.value = "$year-$month-$day"
+        }
+        binding.btnRegisterComplete.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_registerFragment_to_welcomeFragment)
+        }
     }
 
     private fun setMaxDate() {
@@ -60,9 +78,7 @@ class RegisterFragment : Fragment() {
         activity?.let {
             TedKeyboardObserver(it)
                 .listen { isShow ->
-                    if (!isShow) {
-                        binding.txtCatName.clearFocus()
-                    }
+                    if (!isShow) { binding.txtCatName.clearFocus() }
                 }
         }
     }

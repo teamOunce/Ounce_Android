@@ -1,7 +1,7 @@
 package com.teamounce.ounce.data.remote.singleton
 
 import com.teamounce.ounce.data.remote.api.LoginService
-import com.teamounce.ounce.util.AuthRefreshInterceptor
+import com.teamounce.ounce.util.TokenRefreshInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -17,7 +17,7 @@ object RetrofitObjects {
 
     private fun getLoginServiceClient(): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(httpLoggingInterceptor())
-        .addInterceptor(AuthRefreshInterceptor())
+        .addInterceptor(TokenRefreshInterceptor())
         .build()
 
     private val baseRetrofit = Retrofit.Builder()

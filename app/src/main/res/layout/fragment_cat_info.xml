@@ -6,14 +6,14 @@
     <data>
 
         <variable
-            name="loginViewModel"
-            type="com.teamounce.ounce.login.viewmodel.LoginViewModel" />
+            name="viewModel"
+            type="com.teamounce.ounce.register.viewmodel.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".login.ui.RegisterFragment">
+        tools:context=".register.ui.CatInfoFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/toolbar_register"
@@ -22,16 +22,7 @@
             android:background="@android:color/transparent"
             android:gravity="center_vertical"
             app:elevation="0dp"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/btn_register_back"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
-                android:src="@drawable/ic_back" />
-
-        </com.google.android.material.appbar.AppBarLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -107,6 +98,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/notosanskr_regular"
                     android:hint="한글로 작성해주세요"
+                    android:text="@={viewModel.catName}"
                     android:includeFontPadding="false" />
 
             </com.google.android.material.textfield.TextInputLayout>
