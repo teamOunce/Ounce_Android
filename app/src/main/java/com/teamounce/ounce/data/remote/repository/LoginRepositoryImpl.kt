@@ -18,5 +18,5 @@ class LoginRepositoryImpl @Inject constructor(private val loginService: LoginSer
             RequestKakaoLogin(id)
         )
 
-    override suspend fun takeRefreshToken(): ResponseLogin = loginService.refreshToken()
+    override suspend fun takeRefreshToken(refresh: String): ResponseLogin = loginService.refreshToken(refresh)
 }

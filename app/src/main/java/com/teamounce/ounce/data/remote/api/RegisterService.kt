@@ -6,7 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface RegisterService {
-    @POST
+    @POST("addInfo")
     suspend fun registerCatInfo(
         @Body catInfo: RequestAddCatInfo
     ): ResponseAddCatInfo

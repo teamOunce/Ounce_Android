@@ -1,16 +1,16 @@
 package com.teamounce.ounce.register.ui
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingFragment
 import com.teamounce.ounce.databinding.FragmentWelcomeBinding
+import com.teamounce.ounce.main.MainActivity
 import com.teamounce.ounce.register.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,6 +22,21 @@ class WelcomeFragment : BindingFragment<FragmentWelcomeBinding>(R.layout.fragmen
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
+        binding.apply {
+            viewModel = registerViewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
+        registerViewModel.transferToMain.observe(viewLifecycleOwner) {
+            if (it) {
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
+            }
+        }
+        registerViewModel.errorMessage.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        }
         return binding.root
     }
 }
