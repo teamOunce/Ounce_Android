@@ -2,8 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="430dp"
+    android:layout_height="wrap_content"
     tools:ignore="HardcodedText,UnusedAttribute,ContentDescription">
 
     <ImageView
@@ -27,10 +28,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/feed_bottom_sheet_down_bar" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/feed_bottom_sheet_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="300dp"
         android:clipToPadding="false"
         android:fillViewport="true"
         android:paddingBottom="16dp"
@@ -105,22 +106,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:theme="@style/FeedTheme"
                 app:layout_constraintEnd_toEndOf="@+id/feed_bottom_sheet_filter_wet"
                 app:layout_constraintStart_toStartOf="@+id/feed_bottom_sheet_filter_dry"
                 app:layout_constraintTop_toBottomOf="@id/feed_bottom_sheet_tag_title_txt">
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="#테스트"
-                    app:chipStrokeColor="@color/feed_bottom_sheet_select_color"
-                    app:chipStrokeWidth="1dp"
-                    android:checked="true"
-                    app:rippleColor="@color/orange2"
-                    android:textColor="@color/feed_bottom_sheet_select_color"
-                    android:backgroundTint="@color/white"/>
 
             </com.google.android.material.chip.ChipGroup>
 
@@ -142,8 +130,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:theme="@style/FeedTheme"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 app:layout_constraintEnd_toEndOf="@+id/feed_bottom_sheet_tag_chip_group"
                 app:layout_constraintStart_toStartOf="@+id/feed_bottom_sheet_tag_chip_group"
                 app:layout_constraintTop_toBottomOf="@id/feed_bottom_sheet_brand_title_txt">
@@ -151,7 +137,7 @@
             </com.google.android.material.chip.ChipGroup>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <TextView
         android:id="@+id/feed_bottom_sheet_reset_txt"

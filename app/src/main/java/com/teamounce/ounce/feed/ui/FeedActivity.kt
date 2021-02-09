@@ -21,13 +21,14 @@ import kotlin.coroutines.CoroutineContext
 
 class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed), CoroutineScope {
 
+    private val BOTTOM_SHEET_TAG = "bottomSheetTag"
     private lateinit var job: Job
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 
     private val mViewModel: FeedActivityViewModel by viewModels()
-    private val feedBottomSheet: BottomSheetDialog by lazy {
-        BottomSheetDialog(binding.root.context)
+    private val bottomSheet : FeedBottomSheetDialog by lazy {
+        FeedBottomSheetDialog(mViewModel)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,67 +42,12 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
         }
 
         setToolBar()
-        setBottomSheet()
         setClickListener()
     }
 
     private fun setClickListener() {
         binding.feedFilterImg.setOnClickListener {
-            feedBottomSheet.show()
-        }
-    }
-
-    private fun setBottomSheet() {
-        feedBottomSheet.setContentView(R.layout.item_feed_filter_bottom_sheet)
-
-        launch {
-            runCatching {
-                setChipItem()
-            }.onSuccess {
-                Log.e("FeedActivity", "Add Chip Complete")
-            }.onFailure { e ->
-                Log.e("FeedActivity", "catch exception")
-                e.printStackTrace()
-            }
-        }
-
-
-        // 확인 버튼
-        feedBottomSheet.feed_bottom_sheet_ok_txt.setOnClickListener {
-            // add Event
-            feedBottomSheet.dismiss()
-        }
-    }
-
-    // 바텀시트 chip 아이템 생성
-    private suspend fun setChipItem() {
-        // 태그 chip 추가
-        for (i in mViewModel.tagFilterSample) {
-            val chip = Chip(binding.root.context)
-            chip.apply {
-                layoutDirection = View.LAYOUT_DIRECTION_LOCALE
-                text = i
-                textAlignment = View.TEXT_ALIGNMENT_CENTER
-                chipStrokeWidth = 1.dpFloat
-                setChipStrokeColorResource(R.color.feed_bottom_sheet_select_color)
-                setTextAppearanceResource(R.style.Feed_BottomSheet_Text)
-                setChipBackgroundColorResource(R.color.white)
-            }
-            feedBottomSheet.feed_bottom_sheet_tag_chip_group.addView(chip)
-        }
-        // 브랜드 chip 추가
-        for (i in mViewModel.brandFilterSample) {
-            val chip = Chip(binding.root.context)
-            chip.apply {
-                layoutDirection = View.LAYOUT_DIRECTION_LOCALE
-                text = i
-                textAlignment = View.TEXT_ALIGNMENT_CENTER
-                chipStrokeWidth = 1.dpFloat
-                setChipStrokeColorResource(R.color.feed_bottom_sheet_select_color)
-                setTextAppearanceResource(R.style.Feed_BottomSheet_Text)
-                setChipBackgroundColorResource(R.color.white)
-            }
-            feedBottomSheet.feed_bottom_sheet_brand_chip_group.addView(chip)
+            bottomSheet.show(supportFragmentManager,BOTTOM_SHEET_TAG)
         }
     }
 
