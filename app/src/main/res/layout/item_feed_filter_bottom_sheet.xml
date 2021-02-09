@@ -34,7 +34,7 @@
         android:clipToPadding="false"
         android:fillViewport="true"
         android:paddingBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/feed_bottom_sheet_ok_txt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/feed_bottom_sheet_guide_line">
@@ -106,10 +106,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:theme="@style/FeedTheme"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 app:layout_constraintEnd_toEndOf="@+id/feed_bottom_sheet_filter_wet"
                 app:layout_constraintStart_toStartOf="@+id/feed_bottom_sheet_filter_dry"
                 app:layout_constraintTop_toBottomOf="@id/feed_bottom_sheet_tag_title_txt">
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="#테스트"
+                    app:chipStrokeColor="@color/feed_bottom_sheet_select_color"
+                    app:chipStrokeWidth="1dp"
+                    android:checked="true"
+                    app:rippleColor="@color/orange2"
+                    android:textColor="@color/feed_bottom_sheet_select_color"
+                    android:backgroundTint="@color/white"/>
 
             </com.google.android.material.chip.ChipGroup>
 
@@ -143,7 +154,7 @@
     </ScrollView>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/feed_bottom_sheet_reset_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
@@ -160,7 +171,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/feed_bottom_sheet_ok_txt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -173,8 +184,8 @@
         android:textColor="@color/white"
         android:textFontWeight="400"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="@+id/feed_bottom_sheet_reset_txt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView" />
+        app:layout_constraintStart_toEndOf="@+id/feed_bottom_sheet_reset_txt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,6 +24,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="bottomSheetDialogTheme">@style/BaseBottomSheetDialog</item>
     </style>
 
     <style name="filterTextStyle" parent="Widget.AppCompat.TextView">
@@ -31,6 +32,14 @@
         <item name="fontWeight">400</item>
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/gray1.5</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Feed_BottomSheet_Text" parent="Widget.AppCompat.TextView">
+        <item name="fontFamily">@font/apple_sd_gothic</item>
+        <item name="fontWeight">400</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/feed_bottom_sheet_select_color</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 </resources>
