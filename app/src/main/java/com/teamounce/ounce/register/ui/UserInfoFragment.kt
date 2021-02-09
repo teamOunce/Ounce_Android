@@ -6,12 +6,13 @@ import android.text.Spanned
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.UnderlineSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingFragment
 import com.teamounce.ounce.databinding.FragmentUserInfoBinding
@@ -54,7 +55,8 @@ class UserInfoFragment : BindingFragment<FragmentUserInfoBinding>(R.layout.fragm
         val spannableTextUserInfo = SpannableString(textUserInfo)
         spannableTextUserInfo.setSpan(object : ClickableSpan() {
             override fun onClick(p0: View) {
-                Toast.makeText(requireContext(), "토오스트", Toast.LENGTH_SHORT).show()
+                val userInfoTermFragment = UserInfoTermFragment()
+                userInfoTermFragment.show(childFragmentManager, "BottomSheet")
             }
         }, 0, 9, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         spannableTextUserInfo.setSpan(UnderlineSpan(), 0, 9, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -63,7 +65,7 @@ class UserInfoFragment : BindingFragment<FragmentUserInfoBinding>(R.layout.fragm
             isClickable = true
             movementMethod = LinkMovementMethod.getInstance()
         }
-
+        registerViewModel.userBirthYear.value = binding.pickerOwnerBornYear.value
     }
 
     private fun setUIListener() {
@@ -71,23 +73,35 @@ class UserInfoFragment : BindingFragment<FragmentUserInfoBinding>(R.layout.fragm
             view.findNavController().navigate(R.id.action_ownerInfoFragment_to_registerFragment)
         }
         binding.btnOwnerMale.setOnCheckedChangeListener { _, value ->
+            Log.d("TAG", "isMale Changed $value")
             if (value && binding.btnOwnerFemale.isChecked) {
                 binding.btnOwnerFemale.isChecked = !value
             }
-            setButtonValue(value, binding.btnOwnerFemale.isSelected)
+            if (value) {
+                setButtonValue(value, binding.btnOwnerFemale.isSelected)
+            }
+
         }
         binding.btnOwnerFemale.setOnCheckedChangeListener { _, value ->
+            Log.d("TAG", "isFemale Changed $value")
             if (value && binding.btnOwnerMale.isChecked) {
                 binding.btnOwnerMale.isChecked = !value
             }
-            setButtonValue(binding.btnOwnerMale.isSelected, value)
+            if (value) {
+                setButtonValue(binding.btnOwnerMale.isSelected, value)
+            }
+
         }
         binding.pickerOwnerBornYear.setOnValueChangedListener { _, _, newVal ->
             registerViewModel.userBirthYear.value = newVal
         }
+        binding.btnUserTermInfo.setOnCheckedChangeListener { _, value ->
+            registerViewModel.agreePersonalInfoTerm.value = value
+        }
     }
 
     private fun setButtonValue(isMale: Boolean, isFemale: Boolean) {
+        Log.d("TAG", "isMale: $isMale, isFemale: $isFemale")
         registerViewModel.isMale.value = isMale
         registerViewModel.isFemale.value = isFemale
     }

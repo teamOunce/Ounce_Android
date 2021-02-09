@@ -14,7 +14,7 @@ class RegisterViewModel @Inject constructor(
 ) : ViewModel() {
     val isMale = MutableLiveData<Boolean>()
     val isFemale = MutableLiveData<Boolean>()
-    val agreePersonalInfoTerm = MutableLiveData<Boolean>()
+    val agreePersonalInfoTerm = MutableLiveData(false)
     val userBirthYear = MutableLiveData(0)
     val isEnabledTransferToCatInfo = MediatorLiveData<Boolean>().apply {
         addSourceList(isMale, agreePersonalInfoTerm) { isValidTransferToCatInfo() }

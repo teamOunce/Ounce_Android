@@ -145,7 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_marginBottom="24dp"
-                android:background="@drawable/button_enabled"
+                android:background="@drawable/button_selector"
                 android:enabled="false"
                 android:fontFamily="@font/notosanskr_regular"
                 android:includeFontPadding="false"
@@ -156,7 +156,7 @@
                 app:layout_constraintBottom_toBottomOf="parent" />
 
             <ToggleButton
-                android:id="@+id/toggleButton"
+                android:id="@+id/btn_user_term_info"
                 android:layout_width="0dp"
                 android:layout_height="32dp"
                 android:background="@drawable/checkbox_selector"
@@ -174,9 +174,9 @@
                 android:textColor="@color/gray1.5"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/toggleButton"
-                app:layout_constraintStart_toEndOf="@+id/toggleButton"
-                app:layout_constraintTop_toTopOf="@+id/toggleButton"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_user_term_info"
+                app:layout_constraintStart_toEndOf="@+id/btn_user_term_info"
+                app:layout_constraintTop_toTopOf="@+id/btn_user_term_info"
                 tools:text="개인정보 처리방침에 동의합니다" />
 
             <TextView
@@ -187,7 +187,7 @@
                 android:text="응답 정보는 다른 사용자에게 절대 노출되지 않습니다."
                 android:textColor="@color/gray0.5"
                 android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@+id/toggleButton"
+                app:layout_constraintStart_toEndOf="@+id/btn_user_term_info"
                 app:layout_constraintTop_toBottomOf="@+id/txt_user_term_info" />
 
 
