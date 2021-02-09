@@ -7,7 +7,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    
     <color name="text_color_black">#343434</color>
     <color name="text_color_gray">#676767</color>
     <color name="text_color_lightgray">#BFBFBF</color>
@@ -26,7 +25,6 @@
     <color name="very_light_pink">#e1e1e1</color>
     <color name="brown_gray">#979797</color>
     <color name="background_gray">#dadada</color>
-
     <color name ="hyperlink">#0066C5</color>
     <color name="copyright">#898A8D</color>
     <color name="gray0.5">#cccccc</color>
@@ -42,4 +40,8 @@
     <color name="mainbackground_four">#ECEAEB</color>
     <color name="mainbackground_five">#B8C8C7</color>
     <color name="login_background">#dadada</color>
+    <color name = "ounceintro_one">#9CFF60</color>
+    <color name = "ounceintro_two">#C98AEC</color>
+    <color name = "ounceintro_three">#D47272</color>
+
 </resources>

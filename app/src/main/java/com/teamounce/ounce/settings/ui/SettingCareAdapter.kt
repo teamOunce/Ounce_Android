@@ -54,18 +54,18 @@ class SettingCareAdapter (private val context : Context) :
         holder.itemView.setting_catdlt.setOnClickListener {
             if (datas.size == 1){
                 val dialog = SettingCustomDialogBuilder()
-                    .setTitle("정말 지우시겠어요?")
-                    .setSubTitle("유일한 고양이에요.\n저장했던 기록들도 함께 사라져요.")
-                    .setPositiveButton("네")
-                    .setNegativeButton("잘못 눌렀어요")
+                    .setTitle("현재 여행중인 고양이예요")
+                    .setSubTitle("지우길 원한다면,\n다른 고양이로 접속해 주세요!")
+                    .setNegativeButton("확인")
                     .setButtonClickListener(object : SettingCustomDialogListener{
                         override fun onClickPositiveButton() {
-                            setMainDeleteRetrofit(position)
-                            Toast.makeText(context,"고양이를 삭제했습니다.",Toast.LENGTH_SHORT).show()
+
                         }
 
                         override fun onClickNegativeButton() {
-                            Toast.makeText(context,"",Toast.LENGTH_SHORT).show()
+                            setMainDeleteRetrofit(position)
+                            Toast.makeText(context,"고양이를 삭제하지 못했습니다",Toast.LENGTH_SHORT).show()
+
                         }
                     })
                     .create()
