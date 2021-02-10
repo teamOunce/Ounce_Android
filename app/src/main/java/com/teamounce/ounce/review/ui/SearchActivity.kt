@@ -1,6 +1,7 @@
 package com.teamounce.ounce.review.ui
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -59,8 +60,17 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
     private fun setUIListener() {
         binding.etReviewSearch.setOnFocusChangeListener { view, hasFocus ->
             when (hasFocus) {
-                true -> view.background.setTint(resources.getColor(R.color.gray2, null))
-                false -> view.background.setTint(resources.getColor(R.color.orangey_red, null))
+                true -> view.background.setTint(resources.getColor(R.color.orangey_red, null))
+                else -> view.background.setTint(resources.getColor(R.color.gray2, null))
+            }
+        }
+        binding.imgReviewBack.setOnClickListener { finish() }
+        binding.etReviewSearch.setOnKeyListener { _, keyCode, keyEvent ->
+            if (keyEvent.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                searchViewModel.search()
+                true
+            } else {
+                false
             }
         }
     }
@@ -69,13 +79,11 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
         binding.btnLayoutList.setOnClickListener {
             searchAdapter.changeLayout(SearchAdapter.TYPE_LINEAR)
             binding.rvReviewSearchLinear.layoutManager = LinearLayoutManager(this)
-            //searchAdapter.notifyDataSetChanged()
         }
 
         binding.btnLayoutGrid.setOnClickListener {
             searchAdapter.changeLayout(SearchAdapter.TYPE_GRID)
             binding.rvReviewSearchLinear.layoutManager = GridLayoutManager(this, 3)
-            //searchAdapter.notifyDataSetChanged()
         }
     }
 

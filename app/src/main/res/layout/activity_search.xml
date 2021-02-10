@@ -34,6 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="?attr/actionBarSize"
                     android:layout_marginStart="12dp"
+                    android:paddingEnd="32dp"
                     android:src="@drawable/ic_back"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +52,10 @@
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/orangey_red"
             android:hint="제조사, 상품명 입력"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
             android:paddingStart="12dp"
+            android:singleLine="true"
             android:text="@={viewModel.searchQuery}"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@id/img_review_search"
@@ -118,9 +122,9 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#dadada"
                     android:layout_marginHorizontal="16dp"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    android:background="#dadada"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_review_search_linear"
