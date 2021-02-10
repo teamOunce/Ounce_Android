@@ -1,5 +1,6 @@
 package com.teamounce.ounce.di
 
+import com.teamounce.ounce.data.remote.api.FeedService
 import com.teamounce.ounce.data.remote.api.LoginService
 import com.teamounce.ounce.data.remote.api.RegisterService
 import com.teamounce.ounce.data.remote.api.SearchService
@@ -28,4 +29,9 @@ class NetworkServiceModule {
     @Singleton
     fun provideSearchService(@Named("Default") retrofit: Retrofit): SearchService =
         retrofit.create(SearchService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideFeedService(@Named("Default") retrofit: Retrofit) : FeedService =
+        retrofit.create(FeedService::class.java)
 }
