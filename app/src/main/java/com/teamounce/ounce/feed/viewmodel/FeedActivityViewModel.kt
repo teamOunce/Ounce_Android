@@ -2,9 +2,14 @@ package com.teamounce.ounce.feed.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.teamounce.ounce.data.remote.repository.FeedReviewRepository
 import com.teamounce.ounce.feed.model.ResponseFeedListData
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class FeedActivityViewModel : ViewModel() {
+@HiltViewModel
+class FeedActivityViewModel @Inject constructor(private val repo : FeedReviewRepository)
+    : ViewModel(){
 
     val feedList = MutableLiveData<List<ResponseFeedListData>>(
         listOf(
