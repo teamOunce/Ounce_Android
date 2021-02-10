@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ounceintro_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,7 +10,7 @@
         android:id="@+id/ounce_foryou"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=" 가장 작은 단위 1온스도 신중하게 고를 집사를 위해 "
+        android:text="@string/ounceintro_subtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,7 +31,7 @@
         android:id="@+id/ounce_curious"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="온스가 더 궁금하다면?"
+        android:text="@string/ounceintro_curious"
         android:fontFamily="@font/notosans_bold"
         app:layout_constraintTop_toBottomOf="@id/ounce_intro"
         app:layout_constraintStart_toStartOf="@id/ounce_intro"
@@ -38,11 +39,12 @@
 
     <ImageView
         android:id="@+id/ounce_intro_image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:src="@drawable/ic_ounceintroone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/ounce_curious"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ounce_curious" />
 
 

@@ -1,0 +1,30 @@
+package com.teamounce.ounce.settings
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
+import com.teamounce.ounce.R
+
+class SettingsIntroActivity : AppCompatActivity() {
+    private const val NUM_PAGES = 3
+    private lateinit var viewPager:ViewPager2
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_settings_intro)
+
+        viewPager = findViewById(R.id.vp_intro_ounce)
+
+        val introAdapter = SettingIntroAdapter(this)
+        viewPager.adapter = introAdapter
+    }
+
+    private inner class SettingIntroAdapter ( fa : FragmentActivity) : FragmentStateAdapter(fa) {
+        override fun getItemCount(): Int = NUM_PAGES
+
+        override fun createFragment(position: Int): Fragment = SettingIntroFragment()
+
+    }
+}

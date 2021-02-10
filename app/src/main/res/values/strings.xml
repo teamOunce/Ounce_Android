@@ -4,6 +4,8 @@
     <string name="native_app_key">7171285de2b4a7896ab049321ffc8ed6</string>
     <string name="meet">만난지</string>
     <string name="day">일 째</string>
+    <string name="ounceintro_subtitle">"가장 작은 단위 1온스도 신중하게 고를 집사를 위해" </string>
+    <string name="ounceintro_curious"><u>온스가 더 궁금하다면?&#x1F4CB;</u></string>
     <string name="setting_agreement">
 온스 이용약관\n
 \n
