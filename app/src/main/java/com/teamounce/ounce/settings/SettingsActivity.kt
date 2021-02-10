@@ -48,6 +48,10 @@ class SettingsActivity : AppCompatActivity() {
             val intent = Intent( this, SettingsOpensourceActivity::class.java)
             startActivity(intent)
         }
+        txt_ounceintro.setOnClickListener {
+            val intent = Intent(this,SettingIntroActivity::class.java)
+            startActivity(intent)
+        }
 
 
 
