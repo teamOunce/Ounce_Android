@@ -50,6 +50,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
 
+
         //로그아웃 버튼 눌렀을 때
         txt_ouncelogout.setOnClickListener {
                 val dialog = SettingCustomDialogBuilder()

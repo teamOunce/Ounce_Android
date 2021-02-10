@@ -65,4 +65,12 @@ class SharedPreferences(context: Context) {
     fun getCatPositionSelected(): Int? {
         return getInt("selectedCatPosition")
     }
+
+    fun setCatIdx(catIndex: Int) {
+        setInt("selectedCatIdx", catIndex)
+    }
+
+    fun getSelectedCatIdx(): Int? {
+        return getInt("selectedCatIdx")
+    }
 }
