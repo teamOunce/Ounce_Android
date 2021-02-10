@@ -1,29 +1,36 @@
 package com.teamounce.ounce.review.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.activity.viewModels
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.databinding.ActivityRecordBinding
+import com.teamounce.ounce.review.adapter.CatFoodSliderAdapter
+import com.teamounce.ounce.review.model.ResponseSearch
+import com.teamounce.ounce.review.viewmodel.ReviewViewModel
+import com.teamounce.ounce.util.StatusBarUtil
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RecordActivity : BindingActivity<ActivityRecordBinding>(R.layout.activity_record) {
-    private val foodImages = mutableListOf<ImageSliderFragment>()
+    private val reviewViewModel: ReviewViewModel by viewModels()
+    private lateinit var imageSliderAdapter: CatFoodSliderAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        foodImages.add(ImageSliderFragment("https://www.meijer.com/content/dam/meijer/product/0082/92/7450/22/0082927450225_1_A1C1_1200.png"))
-        binding.vpRecordSlider.adapter = CatFoodImageSliderPagerAdapter(this)
+        StatusBarUtil.setStatusBar(this)
+        imageSliderAdapter = CatFoodSliderAdapter()
+        val initCatFoodData = intent.getParcelableExtra<ResponseSearch.Data>("catFood")
+            ?: throw IllegalArgumentException("왜 없어 에반데")
+        initSetting(initCatFoodData)
     }
 
-    private inner class CatFoodImageSliderPagerAdapter(fa: FragmentActivity) :
-        FragmentStateAdapter(fa) {
-        override fun getItemCount() = foodImages.size
-
-        override fun createFragment(position: Int): Fragment {
-            return foodImages[position]
+    private fun initSetting(catFood: ResponseSearch.Data) {
+        imageSliderAdapter.replaceList(listOf(catFood.productImg))
+        binding.apply {
+            txtRecordBrand.text = catFood.manufacturer
+            txtRecordFood.text = catFood.productName
+            vpRecordSlider.adapter = imageSliderAdapter
+            dotsIndicator.setViewPager2(binding.vpRecordSlider)
         }
     }
 }
