@@ -1,11 +1,14 @@
 package com.teamounce.ounce.data.remote.singleton
 
 import com.teamounce.ounce.data.remote.api.LoginService
+import com.teamounce.ounce.data.remote.api.MainService
+import com.teamounce.ounce.util.AuthInterceptor
 import com.teamounce.ounce.util.TokenRefreshInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 
 object RetrofitObjects {
     private const val BASE_URL = "http://15.165.252.145:8080"
@@ -15,21 +18,21 @@ object RetrofitObjects {
         return loggingInterceptor
     }
 
-    private fun getLoginServiceClient(): OkHttpClient = OkHttpClient.Builder()
+    private val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor(AuthInterceptor())
         .addInterceptor(httpLoggingInterceptor())
-        .addInterceptor(TokenRefreshInterceptor())
         .build()
 
     private val baseRetrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
+        .client(okHttpClient)
+        .build()
 
-    private fun getLoginRetrofitObject() = baseRetrofit.client(getLoginServiceClient()).build()
-
-    private var loginInstance: LoginService? = null
-    fun getLoginService(): LoginService = loginInstance ?: synchronized(this) {
-        loginInstance ?: getLoginRetrofitObject().create(LoginService::class.java).apply {
-            loginInstance = this
+    private var mainInstance: MainService? = null
+    fun getMainService(): MainService = mainInstance ?: synchronized(this) {
+        mainInstance ?: baseRetrofit.create(MainService::class.java).apply {
+            mainInstance = this
         }
     }
 }
