@@ -1,30 +1,39 @@
 package com.teamounce.ounce.review.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
+import com.teamounce.ounce.data.remote.repository.SearchRepository
+import com.teamounce.ounce.review.model.ResponseSearch
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SearchViewModel : ViewModel() {
+@HiltViewModel
+class SearchViewModel @Inject constructor(
+    private val searchRepository: SearchRepository
+) : ViewModel() {
     private val _isListSearch = MutableLiveData(true)
     val isListSearch: LiveData<Boolean>
         get() = _isListSearch
-    private val _isNetworkAccess = MutableLiveData(true)
-    val isNetworkAccess: LiveData<Boolean>
-        get() = _isNetworkAccess
+    val searchQuery = MutableLiveData<String>()
+    private val _resultList = MutableLiveData<List<ResponseSearch.Data>>()
+    val resultList: LiveData<List<ResponseSearch.Data>>
+        get() = _resultList
 
-    fun changeSearchTypeToGrid() {
-        _isListSearch.value = false
-    }
-
-    fun changeSearchTypeToList() {
-        _isListSearch.value = true
-    }
-
-    fun isNetworkConnected() {
-        _isNetworkAccess.postValue(true)
-    }
-
-    fun isNetworkDisconnected() {
-        _isNetworkAccess.postValue(false)
+    fun search() = viewModelScope.launch {
+        runCatching {
+            searchRepository.search(
+                query = searchQuery.value ?: "",
+                catIndex = OunceLocalRepository.catIndex
+            )
+        }.onSuccess {
+            _resultList.value = it.resultList
+        }.onFailure {
+            Log.d("TAG", it.message.toString())
+        }
     }
 }
