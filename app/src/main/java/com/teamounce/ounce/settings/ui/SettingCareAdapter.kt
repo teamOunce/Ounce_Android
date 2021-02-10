@@ -2,17 +2,16 @@ package com.teamounce.ounce.settings.ui
 
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.teamounce.ounce.R
-import com.teamounce.ounce.RetrofitService
+import com.teamounce.ounce.data.remote.api.MainService
+import com.teamounce.ounce.data.remote.singleton.RetrofitObjects
 import com.teamounce.ounce.main.BottomSheetProfileData
 import com.teamounce.ounce.main.MainDeleteResponseData
-import com.teamounce.ounce.main.MainViewRetrofitInterface
 import com.teamounce.ounce.settings.SettingCustomDialogBuilder
 import com.teamounce.ounce.settings.SettingCustomDialogListener
 import com.teamounce.ounce.settings.SettingsCareActivity
@@ -24,7 +23,7 @@ import retrofit2.Response
 class SettingCareAdapter (private val context : Context) :
     RecyclerView.Adapter<SettingCareViewHolder>() {
 
-    private lateinit var mainDeleteRetrofitInterface: MainViewRetrofitInterface
+    private lateinit var mainDeleteRetrofitInterface: MainService
     private val prefs = SharedPreferences(context as SettingsCareActivity)
 
     var datas = mutableListOf<BottomSheetProfileData>()
@@ -95,7 +94,7 @@ class SettingCareAdapter (private val context : Context) :
     }
 
     fun setMainDeleteRetrofit(position : Int) {
-        mainDeleteRetrofitInterface = RetrofitService.create(MainViewRetrofitInterface::class.java)
+        mainDeleteRetrofitInterface = RetrofitObjects.getMainService()
         mainDeleteRetrofitInterface.mainDeleteRetrofit(
             datas[position].catIndex
         ).enqueue(object : retrofit2.Callback<MainDeleteResponseData> {

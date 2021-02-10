@@ -83,7 +83,7 @@ class FoodDetailActivity :
     }
 
     private fun setCommentText(preference: Int) {
-        val comment = Preference.setCommentByPreference(preference)
+        val comment = Comment.of(preference)
         binding.txtDetailComment.text = comment
     }
 }

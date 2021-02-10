@@ -1,6 +1,6 @@
 package com.teamounce.ounce.feed.ui
 
-enum class Preference(
+enum class Comment(
     private val preference: Int,
     private val comment: String
 ) {
@@ -13,7 +13,7 @@ enum class Preference(
     private fun hasPreference(preference: Int): Boolean = this.preference == preference
 
     companion object {
-        fun setCommentByPreference(preference: Int): String {
+        fun of(preference: Int): String {
             return values().find { it.hasPreference(preference) }?.comment
                 ?: throw IllegalArgumentException("선호도 설정이 잘못되었습니다. 선호도: ${preference}")
         }

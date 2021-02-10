@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.recyclerview.widget.RecyclerView
+import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.databinding.ItemBottomMainBinding
 import com.teamounce.ounce.util.SharedPreferences
 
@@ -42,6 +43,7 @@ class BottomSheetAdapter(private var context: Context) :
 
     fun changeCat(position: Int) {
         if (mContext is MainActivity) {
+            OunceLocalRepository.catIndex = bottomSheetProfileData[position].catIndex
             mContext.setMainViewRetrofit(bottomSheetProfileData[position].catIndex)
             mContext.bottomSheetFragment.dismiss()
         }
