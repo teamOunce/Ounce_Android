@@ -25,7 +25,8 @@
             android:exported="true" />
         <activity
             android:name=".review.ui.RecordActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".settings.SettingsCareActivity" />
         <activity android:name=".settings.SettingsActivity" />
         <activity
@@ -53,7 +54,7 @@
             android:exported="true" />
         <activity
             android:name=".login.ui.LoginActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -53,118 +53,216 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/vp_record_slider"
-            android:layout_width="100dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintDimensionRatio="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_review_search" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/transparent"
-            android:src="@drawable/ic_plus_circle"
-            app:layout_constraintBottom_toBottomOf="@+id/vp_record_slider"
-            app:layout_constraintStart_toEndOf="@+id/vp_record_slider"
-            app:layout_constraintTop_toTopOf="@+id/vp_record_slider" />
-
-        <TextView
-            android:id="@+id/txt_record_brand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/notosanskr_regular"
-            android:includeFontPadding="false"
-            android:text="브랜드 네임"
-            android:textColor="@color/gray2"
-            android:textFontWeight="500"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vp_record_slider" />
-
-        <TextView
-            android:id="@+id/txt_record_food"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/notosanskr_regular"
-            android:includeFontPadding="false"
-            android:text="로얄캐닌 키튼 4kg 긴 이름"
-            android:textColor="@color/text_color_black"
-            android:textFontWeight="700"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/txt_record_brand"
-            app:layout_constraintStart_toStartOf="@+id/txt_record_brand"
-            app:layout_constraintTop_toBottomOf="@+id/txt_record_brand" />
-
-        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-            android:id="@+id/dotsIndicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:dotsColor="@color/gray0"
-            app:dotsSize="8dp"
-            app:dotsSpacing="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/vp_record_slider"
-            app:layout_constraintStart_toStartOf="@+id/vp_record_slider"
-            app:layout_constraintTop_toBottomOf="@+id/txt_record_food"
-            app:selectedDotColor="@color/orange" />
-
-        <View
-            android:id="@+id/view"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/gray0"
-            app:layout_constraintTop_toBottomOf="@+id/dotsIndicator" />
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_review_search">
 
-        <TextView
-            android:id="@+id/txt_record_preference"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/notosanskr_regular"
-            android:includeFontPadding="false"
-            android:text="기호도"
-            android:textColor="@color/orange"
-            android:textFontWeight="600"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/txt_record_preference_explain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_record_preference"
-            tools:text="기호도를 선택하세요" />
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vp_record_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintDimensionRatio="2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <com.hedgehog.ratingbar.RatingBar
-            android:id="@+id/rating_record_preference"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/txt_record_preference_explain"
-            app:layout_constraintStart_toStartOf="@+id/txt_record_preference_explain"
-            app:layout_constraintTop_toBottomOf="@+id/txt_record_preference_explain"
-            hedgehog:clickable="true"
-            hedgehog:halfstart="true"
-            hedgehog:starCount="5"
-            hedgehog:starEmpty="@drawable/ic_heart_empty"
-            hedgehog:starFill="@drawable/ic_heart_fill"
-            hedgehog:starHalf="@drawable/ic_heart_half"
-            hedgehog:starImageHeight="32dp"
-            hedgehog:starImagePadding="4dp"
-            hedgehog:starImageWidth="32dp" />
+                <TextView
+                    android:id="@+id/txt_record_brand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:includeFontPadding="false"
+                    android:text="브랜드 네임"
+                    android:textColor="@color/gray2"
+                    android:textFontWeight="500"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vp_record_slider" />
 
+                <TextView
+                    android:id="@+id/txt_record_food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:includeFontPadding="false"
+                    android:text="로얄캐닌 키튼 4kg 긴 이름"
+                    android:textColor="@color/text_color_black"
+                    android:textFontWeight="700"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_record_brand"
+                    app:layout_constraintStart_toStartOf="@+id/txt_record_brand"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_record_brand" />
 
+                <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                    android:id="@+id/dotsIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:dotsColor="@color/gray0"
+                    app:dotsSize="8dp"
+                    app:dotsSpacing="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/vp_record_slider"
+                    app:layout_constraintEnd_toEndOf="@+id/vp_record_slider"
+                    app:layout_constraintStart_toStartOf="@+id/vp_record_slider"
+                    app:selectedDotColor="@color/orange" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/gray0"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_record_food"
+                    tools:layout_editor_absoluteX="12dp" />
+
+                <TextView
+                    android:id="@+id/txt_record_preference"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:includeFontPadding="false"
+                    android:text="기호도"
+                    android:textColor="@color/orange"
+                    android:textFontWeight="600"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view" />
+
+                <TextView
+                    android:id="@+id/txt_record_preference_explain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="기호도를 선택하세요"
+                    android:textColor="@color/gray1.5"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txt_record_preference"
+                    tools:text="기호도를 선택하세요" />
+
+                <com.hedgehog.ratingbar.RatingBar
+                    android:id="@+id/rating_record_preference"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_record_preference_explain"
+                    app:layout_constraintStart_toStartOf="@+id/txt_record_preference_explain"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_record_preference_explain"
+                    hedgehog:starCount="5"
+                    hedgehog:starEmpty="@drawable/ic_foot_empty"
+                    hedgehog:starFill="@drawable/ic_foot_fill"
+                    hedgehog:starHalf="@drawable/ic_heart_half"
+                    hedgehog:starImageHeight="40dp"
+                    hedgehog:starImagePadding="8dp"
+                    hedgehog:starImageWidth="40dp" />
+
+                <LinearLayout
+                    android:id="@+id/linear_record_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rating_record_preference">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_bold"
+                        android:includeFontPadding="false"
+                        android:text="태그"
+                        android:textColor="@color/orange"
+                        android:textFontWeight="700"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="(최대 3개)"
+                        android:textColor="@color/gray1"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/img_record_tooltip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="32dp"
+                        android:src="@drawable/ic_tooltip" />
+
+                </LinearLayout>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipgroup_record_tag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/linear_record_tag">
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView
+                    android:id="@+id/txt_record_memo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:includeFontPadding="false"
+                    android:text="메모"
+                    android:textColor="@color/orange"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/chipgroup_record_tag" />
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/record_memo_background"
+                    android:gravity="top"
+                    android:hint="최대 150자"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp"
+                    android:textColor="@color/gray3"
+                    android:textColorHint="@color/gray1"
+                    android:textSize="16sp"
+                    app:layout_constraintDimensionRatio="4"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_record_memo" />
+
+                <Button
+                    android:id="@+id/btn_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/button_selector"
+                    android:enabled="false"
+                    android:text="기록 완료!"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:backgroundTint="@null"
+                    app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
