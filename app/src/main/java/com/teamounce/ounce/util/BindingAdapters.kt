@@ -1,5 +1,6 @@
 package com.teamounce.ounce.util
 
+import android.net.Uri
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
@@ -9,7 +10,6 @@ import android.widget.ToggleButton
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
@@ -62,6 +62,20 @@ object BindingAdapters {
         view.apply {
             textOn = text
             textOff = text
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("record:setSrcFrom", "record:setForm")
+    fun setSrcFromStringData(view: ImageView, data: String, isURL: Boolean) {
+        if (isURL) {
+            Glide.with(view.context)
+                .load(data)
+                .into(view)
+        } else {
+            Glide.with(view.context)
+                .load(Uri.parse(data))
+                .into(view)
         }
     }
 }

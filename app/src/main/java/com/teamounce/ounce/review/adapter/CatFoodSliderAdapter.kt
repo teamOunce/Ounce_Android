@@ -12,7 +12,10 @@ class CatFoodSliderAdapter : RecyclerView.Adapter<CatFoodSliderAdapter.CatFoodVi
 
     class CatFoodViewHolder(private val binding: ItemCatfoodSliderBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(url: String) { binding.url = url }
+        fun bind(url: String, position: Int) {
+            binding.url = url
+            binding.isUrl = (position == 0)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatFoodViewHolder {
@@ -22,7 +25,9 @@ class CatFoodSliderAdapter : RecyclerView.Adapter<CatFoodSliderAdapter.CatFoodVi
         return CatFoodViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: CatFoodViewHolder, position: Int) { holder.bind(catFoodUrlList[position]) }
+    override fun onBindViewHolder(holder: CatFoodViewHolder, position: Int) {
+        holder.bind(catFoodUrlList[position], position)
+    }
 
     override fun getItemCount(): Int = catFoodUrlList.size
 

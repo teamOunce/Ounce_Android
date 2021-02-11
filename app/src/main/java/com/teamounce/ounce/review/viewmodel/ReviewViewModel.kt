@@ -10,6 +10,8 @@ import com.teamounce.ounce.data.remote.repository.ReviewRepository
 import com.teamounce.ounce.review.model.ResponseTags
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,6 +23,7 @@ class ReviewViewModel @Inject constructor(
     private val _tagList = MutableLiveData<List<ResponseTags.Data>>()
     val tagList: LiveData<List<ResponseTags.Data>>
         get() = _tagList
+    private var multiPartFile: MultipartBody.Part? = null
     private val _warningMessage = MutableLiveData<String>()
     val warningMessage: LiveData<String>
         get() = _warningMessage
@@ -48,5 +51,9 @@ class ReviewViewModel @Inject constructor(
     fun deleteTag(tag: String) {
         selectedTag.removeIf { it == tag }
         if (selectedTag.size <= TAG_MAX_ENTRY) isTagsFull = false
+    }
+
+    fun setImageFile(part: MultipartBody.Part) {
+        multiPartFile = part
     }
 }

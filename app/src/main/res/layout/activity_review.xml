@@ -124,6 +124,16 @@
                     app:layout_constraintStart_toStartOf="@+id/vp_record_slider"
                     app:selectedDotColor="@color/orange" />
 
+                <ImageView
+                    android:id="@+id/img_record_add_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_record_gellary"
+                    app:layout_constraintBottom_toBottomOf="@+id/dotsIndicator"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/dotsIndicator" />
+
                 <View
                     android:id="@+id/view"
                     android:layout_width="match_parent"
