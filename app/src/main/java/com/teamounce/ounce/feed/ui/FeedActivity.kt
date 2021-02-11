@@ -41,6 +41,8 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
             viewModel = mViewModel
         }
 
+        mViewModel.getBottomSheetFiltering()
+
         setToolBar()
         setClickListener()
     }

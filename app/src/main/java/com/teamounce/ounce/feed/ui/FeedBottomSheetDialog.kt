@@ -39,15 +39,23 @@ class FeedBottomSheetDialog(private val viewModel : FeedActivityViewModel) : Bot
     ): View {
         _binding = ItemFeedFilterBottomSheetBinding.inflate(inflater,container,false)
         setChip()
+        setObserve()
         return binding.root
+    }
+
+    private fun setObserve() {
+        viewModel.filterSet.observe(viewLifecycleOwner,{
+            if (it){
+                setChip()
+            }
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.feedBottomSheetOkTxt.setOnClickListener {
-            tagChipGroupChanged()
-            brandChipGroupChanged()
+            setChipGroupChanged()
             dismiss()
         }
     }
@@ -55,47 +63,36 @@ class FeedBottomSheetDialog(private val viewModel : FeedActivityViewModel) : Bot
     private fun setChip() {
         launch {
             // 태그 chip 추가
-            for (i in viewModel.tagFilterSample2) {
+            for (i in viewModel.tagFilterList) {
                 val chip = makeChipItem(i)
                 binding.feedBottomSheetTagChipGroup.addView(chip)
             }
 
             // 브랜드 chip 추가
-            for (i in viewModel.brandFilterSample2) {
+            for (i in viewModel.brandFilterList) {
                 val chip = makeChipItem(i)
                 binding.feedBottomSheetBrandChipGroup.addView(chip)
             }
         }
     }
 
-    private fun tagChipGroupChanged(){
+    // tag 필터 적용 여부 결정
+    private fun setChipGroupChanged(){
         launch {
             runCatching {
                 for(i in binding.feedBottomSheetTagChipGroup.children){
                     val chip = i as Chip
-                    viewModel.tagFilterSample2[chip.text.toString()] = chip.isChecked
+                    viewModel.tagFilterList[chip.text.toString()] = chip.isChecked
+                }
+
+                for(i in binding.feedBottomSheetBrandChipGroup.children){
+                    val chip = i as Chip
+                    viewModel.brandFilterList[chip.text.toString()] = chip.isChecked
                 }
             }.onSuccess {
                 Log.e("FeedChip","Chip setting Success")
             }.onFailure { e ->
                 Log.e("FeedChip","Tag Chip setting Fail")
-                e.printStackTrace()
-            }
-        }
-
-    }
-
-    private fun brandChipGroupChanged(){
-        launch {
-            runCatching {
-                for(i in binding.feedBottomSheetBrandChipGroup.children){
-                    val chip = i as Chip
-                    viewModel.tagFilterSample2[chip.text.toString()] = chip.isChecked
-                }
-            }.onSuccess {
-                Log.e("FeedChip","Chip setting Success")
-            }.onFailure { e ->
-                Log.e("FeedChip","Brand Chip setting Fail")
                 e.printStackTrace()
             }
         }
