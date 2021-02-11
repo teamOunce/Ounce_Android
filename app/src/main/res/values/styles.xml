@@ -6,4 +6,16 @@
     <item name="android:windowIsFloating">false</item>
     <item name="bottomSheetStyle">@style/BottomSheet</item>
 </style> <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
+
+    <style name="OunceChip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="checkedIconEnabled">false</item>
+        <item name="checkedIcon">@null</item>
+        <item name="chipIconEnabled">false</item>
+        <item name="checkedIconVisible">false</item>
+    </style>
+
+    <style name="ChipTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/chip_selector</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>
