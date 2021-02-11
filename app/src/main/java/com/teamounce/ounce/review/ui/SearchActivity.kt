@@ -33,7 +33,7 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
             layoutType = SearchAdapter.TYPE_LINEAR,
             itemClickListener = object : SearchAdapter.ItemClickListener {
                 override fun setOnClickListener(catFood: ResponseSearch.Data) {
-                    val intent = Intent(this@SearchActivity, RecordActivity::class.java)
+                    val intent = Intent(this@SearchActivity, ReviewActivity::class.java)
                     intent.putExtra("catFood", catFood)
                     startActivity(intent)
                 }

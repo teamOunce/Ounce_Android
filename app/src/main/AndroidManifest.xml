@@ -24,7 +24,7 @@
             android:name=".feed.ui.FoodDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".review.ui.RecordActivity"
+            android:name=".review.ui.ReviewActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".settings.SettingsCareActivity" />

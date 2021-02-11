@@ -16,15 +16,37 @@ import javax.inject.Inject
 class ReviewViewModel @Inject constructor(
     private val reviewRepository: ReviewRepository
 ) : ViewModel() {
+    private val TAG_MAX_ENTRY = 3
+    private val selectedTag = mutableListOf<String>()
     private val _tagList = MutableLiveData<List<ResponseTags.Data>>()
     val tagList: LiveData<List<ResponseTags.Data>>
         get() = _tagList
+    private val _warningMessage = MutableLiveData<String>()
+    val warningMessage: LiveData<String>
+        get() = _warningMessage
     var preference = 0f
+    var isTagsFull = false
     val memo = MutableLiveData<String>()
 
     fun getTags() = viewModelScope.launch {
         runCatching { reviewRepository.getTags(OunceLocalRepository.catIndex) }
             .onSuccess { _tagList.value = it.data }
             .onFailure { Log.d("TAG", it.message.toString()) }
+    }
+
+    fun addTag(tag: String) {
+        runCatching {
+            require(selectedTag.size < TAG_MAX_ENTRY) { "태그를 3개 이상 선택할 수 없습니다" }
+        }.onSuccess {
+            selectedTag.add(tag)
+            if (selectedTag.size >= TAG_MAX_ENTRY) isTagsFull = true
+        }.onFailure {
+            _warningMessage.value = it.message
+        }
+    }
+
+    fun deleteTag(tag: String) {
+        selectedTag.removeIf { it == tag }
+        if (selectedTag.size <= TAG_MAX_ENTRY) isTagsFull = false
     }
 }
