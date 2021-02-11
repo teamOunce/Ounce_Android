@@ -1,6 +1,6 @@
 package com.teamounce.ounce.settings
 
-interface SettingCustomDialogListener {
-    fun onClickPositiveButton()
-    fun onClickNegativeButton()
+interface SettingCustomDialogListener : SettingCustomDialog.SettingCustomDialogListener {
+    override fun onClickPositiveButton()
+    override fun onClickNegativeButton()
 }

@@ -54,7 +54,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
         mainViewRetrofitInterface = RetrofitService.create(MainViewRetrofitInterface::class.java)
         mainViewRetrofitInterface.bottomSheetProfileRetrofit(
-            9
+            20
         ).enqueue(object : retrofit2.Callback<BottomSheetResponseData>{
             override fun onFailure(call: Call<BottomSheetResponseData>, t: Throwable) {
                 Log.d("서버 실패", "${t}")
