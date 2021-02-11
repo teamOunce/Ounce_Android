@@ -36,64 +36,134 @@ class SettingsOpensourceActivity : AppCompatActivity() {
         datas.apply {
             add(
                 SettingsOpensourceData(
-                    "Glide",
-                    "https://github.com/bumptech/glide",
-                    "Copyright 2014 Google Inc."
+                    "Dots Indicator",
+                    "https://github.com/tommybuonomo/dotsindicator",
+                    "Copyright 2016 Tommy Buonomo."
                 )
             )
             add(
-                SettingsOpensourceData("OkHttp",
-                    "https://square.github.io/okhttp",
-                    "Copyright 2016 Square Inc."
+                SettingsOpensourceData("Android Constraint Layout Library",
+                    "https://developer.android.com/reference/android/support/constraint/packages",
+                    "Copyright 2017 The Android Open Source Project."
                 )
             )
             add(
                 SettingsOpensourceData(
-                    "Gson",
+                    "Android Databinding Library",
+                    "https://developer.android.com/reference/android/databinding/packages",
+                    "Copyright 2018 The Android Open Source Project."
+                )
+            )
+            add (
+                SettingsOpensourceData(
+                    "AndroidX Library",
+                    "https://developer.android.com/reference/androidx/packages",
+                    "Copyright 2018 The Android Open Source Project."
+                )
+            )
+            add (
+                SettingsOpensourceData(
+                    "Android KTX",
+                    "https://github.com/android/android-ktx",
+                    "Copyright 2018 The Android Open Source Project."
+                )
+            )
+            add (
+                SettingsOpensourceData(
+                    "Android Material Components",
+                    "https://developer.android.com/reference/com/google/android/material/packages",
+                    "Copyright 2018 The Android Open Source Project"
+                )
+            )
+            add (
+                SettingsOpensourceData(
+                    "Annotations for JVM-based languages",
+                    "https://github.com/JetBrains/java-annotations",
+                    "Copyright 2000-2016 JetBrains s.r.o."
+                )
+            )
+            add (
+                SettingsOpensourceData(
+                    "CircleImageView",
+                    "https://github.com/hdodenhof/CircleImageView",
+                    "Copyright 2014 - 2020 Henning Dodenhof"
+                )
+            )
+            add (
+                SettingsOpensourceData(
+                    "Kakao SDK",
+                    "https://developers.kakao.com/sdk/reference/android-rx/release/kakao-android-sdk-rx/com.kakao.sdk.auth/index.html",
+                    "Copyright 2014-2020 Kakao Corp."
+                )
+            )
+            add (
+                SettingsOpensourceData(
+                    "Google Gson",
                     "https://github.com/google/gson",
                     "Copyright 2008 Google Inc."
                 )
             )
             add (
                 SettingsOpensourceData(
-                    "OkHttp",
-                    "https://square.github.io/okhttp",
-                    "Copyright 2016 Square Inc."
+                    "Kotlin",
+                    "https://github.com/jetbrains/kotlin",
+                    "Copyright 2010-2020 JetBrains s.r.o."
                 )
             )
             add (
                 SettingsOpensourceData(
-                    "ACRA",
-                    "https://github.com/ACRA/acra",
-                    "Copyright 2010 Emmanuel Astier & Kevin Gaudin"
+                    "Square OkHttp",
+                    "https://github.com/square/okhttp",
+                    "Copyright 2014 Square, Inc."
                 )
             )
             add (
                 SettingsOpensourceData(
-                    "ActionBarSherlock",
-                    "https://square.github.io/okhttphttps://github.com/JakeWharton/ActionBarSherlock",
-                    "Copyright 2012 Jake Wharton"
+                    "Square Retrofit",
+                    "https://github.com/square/retrofit",
+                    "Copyright 2013 Square, Inc."
                 )
             )
             add (
                 SettingsOpensourceData(
-                    "Alexel",
-                    "https://github.com/thiagokimo/Alexei",
-                    "Copyright 2011-2012 Thiago Rocha"
+                    "Glide",
+                    "https://github.com/bumptech/glide",
+                    "Copyright 2014 Google, Inc."
                 )
             )
             add (
                 SettingsOpensourceData(
-                    "Flex",
-                    "https://github.com/Cool",
-                    "Copyright 2021 flex inc"
+                    "TedPermission",
+                    "https://github.com/ParkSangGwon/TedPermission",
+                    "Copyright 2017 Ted Park."
                 )
             )
             add (
                 SettingsOpensourceData(
-                    "BottomItem",
-                    "https://github.com/itdgodownlikethis",
-                    "Copyright 2012 Jake Wharton"
+                    "Lottie Android",
+                    "https://github.com/airbnb/lottie-android/",
+                    "Copyright 2018 Airbnb, Inc."
+                )
+            )
+            add (
+                SettingsOpensourceData(
+                    "Firebase SDK",
+                    "https://github.com/firebase/firebase-android-sdk/blob/master/LICENSE",
+                    "Copyright 2012 The Android Open Source Project."
+                )
+            )
+            add (
+                SettingsOpensourceData(
+                    "TedKeyboardObserver",
+                    "https://github.com/ParkSangGwon/TedKeyboardObserver",
+                    "Copyright 2019 Ted Park."
+                )
+            )
+            add (
+                SettingsOpensourceData(
+                    "RatingBar",
+                    "https://github.com/hedge-hog/RatingBar",
+                    "Copyright 2015 hedge_hog."
                 )
             )
 
