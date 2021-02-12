@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".feed.ui.TagActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_tag"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="0dp"
+            app:contentInsetStart="0dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_tag_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="12dp"
+                    android:paddingEnd="30dp"
+                    android:src="@drawable/ic_icon_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_tag_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanskr"
+                    android:includeFontPadding="false"
+                    android:text="태그 관리"
+                    android:textColor="@color/gray3"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:id="@+id/view_tag_warning"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/tag_view_background"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_tag_warning"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_tag"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/txt_tag_symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/notosanskr"
+            android:includeFontPadding="false"
+            android:text="※"
+            android:textColor="@color/orange2"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_tag" />
+
+        <TextView
+            android:id="@+id/txt_tag_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/notosanskr"
+            android:includeFontPadding="false"
+            android:textColor="@color/gray3"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/view_tag_warning"
+            app:layout_constraintStart_toEndOf="@+id/txt_tag_symbol"
+            app:layout_constraintTop_toTopOf="@+id/txt_tag_symbol"
+            tools:text="태그를 삭제하면, 해당 태그가 포함된\n모든 기록에서도 함께 삭제됩니다." />
+
+        <EditText
+            android:id="@+id/et_tag_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/orangey_red"
+            android:hint="태그 추가"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:paddingStart="12dp"
+            android:singleLine="true"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/img_tag_plus"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_tag_warning" />
+
+        <ImageView
+            android:id="@+id/img_tag_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="28dp"
+            android:src="@drawable/ic_bt_plus_s"
+            app:layout_constraintBottom_toBottomOf="@+id/et_tag_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_tag_warning" />
+
+        <TextView
+            android:id="@+id/txt_tag_helper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/notosanskr"
+            android:includeFontPadding="false"
+            android:textColor="@color/gray1.5"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/et_tag_search"
+            app:layout_constraintTop_toBottomOf="@+id/et_tag_search"
+            tools:text="최대 15개까지 작성할 수 있어요." />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_tag_result"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="28dp"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="32dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_tag_helper" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
