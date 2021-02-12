@@ -191,4 +191,8 @@
 회사는 회원의 소중한 개인정보를 다음과 같은 목적으로만 이용하며, 목적이 변경될 경우에는 사전에 회원의 동의를 구하도록 하겠습니다.\n
 </string>
     <string name="hello_world">Hello Square World!</string>
+    <string name="txt_tooltip_explain">
+        다양한 요소를 기록하기 위한 기능입니다.
+        기록을 나만의 기준으로 분류할 수 있어요!
+    </string>
 </resources>

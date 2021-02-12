@@ -36,6 +36,7 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
                     val intent = Intent(this@SearchActivity, ReviewActivity::class.java)
                     intent.putExtra("catFood", catFood)
                     startActivity(intent)
+                    finish()
                 }
             })
         binding.rvReviewSearchLinear.apply {
