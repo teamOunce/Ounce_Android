@@ -22,6 +22,9 @@
         <activity android:name=".settings.SettingsOpensourceActivity" />
         <activity android:name=".settings.SettingsPolicyActivity" />
         <activity android:name=".settings.SettingsAgreeActivity" />
+        <activity android:name=".feed.ui.FeedActivity"
+            android:theme="@style/FeedTheme"
+            android:exported="true"/>
         <activity
             android:name=".feed.ui.FoodDetailActivity"
             android:exported="true" />

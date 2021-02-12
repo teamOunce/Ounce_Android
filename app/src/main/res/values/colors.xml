@@ -13,7 +13,7 @@
     <color name="not_selected">#E7E7E7</color>
     <color name="red">#FF0000</color>
     <color name="orange">#FF7246</color>
-    <color name="orange2">#ff8762</color>
+    <color name="orange2">#FF8762</color>
     <color name="dark_peach">#FF7246</color>
     <color name="gray_three">#3E3E3E</color>
     <color name="gray_two">#676767</color>
@@ -45,5 +45,4 @@
     <color name="ounceintro_one">#9CFF60</color>
     <color name="ounceintro_two">#C98AEC</color>
     <color name="ounceintro_three">#D47272</color>
-
 </resources>
