@@ -55,6 +55,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'com.android.support:multidex:1.0.3'
 
     // Dots Indiator
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
@@ -93,6 +94,8 @@ dependencies {
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.5'
+    implementation 'com.squareup.okhttp3:okhttp:4.2.2'
 
     // Rating Bar Library
     implementation 'com.hedgehog.ratingbar:app:1.1.2'
@@ -106,8 +109,12 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
     kapt "androidx.hilt:hilt-compiler:1.0.0-alpha03"
 
-    implementation 'com.android.support:multidex:1.0.3'
-
     // Lottie
     implementation 'com.airbnb.android:lottie:3.6.0'
+
+    // TedPermission
+    implementation 'gun0912.ted:tedpermission:2.2.3'
+
+    // TedImagePicker
+    implementation 'gun0912.ted:tedimagepicker:1.1.7'
 }

@@ -3,6 +3,18 @@
 
     <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bottom_sheet_box</item>
+    </style> 
+
+    <style name="OunceChip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="checkedIconEnabled">false</item>
+        <item name="checkedIcon">@null</item>
+        <item name="chipIconEnabled">false</item>
+        <item name="checkedIconVisible">false</item>
+    </style>
+
+    <style name="ChipTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/chip_selector</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">

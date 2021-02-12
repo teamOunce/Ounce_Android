@@ -1,7 +1,9 @@
 package com.teamounce.ounce.review.model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 data class ResponseSearch(
     @SerializedName("data")
@@ -9,6 +11,7 @@ data class ResponseSearch(
     @SerializedName("responseMessage")
     val responseMessage: String
 ) {
+    @Parcelize
     data class Data(
         @SerializedName("manufacturer")
         val manufacturer: String,
@@ -20,5 +23,5 @@ data class ResponseSearch(
         val productName: String,
         @SerializedName("type")
         val type: String
-    )
+    ) : Parcelable
 }

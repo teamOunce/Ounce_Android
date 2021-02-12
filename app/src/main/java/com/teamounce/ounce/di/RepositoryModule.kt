@@ -26,4 +26,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindSearchRepository(repository: SearchRepositoryImpl): SearchRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindReviewRepository(repository: ReviewRepositoryImpl): ReviewRepository
 }

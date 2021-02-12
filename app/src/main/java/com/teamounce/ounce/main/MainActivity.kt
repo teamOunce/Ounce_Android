@@ -11,7 +11,7 @@ import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.data.remote.api.MainService
 import com.teamounce.ounce.data.remote.singleton.RetrofitObjects
 import com.teamounce.ounce.databinding.ActivityMainBinding
-import com.teamounce.ounce.review.ui.RecordActivity
+import com.teamounce.ounce.review.ui.ReviewActivity
 import com.teamounce.ounce.review.ui.SearchActivity
 import com.teamounce.ounce.settings.SettingsActivity
 import com.teamounce.ounce.util.SharedPreferences
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 //        operatebottomSheet()
         //수첩 아이콘 눌렀을 때, FeedActivity
         btn_drawer.setOnClickListener{
-            val intent = Intent(this, RecordActivity::class.java)
+            val intent = Intent(this, ReviewActivity::class.java)
             startActivity(intent)
         }
 
