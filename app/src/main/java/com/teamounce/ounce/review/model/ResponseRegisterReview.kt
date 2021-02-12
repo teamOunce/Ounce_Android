@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class ResponseRegisterReview(
     @SerializedName("data")
-    val `data`: Int,
+    val `data`: Int?,
     @SerializedName("responseMessage")
     val responseMessage: String
 )

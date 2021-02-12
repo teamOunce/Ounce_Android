@@ -18,10 +18,10 @@ class AuthInterceptor : Interceptor {
     }
 
     private fun filterHeaderByRequest(request: Request): Boolean {
-        return when {
-            request.url().encodedPath() == "login/google" -> true
-            request.url().encodedPath() == "login/kakao" -> true
-            request.url().encodedPath() == "getRefresh" -> true
+        return when (request.url.encodedPath) {
+            "login/google" -> true
+            "login/kakao" -> true
+            "getRefresh" -> true
             else -> false
         }
     }

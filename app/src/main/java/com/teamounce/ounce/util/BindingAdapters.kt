@@ -32,16 +32,26 @@ object BindingAdapters {
 
     @JvmStatic
     @BindingAdapter("textAttrChanged")
-    fun setTextWatcher(view: EditText, textAttrChagned: InverseBindingListener) {
+    fun setTextWatcher(view: EditText, textAttrChanged: InverseBindingListener) {
         view.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {}
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                textAttrChagned.onChange();
+                textAttrChanged.onChange()
             }
         })
+    }
+
+    @JvmStatic
+    @BindingAdapter("android:text")
+    fun setEditTextString(view: EditText, text: MutableLiveData<String>) {
+        if (text.value == null) {
+            view.setText("")
+        } else {
+            if (view.text.toString() != text.value) view.setText(text.value)
+        }
     }
 
     @JvmStatic

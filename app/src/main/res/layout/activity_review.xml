@@ -253,7 +253,7 @@
                     app:layout_constraintTop_toBottomOf="@id/chipgroup_record_tag" />
 
                 <EditText
-                    android:id="@+id/editText"
+                    android:id="@+id/et_record_memo"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginHorizontal="20dp"
@@ -261,6 +261,7 @@
                     android:background="@drawable/record_memo_background"
                     android:gravity="top"
                     android:hint="최대 150자"
+                    android:inputType="text"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="8dp"
                     android:text="@={viewModel.memo}"
@@ -284,7 +285,7 @@
                     android:textSize="20sp"
                     app:backgroundTint="@null"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editText" />
+                    app:layout_constraintTop_toBottomOf="@+id/et_record_memo" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
