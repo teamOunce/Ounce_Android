@@ -55,7 +55,6 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
             vpRecordSlider.adapter = imageSliderAdapter
             dotsIndicator.setViewPager2(binding.vpRecordSlider)
         }
-//        reviewViewModel.emptyImageUri = ImageUri.EMPTY.toMultipart(this)
     }
 
     private fun setUIListener(catFood: ResponseSearch.Data) {
@@ -115,44 +114,14 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
     }
 
     private fun makeMultiPartBody(uri: Uri) {
-//        contentResolver.openInputStream(uri)?.bufferedReader()?
-//        val options = BitmapFactory.Options()
-//        val inputStream = contentResolver.openInputStream(uri)
-//        val bitmap = BitmapFactory.decodeStream(inputStream, null, options)
-//        val byteArrayOutputStream = ByteArrayOutputStream()
-//        bitmap!!.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
-//        val photoBody =
-//            byteArrayOutputStream.toByteArray()
-//                .toRequestBody(
-//                    "image/*".toMediaTypeOrNull(),
-//                    0,
-//                    byteArrayOutputStream.toByteArray().size
-//                )
-//        RequestBody.create(
-//            "image/*".toMediaTypeOrNull(),
-//            byteArrayOutputStream.toByteArray()
-//        )
         val file = getFile(this, uri)
         val part = MultipartBody.Part.createFormData(
             "image",
             file.name,
             file.asRequestBody("image/png".toMediaTypeOrNull())
         )
-        // reviewViewModel.setImageFile(ImageUri(uri).toMultipart(this))
         reviewViewModel.setImageFile(part)
     }
-
-//    private fun getRealPathFromURI(contentUri : Uri) : String {
-//        val proj = { MediaStore.Images.Media.DATA }
-//        val loader : CursorLoader = CursorLoader(this, contentUri, proj, null, null, null)
-//        val cursor = loader.loadInBackground()
-//        val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-//        cursor?.moveToFirst()
-//        val result = cursor?.getString(columnIndex)
-//        cursor?.close()
-//        return result ?: ""
-//    }
-
     private fun getFile(context: Context, uri: Uri): File {
         val destinationFilename =
             File(context.filesDir.path + File.separatorChar + queryName(context, uri))

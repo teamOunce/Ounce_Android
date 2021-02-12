@@ -77,8 +77,6 @@ class ReviewViewModel @Inject constructor(
             _registerResult.value = it
         }.onFailure {
             Log.d("TAG", it.stackTraceToString())
-            Log.d("TAG", it.message.toString())
-            Log.d("TAG", it.message.toString())
         }
     }
 
