@@ -1,22 +1,16 @@
 package com.teamounce.ounce.feed.ui
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.activity.viewModels
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.chip.Chip
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.databinding.ActivityFeedBinding
 import com.teamounce.ounce.feed.viewmodel.FeedActivityViewModel
-import com.teamounce.ounce.util.TransparentStatusBarObject
-import com.teamounce.ounce.util.dpFloat
+import com.teamounce.ounce.util.StatusBarUtil
 import kotlinx.android.synthetic.main.item_feed_filter_bottom_sheet.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed), CoroutineScope {
@@ -35,7 +29,7 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
         super.onCreate(savedInstanceState)
         job = Job()
 
-        TransparentStatusBarObject.setStatusBar(this)
+        StatusBarUtil.setStatusBar(this)
         binding.apply {
             lifecycleOwner = this@FeedActivity
             viewModel = mViewModel

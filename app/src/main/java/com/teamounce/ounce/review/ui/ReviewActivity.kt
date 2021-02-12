@@ -2,6 +2,7 @@ package com.teamounce.ounce.review.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
@@ -14,6 +15,7 @@ import com.google.android.material.chip.Chip
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.databinding.ActivityReviewBinding
+import com.teamounce.ounce.feed.ui.FeedActivity
 import com.teamounce.ounce.review.adapter.CatFoodSliderAdapter
 import com.teamounce.ounce.review.model.ResponseSearch
 import com.teamounce.ounce.review.viewmodel.ReviewViewModel
@@ -70,9 +72,7 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
                     makeMultiPartBody(uri)
                 }
         }
-        binding.btnSubmit.setOnClickListener {
-            reviewViewModel.registerReview(catFood)
-        }
+        binding.btnSubmit.setOnClickListener { reviewViewModel.registerReview(catFood) }
     }
 
     private fun setObserver() {
@@ -91,7 +91,15 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
                 Toast.makeText(this, "리뷰 등록이 실패되었습니다.", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "리뷰 등록을 성공했습니다.", Toast.LENGTH_SHORT).show()
-                finish()
+                ReviewCompleteFragment(
+                    reviewViewModel.preference.toInt(),
+                    object : ReviewCompleteFragment.DisMissClickListener {
+                        override fun onClick(context: Context) {
+                            startActivity(Intent(context, FeedActivity::class.java))
+                            finish()
+                        }
+                    }
+                ).show(supportFragmentManager, "ReviewComplete")
             }
         }
     }
@@ -122,6 +130,7 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
         )
         reviewViewModel.setImageFile(part)
     }
+
     private fun getFile(context: Context, uri: Uri): File {
         val destinationFilename =
             File(context.filesDir.path + File.separatorChar + queryName(context, uri))

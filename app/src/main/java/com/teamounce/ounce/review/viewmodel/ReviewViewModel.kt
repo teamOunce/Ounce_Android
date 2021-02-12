@@ -37,7 +37,6 @@ class ReviewViewModel @Inject constructor(
     var preference = 0f
     var isTagsFull = false
     val memo = MutableLiveData<String>()
-    lateinit var emptyImageUri: MultipartBody.Part
 
     fun getTags() = viewModelScope.launch {
         runCatching { reviewRepository.getTags(OunceLocalRepository.catIndex) }
