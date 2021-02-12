@@ -1,6 +1,5 @@
 package com.teamounce.ounce.review.viewmodel
 
-import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +10,6 @@ import com.teamounce.ounce.data.remote.repository.ReviewRepository
 import com.teamounce.ounce.review.model.ResponseRegisterReview
 import com.teamounce.ounce.review.model.ResponseSearch
 import com.teamounce.ounce.review.model.ResponseTags
-import com.teamounce.ounce.util.ImageUri
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
