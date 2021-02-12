@@ -37,9 +37,7 @@ class ReviewCompleteFragment(
     }
 
     private fun setUIListener() {
-        binding.btnReviewComplete.setOnClickListener {
-            dismiss()
-        }
+        binding.btnReviewComplete.setOnClickListener { dismiss() }
     }
 
     private fun setDialogBackgroundImage() {
@@ -60,8 +58,8 @@ class ReviewCompleteFragment(
         dialog!!.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 

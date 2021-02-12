@@ -73,6 +73,9 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
                 }
         }
         binding.btnSubmit.setOnClickListener { reviewViewModel.registerReview(catFood) }
+        binding.imgRecordTooltip.setOnClickListener {
+            ToolTipFragment().show(supportFragmentManager, "ToolTip")
+        }
     }
 
     private fun setObserver() {
