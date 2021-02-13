@@ -1,5 +1,6 @@
 package com.teamounce.ounce.login.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -83,6 +84,7 @@ class LoginViewModel @Inject constructor(
             }
         }.onFailure {
             it.printStackTrace()
+            Log.e("LoginViewModel","$it.stackTrace")
         }
     }
 }
