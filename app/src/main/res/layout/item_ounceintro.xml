@@ -1,50 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android ="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_background">
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/ounce_foryou"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=" 가장 작은 단위 1온스도 신중하게 고를 집사를 위해 "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="25dp"
-        android:fontFamily="@font/notosans_regular"/>
-
-    <TextView
-        android:id="@+id/ounce_intro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="온스라는 하나의 목표를 두고, \n각기 다른 재능의 열두명이 모였습니다."
-        app:layout_constraintTop_toBottomOf="@+id/ounce_foryou"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/notosans_regular"/>
-
-    <TextView
-        android:id="@+id/ounce_curious"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="온스가 더 궁금하다면?"
-        android:fontFamily="@font/notosans_bold"
-        app:layout_constraintTop_toBottomOf="@id/ounce_intro"
-        app:layout_constraintStart_toStartOf="@id/ounce_intro"
-        android:layout_marginTop="15dp"/>
-
+    android:layout_height="match_parent"
+    tools:context = ".review.ui.ImageSliderFragment">
     <ImageView
         android:id="@+id/ounce_intro_image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:src="@drawable/ic_ounceintroone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/ounce_curious"
-        app:layout_constraintTop_toBottomOf="@+id/ounce_curious" />
-
-
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
