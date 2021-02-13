@@ -18,13 +18,15 @@
         android:theme="@style/Theme.OUNCE"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
+        <activity android:name=".feed.ui.TagActivity"></activity>
         <activity android:name=".settings.SettingsIntroActivity" />
         <activity android:name=".settings.SettingsOpensourceActivity" />
         <activity android:name=".settings.SettingsPolicyActivity" />
         <activity android:name=".settings.SettingsAgreeActivity" />
-        <activity android:name=".feed.ui.FeedActivity"
-            android:theme="@style/FeedTheme"
-            android:exported="true"/>
+        <activity
+            android:name=".feed.ui.FeedActivity"
+            android:exported="true"
+            android:theme="@style/FeedTheme" />
         <activity
             android:name=".feed.ui.FoodDetailActivity"
             android:exported="true" />

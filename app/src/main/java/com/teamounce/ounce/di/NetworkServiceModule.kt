@@ -1,9 +1,6 @@
 package com.teamounce.ounce.di
 
-import com.teamounce.ounce.data.remote.api.LoginService
-import com.teamounce.ounce.data.remote.api.RegisterService
-import com.teamounce.ounce.data.remote.api.ReviewService
-import com.teamounce.ounce.data.remote.api.SearchService
+import com.teamounce.ounce.data.remote.api.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,4 +31,9 @@ class NetworkServiceModule {
     @Singleton
     fun provideReviewService(@Named("Default") retrofit: Retrofit): ReviewService =
         retrofit.create(ReviewService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideTagService(@Named("Default") retrofit: Retrofit): TagService =
+        retrofit.create(TagService::class.java)
 }

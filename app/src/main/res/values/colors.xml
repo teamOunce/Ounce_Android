@@ -45,4 +45,5 @@
     <color name="ounceintro_one">#9CFF60</color>
     <color name="ounceintro_two">#C98AEC</color>
     <color name="ounceintro_three">#D47272</color>
+    <color name="tag_view_background">#19ff8762</color>
 </resources>

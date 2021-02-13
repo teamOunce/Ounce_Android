@@ -3,16 +3,15 @@ package com.teamounce.ounce.util
 import android.net.Uri
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.ToggleButton
+import android.widget.*
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
+import com.teamounce.ounce.R
 
 
 object BindingAdapters {
@@ -87,5 +86,11 @@ object BindingAdapters {
                 .load(Uri.parse(data))
                 .into(view)
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("tag:enabled")
+    fun isAddEnabled(view: ImageButton, enabled: MediatorLiveData<Boolean>) {
+        view.isEnabled = enabled.value ?: true
     }
 }
