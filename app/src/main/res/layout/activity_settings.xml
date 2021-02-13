@@ -56,14 +56,15 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toStartOf="@id/txt_info"
         app:layout_constraintTop_toBottomOf="@id/txt_info"
-        tools:listitem="@layout/item_setting_btn" />
+        tools:listitem="@layout/item_setting_btn"
+        tools:visibility="gone" />
 
 
     <TextView
         android:id="@+id/txt_ounce"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/notosans_bold"
         android:text="OUNCE"
         android:textColor="@color/orange"
@@ -73,19 +74,20 @@
 
     <TextView
         android:id="@+id/txt_ounceintro"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/notosans_bold"
         android:text="온스 소개"
         android:textColor="@color/gray_two"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/txt_ounce"
         app:layout_constraintTop_toBottomOf="@id/txt_ounce" />
 
     <TextView
         android:id="@+id/txt_ouncever"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/notosans_bold"
         android:text="현재 버전"
@@ -96,86 +98,91 @@
 
     <TextView
         android:id="@+id/txt_ounceversion"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="224dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:fontFamily="@font/notosanskr"
+        android:includeFontPadding="false"
         android:text="1.03"
-        android:fontFamily="@font/notosans_bold"
         app:layout_constraintBottom_toBottomOf="@+id/txt_ouncever"
-        app:layout_constraintStart_toEndOf="@id/txt_ouncever"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txt_ouncever" />
+
     <TextView
         android:id="@+id/txt_ounceagree"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/notosans_bold"
         android:text="이용약관"
         android:textColor="@color/gray_two"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/txt_ouncever"
         app:layout_constraintTop_toBottomOf="@id/txt_ouncever" />
 
     <TextView
         android:id="@+id/txt_ouncepolicy"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/notosans_bold"
         android:text="개인정보 처리방침"
         android:textColor="@color/gray_two"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/txt_ounceagree"
         app:layout_constraintTop_toBottomOf="@id/txt_ounceagree" />
 
     <TextView
         android:id="@+id/txt_ounceopensrc"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/notosans_bold"
         android:text="오픈소스 라이센스"
         android:textColor="@color/gray_two"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/txt_ouncepolicy"
         app:layout_constraintTop_toBottomOf="@id/txt_ouncepolicy" />
 
-    <ImageView
+    <View
         android:id="@+id/img_settingunbar"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:src="@drawable/ic_listgrid_line"
-        app:layout_constraintStart_toStartOf="@id/txt_ounceopensrc"
-        app:layout_constraintTop_toBottomOf="@id/txt_ounceopensrc"
-        android:layout_marginTop="16dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/background_gray"
+        app:layout_constraintTop_toBottomOf="@id/txt_ounceopensrc" />
+
 
     <TextView
         android:id="@+id/txt_ouncelogout"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/notosans_bold"
+        android:fontFamily="@font/notosanskr"
+        android:includeFontPadding="false"
         android:text="로그아웃"
-        android:textSize="12dp"
         android:textColor="@color/gray_one"
-        app:layout_constraintStart_toStartOf="@id/img_settingunbar"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/img_settingunbar" />
 
     <TextView
         android:id="@+id/txt_ounceout"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="12dp"
-        android:fontFamily="@font/notosans_bold"
+        android:fontFamily="@font/notosanskr"
+        android:includeFontPadding="false"
         android:text="탈퇴하기"
-        android:textSize="12dp"
         android:textColor="@color/gray_one"
-        app:layout_constraintStart_toStartOf="@id/txt_ouncelogout"
-        app:layout_constraintTop_toBottomOf="@id/txt_ouncelogout"/>
-
-
-
-
-
-
-
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_ouncelogout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
