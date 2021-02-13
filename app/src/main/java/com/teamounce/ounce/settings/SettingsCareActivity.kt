@@ -30,10 +30,7 @@ class SettingsCareActivity : AppCompatActivity() {
 
 
     fun goToBack() {
-        btn_setting_back.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
-        }
+        btn_setting_back.setOnClickListener { finish() }
     }
 
     fun registerCat() {
