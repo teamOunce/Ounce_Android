@@ -7,8 +7,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.teamounce.ounce.R
+import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.login.ui.LoginActivity
 import com.teamounce.ounce.main.MainActivity
+import com.teamounce.ounce.util.StatusBarUtil
 import com.teamounce.ounce.util.VerticalItemDecoration
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.fragment_setting_catdltdialog.*
@@ -20,6 +22,7 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+        StatusBarUtil.setStatusBar(this)
 
         settingButton()
         ounceversion(this)
@@ -63,12 +66,15 @@ class SettingsActivity : AppCompatActivity() {
                         val intent = Intent(this@SettingsActivity, LoginActivity::class.java)
                         intent.flags =
                             Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        OunceLocalRepository.apply {
+                           userRefreshToken = ""
+                           userAccessToken = ""
+                           catIndex = -1
+                        }
                         startActivity(intent)
-
                     }
 
-                    override fun onClickNegativeButton() {
-                    }
+                    override fun onClickNegativeButton() {}
                 })
                 .create()
             dialog.show(supportFragmentManager, dialog.tag)

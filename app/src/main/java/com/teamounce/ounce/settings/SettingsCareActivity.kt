@@ -9,6 +9,7 @@ import com.teamounce.ounce.main.BottomSheetProfileData
 import com.teamounce.ounce.register.ui.SignUpActivity
 import com.teamounce.ounce.settings.ui.SettingCareAdapter
 import com.teamounce.ounce.util.SharedPreferences
+import com.teamounce.ounce.util.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_settings_care.*
 
 class SettingsCareActivity : AppCompatActivity() {
@@ -19,6 +20,7 @@ class SettingsCareActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings_care)
+        StatusBarUtil.setStatusBar(this)
         initSettingCareRecyclerView()
         loadDatas()
         goToBack()
