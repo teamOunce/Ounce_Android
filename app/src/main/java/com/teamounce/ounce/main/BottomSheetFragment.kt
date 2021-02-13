@@ -10,6 +10,7 @@ import android.view.*
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.teamounce.ounce.R
 import com.teamounce.ounce.RetrofitService
+import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.settings.SettingCustomDialog
 import com.teamounce.ounce.settings.ui.SettingCareCatData
 import com.teamounce.ounce.util.SharedPreferences
@@ -56,6 +57,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         mainViewRetrofitInterface.bottomSheetProfileRetrofit(
             OunceLocalRepository.catIndex
         ).enqueue(object : retrofit2.Callback<BottomSheetResponseData>{
+
             override fun onFailure(call: Call<BottomSheetResponseData>, t: Throwable) {
                 Log.d("서버 실패", "${t}")
             }
