@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "64083375364-fq8i6s4ndhgk4kkma68s58ejdjjal0d7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.teamounce.ounce",
+            "certificate_hash": "87c36869e89d52afc2d79700a14a93affb1ae6f4"
+          }
+        },
+        {
           "client_id": "64083375364-rcdspdgrjon1n5am3a4fda3d5enfoc1q.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -38,6 +46,13 @@
             {
               "client_id": "64083375364-rcdspdgrjon1n5am3a4fda3d5enfoc1q.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "64083375364-p34kh68o3vg20nh9svnhjdoj2igid5qt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "kr.Ounce"
+              }
             }
           ]
         }
