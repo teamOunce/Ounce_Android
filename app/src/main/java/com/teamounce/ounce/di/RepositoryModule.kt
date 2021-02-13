@@ -34,4 +34,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindFeedReviewRepository(repository: FeedReviewRepositoryImpl) : FeedReviewRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindTagRepository(repository: TagRepositoryImpl): TagRepository
 }

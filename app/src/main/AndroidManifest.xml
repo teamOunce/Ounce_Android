@@ -17,14 +17,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OUNCE"
         android:usesCleartextTraffic="true"
+        android:screenOrientation="portrait"
         tools:replace="android:theme">
+        <activity android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".feed.ui.TagActivity" />
         <activity android:name=".settings.SettingsIntroActivity" />
         <activity android:name=".settings.SettingsOpensourceActivity" />
         <activity android:name=".settings.SettingsPolicyActivity" />
         <activity android:name=".settings.SettingsAgreeActivity" />
-        <activity android:name=".feed.ui.FeedActivity"
-            android:theme="@style/FeedTheme"
-            android:exported="true"/>
+        <activity
+            android:name=".feed.ui.FeedActivity"
+            android:exported="true"
+            android:theme="@style/FeedTheme" />
         <activity
             android:name=".feed.ui.FoodDetailActivity"
             android:exported="true" />
@@ -59,13 +70,7 @@
             android:exported="true" />
         <activity
             android:name=".login.ui.LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
         <activity android:name=".main.MainActivity" />
     </application>
 

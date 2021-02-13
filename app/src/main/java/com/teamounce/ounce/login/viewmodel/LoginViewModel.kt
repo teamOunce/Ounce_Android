@@ -57,6 +57,7 @@ class LoginViewModel @Inject constructor(
         runCatching {
             loginRepository.kakaoLogin(id)
         }.onSuccess {
+            Log.d("TAG", "")
             OunceLocalRepository.apply {
                 userAccessToken = it.data.token
                 userRefreshToken = it.data.refresh
