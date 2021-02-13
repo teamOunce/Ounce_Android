@@ -47,8 +47,7 @@ object OunceLocalRepository {
     var catIndex: Int
         get() = encryptedRepository.getInt(CAT_INDEX_KEY, -1)
         set(value) = encryptedRepository.edit { it.putInt(CAT_INDEX_KEY, value) }
-
-
+    
     fun getKey(): String {
         return encryptedRepository.getString(NATIVE_APP_KEY, "")!!
     }
