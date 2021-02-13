@@ -3,6 +3,7 @@ package com.teamounce.ounce.data.remote.api
 import com.teamounce.ounce.main.BottomSheetResponseData
 import com.teamounce.ounce.main.MainDeleteResponseData
 import com.teamounce.ounce.main.MainViewResponseData
+import com.teamounce.ounce.settings.model.ResponseExpire
 import retrofit2.Call
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -17,4 +18,7 @@ interface MainService {
 
     @DELETE("main/profile")
     fun mainDeleteRetrofit(@Query("catIndex") catIndex: Int): Call<MainDeleteResponseData>
+
+    @DELETE("deleteUser")
+    fun deleteUser() : Call<ResponseExpire>
 }
