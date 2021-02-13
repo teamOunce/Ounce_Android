@@ -69,4 +69,9 @@
     <style name="Widget.Demo.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Demo</item>
     </style>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
 </resources>

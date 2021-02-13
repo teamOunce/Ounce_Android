@@ -1,17 +1,13 @@
 package com.teamounce.ounce.settings
 
-import android.content.Intent
-import com.teamounce.ounce.login.ui.LoginActivity
-
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageInfo
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.common.wrappers.Wrappers.packageManager
+import androidx.appcompat.app.AppCompatActivity
 import com.teamounce.ounce.R
+import com.teamounce.ounce.login.ui.LoginActivity
 import com.teamounce.ounce.main.MainActivity
 import com.teamounce.ounce.util.VerticalItemDecoration
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -30,7 +26,7 @@ class SettingsActivity : AppCompatActivity() {
 
         //설정뷰에 오른쪽 화살표 눌렀을때 MainActivity
         btn_drawer.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java )
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
@@ -45,36 +41,38 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         txt_ounceopensrc.setOnClickListener {
-            val intent = Intent( this, SettingsOpensourceActivity::class.java)
+            val intent = Intent(this, SettingsOpensourceActivity::class.java)
             startActivity(intent)
         }
         txt_ounceintro.setOnClickListener {
             val intent = Intent(this,SettingsIntroActivity::class.java)
+
             startActivity(intent)
         }
 
 
-
         //로그아웃 버튼 눌렀을 때
         txt_ouncelogout.setOnClickListener {
-                val dialog = SettingCustomDialogBuilder()
-                    .setTitle("로그아웃 하시겠어요?")
-                    .setPositiveButton("네")
-                    .setNegativeButton("잘못 눌렀어요")
-                    .setButtonClickListener(object : SettingCustomDialogListener{
-                        override fun onClickPositiveButton() {
-                            Toast.makeText(this@SettingsActivity,"로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this@SettingsActivity,LoginActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            startActivity(intent)
+            val dialog = SettingCustomDialogBuilder()
+                .setTitle("로그아웃 하시겠어요?")
+                .setPositiveButton("네")
+                .setNegativeButton("잘못 눌렀어요")
+                .setButtonClickListener(object : SettingCustomDialogListener {
+                    override fun onClickPositiveButton() {
+                        Toast.makeText(this@SettingsActivity, "로그아웃 되었습니다.", Toast.LENGTH_SHORT)
+                            .show()
+                        val intent = Intent(this@SettingsActivity, LoginActivity::class.java)
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
 
-                        }
+                    }
 
-                        override fun onClickNegativeButton() {
-                        }
-                    })
-                    .create()
-                dialog.show(supportFragmentManager, dialog.tag)
+                    override fun onClickNegativeButton() {
+                    }
+                })
+                .create()
+            dialog.show(supportFragmentManager, dialog.tag)
         }
 
         //탈퇴하기 버튼 눌렀을 때
@@ -83,16 +81,16 @@ class SettingsActivity : AppCompatActivity() {
                 .setTitle("탈퇴 시 계정 정보,기록 등\n모든 것이 삭제돼요.\n정말 탈퇴하시겠어요?")
                 .setPositiveButton("네")
                 .setNegativeButton("잘못 눌렀어요")
-                .setButtonClickListener(object : SettingCustomDialogListener{
+                .setButtonClickListener(object : SettingCustomDialogListener {
                     override fun onClickPositiveButton() {
-                        Toast.makeText(this@SettingsActivity,"ㅋ", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@SettingsActivity,LoginActivity::class.java)
+                        Toast.makeText(this@SettingsActivity, "ㅋ", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@SettingsActivity, LoginActivity::class.java)
                         startActivity(intent)
                     }
 
                     override fun onClickNegativeButton() {
-                        Toast.makeText(this@SettingsActivity,"", Toast.LENGTH_SHORT).show()
-                        val intent = Intent (this@SettingsActivity,SettingsActivity::class.java )
+                        Toast.makeText(this@SettingsActivity, "", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@SettingsActivity, SettingsActivity::class.java)
                         startActivity(intent)
                     }
                 })
@@ -103,7 +101,7 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-    fun settingButton(){
+    fun settingButton() {
         settingButtonAdapter = SettingButtonAdapter(this)
         recyclerview_setting_buttons.adapter = settingButtonAdapter
         recyclerview_setting_buttons.addItemDecoration(VerticalItemDecoration(12))
@@ -112,7 +110,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
 
-    fun loadSettingButton(){
+    fun loadSettingButton() {
         datas.apply {
             add(
                 SettingButtonData(
@@ -145,8 +143,9 @@ class SettingsActivity : AppCompatActivity() {
             settingButtonAdapter.notifyDataSetChanged()
         }
     }
-    fun ounceversion(context:Context){
-        val info:PackageInfo = context.packageManager.getPackageInfo(context.packageName,0)
+
+    fun ounceversion(context: Context) {
+        val info: PackageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
         val version = info.versionName
 
         txt_ounceversion.text = version

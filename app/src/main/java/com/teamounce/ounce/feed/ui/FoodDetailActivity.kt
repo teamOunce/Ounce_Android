@@ -7,7 +7,7 @@ import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.databinding.ActivityFoodDetailBinding
 import com.teamounce.ounce.feed.adapter.FoodImageSliderAdapter
-import com.teamounce.ounce.feed.adapter.TagAdapter
+import com.teamounce.ounce.feed.adapter.ReviewTagAdapter
 import com.teamounce.ounce.feed.viewmodel.FeedViewModel
 import com.teamounce.ounce.util.StatusBarUtil
 import com.teamounce.ounce.util.dp
@@ -24,7 +24,7 @@ class FoodDetailActivity :
         binding.lifecycleOwner = this
         feedViewModel.fetchReviewData()
 
-        val tagAdapter = TagAdapter()
+        val tagAdapter = ReviewTagAdapter()
         binding.rvDetailTag.adapter = tagAdapter
 
         val foodImageSliderAdapter = FoodImageSliderAdapter()

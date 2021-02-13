@@ -1,5 +1,6 @@
 package com.teamounce.ounce.login.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -56,6 +57,7 @@ class LoginViewModel @Inject constructor(
         runCatching {
             loginRepository.kakaoLogin(id)
         }.onSuccess {
+            Log.d("TAG", "")
             OunceLocalRepository.apply {
                 userAccessToken = it.data.token
                 userRefreshToken = it.data.refresh

@@ -1,5 +1,6 @@
 package com.teamounce.ounce.feed.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.teamounce.ounce.R
@@ -37,6 +38,10 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
 
         setToolBar()
         setClickListener()
+        binding.feedHashTagImg.setOnClickListener {
+            val intent = Intent(this, TagActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setClickListener() {
