@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.teamounce.ounce.feed.viewmodel.TagViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -84,6 +87,7 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/notosanskr"
             android:includeFontPadding="false"
+            android:text="태그를 삭제하면, 해당 태그가 포함된\n모든 기록에서도 함께 삭제됩니다."
             android:textColor="@color/gray3"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/view_tag_warning"
@@ -97,24 +101,28 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
             android:layout_marginTop="32dp"
-            android:backgroundTint="@color/orangey_red"
+            android:backgroundTint="@color/edittext_focus_selector"
             android:hint="태그 추가"
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:paddingStart="12dp"
             android:singleLine="true"
+            android:text="@={viewModel.tagQuery}"
+            android:textColor="@color/gray3"
+            android:textColorHint="@color/gray0.5"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/img_tag_plus"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_tag_warning" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/img_tag_plus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="28dp"
-            android:src="@drawable/ic_bt_plus_s"
+            android:background="@drawable/button_add_selector"
+            android:onClick="@{() -> viewModel.addTag()}"
             app:layout_constraintBottom_toBottomOf="@+id/et_tag_search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_tag_warning" />
@@ -136,12 +144,13 @@
             android:id="@+id/rv_tag_result"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginHorizontal="32dp"
             android:layout_marginTop="28dp"
             android:orientation="vertical"
-            android:layout_marginHorizontal="32dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_tag_helper" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_tag_helper"
+            tools:listitem="@layout/item_tag_info" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
