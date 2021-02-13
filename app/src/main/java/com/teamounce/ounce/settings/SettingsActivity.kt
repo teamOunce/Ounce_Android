@@ -56,7 +56,8 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(intent)
         }
         txt_ounceintro.setOnClickListener {
-            val intent = Intent(this, SettingsIntroActivity::class.java)
+            val intent = Intent(this,SettingsIntroActivity::class.java)
+
             startActivity(intent)
         }
 

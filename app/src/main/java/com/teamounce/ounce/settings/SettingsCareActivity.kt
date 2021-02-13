@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.teamounce.ounce.R
+import com.teamounce.ounce.login.ui.LoginActivity
 import com.teamounce.ounce.main.BottomSheetProfileData
 import com.teamounce.ounce.register.ui.SignUpActivity
 import com.teamounce.ounce.settings.ui.SettingCareAdapter
@@ -38,7 +39,7 @@ class SettingsCareActivity : AppCompatActivity() {
     fun registerCat() {
         // 추가하기 눌렀을 때, 고양이 등록 페이지로 이동
         btn_catcare_add.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             //고양이 최대 4마리까지만 등록 가능
             if (catList.size >= MAX_CAT_RESISTERED) {

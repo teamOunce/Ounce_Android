@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -60,7 +61,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     }
 
     private fun setObserver() {
-        loginViewModel.isCatNull.observe(this) {
+        loginViewModel.isCatNull.observe(this, Observer {
             if (it) {
                 val intent = Intent(this, SignUpActivity::class.java)
                 startActivity(intent)
@@ -70,7 +71,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
             }
-        }
+        })
     }
 
     private fun googleSignIn() {

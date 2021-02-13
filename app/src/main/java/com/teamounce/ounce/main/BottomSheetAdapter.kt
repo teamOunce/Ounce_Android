@@ -44,7 +44,7 @@ class BottomSheetAdapter(private var context: Context) :
     fun changeCat(position: Int) {
         if (mContext is MainActivity) {
             OunceLocalRepository.catIndex = bottomSheetProfileData[position].catIndex
-            mContext.setMainViewRetrofit(bottomSheetProfileData[position].catIndex)
+            mContext.setMainViewRetrofit()
             mContext.bottomSheetFragment.dismiss()
         }
     }

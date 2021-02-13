@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.teamounce.ounce.R
+import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.data.remote.api.MainService
 import com.teamounce.ounce.data.remote.singleton.RetrofitObjects
 import com.teamounce.ounce.main.BottomSheetProfileData
@@ -44,8 +45,14 @@ class SettingCareAdapter(private val context: Context) :
 
     override fun onBindViewHolder(holder: SettingCareViewHolder, position: Int) {
         holder.bind(datas[position])
-        if (datas[position].catIndex == prefs.getSelectedCatIdx()) {
-            holder.itemView.setting_catdlt.setBackgroundResource(R.drawable.ic_cat_gray_selected)
+        if (datas[position].catIndex == OunceLocalRepository.catIndex) {
+            holder.itemView.setting_catdlt.apply {
+                this.setBackgroundResource(R.drawable.ic_cat_gray_selected)
+                this.width = ViewGroup.LayoutParams.WRAP_CONTENT
+                this.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                this.text = null
+            }
+
         }
 
         holder.itemView.setting_catdlt.setOnClickListener {
