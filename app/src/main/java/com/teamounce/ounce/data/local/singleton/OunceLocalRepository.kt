@@ -12,6 +12,9 @@ object OunceLocalRepository {
     private const val REFRESH_TOKEN_KEY = "refresh"
     private const val USER_TOKEN_KEY = "access"
     private const val CAT_INDEX_KEY = "cat"
+    private const val FROM_KEY = "from"
+    const val KAKAO = "kakao"
+    const val GOOGLE = "google"
 
     private val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
     private lateinit var encryptedRepository: SharedPreferences
@@ -47,6 +50,10 @@ object OunceLocalRepository {
     var catIndex: Int
         get() = encryptedRepository.getInt(CAT_INDEX_KEY, -1)
         set(value) = encryptedRepository.edit { it.putInt(CAT_INDEX_KEY, value) }
+
+    var loginFrom: String
+        get() = encryptedRepository.getString(FROM_KEY, "error") ?: "error"
+        set(value) = encryptedRepository.edit { it.putString(FROM_KEY, value) }
 
     fun getKey(): String {
         return encryptedRepository.getString(NATIVE_APP_KEY, "")!!
