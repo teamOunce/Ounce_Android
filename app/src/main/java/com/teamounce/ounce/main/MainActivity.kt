@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        setMainViewRetrofit(OunceLocalRepository.catIndex)
+        setMainViewRetrofit()
         goToSearchActivity()
         goToSettingsActivity()
 
@@ -129,9 +129,12 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    fun setMainViewRetrofit(catIndex: Int) {
+    fun setMainViewRetrofit() {
+        val token = OunceLocalRepository.userRefreshToken
         mainViewRetrofitInterface = RetrofitObjects.getMainService()
-        mainViewRetrofitInterface.mainViewRetrofit(catIndex)
+        mainViewRetrofitInterface.mainViewRetrofit(
+            token,
+            OunceLocalRepository.catIndex)
             .enqueue(object : retrofit2.Callback<MainViewResponseData> {
             override fun onFailure(call: Call<MainViewResponseData>, t: Throwable) {
                 Log.d("서버통신 실패", "$t")
@@ -163,7 +166,7 @@ class MainActivity : AppCompatActivity() {
     private fun showError(error : ResponseBody?){
         val e = error ?: return
         val ob = JSONObject(e.string())
-        Log.d("errorbody ----> ", ob.getString("responseMessage"))
+        Log.d("errorbody ----> ", ob.getString("status"))
     }
 
     companion object {
