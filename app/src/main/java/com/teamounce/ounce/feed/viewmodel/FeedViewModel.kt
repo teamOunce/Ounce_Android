@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.teamounce.ounce.feed.model.RequestReview
 import com.teamounce.ounce.feed.model.Review
-import com.teamounce.ounce.feed.repository.FeedRepository
+import com.teamounce.ounce.data.remote.repository.FeedRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

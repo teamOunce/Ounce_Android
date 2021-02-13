@@ -1,6 +1,9 @@
 package com.teamounce.ounce.di
 
 import com.teamounce.ounce.data.remote.api.LoginService
+import com.teamounce.ounce.data.remote.api.RegisterService
+import com.teamounce.ounce.data.remote.api.ReviewService
+import com.teamounce.ounce.data.remote.api.SearchService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,5 +17,21 @@ import javax.inject.Singleton
 class NetworkServiceModule {
     @Provides
     @Singleton
-    fun provideLoginService(@Named("Login") retrofit: Retrofit): LoginService = retrofit.create(LoginService::class.java)
+    fun provideLoginService(@Named("Default") retrofit: Retrofit): LoginService =
+        retrofit.create(LoginService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideRegisterService(@Named("Default") retrofit: Retrofit): RegisterService =
+        retrofit.create(RegisterService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideSearchService(@Named("Default") retrofit: Retrofit): SearchService =
+        retrofit.create(SearchService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideReviewService(@Named("Default") retrofit: Retrofit): ReviewService =
+        retrofit.create(ReviewService::class.java)
 }

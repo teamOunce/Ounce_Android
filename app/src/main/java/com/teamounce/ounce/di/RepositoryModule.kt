@@ -1,9 +1,7 @@
 package com.teamounce.ounce.di
 
-import com.teamounce.ounce.data.remote.repository.LoginRepository
-import com.teamounce.ounce.data.remote.repository.LoginRepositoryImpl
-import com.teamounce.ounce.feed.repository.FeedRepository
-import com.teamounce.ounce.feed.repository.mock.MockFeedRepositoryImpl
+import com.teamounce.ounce.data.remote.repository.*
+import com.teamounce.ounce.data.remote.repository.mock.MockFeedRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,9 +13,21 @@ import javax.inject.Singleton
 abstract class RepositoryModule {
     @Binds
     @Singleton
-    abstract fun bindFeedRepository(repository : MockFeedRepositoryImpl): FeedRepository
+    abstract fun bindFeedRepository(repository: MockFeedRepositoryImpl): FeedRepository
 
     @Binds
     @Singleton
     abstract fun bindLoginRepository(repositoryImpl: LoginRepositoryImpl): LoginRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindRegisterRepository(repository: RegisterRepositoryImpl): RegisterRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindSearchRepository(repository: SearchRepositoryImpl): SearchRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindReviewRepository(repository: ReviewRepositoryImpl): ReviewRepository
 }

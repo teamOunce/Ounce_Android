@@ -7,7 +7,7 @@
 
         <variable
             name="catFood"
-            type="com.teamounce.ounce.review.model.CatFood" />
+            type="com.teamounce.ounce.review.model.ResponseSearch.Data" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,7 +22,7 @@
             app:layout_constraintDimensionRatio="1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:setSrcFromUrl="@{catFood.img_cat_food}"
+            app:setSrcFromUrl="@{catFood.productImg}"
             tools:src="@drawable/img_dummy" />
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
-            android:text="@{catFood.txt_company}"
+            android:text="@{catFood.manufacturer}"
             android:textColor="@color/text_color_gray"
             android:textFontWeight="500"
             android:textSize="12sp"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
-            android:text="@{catFood.txt_cat_food}"
+            android:text="@{catFood.productName}"
             android:textColor="@color/text_color_black"
             android:textFontWeight="700"
             android:textSize="16sp"

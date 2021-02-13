@@ -5,6 +5,7 @@ import com.teamounce.ounce.login.model.RequestKakaoLogin
 import com.teamounce.ounce.login.model.ResponseLogin
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface LoginService {
@@ -19,5 +20,7 @@ interface LoginService {
     ): ResponseLogin
 
     @GET("getRefresh")
-    suspend fun refreshToken(): ResponseLogin
+    suspend fun refreshToken(
+        @Header("refresh") refresh: String
+    ): ResponseLogin
 }

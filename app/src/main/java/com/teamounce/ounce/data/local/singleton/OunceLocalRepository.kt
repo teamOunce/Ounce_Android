@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 
+
 object OunceLocalRepository {
     private const val PREF_KEY = "haskhey"
     private const val NATIVE_APP_KEY = "appkey"
@@ -12,8 +13,7 @@ object OunceLocalRepository {
     private const val USER_TOKEN_KEY = "access"
     private const val CAT_INDEX_KEY = "cat"
 
-    private val keyGenParameterSpec = MasterKeys.AES256_GCM_SPEC
-    private val masterKeyAlias = MasterKeys.getOrCreate(keyGenParameterSpec)
+    private val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
     private lateinit var encryptedRepository: SharedPreferences
 
     fun init(context: Context) {
@@ -47,7 +47,7 @@ object OunceLocalRepository {
     var catIndex: Int
         get() = encryptedRepository.getInt(CAT_INDEX_KEY, -1)
         set(value) = encryptedRepository.edit { it.putInt(CAT_INDEX_KEY, value) }
-    
+
     fun getKey(): String {
         return encryptedRepository.getString(NATIVE_APP_KEY, "")!!
     }

@@ -5,6 +5,8 @@
     <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 네트워크 연결 상태 확인 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".OunceApplication"
@@ -16,16 +18,20 @@
         android:theme="@style/Theme.OUNCE"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".settings.SettingsIntroActivity"></activity>
+        <activity android:name=".settings.SettingsIntroActivity" />
         <activity android:name=".settings.SettingsOpensourceActivity" />
         <activity android:name=".settings.SettingsPolicyActivity" />
         <activity android:name=".settings.SettingsAgreeActivity" />
+        <activity android:name=".feed.ui.FeedActivity"
+            android:theme="@style/FeedTheme"
+            android:exported="true"/>
         <activity
             android:name=".feed.ui.FoodDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".review.ui.RecordActivity"
-            android:exported="true" />
+            android:name=".review.ui.ReviewActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".settings.SettingsCareActivity" />
         <activity android:name=".settings.SettingsActivity" />
         <activity
@@ -49,18 +55,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".login.ui.SignUpActivity"
+            android:name=".register.ui.SignUpActivity"
             android:exported="true" />
         <activity
             android:name=".login.ui.LoginActivity"
-            android:exported="true" />
-        <activity android:name=".main.MainActivity">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".main.MainActivity" />
     </application>
 
 </manifest>

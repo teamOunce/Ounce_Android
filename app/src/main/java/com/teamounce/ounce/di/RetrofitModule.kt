@@ -1,6 +1,7 @@
 package com.teamounce.ounce.di
 
-import com.teamounce.ounce.util.AuthRefreshInterceptor
+import com.teamounce.ounce.util.AuthInterceptor
+import com.teamounce.ounce.util.TokenRefreshInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,15 +23,29 @@ class RetrofitModule {
         return loggingInterceptor
     }
 
-    private val loginClient = OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor())
-        .addInterceptor(AuthRefreshInterceptor())
+    private val refreshClient = OkHttpClient.Builder()
+        .addInterceptor(httpLoggingInterceptor())
+        .addInterceptor(TokenRefreshInterceptor())
+        .build()
+
+    private val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor(AuthInterceptor())
+        .addInterceptor(httpLoggingInterceptor())
         .build()
 
     @Provides
     @Singleton
-    @Named("Login")
+    @Named("Refresh")
     fun provideLoginRetrofitObject(): Retrofit {
-        return Retrofit.Builder().baseUrl(BASE_URL).client(loginClient)
+        return Retrofit.Builder().baseUrl(BASE_URL).client(refreshClient)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+    }
+
+    @Provides
+    @Singleton
+    @Named("Default")
+    fun provideDefaultRetrofitObject(): Retrofit {
+        return Retrofit.Builder().baseUrl(BASE_URL).client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create()).build()
     }
 }

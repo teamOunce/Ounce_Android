@@ -5,30 +5,28 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.teamounce.ounce.R
-import com.teamounce.ounce.RetrofitService
+import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
+import com.teamounce.ounce.data.remote.api.MainService
+import com.teamounce.ounce.data.remote.singleton.RetrofitObjects
 import com.teamounce.ounce.databinding.ActivityMainBinding
-import com.teamounce.ounce.review.ui.RecordActivity
+import com.teamounce.ounce.review.ui.ReviewActivity
 import com.teamounce.ounce.review.ui.SearchActivity
 import com.teamounce.ounce.settings.SettingsActivity
-import com.teamounce.ounce.util.OnSwipeTouchListener
 import com.teamounce.ounce.util.SharedPreferences
-import retrofit2.Call
-import retrofit2.Response
 import com.teamounce.ounce.util.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.ResponseBody
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {
     val bottomSheetFragment = BottomSheetFragment()
     lateinit var activityMainBinding: ActivityMainBinding
-    private lateinit var mainViewRetrofitInterface: MainViewRetrofitInterface
+    private lateinit var mainViewRetrofitInterface: MainService
     private lateinit var sharedPreferences: SharedPreferences
     private var reviewCount = -1
 
@@ -46,14 +44,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //setMainViewRetrofit(sharedPreferences.getSelectedCatIdx()!!)
+        setMainViewRetrofit(OunceLocalRepository.catIndex)
         goToSearchActivity()
         goToSettingsActivity()
 
 //        operatebottomSheet()
         //수첩 아이콘 눌렀을 때, FeedActivity
         btn_drawer.setOnClickListener{
-            val intent = Intent(this, RecordActivity::class.java)
+            val intent = Intent(this, ReviewActivity::class.java)
             startActivity(intent)
         }
 
@@ -131,14 +129,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setMainViewRetrofit(catIndex: Int) {
-
-
-        mainViewRetrofitInterface = RetrofitService.create(MainViewRetrofitInterface::class.java)
-        mainViewRetrofitInterface.mainViewRetrofit(
-            catIndex
-        ).enqueue(object : retrofit2.Callback<MainViewResponseData> {
+        mainViewRetrofitInterface = RetrofitObjects.getMainService()
+        mainViewRetrofitInterface.mainViewRetrofit(catIndex)
+            .enqueue(object : retrofit2.Callback<MainViewResponseData> {
             override fun onFailure(call: Call<MainViewResponseData>, t: Throwable) {
-                Log.d("서버통신 실패", "${t}")
+                Log.d("서버통신 실패", "$t")
             }
 
             override fun onResponse(

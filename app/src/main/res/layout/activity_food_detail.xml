@@ -196,8 +196,8 @@
             android:text="@{review.memo}"
             android:textColor="@color/gray2"
             android:visibility="@{review.memo == ``  ? View.GONE : View.VISIBLE}"
-            tools:text="넘무너무 맛있어용"
-            app:layout_constraintTop_toBottomOf="@+id/view_detail_rating_background" />
+            app:layout_constraintTop_toBottomOf="@+id/view_detail_rating_background"
+            tools:text="넘무너무 맛있어용" />
 
         <TextView
             android:id="@+id/txt_detail_created_date"
