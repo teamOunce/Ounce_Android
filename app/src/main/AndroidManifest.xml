@@ -5,6 +5,8 @@
     <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 네트워크 연결 상태 확인 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".OunceApplication"
@@ -27,8 +29,9 @@
             android:name=".feed.ui.FoodDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".review.ui.RecordActivity"
-            android:exported="true" />
+            android:name=".review.ui.ReviewActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".settings.SettingsCareActivity" />
         <activity android:name=".settings.SettingsActivity" />
         <activity
@@ -56,7 +59,7 @@
             android:exported="true" />
         <activity
             android:name=".login.ui.LoginActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

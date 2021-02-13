@@ -56,6 +56,7 @@ class SettingCareAdapter (private val context : Context) :
                     .setTitle("현재 여행중인 고양이예요")
                     .setSubTitle("지우길 원한다면,\n다른 고양이로 접속해 주세요!")
                     .setNegativeButton("확인")
+                    .setSingleButton(true)
                     .setButtonClickListener(object : SettingCustomDialogListener{
                         override fun onClickPositiveButton() {
 

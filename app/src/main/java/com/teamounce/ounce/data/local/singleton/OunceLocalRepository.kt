@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 
+
 object OunceLocalRepository {
     private const val PREF_KEY = "haskhey"
     private const val NATIVE_APP_KEY = "appkey"

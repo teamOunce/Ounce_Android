@@ -35,6 +35,8 @@ class SettingsCareActivity : AppCompatActivity() {
     fun registerCat() {
         // 추가하기 눌렀을 때, 고양이 등록 페이지로 이동
         btn_catcare_add.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
             //고양이 최대 4마리까지만 등록 가능
             if (catList.size >= MAX_CAT_RESISTERED) {
                 Toast.makeText(this, "고양이는 최대 4마리까지 등록 가능합니다.", Toast.LENGTH_SHORT)

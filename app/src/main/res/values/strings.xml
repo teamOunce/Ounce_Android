@@ -4,6 +4,8 @@
     <string name="native_app_key">7171285de2b4a7896ab049321ffc8ed6</string>
     <string name="meet">만난지</string>
     <string name="day">일 째</string>
+    <string name="ounceintro_subtitle"> "가장 작은 단위 1온스도 신중하게 고를 집사를 위해" </string>
+    <string name="ounceintro_curious"><u>온스가 더 궁금하다면?&#x1F4CB;</u></string>
     <string name="setting_agreement">
 온스 이용약관\n
 \n
@@ -191,4 +193,8 @@
 회사는 회원의 소중한 개인정보를 다음과 같은 목적으로만 이용하며, 목적이 변경될 경우에는 사전에 회원의 동의를 구하도록 하겠습니다.\n
 </string>
     <string name="hello_world">Hello Square World!</string>
+    <string name="txt_tooltip_explain">
+        다양한 요소를 기록하기 위한 기능입니다.
+        기록을 나만의 기준으로 분류할 수 있어요!
+    </string>
 </resources>

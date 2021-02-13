@@ -3,6 +3,18 @@
 
     <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bottom_sheet_box</item>
+    </style> 
+
+    <style name="OunceChip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="checkedIconEnabled">false</item>
+        <item name="checkedIcon">@null</item>
+        <item name="chipIconEnabled">false</item>
+        <item name="checkedIconVisible">false</item>
+    </style>
+
+    <style name="ChipTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/chip_selector</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
@@ -41,5 +53,20 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/feed_bottom_sheet_select_color</item>
         <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.Demo" parent="">
+        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerSizeTopRight">8dp</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+    <style
+        name="ThemeOverlay.Demo.BottomSheetDialog"
+        parent="@style/ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.Demo.BottomSheet</item>
+    </style>
+
+    <style name="Widget.Demo.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Demo</item>
     </style>
 </resources>

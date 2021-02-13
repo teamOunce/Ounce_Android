@@ -60,6 +60,7 @@ class LoginViewModel @Inject constructor(
             OunceLocalRepository.apply {
                 userAccessToken = it.data.token
                 userRefreshToken = it.data.refresh
+                catIndex = it.data.recentCatIndex
             }
             when (it.data.catCount) {
                 0 -> _isCatNull.value = true
@@ -77,6 +78,7 @@ class LoginViewModel @Inject constructor(
             OunceLocalRepository.apply {
                 userAccessToken = it.data.token
                 userRefreshToken = it.data.refresh
+                catIndex = it.data.recentCatIndex
             }
             when (it.data.catCount) {
                 0 -> _isCatNull.value = true

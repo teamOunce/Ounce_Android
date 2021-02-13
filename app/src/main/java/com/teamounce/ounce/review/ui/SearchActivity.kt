@@ -1,5 +1,6 @@
 package com.teamounce.ounce.review.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
@@ -11,6 +12,7 @@ import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.databinding.ActivitySearchBinding
 import com.teamounce.ounce.review.adapter.ResultItemDecoration
 import com.teamounce.ounce.review.adapter.SearchAdapter
+import com.teamounce.ounce.review.model.ResponseSearch
 import com.teamounce.ounce.review.viewmodel.SearchViewModel
 import com.teamounce.ounce.util.StatusBarUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +29,16 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
             lifecycleOwner = this@SearchActivity
             viewModel = searchViewModel
         }
-        searchAdapter = SearchAdapter(SearchAdapter.TYPE_LINEAR)
+        searchAdapter = SearchAdapter(
+            layoutType = SearchAdapter.TYPE_LINEAR,
+            itemClickListener = object : SearchAdapter.ItemClickListener {
+                override fun setOnClickListener(catFood: ResponseSearch.Data) {
+                    val intent = Intent(this@SearchActivity, ReviewActivity::class.java)
+                    intent.putExtra("catFood", catFood)
+                    startActivity(intent)
+                    finish()
+                }
+            })
         binding.rvReviewSearchLinear.apply {
             adapter = searchAdapter
             setHasFixedSize(true)

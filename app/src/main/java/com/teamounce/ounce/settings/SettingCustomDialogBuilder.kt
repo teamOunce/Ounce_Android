@@ -22,6 +22,10 @@ class SettingCustomDialogBuilder {
         dialog.negativeButton =negativebutton
         return this
     }
+    fun setSingleButton(singleButton : Boolean): SettingCustomDialogBuilder {
+        dialog.singleButton = singleButton
+        return this
+    }
 
     fun setButtonClickListener(listener: SettingCustomDialogListener):SettingCustomDialogBuilder{
         dialog.listener = listener

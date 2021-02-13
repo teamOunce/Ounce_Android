@@ -11,6 +11,7 @@ import com.teamounce.ounce.databinding.ItemFoodSearchLinearBinding
 import com.teamounce.ounce.review.model.ResponseSearch
 
 class SearchAdapter(
+    private val itemClickListener: ItemClickListener,
     private var layoutType: Int
 ) : RecyclerView.Adapter<SearchAdapter.ListFoodSearchViewHolder>() {
     private var searchResultList = mutableListOf<ResponseSearch.Data>()
@@ -59,19 +60,24 @@ class SearchAdapter(
         notifyDataSetChanged()
     }
 
-    class ListFoodSearchViewHolder(private val binding: ViewDataBinding) :
+    inner class ListFoodSearchViewHolder(private val binding: ViewDataBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(catFood: ResponseSearch.Data) {
             when(binding) {
                 is ItemFoodSearchGridBinding -> binding.catFood = catFood
                 is ItemFoodSearchLinearBinding -> binding.catFood = catFood
             }
+            binding.root.setOnClickListener { itemClickListener.setOnClickListener(catFood) }
         }
     }
 
     fun replaceList(resultList: List<ResponseSearch.Data>) {
         searchResultList = resultList.toMutableList()
         notifyDataSetChanged()
+    }
+
+    interface ItemClickListener {
+        fun setOnClickListener(catFood: ResponseSearch.Data)
     }
 
     companion object {
