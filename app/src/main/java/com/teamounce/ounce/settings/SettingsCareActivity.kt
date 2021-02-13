@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.teamounce.ounce.R
 import com.teamounce.ounce.main.BottomSheetProfileData
+import com.teamounce.ounce.register.ui.SignUpActivity
 import com.teamounce.ounce.settings.ui.SettingCareAdapter
 import com.teamounce.ounce.util.SharedPreferences
 import kotlinx.android.synthetic.main.activity_settings_care.*
