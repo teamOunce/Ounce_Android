@@ -34,4 +34,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindTagRepository(repository: TagRepositoryImpl): TagRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindCatRegisterRepository(repository: SettingRepositoryImpl): SettingRepository
 }

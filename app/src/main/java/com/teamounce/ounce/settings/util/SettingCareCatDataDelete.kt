@@ -1,4 +1,4 @@
-package com.teamounce.ounce.settings.ui
+package com.teamounce.ounce.settings.util
 
 import java.text.FieldPosition
 

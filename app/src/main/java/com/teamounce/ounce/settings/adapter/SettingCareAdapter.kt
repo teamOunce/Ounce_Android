@@ -1,4 +1,4 @@
-package com.teamounce.ounce.settings.ui
+package com.teamounce.ounce.settings.adapter
 
 
 import android.content.Context
@@ -11,18 +11,21 @@ import com.teamounce.ounce.R
 import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.data.remote.api.MainService
 import com.teamounce.ounce.data.remote.singleton.RetrofitObjects
+import com.teamounce.ounce.feed.adapter.TagAdapter
 import com.teamounce.ounce.main.BottomSheetProfileData
 import com.teamounce.ounce.main.MainDeleteResponseData
-import com.teamounce.ounce.settings.SettingCustomDialogBuilder
-import com.teamounce.ounce.settings.SettingCustomDialogListener
-import com.teamounce.ounce.settings.SettingsCareActivity
+import com.teamounce.ounce.settings.util.SettingCustomDialogBuilder
+import com.teamounce.ounce.settings.util.SettingCustomDialogListener
+import com.teamounce.ounce.settings.ui.SettingsCareActivity
 import com.teamounce.ounce.util.SharedPreferences
 import kotlinx.android.synthetic.main.item_setting_catcare.view.*
 import retrofit2.Call
 import retrofit2.Response
 
-class SettingCareAdapter(private val context: Context) :
-    RecyclerView.Adapter<SettingCareViewHolder>() {
+class SettingCareAdapter(
+    private val context: Context,
+    private val listener: CatDeleteButton
+) : RecyclerView.Adapter<SettingCareViewHolder>() {
 
     private lateinit var mainDeleteRetrofitInterface: MainService
     private val prefs = SharedPreferences(context as SettingsCareActivity)
@@ -114,18 +117,15 @@ class SettingCareAdapter(private val context: Context) :
             ) {
                 if (response.isSuccessful) {
                     Log.d("고양이 삭제 성공", response.body()!!.data.toString())
-                    removeCatInfoClick(position)
+                    listener.OnClickListener(position)
                 } else {
                     Log.d("서버에러", response.body()!!.responseMessage)
                 }
             }
         })
-
     }
 
-    fun removeCatInfoClick(position: Int) {
-        datas.removeAt(position)
-        prefs.setCatList(datas)
-        notifyDataSetChanged()
+    interface CatDeleteButton {
+        fun OnClickListener(position: Int)
     }
 }

@@ -1,11 +1,9 @@
-package com.teamounce.ounce.settings
+package com.teamounce.ounce.settings.ui
 
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.ShapeDrawable
-import android.graphics.drawable.shapes.OvalShape
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView

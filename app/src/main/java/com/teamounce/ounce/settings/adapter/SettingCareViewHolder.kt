@@ -1,4 +1,4 @@
-package com.teamounce.ounce.settings.ui
+package com.teamounce.ounce.settings.adapter
 
 import android.view.View
 import android.widget.TextView
