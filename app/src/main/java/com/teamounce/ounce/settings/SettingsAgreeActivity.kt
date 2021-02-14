@@ -12,9 +12,6 @@ class SettingsAgreeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings_agree)
         StatusBarUtil.setStatusBar(this)
-        btn_setting_back.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
-        }
+        btn_setting_back.setOnClickListener { finish() }
     }
 }

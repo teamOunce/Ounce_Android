@@ -24,10 +24,7 @@ class SettingsOpensourceActivity : AppCompatActivity() {
         setOpenSourceRecyclerItem()
         loadDatas()
 
-        btn_opensource_back.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
-        }
+        btn_opensource_back.setOnClickListener { finish() }
     }
     fun setOpenSourceRecyclerItem() {
         settingsOpenSourceAdapter = SettingsOpensourceAdapter(this)

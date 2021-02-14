@@ -12,9 +12,6 @@ class SettingsPolicyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings_policy)
         StatusBarUtil.setStatusBar(this)
-        btn_policy_back.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
-        }
+        btn_policy_back.setOnClickListener { finish() }
     }
 }

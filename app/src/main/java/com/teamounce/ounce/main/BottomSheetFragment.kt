@@ -51,7 +51,6 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         val token = OunceLocalRepository.userRefreshToken
         mainViewRetrofitInterface = RetrofitObjects.getMainService()
         mainViewRetrofitInterface.bottomSheetProfileRetrofit(
-            token,
             OunceLocalRepository.catIndex
         ).enqueue(object : retrofit2.Callback<BottomSheetResponseData> {
             override fun onFailure(call: Call<BottomSheetResponseData>, t: Throwable) {
