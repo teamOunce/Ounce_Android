@@ -3,6 +3,7 @@ package com.teamounce.ounce.data.remote.repository.mock
 import com.teamounce.ounce.feed.model.RequestReview
 import com.teamounce.ounce.feed.model.Review
 import com.teamounce.ounce.data.remote.repository.FeedRepository
+import com.teamounce.ounce.review.model.ResponseReview
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -25,5 +26,9 @@ class MockFeedRepositoryImpl @Inject constructor() : FeedRepository {
                 tag3 = ""
             )
         )
+    }
+
+    override suspend fun deleteReview(catIndex: Int): ResponseReview {
+        return ResponseReview(responseMessage = "", data = 1)
     }
 }

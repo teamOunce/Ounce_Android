@@ -4,7 +4,9 @@ package com.teamounce.ounce.data.remote.api
 import com.teamounce.ounce.feed.model.ResponseFeedReviewData
 import com.teamounce.ounce.feed.model.ResponseFilterData
 import com.teamounce.ounce.feed.model.Review
+import com.teamounce.ounce.review.model.ResponseReview
 import retrofit2.Call
+import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -30,4 +32,9 @@ interface FeedService {
     suspend fun getReview(
         @Query("reviewIndex") reviewIndex: Int
     ): Review
+
+    @DELETE("review")
+    suspend fun deleteReview(
+        @Query("reviewIndex") reviewIndex: Int
+    ): ResponseReview
 }

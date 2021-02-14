@@ -5,7 +5,7 @@
     style="@style/Widget.Demo.BottomSheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".review.ui.ReviewEditFragment">
+    tools:context=".feed.ui.ReviewEditFragment">
 
     <View
         android:id="@+id/view_review_top"

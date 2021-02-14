@@ -17,6 +17,8 @@ import com.teamounce.ounce.feed.adapter.ReviewTagAdapter
 import com.teamounce.ounce.feed.model.Review
 import com.teamounce.ounce.feed.viewmodel.FeedViewModel
 import com.teamounce.ounce.review.ui.ReviewModifyActivity
+import com.teamounce.ounce.settings.util.SettingCustomDialogBuilder
+import com.teamounce.ounce.settings.util.SettingCustomDialogListener
 import com.teamounce.ounce.util.StatusBarUtil
 import com.teamounce.ounce.util.dp
 import dagger.hilt.android.AndroidEntryPoint
@@ -104,9 +106,14 @@ class FoodDetailActivity :
             }
         }
         binding.imgDetailOptions.setOnClickListener {
-            val intent = Intent(this, ReviewModifyActivity::class.java)
-            intent.putExtra("reviewIndex", reviewIndex)
-            startActivity(intent)
+            ReviewEditFragment(
+                feedViewModel,
+                reviewIndex,
+                provideReviewEditClickListener()
+            ).show(supportFragmentManager, "ReviewEdit")
+        }
+        feedViewModel.isSuccess.observe(this) {
+            if (it) finish()
         }
     }
 
@@ -148,7 +155,7 @@ class FoodDetailActivity :
     private fun providePageChangeCallback(): ViewPager2.OnPageChangeCallback {
         return object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                when(position) {
+                when (position) {
                     0 -> {
                         binding.imgDetailBeforeImage.visibility = View.GONE
                         binding.imgDetailNextImage.visibility = View.VISIBLE
@@ -158,6 +165,34 @@ class FoodDetailActivity :
                         binding.imgDetailBeforeImage.visibility = View.VISIBLE
                     }
                 }
+            }
+        }
+    }
+
+    private fun provideReviewEditClickListener(): ReviewEditFragment.ReviewEditView {
+        return object : ReviewEditFragment.ReviewEditView {
+            override fun OnEditClickListener(reviewIndex: Int) {
+                val intent = Intent(this@FoodDetailActivity, ReviewModifyActivity::class.java)
+                intent.putExtra("reviewIndex", reviewIndex)
+                startActivity(intent)
+            }
+
+            override fun OnDeleteClickListener(reviewIndex: Int, viewModel: FeedViewModel) {
+                val dialog = SettingCustomDialogBuilder()
+                    .setTitle("정말 삭제시겠어요?")
+                    .setSubTitle("저장했던 리뷰가 사라진답니다.")
+                    .setPositiveButton("네")
+                    .setNegativeButton("잘못 눌렀어요")
+                    .setButtonClickListener(object : SettingCustomDialogListener {
+                        override fun onClickPositiveButton() {
+                            viewModel.deleteReview(reviewIndex)
+                        }
+
+                        override fun onClickNegativeButton() {}
+                    })
+                    .create()
+
+                dialog.show(supportFragmentManager, "DeleteDialog")
             }
         }
     }
