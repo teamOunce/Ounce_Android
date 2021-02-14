@@ -5,17 +5,14 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.teamounce.ounce.R
 import com.teamounce.ounce.databinding.ItemFeedListBinding
-import com.teamounce.ounce.feed.model.ResponseFeedListData
 import com.teamounce.ounce.feed.model.ResponseFeedReviewData
-import com.teamounce.ounce.feed.ui.FeedActivity
+import com.teamounce.ounce.feed.ui.FoodDetailActivity
+import com.teamounce.ounce.review.ui.ReviewModifyActivity
 import com.teamounce.ounce.util.dpFloat
-import com.teamounce.ounce.util.pixel
-import com.teamounce.ounce.util.pixelFloat
 
 class FeedListAdapter : RecyclerView.Adapter<FeedListAdapter.FeedListViewHolder>() {
 
@@ -23,7 +20,7 @@ class FeedListAdapter : RecyclerView.Adapter<FeedListAdapter.FeedListViewHolder>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedListViewHolder {
         val binding =
-            ItemFeedListBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+            ItemFeedListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return FeedListViewHolder(binding)
     }
@@ -37,43 +34,43 @@ class FeedListAdapter : RecyclerView.Adapter<FeedListAdapter.FeedListViewHolder>
     inner class FeedListViewHolder(val binding: ItemFeedListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-            fun onBind(data : ResponseFeedReviewData.Data){
-                binding.data = data
-                if (data.tag1.isNotBlank()){
-                    val chip = setChip(data.tag1)
-                    binding.feedChipGroup.addView(chip)
-                }
-
-                if (data.tag2.isNotBlank()){
-                    val chip = setChip(data.tag2)
-                    binding.feedChipGroup.addView(chip)
-                }
-
-                if (data.tag3.isNotBlank()){
-                    val chip = setChip(data.tag3)
-                    binding.feedChipGroup.addView(chip)
-                }
-
-//                itemView.setOnClickListener {
-//                    val intent = Intent(itemView.context,ReviewModifyActivity::class.java)
-//                    intent.putExtra("reviewIndex",data.reviewIndex)
-//                    itemView.context.startActivity(intent)
-//                }
+        fun onBind(data: ResponseFeedReviewData.Data) {
+            binding.data = data
+            if (data.tag1.isNotBlank()) {
+                val chip = setChip(data.tag1)
+                binding.feedChipGroup.addView(chip)
             }
 
-            @SuppressLint("SetTextI18n")
-            private fun setChip(tag:String) : Chip{
-                val chip = Chip(itemView.context)
-                chip.apply {
-                    layoutDirection = View.LAYOUT_DIRECTION_LOCALE
-                    text = "#${tag}"
-                    textAlignment = View.TEXT_ALIGNMENT_CENTER
-                    chipStrokeWidth = 1.dpFloat
-                    setChipStrokeColorResource(R.color.orange2)
-                    setTextAppearanceResource(R.style.filterTextStyle)
-                    setChipBackgroundColorResource(R.color.white)
-                }
-                return chip
+            if (data.tag2.isNotBlank()) {
+                val chip = setChip(data.tag2)
+                binding.feedChipGroup.addView(chip)
+            }
+
+            if (data.tag3.isNotBlank()) {
+                val chip = setChip(data.tag3)
+                binding.feedChipGroup.addView(chip)
+            }
+
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, FoodDetailActivity::class.java)
+                intent.putExtra("reviewIndex", data.reviewIndex)
+                itemView.context.startActivity(intent)
             }
         }
+
+        @SuppressLint("SetTextI18n")
+        private fun setChip(tag: String): Chip {
+            val chip = Chip(itemView.context)
+            chip.apply {
+                layoutDirection = View.LAYOUT_DIRECTION_LOCALE
+                text = "#${tag}"
+                textAlignment = View.TEXT_ALIGNMENT_CENTER
+                chipStrokeWidth = 1.dpFloat
+                setChipStrokeColorResource(R.color.orange2)
+                setTextAppearanceResource(R.style.filterTextStyle)
+                setChipBackgroundColorResource(R.color.white)
+            }
+            return chip
+        }
+    }
 }

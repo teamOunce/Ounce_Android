@@ -18,7 +18,8 @@ class MockFeedRepositoryImpl @Inject constructor() : FeedRepository {
                 preference = 5,
                 productImg = "https://image.auction.co.kr/itemimage/10/1f/c3/101fc35e36.jpg",
                 productName = "수제스튜 참치새우연어",
-                reviewMoment = "2021-01-23 16:03:18",
+                createdDate = "2021-01-23 16:03:18",
+                updatedDate = "2021-01-23 16:03:18",
                 tag1 = "JMT",
                 tag2 = "",
                 tag3 = ""

@@ -58,6 +58,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/data/remote/api/FeedService.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/data/remote/api/LoginService.kt">
           <value>
             <set />
@@ -99,6 +104,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/data/remote/repository/FeedRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/data/remote/repository/FeedRepositoryImpl.kt">
           <value>
             <set />
           </value>
@@ -158,6 +168,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/data/remote/repository/mock/MockFeedRepositoryImpl.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/data/remote/singleton/RetrofitObjects.kt">
           <value>
             <set />
@@ -174,6 +189,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/di/RetrofitModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/feed/adapter/FeedListAdapter.kt">
           <value>
             <set />
           </value>
@@ -203,6 +223,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/feed/model/Review.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/feed/ui/Comment.kt">
           <value>
             <set />
@@ -213,12 +238,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/feed/ui/FoodDetailActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/feed/ui/Preference.kt">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/feed/ui/TagActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/feed/viewmodel/FeedViewModel.kt">
           <value>
             <set />
           </value>

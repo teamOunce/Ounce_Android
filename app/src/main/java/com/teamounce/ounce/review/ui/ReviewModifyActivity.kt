@@ -18,6 +18,7 @@ import com.teamounce.ounce.review.adapter.CatFoodSliderAdapter
 import com.teamounce.ounce.review.model.ImageInfo
 import com.teamounce.ounce.review.viewmodel.ReviewViewModel
 import com.teamounce.ounce.util.ChipFactory
+import com.teamounce.ounce.util.StatusBarUtil
 import dagger.hilt.android.AndroidEntryPoint
 import gun0912.tedimagepicker.builder.TedImagePicker
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -38,6 +39,7 @@ class ReviewModifyActivity :
             lifecycleOwner = this@ReviewModifyActivity
             viewModel = reviewViewModel
         }
+        StatusBarUtil.setStatusBar(this)
         val reviewIndex = intent.getIntExtra("reviewIndex", 0)
         initView()
         reviewViewModel.getReviewInfo(reviewIndex)

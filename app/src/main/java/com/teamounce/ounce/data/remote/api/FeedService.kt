@@ -3,6 +3,7 @@ package com.teamounce.ounce.data.remote.api
 
 import com.teamounce.ounce.feed.model.ResponseFeedReviewData
 import com.teamounce.ounce.feed.model.ResponseFilterData
+import com.teamounce.ounce.feed.model.Review
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.GET
@@ -24,4 +25,9 @@ interface FeedService {
     suspend fun getFiltering(
         @Query("catIndex") catIndex : Int
     ) : ResponseFilterData
+
+    @GET("review")
+    suspend fun getReview(
+        @Query("reviewIndex") reviewIndex: Int
+    ): Review
 }

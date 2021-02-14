@@ -19,9 +19,9 @@ class FeedViewModel @Inject constructor(
     val foodReview: LiveData<Review>
         get() = _foodReview
 
-    fun fetchReviewData() {
+    fun fetchReviewData(reviewIndex: Int) {
         viewModelScope.launch {
-            _foodReview.value = feedRepository.getFoodReviewList(RequestReview(1))
+            _foodReview.value = feedRepository.getFoodReviewList(RequestReview(reviewIndex))
         }
     }
 }
