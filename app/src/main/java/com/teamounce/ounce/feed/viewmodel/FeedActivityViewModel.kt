@@ -109,7 +109,12 @@ class FeedActivityViewModel @Inject constructor(private val repo: FeedReviewRepo
                     catIndex = OunceLocalRepository.catIndex
                 )
             }.onSuccess {
-                responseFeedList.postValue(it.data)
+                if (it.data.isNullOrEmpty()){
+                    responseFeedList.postValue(listOf())
+                }
+                else{
+                    responseFeedList.postValue(it.data)
+                }
                 Log.e("FeedActivity", "리스트 불러오기 성공")
             }.onFailure {
                 Log.e("CallFeedList()", "리스트 불러오기 실패")

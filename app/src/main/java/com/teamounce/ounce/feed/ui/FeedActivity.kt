@@ -1,5 +1,6 @@
 package com.teamounce.ounce.feed.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -44,12 +45,19 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
             mViewModel.callFeedList()
         }
 
+        getCatNameIntent()
         setToolBar()
         setClickListener()
         binding.feedHashTagImg.setOnClickListener {
             val intent = Intent(this, TagActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun getCatNameIntent() {
+        val catName = intent.getStringExtra("catName")
+        binding.feedToolTitle.text = "${catName}의 기록"
     }
 
     private fun setClickListener() {
