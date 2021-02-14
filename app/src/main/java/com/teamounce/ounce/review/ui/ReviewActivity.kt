@@ -27,6 +27,7 @@ import gun0912.tedimagepicker.builder.TedImagePicker
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -43,6 +44,13 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
         StatusBarUtil.setStatusBar(this)
         val initCatFoodData = intent.getParcelableExtra<ResponseSearch.Data>("catFood")
             ?: throw IllegalArgumentException("왜 없어 에반데")
+        reviewViewModel.setEmptyImage(
+            MultipartBody.Part.createFormData(
+                "image",
+                "",
+                "".toRequestBody("image/png".toMediaTypeOrNull())
+            )
+        )
         setUIListener(initCatFoodData)
         setObserver()
         reviewViewModel.getTags()

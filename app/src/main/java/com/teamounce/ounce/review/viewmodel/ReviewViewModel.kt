@@ -41,6 +41,8 @@ class ReviewViewModel @Inject constructor(
     var preference = 0f
     var isTagsFull = false
     val memo = MutableLiveData<String>()
+    var reviewIndex = -1
+    private lateinit var emptyImage: MultipartBody.Part
 
     fun getTags() = viewModelScope.launch {
         runCatching { reviewRepository.getTags(OunceLocalRepository.catIndex) }
@@ -52,7 +54,7 @@ class ReviewViewModel @Inject constructor(
         runCatching {
             require(selectedTag.size <= TAG_MAX_ENTRY) { "태그를 3개 이상 선택할 수 없습니다" }
         }.onSuccess {
-            if(!selectedTag.contains(tag))
+            if (!selectedTag.contains(tag))
                 selectedTag.add(tag)
             if (selectedTag.size == TAG_MAX_ENTRY) isTagsFull = true
             Log.d("TAG SUCCESS", selectedTag.toString())
@@ -76,7 +78,7 @@ class ReviewViewModel @Inject constructor(
         runCatching {
             reviewRepository.registerReview(
                 body = providePartMap(productData),
-                image = multiPartFile
+                image = multiPartFile ?: emptyImage
             )
         }.onSuccess {
             _registerResult.value = it
@@ -116,6 +118,33 @@ class ReviewViewModel @Inject constructor(
         return partMap
     }
 
+    private fun provideModifyPartMap(): HashMap<String, RequestBody> {
+        val reviewIndex =
+            this.reviewIndex.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+        val preference =
+            preference.toInt().toString().toRequestBody("text/plain".toMediaTypeOrNull())
+        val memo = memo.value!!.toRequestBody("text/plain".toMediaTypeOrNull())
+        val tagList = _tagList.value!!.asSequence()
+            .filter { selectedTag.contains(it.tag) }
+            .map { it.tag }
+            .toList()
+        val tagMap = hashMapOf<String, RequestBody>()
+        repeat(TAG_MAX_ENTRY) {
+            if (it <= tagList.size - 1) {
+                tagMap["tag${it + 1}"] = tagList[it].toRequestBody("text/plain".toMediaTypeOrNull())
+            } else {
+                tagMap["tag${it + 1}"] = " ".toRequestBody("text/plain".toMediaTypeOrNull())
+            }
+        }
+        val partMap = hashMapOf(
+            "reviewIndex" to reviewIndex,
+            "preference" to preference,
+            "memo" to memo,
+        )
+        partMap.putAll(tagMap)
+        return partMap
+    }
+
     fun getReviewInfo(reviewIndex: Int) {
         viewModelScope.launch {
             runCatching { reviewRepository.getReviewIndo(reviewIndex) }
@@ -130,7 +159,23 @@ class ReviewViewModel @Inject constructor(
     }
 
     fun isTagEntryFull(): Boolean = selectedTag.size > TAG_MAX_ENTRY
-    fun isTagEntryEnough() = selectedTag.size == TAG_MAX_ENTRY
 
     fun isContained(tag: String): Boolean = selectedTag.contains(tag)
+
+    fun modifyReview() {
+        viewModelScope.launch {
+            runCatching {
+                reviewRepository.modifyReview(
+                    body = provideModifyPartMap(),
+                    image = multiPartFile ?: emptyImage
+                )
+            }.onSuccess {
+                _registerResult.value = it
+            }.onFailure {
+                Log.d("TAG", it.stackTraceToString())
+            }
+        }
+    }
+
+    fun setEmptyImage(part: MultipartBody.Part) { emptyImage = part }
 }

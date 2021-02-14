@@ -2,6 +2,7 @@ package com.teamounce.ounce.review.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
@@ -14,6 +15,7 @@ import com.google.android.material.chip.Chip
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.databinding.ActivityReviewModifyBinding
+import com.teamounce.ounce.feed.ui.FeedActivity
 import com.teamounce.ounce.review.adapter.CatFoodSliderAdapter
 import com.teamounce.ounce.review.model.ImageInfo
 import com.teamounce.ounce.review.viewmodel.ReviewViewModel
@@ -24,6 +26,7 @@ import gun0912.tedimagepicker.builder.TedImagePicker
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -42,6 +45,14 @@ class ReviewModifyActivity :
         StatusBarUtil.setStatusBar(this)
         val reviewIndex = intent.getIntExtra("reviewIndex", 0)
         initView()
+        reviewViewModel.setEmptyImage(
+            MultipartBody.Part.createFormData(
+                "image",
+                "",
+                "".toRequestBody("image/png".toMediaTypeOrNull())
+            )
+        )
+        reviewViewModel.reviewIndex = reviewIndex
         reviewViewModel.getReviewInfo(reviewIndex)
         reviewViewModel.getTags()
     }
@@ -59,10 +70,7 @@ class ReviewModifyActivity :
 
     private fun setUIListener() {
         binding.imgReviewBack.setOnClickListener { finish() }
-        binding.ratingRecordPreference.setOnRatingChangeListener {
-            reviewViewModel.preference = it
-            binding.btnSubmit.isEnabled = true
-        }
+        binding.ratingRecordPreference.setOnRatingChangeListener { reviewViewModel.preference = it }
         binding.imgRecordAddImage.setOnClickListener {
             TedImagePicker.with(this)
                 .start { uri ->
@@ -75,7 +83,7 @@ class ReviewModifyActivity :
                     makeMultiPartBody(uri)
                 }
         }
-        // binding.btnSubmit.setOnClickListener { reviewViewModel.modifyReview() }
+        binding.btnSubmit.setOnClickListener { reviewViewModel.modifyReview() }
         binding.imgRecordTooltip.setOnClickListener {
             ToolTipFragment().show(supportFragmentManager, "ToolTip")
         }
@@ -101,6 +109,22 @@ class ReviewModifyActivity :
                 .map { it.init() }
                 .forEach { binding.chipgroupRecordTag.addView(it) }
         }
+        reviewViewModel.result.observe(this) {
+            if (it.data == null) {
+                Toast.makeText(this, "리뷰 등록이 실패되었습니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "리뷰 등록을 성공했습니다.", Toast.LENGTH_SHORT).show()
+                ReviewCompleteFragment(
+                    reviewViewModel.preference.toInt(),
+                    object : ReviewCompleteFragment.DisMissClickListener {
+                        override fun onClick(context: Context) {
+                            startActivity(Intent(context, FeedActivity::class.java))
+                            finish()
+                        }
+                    }
+                ).show(supportFragmentManager, "ReviewComplete")
+            }
+        }
     }
 
     private fun String.toast() {
@@ -119,10 +143,6 @@ class ReviewModifyActivity :
                     compoundButton.isChecked = false
                     reviewViewModel.deleteTag(compoundButton.text.substring(1))
                 }
-//                else {
-//                    Log.d("TAG", "${compoundButton.text}: $checked")
-//                    reviewViewModel.addTag(compoundButton.text.substring(1))
-//                }
             } else {
                 reviewViewModel.deleteTag(compoundButton.text.substring(1))
             }
