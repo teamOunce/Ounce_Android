@@ -42,8 +42,10 @@
     <color name="mainbackground_four">#ECEAEB</color>
     <color name="mainbackground_five">#B8C8C7</color>
     <color name="login_background">#dadada</color>
-    <color name="ounceintro_one">#9CFF60</color>
+    <color name="ounceintro_one">#5E754D</color>
     <color name="ounceintro_two">#C98AEC</color>
-    <color name="ounceintro_three">#D47272</color>
+    <color name="ounceintro_three">#FBA39F</color>
     <color name="tag_view_background">#19ff8762</color>
+    <color name="setting_care_gray">#80343434</color>
+    <color name="color_transparent">#00ff0000</color>
 </resources>

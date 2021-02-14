@@ -1,51 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="10dp"
     android:background="@drawable/underline_catist"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:paddingVertical="10dp">
 
     <TextView
         android:id="@+id/setting_catname"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
         android:fontFamily="@font/notosans_bold"
+        android:includeFontPadding="false"
         android:text="이겨울"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/setting_catdday"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:fontFamily="@font/notosans"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/notosanskr"
+        android:includeFontPadding="false"
         android:text="만난지 1030일 째"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/setting_catname"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:textColor="@color/setting_care_gray"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/setting_catname"
-        app:layout_constraintTop_toTopOf="@+id/setting_catname" />
+        app:layout_constraintTop_toBottomOf="@+id/setting_catname" />
 
     <TextView
         android:id="@+id/setting_catdlt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/notosanskr"
         android:includeFontPadding="false"
         android:text="삭제"
-        android:textSize="17sp"
         android:textColor="@color/orange"
-        android:fontFamily="@font/notosans_regular"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

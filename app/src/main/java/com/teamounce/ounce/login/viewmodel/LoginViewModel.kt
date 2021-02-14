@@ -62,6 +62,7 @@ class LoginViewModel @Inject constructor(
                 userAccessToken = it.data.token
                 userRefreshToken = it.data.refresh
                 catIndex = it.data.recentCatIndex
+                loginFrom = this.KAKAO
             }
             when (it.data.catCount) {
                 0 -> _isCatNull.value = true
@@ -80,6 +81,7 @@ class LoginViewModel @Inject constructor(
                 userAccessToken = it.data.token
                 userRefreshToken = it.data.refresh
                 catIndex = it.data.recentCatIndex
+                loginFrom = this.GOOGLE
             }
             when (it.data.catCount) {
                 0 -> _isCatNull.value = true

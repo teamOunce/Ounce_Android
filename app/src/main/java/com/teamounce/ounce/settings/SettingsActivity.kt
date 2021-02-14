@@ -6,12 +6,22 @@ import android.content.pm.PackageInfo
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.kakao.sdk.user.UserApiClient
 import com.teamounce.ounce.R
+import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
+import com.teamounce.ounce.data.remote.singleton.RetrofitObjects
 import com.teamounce.ounce.login.ui.LoginActivity
 import com.teamounce.ounce.main.MainActivity
+import com.teamounce.ounce.settings.model.ResponseExpire
+import com.teamounce.ounce.util.StatusBarUtil
 import com.teamounce.ounce.util.VerticalItemDecoration
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.fragment_setting_catdltdialog.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SettingsActivity : AppCompatActivity() {
     lateinit var settingButtonAdapter: SettingButtonAdapter
@@ -20,6 +30,7 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+        StatusBarUtil.setStatusBar(this)
 
         settingButton()
         ounceversion(this)
@@ -45,7 +56,8 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(intent)
         }
         txt_ounceintro.setOnClickListener {
-            val intent = Intent(this, SettingsIntroActivity::class.java)
+            val intent = Intent(this,SettingsIntroActivity::class.java)
+
             startActivity(intent)
         }
 
@@ -63,12 +75,15 @@ class SettingsActivity : AppCompatActivity() {
                         val intent = Intent(this@SettingsActivity, LoginActivity::class.java)
                         intent.flags =
                             Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        OunceLocalRepository.apply {
+                            userRefreshToken = ""
+                            userAccessToken = ""
+                            catIndex = -1
+                        }
                         startActivity(intent)
-
                     }
 
-                    override fun onClickNegativeButton() {
-                    }
+                    override fun onClickNegativeButton() {}
                 })
                 .create()
             dialog.show(supportFragmentManager, dialog.tag)
@@ -81,17 +96,8 @@ class SettingsActivity : AppCompatActivity() {
                 .setPositiveButton("네")
                 .setNegativeButton("잘못 눌렀어요")
                 .setButtonClickListener(object : SettingCustomDialogListener {
-                    override fun onClickPositiveButton() {
-                        Toast.makeText(this@SettingsActivity, "ㅋ", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@SettingsActivity, LoginActivity::class.java)
-                        startActivity(intent)
-                    }
-
-                    override fun onClickNegativeButton() {
-                        Toast.makeText(this@SettingsActivity, "", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@SettingsActivity, SettingsActivity::class.java)
-                        startActivity(intent)
-                    }
+                    override fun onClickPositiveButton() { expireUser() }
+                    override fun onClickNegativeButton() {}
                 })
                 .create()
 
@@ -100,16 +106,71 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-    fun settingButton() {
+    private fun expireUser() {
+        when(OunceLocalRepository.loginFrom) {
+            OunceLocalRepository.KAKAO -> expireKakao()
+            OunceLocalRepository.GOOGLE -> expireGoogle()
+            else -> throw IllegalArgumentException("잘못된 접근입니다: ${OunceLocalRepository.loginFrom}")
+        }
+    }
+
+    private fun expireKakao() {
+        UserApiClient.instance.unlink { error ->
+            if (error != null) {
+                Toast.makeText(this, "탈퇴 과정 중 오류가 발생했습니다: KAKAO", Toast.LENGTH_SHORT).show()
+            } else {
+                expireOunce()
+            }
+        }
+    }
+
+    private fun expireGoogle() {
+        Firebase.auth
+            .currentUser
+            ?.delete()
+            ?.addOnCompleteListener { task ->
+                if(task.isSuccessful) {
+                    expireOunce()
+                } else {
+                    Toast.makeText(this, "탈퇴 과정 중 오류가 발생했습니다: GOOGLE", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    private fun expireOunce() {
+        RetrofitObjects.getMainService()
+            .deleteUser()
+            .enqueue(object : Callback<ResponseExpire>{
+                override fun onResponse(
+                    call: Call<ResponseExpire>,
+                    response: Response<ResponseExpire>
+                ) {
+                    val intent = Intent(this@SettingsActivity, LoginActivity::class.java)
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    OunceLocalRepository.apply {
+                        userRefreshToken = ""
+                        userAccessToken = ""
+                        catIndex = -1
+                    }
+                    startActivity(intent)
+                }
+
+                override fun onFailure(call: Call<ResponseExpire>, t: Throwable) {
+                    Toast.makeText(this@SettingsActivity, "탈퇴 과정 중 오류가 발생했습니다: SERVER", Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
+
+    private fun settingButton() {
         settingButtonAdapter = SettingButtonAdapter(this)
         recyclerview_setting_buttons.adapter = settingButtonAdapter
         recyclerview_setting_buttons.addItemDecoration(VerticalItemDecoration(12))
         loadSettingButton()
-
     }
 
 
-    fun loadSettingButton() {
+    private fun loadSettingButton() {
         datas.apply {
             add(
                 SettingButtonData(
@@ -143,7 +204,7 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-    fun ounceversion(context: Context) {
+    private fun ounceversion(context: Context) {
         val info: PackageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
         val version = info.versionName
 

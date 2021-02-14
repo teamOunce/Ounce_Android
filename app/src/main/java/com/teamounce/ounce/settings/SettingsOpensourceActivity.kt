@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.teamounce.ounce.R
 import com.teamounce.ounce.settings.ui.SettingCareAdapter
 import com.teamounce.ounce.settings.ui.SettingCareCatData
+import com.teamounce.ounce.util.StatusBarUtil
 import com.teamounce.ounce.util.VerticalItemDecoration
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.activity_settings_agree.*
@@ -19,6 +20,7 @@ class SettingsOpensourceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings_opensource)
+        StatusBarUtil.setStatusBar(this)
         setOpenSourceRecyclerItem()
         loadDatas()
 

@@ -9,15 +9,15 @@ import androidx.fragment.app.Fragment
 import com.teamounce.ounce.R
 import com.teamounce.ounce.databinding.ItemOunceintroBinding
 
-class SettingIntroFragment(private val src : Int): Fragment() {
-    private lateinit var binding : ItemOunceintroBinding
+class SettingIntroFragment(private val src: Int) : Fragment() {
+    private lateinit var binding: ItemOunceintroBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View ?{
-        binding = DataBindingUtil.inflate(inflater, R.layout.item_ounceintro,container,false)
+    ): View {
+        binding = DataBindingUtil.inflate(inflater, R.layout.item_ounceintro, container, false)
         return binding.root
     }
 
@@ -25,7 +25,8 @@ class SettingIntroFragment(private val src : Int): Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initImageView()
     }
-    fun initImageView(){
+
+    private fun initImageView() {
         binding.ounceIntroImage.setImageResource(src)
     }
 
