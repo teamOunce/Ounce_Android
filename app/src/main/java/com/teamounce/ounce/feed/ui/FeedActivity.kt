@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.databinding.ActivityFeedBinding
@@ -51,6 +52,15 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
         binding.feedHashTagImg.setOnClickListener {
             val intent = Intent(this, TagActivity::class.java)
             startActivity(intent)
+        }
+        binding.feedSwipeLayout.setColorSchemeColors(ContextCompat.getColor(this,R.color.orange))
+        binding.feedSwipeLayout.setOnRefreshListener {
+            val intent = Intent(this, FeedActivity::class.java)
+            finish()
+            overridePendingTransition(0,0)
+            startActivity(intent)
+
+            binding.feedSwipeLayout.isRefreshing = false
         }
     }
 
