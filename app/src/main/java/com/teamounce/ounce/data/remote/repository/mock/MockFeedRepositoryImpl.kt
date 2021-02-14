@@ -3,6 +3,7 @@ package com.teamounce.ounce.data.remote.repository.mock
 import com.teamounce.ounce.feed.model.RequestReview
 import com.teamounce.ounce.feed.model.Review
 import com.teamounce.ounce.data.remote.repository.FeedRepository
+import com.teamounce.ounce.review.model.ResponseReview
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -18,11 +19,16 @@ class MockFeedRepositoryImpl @Inject constructor() : FeedRepository {
                 preference = 5,
                 productImg = "https://image.auction.co.kr/itemimage/10/1f/c3/101fc35e36.jpg",
                 productName = "수제스튜 참치새우연어",
-                reviewMoment = "2021-01-23 16:03:18",
+                createdDate = "2021-01-23 16:03:18",
+                updatedDate = "2021-01-23 16:03:18",
                 tag1 = "JMT",
                 tag2 = "",
                 tag3 = ""
             )
         )
+    }
+
+    override suspend fun deleteReview(catIndex: Int): ResponseReview {
+        return ResponseReview(responseMessage = "", data = 1)
     }
 }

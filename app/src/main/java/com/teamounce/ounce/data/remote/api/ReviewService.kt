@@ -27,13 +27,13 @@ interface ReviewService {
         @Part file: MultipartBody.Part?
     ): ResponseReview
 
-    @DELETE("review")
-    suspend fun deleteReview(
-        @Query("reviewIndex") reviewIndex: Int
-    ): ResponseReview
-
     @GET("review")
     suspend fun getReviewInfo(
         @Query("reviewIndex") reviewIndex: Int
     ): ResponseReviewInfo
+
+    @DELETE("review")
+    suspend fun deleteReview(
+        @Query("reviewIndex") reviewIndex: Int
+    ): ResponseReview
 }

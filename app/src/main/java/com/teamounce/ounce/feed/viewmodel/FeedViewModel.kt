@@ -18,10 +18,21 @@ class FeedViewModel @Inject constructor(
     private val _foodReview = MutableLiveData<Review>()
     val foodReview: LiveData<Review>
         get() = _foodReview
+    private val _isSuccess = MutableLiveData<Boolean>()
+    val isSuccess: LiveData<Boolean>
+        get() = _isSuccess
 
-    fun fetchReviewData() {
+    fun fetchReviewData(reviewIndex: Int) {
         viewModelScope.launch {
-            _foodReview.value = feedRepository.getFoodReviewList(RequestReview(1))
+            _foodReview.value = feedRepository.getFoodReviewList(RequestReview(reviewIndex))
+        }
+    }
+
+    fun deleteReview(reviewIndex: Int) {
+        viewModelScope.launch {
+            runCatching { feedRepository.deleteReview(reviewIndex) }
+                .onSuccess { _isSuccess.value = true }
+                .onFailure {  }
         }
     }
 }
