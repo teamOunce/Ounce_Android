@@ -5,95 +5,102 @@
     tools:ignore="HardcodedText,UnusedAttribute,ContentDescription">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.teamounce.ounce.feed.viewmodel.FeedActivityViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/feed_swipe_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".feed.ui.FeedActivity">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:elevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/feed_tool_bar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:navigationIcon="@drawable/ic_back"
-                android:background="@color/white">
-
-                <TextView
-                    android:id="@+id/feed_tool_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/apple_sd_gothic"
-                    android:textFontWeight="400"
-                    android:lineSpacingExtra="5sp"
-                    android:text="겨울이의 기록"
-                    android:textColor="@color/text_color_black"
-                    android:textSize="20sp" />
-
-            </androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <TextView
-            android:id="@+id/feed_all_review_count_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/apple_sd_gothic"
-            android:textFontWeight="400"
-            android:lineSpacingExtra="13sp"
-            android:textColor="@color/gray1.5"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-            tools:text="전체 리뷰 개수(18)" />
-
-        <ImageView
-            android:id="@+id/feed_hash_tag_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="14dp"
-            android:layout_marginTop="8dp"
-            android:padding="8dp"
-            android:src="@drawable/ic_hash_tag"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
-
-        <ImageView
-            android:id="@+id/feed_filter_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:src="@drawable/ic_filter"
-            app:layout_constraintBottom_toBottomOf="@+id/feed_hash_tag_img"
-            app:layout_constraintEnd_toStartOf="@+id/feed_hash_tag_img"
-            app:layout_constraintTop_toTopOf="@+id/feed_hash_tag_img" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/feed_rcv"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            android:overScrollMode="never"
-            app:setFeedList="@{viewModel.feedList}"
-            tools:listitem="@layout/item_feed_list"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/feed_all_review_count_txt" />
+            android:layout_height="match_parent"
+            tools:context=".feed.ui.FeedActivity">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:elevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/feed_tool_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    app:navigationIcon="@drawable/ic_back">
+
+                    <TextView
+                        android:id="@+id/feed_tool_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/apple_sd_gothic"
+                        android:lineSpacingExtra="5sp"
+                        android:text="겨울이의 기록"
+                        android:textColor="@color/text_color_black"
+                        android:textFontWeight="400"
+                        android:textSize="20sp" />
+
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <TextView
+                android:id="@+id/feed_all_review_count_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/apple_sd_gothic"
+                android:lineSpacingExtra="13sp"
+                android:textColor="@color/gray1.5"
+                android:textFontWeight="400"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+                tools:text="전체 리뷰 개수(18)" />
+
+            <ImageView
+                android:id="@+id/feed_hash_tag_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="14dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_hash_tag"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+            <ImageView
+                android:id="@+id/feed_filter_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:src="@drawable/ic_filter"
+                app:layout_constraintBottom_toBottomOf="@+id/feed_hash_tag_img"
+                app:layout_constraintEnd_toStartOf="@+id/feed_hash_tag_img"
+                app:layout_constraintTop_toTopOf="@+id/feed_hash_tag_img" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/feed_rcv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="20dp"
+                android:overScrollMode="never"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/feed_all_review_count_txt"
+                app:setFeedList="@{viewModel.responseFeedList}"
+                tools:listitem="@layout/item_feed_list" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

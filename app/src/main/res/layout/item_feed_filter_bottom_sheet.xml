@@ -51,6 +51,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/feed_bottom_sheet_filter_dry_box"
                 android:button="@null"
+                android:clickable="true"
                 android:drawableStart="@drawable/ic_dry_state"
                 android:drawablePadding="20dp"
                 android:fontFamily="@font/apple_sd_gothic"
