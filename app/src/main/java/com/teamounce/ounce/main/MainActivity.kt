@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         //수첩 아이콘 눌렀을 때, FeedActivity
         btn_drawer.setOnClickListener{
             val intent = Intent(this, FeedActivity::class.java)
+            intent.putExtra("catName",textview_cat_name.text.toString())
             startActivity(intent)
         }
 
