@@ -1,6 +1,7 @@
 package com.teamounce.ounce.feed.adapter
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.teamounce.ounce.R
 import com.teamounce.ounce.databinding.ItemFeedListBinding
 import com.teamounce.ounce.feed.model.ResponseFeedListData
 import com.teamounce.ounce.feed.model.ResponseFeedReviewData
+import com.teamounce.ounce.feed.ui.FeedActivity
 import com.teamounce.ounce.util.dpFloat
 import com.teamounce.ounce.util.pixel
 import com.teamounce.ounce.util.pixelFloat
@@ -52,6 +54,11 @@ class FeedListAdapter : RecyclerView.Adapter<FeedListAdapter.FeedListViewHolder>
                     binding.feedChipGroup.addView(chip)
                 }
 
+//                itemView.setOnClickListener {
+//                    val intent = Intent(itemView.context,ReviewModifyActivity::class.java)
+//                    intent.putExtra("reviewIndex",data.reviewIndex)
+//                    itemView.context.startActivity(intent)
+//                }
             }
 
             @SuppressLint("SetTextI18n")
