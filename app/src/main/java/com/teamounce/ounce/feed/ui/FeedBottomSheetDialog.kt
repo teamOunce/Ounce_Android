@@ -40,8 +40,6 @@ class FeedBottomSheetDialog(private val viewModel: FeedActivityViewModel) :
         savedInstanceState: Bundle?
     ): View {
         _binding = ItemFeedFilterBottomSheetBinding.inflate(inflater, container, false)
-        Log.e("Dry","viewModel : ${viewModel.dryCheck} , checkbox : ${binding.feedBottomSheetFilterDry.isChecked}")
-        Log.e("Wet","viewModel : ${viewModel.wetCheck} , checkbox : ${binding.feedBottomSheetFilterWet.isChecked}")
         setObserve()
         return binding.root
     }
@@ -59,6 +57,13 @@ class FeedBottomSheetDialog(private val viewModel: FeedActivityViewModel) :
 
         binding.feedBottomSheetFilterDry.isChecked = viewModel.dryCheck
         binding.feedBottomSheetFilterWet.isChecked = viewModel.wetCheck
+
+        binding.feedBottomSheetFilterDry.setOnClickListener {
+            binding.feedBottomSheetFilterDry.isChecked = !binding.feedBottomSheetFilterDry.isChecked
+        }
+        binding.feedBottomSheetFilterWet.setOnClickListener {
+            binding.feedBottomSheetFilterWet.isChecked = !binding.feedBottomSheetFilterWet.isChecked
+        }
 
         binding.feedBottomSheetOkTxt.setOnClickListener {
             setChipGroupChanged()

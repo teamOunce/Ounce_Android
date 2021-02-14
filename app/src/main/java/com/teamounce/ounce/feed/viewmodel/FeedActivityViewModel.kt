@@ -75,14 +75,14 @@ class FeedActivityViewModel @Inject constructor(private val repo: FeedReviewRepo
             for (i in tagFilterList) {
                 if (i.value) {
                     val tag = i.key.replace("#", "")
-                    tagList.add(tag)
+                    tagList.add("\"${tag}\"")
                 }
             }
 
             for (i in brandFilterList) {
                 if (i.value) {
                     val manu = i.key.replace("#", "")
-                    manuList.add(manu)
+                    manuList.add("\"${manu}\"")
                 }
             }
 

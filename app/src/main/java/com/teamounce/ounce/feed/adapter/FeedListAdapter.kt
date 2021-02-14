@@ -1,5 +1,6 @@
 package com.teamounce.ounce.feed.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,17 +37,36 @@ class FeedListAdapter : RecyclerView.Adapter<FeedListAdapter.FeedListViewHolder>
 
             fun onBind(data : ResponseFeedReviewData.Data){
                 binding.data = data
+                if (data.tag1.isNotBlank()){
+                    val chip = setChip(data.tag1)
+                    binding.feedChipGroup.addView(chip)
+                }
+
+                if (data.tag2.isNotBlank()){
+                    val chip = setChip(data.tag2)
+                    binding.feedChipGroup.addView(chip)
+                }
+
+                if (data.tag3.isNotBlank()){
+                    val chip = setChip(data.tag3)
+                    binding.feedChipGroup.addView(chip)
+                }
+
+            }
+
+            @SuppressLint("SetTextI18n")
+            private fun setChip(tag:String) : Chip{
                 val chip = Chip(itemView.context)
                 chip.apply {
                     layoutDirection = View.LAYOUT_DIRECTION_LOCALE
-                    text = "#테스트"
+                    text = "#${tag}"
                     textAlignment = View.TEXT_ALIGNMENT_CENTER
                     chipStrokeWidth = 1.dpFloat
                     setChipStrokeColorResource(R.color.orange2)
                     setTextAppearanceResource(R.style.filterTextStyle)
                     setChipBackgroundColorResource(R.color.white)
                 }
-                binding.feedChipGroup.addView(chip)
+                return chip
             }
         }
 }
