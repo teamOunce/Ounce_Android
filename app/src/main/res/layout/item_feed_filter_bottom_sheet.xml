@@ -44,19 +44,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <CheckBox
+            <CheckedTextView
                 android:id="@+id/feed_bottom_sheet_filter_dry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/feed_bottom_sheet_filter_dry_box"
-                android:button="@null"
                 android:drawableStart="@drawable/ic_dry_state"
                 android:drawablePadding="20dp"
                 android:fontFamily="@font/apple_sd_gothic"
                 android:lineSpacingExtra="11sp"
                 android:paddingHorizontal="40dp"
                 android:text="건식"
+                android:gravity="center"
                 android:textColor="@color/feed_bottom_sheet_select_color"
                 android:textFontWeight="700"
                 android:textSize="14sp"
@@ -66,18 +66,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <CheckBox
+            <CheckedTextView
                 android:id="@+id/feed_bottom_sheet_filter_wet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/feed_bottom_sheet_filter_wet_box"
-                android:button="@null"
                 android:drawableStart="@drawable/ic_wet_state"
                 android:drawablePadding="20dp"
                 android:fontFamily="@font/apple_sd_gothic"
                 android:lineSpacingExtra="11sp"
                 android:paddingHorizontal="40dp"
                 android:text="습식"
+                android:gravity="center"
                 android:textColor="@color/feed_bottom_sheet_select_color"
                 android:textFontWeight="700"
                 android:textSize="14sp"
