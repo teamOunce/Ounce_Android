@@ -84,6 +84,10 @@ class ReviewModifyActivity :
         reviewViewModel.reviewInfo.observe(this) {
             binding.ratingRecordPreference.setStar(it.preference.toFloat())
             binding.etRecordMemo.setText(it.memo)
+            listOf(it.productImg, it.myImg)
+                .filter { it != "" }
+                .map { ImageInfo(it, true) }
+                .also { imageSliderAdapter.replaceList(it) }
         }
         reviewViewModel.warningMessage.observe(this) { it.toast() }
         reviewViewModel.tagList.observe(this) {
@@ -125,7 +129,7 @@ class ReviewModifyActivity :
     private fun setChecked(chip: Chip) {
         val selectedTagList =
             with(reviewViewModel.reviewInfo.value!!) { listOf(this.tag1, this.tag2, this.tag3) }
-        chip.isSelected = selectedTagList.contains(chip.text)
+        chip.isChecked = selectedTagList.contains(chip.text.substring(1))
     }
 
     private fun makeMultiPartBody(uri: Uri) {
