@@ -36,10 +36,7 @@ class SettingsActivity : AppCompatActivity() {
         ounceversion(this)
 
         //설정뷰에 오른쪽 화살표 눌렀을때 MainActivity
-        btn_drawer.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
+        btn_drawer.setOnClickListener { finish() }
 
         txt_ounceagree.setOnClickListener {
             val intent = Intent(this, SettingsAgreeActivity::class.java)
@@ -57,7 +54,6 @@ class SettingsActivity : AppCompatActivity() {
         }
         txt_ounceintro.setOnClickListener {
             val intent = Intent(this,SettingsIntroActivity::class.java)
-
             startActivity(intent)
         }
 
