@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
+import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.databinding.ActivityFeedBinding
 import com.teamounce.ounce.feed.viewmodel.FeedActivityViewModel
 import com.teamounce.ounce.util.StatusBarUtil
@@ -46,7 +47,7 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
             mViewModel.callFeedList()
         }
 
-        getCatNameIntent()
+        getCatNameAndSetTitle()
         setToolBar()
         setClickListener()
         binding.feedHashTagImg.setOnClickListener {
@@ -65,9 +66,8 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
     }
 
     @SuppressLint("SetTextI18n")
-    private fun getCatNameIntent() {
-        val catName = intent.getStringExtra("catName")
-        binding.feedToolTitle.text = "${catName}의 기록"
+    private fun getCatNameAndSetTitle() {
+        binding.feedToolTitle.text = "${OunceLocalRepository.catName}의 기록"
     }
 
     private fun setClickListener() {
