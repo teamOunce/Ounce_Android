@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setBackgroundResource(backgroundColor: Int, backgroundResource: Int ){
+    private fun setBackgroundResource(backgroundColor: Int, backgroundResource: Int ){
         activityMainBinding.mainBackground.setBackgroundColor(getColor(backgroundColor))
         activityMainBinding.imageviewCat.setImageDrawable(getDrawable(backgroundResource))
     }
@@ -147,7 +147,7 @@ class MainActivity : AppCompatActivity() {
                     setCatName(response.body()!!.data.catName)
                     setCatDday(response.body()!!.data.fromMeet)
                     reviewCount = response.body()!!.data.reviewCount
-
+                    OunceLocalRepository.catName = response.body()!!.data.catName
                     setBackGroundColor()
 
                     if (sharedPreferences.getCatPositionSelected() == null) {
