@@ -1,24 +1,26 @@
-package com.teamounce.ounce.settings
+package com.teamounce.ounce.settings.util
+
+import com.teamounce.ounce.settings.ui.SettingCustomDialog
 
 class SettingCustomDialogBuilder {
     private val dialog = SettingCustomDialog()
 
-    fun setTitle(title: String): SettingCustomDialogBuilder{
+    fun setTitle(title: String): SettingCustomDialogBuilder {
         dialog.title = title
         return this
     }
 
-    fun setSubTitle(subtitle: String): SettingCustomDialogBuilder{
+    fun setSubTitle(subtitle: String): SettingCustomDialogBuilder {
         dialog.subtitle = subtitle
         return this
     }
 
-    fun setPositiveButton(positivebutton : String) : SettingCustomDialogBuilder{
+    fun setPositiveButton(positivebutton : String) : SettingCustomDialogBuilder {
         dialog.positiveButton = positivebutton
         return this
     }
 
-    fun setNegativeButton(negativebutton : String) : SettingCustomDialogBuilder{
+    fun setNegativeButton(negativebutton : String) : SettingCustomDialogBuilder {
         dialog.negativeButton =negativebutton
         return this
     }
@@ -27,12 +29,12 @@ class SettingCustomDialogBuilder {
         return this
     }
 
-    fun setButtonClickListener(listener: SettingCustomDialogListener):SettingCustomDialogBuilder{
+    fun setButtonClickListener(listener: SettingCustomDialogListener): SettingCustomDialogBuilder {
         dialog.listener = listener
         return this
     }
 
-    fun create(): SettingCustomDialog{
+    fun create(): SettingCustomDialog {
         return dialog
     }
 }

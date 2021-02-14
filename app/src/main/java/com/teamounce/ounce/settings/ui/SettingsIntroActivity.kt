@@ -1,4 +1,4 @@
-package com.teamounce.ounce.settings
+package com.teamounce.ounce.settings.ui
 
 
 import android.os.Bundle

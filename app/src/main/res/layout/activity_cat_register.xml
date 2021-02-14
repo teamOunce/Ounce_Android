@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.teamounce.ounce.settings.viewmodel.CatRegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".settings.CatRegisterActivity">
+        tools:context=".settings.ui.CatRegisterActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_register"
@@ -106,6 +108,7 @@
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/notosanskr_regular"
                     android:hint="한글로 작성해주세요"
+                    android:text="@={viewModel.catName}"
                     android:includeFontPadding="false"
                     app:backgroundTint="@null" />
 

@@ -24,7 +24,7 @@
         android:id="@+id/setting_catdday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/notosanskr"
         android:includeFontPadding="false"
         android:text="만난지 1030일 째"

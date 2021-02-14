@@ -36,4 +36,9 @@ class NetworkServiceModule {
     @Singleton
     fun provideTagService(@Named("Default") retrofit: Retrofit): TagService =
         retrofit.create(TagService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideAddCatServoce(@Named("Default") retrofit: Retrofit): SettingService =
+        retrofit.create(SettingService::class.java)
 }

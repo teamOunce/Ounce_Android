@@ -1,17 +1,12 @@
-package com.teamounce.ounce.settings
+package com.teamounce.ounce.settings.ui
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.teamounce.ounce.R
-import com.teamounce.ounce.settings.ui.SettingCareAdapter
-import com.teamounce.ounce.settings.ui.SettingCareCatData
+import com.teamounce.ounce.settings.adapter.SettingsOpensourceAdapter
+import com.teamounce.ounce.settings.model.SettingsOpensourceData
 import com.teamounce.ounce.util.StatusBarUtil
 import com.teamounce.ounce.util.VerticalItemDecoration
-import kotlinx.android.synthetic.main.activity_settings.*
-import kotlinx.android.synthetic.main.activity_settings_agree.*
-import kotlinx.android.synthetic.main.activity_settings_care.*
-import kotlinx.android.synthetic.main.activity_settings_care.btn_setting_back
 import kotlinx.android.synthetic.main.activity_settings_opensource.*
 
 class SettingsOpensourceActivity : AppCompatActivity() {

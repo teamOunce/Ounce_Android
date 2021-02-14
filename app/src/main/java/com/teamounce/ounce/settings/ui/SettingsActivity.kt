@@ -1,4 +1,4 @@
-package com.teamounce.ounce.settings
+package com.teamounce.ounce.settings.ui
 
 import android.content.Context
 import android.content.Intent
@@ -13,8 +13,11 @@ import com.teamounce.ounce.R
 import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.data.remote.singleton.RetrofitObjects
 import com.teamounce.ounce.login.ui.LoginActivity
-import com.teamounce.ounce.main.MainActivity
+import com.teamounce.ounce.settings.util.SettingCustomDialogBuilder
+import com.teamounce.ounce.settings.util.SettingCustomDialogListener
+import com.teamounce.ounce.settings.adapter.SettingButtonAdapter
 import com.teamounce.ounce.settings.model.ResponseExpire
+import com.teamounce.ounce.settings.model.SettingButtonData
 import com.teamounce.ounce.util.StatusBarUtil
 import com.teamounce.ounce.util.VerticalItemDecoration
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -53,7 +56,7 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(intent)
         }
         txt_ounceintro.setOnClickListener {
-            val intent = Intent(this,SettingsIntroActivity::class.java)
+            val intent = Intent(this, SettingsIntroActivity::class.java)
             startActivity(intent)
         }
 

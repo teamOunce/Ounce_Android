@@ -1,52 +1,60 @@
-package com.teamounce.ounce.register.ui
+package com.teamounce.ounce.settings.ui
 
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
+import android.widget.Toast
+import androidx.activity.viewModels
 import com.teamounce.ounce.R
-import com.teamounce.ounce.base.BindingFragment
-import com.teamounce.ounce.databinding.FragmentCatInfoBinding
-import com.teamounce.ounce.register.viewmodel.RegisterViewModel
+import com.teamounce.ounce.base.BindingActivity
+import com.teamounce.ounce.databinding.ActivityCatRegisterBinding
+import com.teamounce.ounce.settings.ui.SettingsCareActivity.Companion.REGISTER_SUCCESS
+import com.teamounce.ounce.settings.viewmodel.CatRegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import gun0912.tedkeyboardobserver.TedKeyboardObserver
 import java.util.*
 
 @AndroidEntryPoint
-class CatInfoFragment : BindingFragment<FragmentCatInfoBinding>(R.layout.fragment_cat_info) {
-    private val registerViewModel by activityViewModels<RegisterViewModel>()
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        super.onCreateView(inflater, container, savedInstanceState)
+class CatRegisterActivity :
+    BindingActivity<ActivityCatRegisterBinding>(R.layout.activity_cat_register) {
+    private val registerViewModel: CatRegisterViewModel by viewModels()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         binding.apply {
             viewModel = registerViewModel
-            lifecycleOwner = viewLifecycleOwner
+            lifecycleOwner = this@CatRegisterActivity
         }
+        initView()
+    }
+
+    private fun initView() {
         setUIListener()
+        subscribeDatas()
         setError()
-        setMaxDate()
-        observeKeyboard()
-        return binding.root
     }
 
     private fun setUIListener() {
         binding.datepickerRegister.setOnDateChangedListener { _, year, month, day ->
-            registerViewModel.meetDate.value = "$year-$month-$day"
+            registerViewModel.meetDate = "$year-$month-$day"
         }
-        binding.btnRegisterComplete.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_registerFragment_to_welcomeFragment)
-        }
+        binding.datepickerRegister.maxDate = Date().time
+        binding.imgRegisterBack.setOnClickListener { finish() }
+        binding.btnRegisterComplete.setOnClickListener { registerViewModel.registerCat() }
     }
 
-    private fun setMaxDate() {
-        binding.datepickerRegister.maxDate = Date().time
+    private fun subscribeDatas() {
+        registerViewModel.apply {
+            errorMessage.observe(this@CatRegisterActivity) {
+                Toast.makeText(this@CatRegisterActivity, it, Toast.LENGTH_SHORT).show()
+            }
+            isSuccess.observe(this@CatRegisterActivity) {
+                if (it) {
+                    Toast.makeText(this@CatRegisterActivity, "고양이 등록에 성공했습니다", Toast.LENGTH_SHORT)
+                        .show()
+                    setResult(REGISTER_SUCCESS)
+                    finish()
+                }
+            }
+        }
     }
 
     private fun setError() {
@@ -70,17 +78,7 @@ class CatInfoFragment : BindingFragment<FragmentCatInfoBinding>(R.layout.fragmen
             }
 
             override fun afterTextChanged(catName: Editable?) {}
-
         })
-    }
-
-    private fun observeKeyboard() {
-        activity?.let {
-            TedKeyboardObserver(it)
-                .listen { isShow ->
-                    if (!isShow) { binding.txtCatName.clearFocus() }
-                }
-        }
     }
 
     companion object {

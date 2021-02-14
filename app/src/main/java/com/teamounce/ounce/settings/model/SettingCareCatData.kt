@@ -1,4 +1,4 @@
-package com.teamounce.ounce.settings.ui
+package com.teamounce.ounce.settings.model
 
 data class SettingCareCatData (
     val setting_catname : String,

@@ -1,4 +1,4 @@
-package com.teamounce.ounce.settings
+package com.teamounce.ounce.settings.adapter
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.teamounce.ounce.R
+import com.teamounce.ounce.settings.model.SettingButtonData
+import com.teamounce.ounce.settings.ui.SettingsCareActivity
 
 class SettingButtonAdapter (private val context:Context): RecyclerView.Adapter<SettingButtonViewHolder>(){
     var datas = mutableListOf<SettingButtonData>()

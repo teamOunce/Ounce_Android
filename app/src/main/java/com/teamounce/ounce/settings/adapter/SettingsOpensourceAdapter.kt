@@ -1,12 +1,11 @@
-package com.teamounce.ounce.settings
+package com.teamounce.ounce.settings.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.teamounce.ounce.R
-import com.teamounce.ounce.settings.ui.SettingCareCatData
+import com.teamounce.ounce.settings.model.SettingsOpensourceData
 
 class SettingsOpensourceAdapter(private val context: Context) :
     RecyclerView.Adapter<SettingsOpensourceViewHolder>() {

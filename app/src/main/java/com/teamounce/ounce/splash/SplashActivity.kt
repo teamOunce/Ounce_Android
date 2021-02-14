@@ -1,4 +1,4 @@
-package com.teamounce.ounce
+package com.teamounce.ounce.splash
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
+import com.teamounce.ounce.R
 import com.teamounce.ounce.login.ui.LoginActivity
 import com.teamounce.ounce.util.StatusBarUtil
 

@@ -1,4 +1,4 @@
-package com.teamounce.ounce.settings
+package com.teamounce.ounce.settings.model
 
 data class SettingButtonData(
     val buttonImage: Int,
