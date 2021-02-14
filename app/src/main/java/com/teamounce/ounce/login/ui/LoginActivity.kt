@@ -61,7 +61,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     }
 
     private fun setObserver() {
-        loginViewModel.isCatNull.observe(this, Observer {
+        loginViewModel.isCatNull.observe(this) {
             if (it) {
                 val intent = Intent(this, SignUpActivity::class.java)
                 startActivity(intent)
@@ -71,7 +71,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
             }
-        })
+        }
     }
 
     private fun googleSignIn() {

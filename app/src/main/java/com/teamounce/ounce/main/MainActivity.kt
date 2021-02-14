@@ -130,12 +130,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setMainViewRetrofit() {
-        val token = OunceLocalRepository.userRefreshToken
+        val token = OunceLocalRepository.userAccessToken
         mainViewRetrofitInterface = RetrofitObjects.getMainService()
         mainViewRetrofitInterface.mainViewRetrofit(
-            token,
-            OunceLocalRepository.catIndex)
-            .enqueue(object : retrofit2.Callback<MainViewResponseData> {
+            OunceLocalRepository.catIndex
+        ).enqueue(object : retrofit2.Callback<MainViewResponseData> {
             override fun onFailure(call: Call<MainViewResponseData>, t: Throwable) {
                 Log.d("서버통신 실패", "$t")
             }
