@@ -13,6 +13,7 @@ object OunceLocalRepository {
     private const val USER_TOKEN_KEY = "access"
     private const val CAT_INDEX_KEY = "cat"
     private const val FROM_KEY = "from"
+    private const val CAT_NAME_KEY = "catName"
     const val KAKAO = "kakao"
     const val GOOGLE = "google"
 
@@ -54,6 +55,10 @@ object OunceLocalRepository {
     var loginFrom: String
         get() = encryptedRepository.getString(FROM_KEY, "error") ?: "error"
         set(value) = encryptedRepository.edit { it.putString(FROM_KEY, value) }
+
+    var catName: String
+        get() = encryptedRepository.getString(CAT_NAME_KEY, "") ?: ""
+        set(value) = encryptedRepository.edit { it.putString(CAT_NAME_KEY, value) }
 
     fun getKey(): String {
         return encryptedRepository.getString(NATIVE_APP_KEY, "")!!

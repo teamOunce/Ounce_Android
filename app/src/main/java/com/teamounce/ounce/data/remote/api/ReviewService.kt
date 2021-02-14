@@ -1,6 +1,7 @@
 package com.teamounce.ounce.data.remote.api
 
-import com.teamounce.ounce.review.model.ResponseRegisterReview
+import com.teamounce.ounce.review.model.ResponseReview
+import com.teamounce.ounce.review.model.ResponseReviewInfo
 import com.teamounce.ounce.review.model.ResponseTags
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -17,5 +18,22 @@ interface ReviewService {
     suspend fun registerReview(
         @PartMap body: HashMap<String, RequestBody>,
         @Part file: MultipartBody.Part?
-    ): ResponseRegisterReview
+    ): ResponseReview
+
+    @Multipart
+    @PUT("review")
+    suspend fun modifyReview(
+        @PartMap body: HashMap<String, RequestBody>,
+        @Part file: MultipartBody.Part?
+    ): ResponseReview
+
+    @DELETE("review")
+    suspend fun deleteReview(
+        @Query("reviewIndex") reviewIndex: Int
+    ): ResponseReview
+
+    @GET("review")
+    suspend fun getReviewInfo(
+        @Query("reviewIndex") reviewIndex: Int
+    ): ResponseReviewInfo
 }

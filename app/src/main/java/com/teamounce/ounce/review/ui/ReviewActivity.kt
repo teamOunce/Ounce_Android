@@ -17,6 +17,7 @@ import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.databinding.ActivityReviewBinding
 import com.teamounce.ounce.feed.ui.FeedActivity
 import com.teamounce.ounce.review.adapter.CatFoodSliderAdapter
+import com.teamounce.ounce.review.model.ImageInfo
 import com.teamounce.ounce.review.model.ResponseSearch
 import com.teamounce.ounce.review.viewmodel.ReviewViewModel
 import com.teamounce.ounce.util.ChipFactory
@@ -50,7 +51,7 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
     }
 
     private fun initSetting(catFood: ResponseSearch.Data) {
-        imageSliderAdapter.replaceList(listOf(catFood.productImg))
+        imageSliderAdapter.replaceList(listOf(ImageInfo(catFood.productImg, true)))
         binding.apply {
             txtRecordBrand.text = catFood.manufacturer
             txtRecordFood.text = catFood.productName
@@ -68,7 +69,12 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
         binding.imgRecordAddImage.setOnClickListener {
             TedImagePicker.with(this)
                 .start { uri ->
-                    imageSliderAdapter.replaceList(listOf(catFood.productImg, uri.toString()))
+                    imageSliderAdapter.replaceList(
+                        listOf(
+                            ImageInfo(catFood.productImg, true),
+                            ImageInfo(uri.toString(), false)
+                        )
+                    )
                     makeMultiPartBody(uri)
                 }
         }
@@ -89,7 +95,7 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
         reviewViewModel.warningMessage.observe(this) {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }
-        reviewViewModel.registerResult.observe(this) {
+        reviewViewModel.result.observe(this) {
             if (it.data == null) {
                 Toast.makeText(this, "리뷰 등록이 실패되었습니다.", Toast.LENGTH_SHORT).show()
             } else {

@@ -89,6 +89,7 @@ class LoginViewModel @Inject constructor(
             }
         }.onFailure {
             it.printStackTrace()
+            Log.e("LoginViewModel","$it.stackTrace")
         }
     }
 }

@@ -7,7 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.data.remote.repository.ReviewRepository
-import com.teamounce.ounce.review.model.ResponseRegisterReview
+import com.teamounce.ounce.review.model.ResponseReview
+import com.teamounce.ounce.review.model.ResponseReviewInfo
 import com.teamounce.ounce.review.model.ResponseSearch
 import com.teamounce.ounce.review.model.ResponseTags
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,9 +28,12 @@ class ReviewViewModel @Inject constructor(
     private val _tagList = MutableLiveData<List<ResponseTags.Data>>()
     val tagList: LiveData<List<ResponseTags.Data>>
         get() = _tagList
-    private val _registerResult = MutableLiveData<ResponseRegisterReview>()
-    val registerResult: LiveData<ResponseRegisterReview>
+    private val _registerResult = MutableLiveData<ResponseReview>()
+    val result: LiveData<ResponseReview>
         get() = _registerResult
+    private val _reviewInfo = MutableLiveData<ResponseReviewInfo.Data>()
+    val reviewInfo: LiveData<ResponseReviewInfo.Data>
+        get() = _reviewInfo
     private var multiPartFile: MultipartBody.Part? = null
     private val _warningMessage = MutableLiveData<String>()
     val warningMessage: LiveData<String>
@@ -106,5 +110,17 @@ class ReviewViewModel @Inject constructor(
         partMap.putAll(tagMap)
         Log.d("TAG", partMap.toString())
         return partMap
+    }
+
+    fun getReviewInfo(reviewIndex: Int) {
+        viewModelScope.launch {
+            runCatching { reviewRepository.getReviewIndo(reviewIndex) }
+                .onSuccess { _reviewInfo.value = it.data }
+                .onFailure { _warningMessage.value = "서버에서 리뷰 정보를 갖고 오는데 실패했습니다" }
+        }
+    }
+
+    fun modifyReview() {
+
     }
 }

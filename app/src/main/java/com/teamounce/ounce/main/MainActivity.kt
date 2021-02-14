@@ -12,9 +12,8 @@ import com.teamounce.ounce.data.remote.api.MainService
 import com.teamounce.ounce.data.remote.singleton.RetrofitObjects
 import com.teamounce.ounce.databinding.ActivityMainBinding
 import com.teamounce.ounce.feed.ui.FeedActivity
-import com.teamounce.ounce.review.ui.ReviewActivity
 import com.teamounce.ounce.review.ui.SearchActivity
-import com.teamounce.ounce.settings.SettingsActivity
+import com.teamounce.ounce.settings.ui.SettingsActivity
 import com.teamounce.ounce.util.SharedPreferences
 import com.teamounce.ounce.util.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_main.*
@@ -105,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setBackgroundResource(backgroundColor: Int, backgroundResource: Int ){
+    private fun setBackgroundResource(backgroundColor: Int, backgroundResource: Int ){
         activityMainBinding.mainBackground.setBackgroundColor(getColor(backgroundColor))
         activityMainBinding.imageviewCat.setImageDrawable(getDrawable(backgroundResource))
     }
@@ -148,7 +147,7 @@ class MainActivity : AppCompatActivity() {
                     setCatName(response.body()!!.data.catName)
                     setCatDday(response.body()!!.data.fromMeet)
                     reviewCount = response.body()!!.data.reviewCount
-
+                    OunceLocalRepository.catName = response.body()!!.data.catName
                     setBackGroundColor()
 
                     if (sharedPreferences.getCatPositionSelected() == null) {

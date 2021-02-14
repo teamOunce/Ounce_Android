@@ -1,5 +1,10 @@
 package com.teamounce.ounce.di
 
+import com.teamounce.ounce.data.remote.api.FeedService
+import com.teamounce.ounce.data.remote.api.LoginService
+import com.teamounce.ounce.data.remote.api.RegisterService
+import com.teamounce.ounce.data.remote.api.ReviewService
+import com.teamounce.ounce.data.remote.api.SearchService
 import com.teamounce.ounce.data.remote.api.*
 import dagger.Module
 import dagger.Provides
@@ -34,6 +39,16 @@ class NetworkServiceModule {
 
     @Provides
     @Singleton
+    fun provideFeedService(@Named("Default") retrofit: Retrofit) : FeedService =
+        retrofit.create(FeedService::class.java)
+
+    @Provides
+    @Singleton
     fun provideTagService(@Named("Default") retrofit: Retrofit): TagService =
         retrofit.create(TagService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideAddCatServoce(@Named("Default") retrofit: Retrofit): SettingService =
+        retrofit.create(SettingService::class.java)
 }
