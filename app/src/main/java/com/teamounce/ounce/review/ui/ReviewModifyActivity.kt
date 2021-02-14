@@ -54,6 +54,7 @@ class ReviewModifyActivity :
 
     private fun setAdapter() {
         imageSliderAdapter = CatFoodSliderAdapter()
+        binding.vpRecordSlider.adapter = imageSliderAdapter
     }
 
     private fun setUIListener() {
@@ -74,7 +75,7 @@ class ReviewModifyActivity :
                     makeMultiPartBody(uri)
                 }
         }
-        binding.btnSubmit.setOnClickListener { reviewViewModel.modifyReview() }
+        // binding.btnSubmit.setOnClickListener { reviewViewModel.modifyReview() }
         binding.imgRecordTooltip.setOnClickListener {
             ToolTipFragment().show(supportFragmentManager, "ToolTip")
         }
@@ -88,6 +89,9 @@ class ReviewModifyActivity :
                 .filter { it != "" }
                 .map { ImageInfo(it, true) }
                 .also { imageSliderAdapter.replaceList(it) }
+            val selectedTag = listOf(it.tag1, it.tag2, it.tag3)
+                            .filter { it != "" }
+            reviewViewModel.initTags(selectedTag)
         }
         reviewViewModel.warningMessage.observe(this) { it.toast() }
         reviewViewModel.tagList.observe(this) {
@@ -109,13 +113,18 @@ class ReviewModifyActivity :
     private fun chipCheckedChangeListener(): CompoundButton.OnCheckedChangeListener {
         return CompoundButton.OnCheckedChangeListener { compoundButton, checked ->
             if (checked) {
-                if (reviewViewModel.isTagsFull) {
+                reviewViewModel.addTag(compoundButton.text.substring(1))
+                if (reviewViewModel.isTagEntryFull()) {
+                    Log.d("TAG", "TAG FULL ${compoundButton.text}: $checked")
                     compoundButton.isChecked = false
-                } else {
-                    reviewViewModel.addTag(compoundButton.text.toString())
+                    reviewViewModel.deleteTag(compoundButton.text.substring(1))
                 }
+//                else {
+//                    Log.d("TAG", "${compoundButton.text}: $checked")
+//                    reviewViewModel.addTag(compoundButton.text.substring(1))
+//                }
             } else {
-                reviewViewModel.deleteTag(compoundButton.text.toString())
+                reviewViewModel.deleteTag(compoundButton.text.substring(1))
             }
         }
     }
@@ -127,9 +136,7 @@ class ReviewModifyActivity :
     }
 
     private fun setChecked(chip: Chip) {
-        val selectedTagList =
-            with(reviewViewModel.reviewInfo.value!!) { listOf(this.tag1, this.tag2, this.tag3) }
-        chip.isChecked = selectedTagList.contains(chip.text.substring(1))
+        chip.isChecked = reviewViewModel.isContained(chip.text.substring(1))
     }
 
     private fun makeMultiPartBody(uri: Uri) {

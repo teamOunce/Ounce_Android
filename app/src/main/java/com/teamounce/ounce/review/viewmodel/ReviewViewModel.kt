@@ -50,12 +50,16 @@ class ReviewViewModel @Inject constructor(
 
     fun addTag(tag: String) {
         runCatching {
-            require(selectedTag.size < TAG_MAX_ENTRY) { "태그를 3개 이상 선택할 수 없습니다" }
+            require(selectedTag.size <= TAG_MAX_ENTRY) { "태그를 3개 이상 선택할 수 없습니다" }
         }.onSuccess {
-            selectedTag.add(tag)
-            if (selectedTag.size >= TAG_MAX_ENTRY) isTagsFull = true
+            if(!selectedTag.contains(tag))
+                selectedTag.add(tag)
+            if (selectedTag.size == TAG_MAX_ENTRY) isTagsFull = true
+            Log.d("TAG SUCCESS", selectedTag.toString())
         }.onFailure {
             _warningMessage.value = it.message
+            if (selectedTag.size == TAG_MAX_ENTRY) isTagsFull = true
+            Log.d("TAG FAILURE", selectedTag.toString())
         }
     }
 
@@ -120,7 +124,13 @@ class ReviewViewModel @Inject constructor(
         }
     }
 
-    fun modifyReview() {
-
+    fun initTags(list: List<String>) {
+        Log.d("TAG", list.toString())
+        selectedTag.addAll(list)
     }
+
+    fun isTagEntryFull(): Boolean = selectedTag.size > TAG_MAX_ENTRY
+    fun isTagEntryEnough() = selectedTag.size == TAG_MAX_ENTRY
+
+    fun isContained(tag: String): Boolean = selectedTag.contains(tag)
 }
