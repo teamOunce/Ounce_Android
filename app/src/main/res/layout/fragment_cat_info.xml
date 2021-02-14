@@ -98,8 +98,10 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/notosanskr_regular"
                     android:hint="한글로 작성해주세요"
+                    android:includeFontPadding="false"
                     android:text="@={viewModel.catName}"
-                    android:includeFontPadding="false" />
+                    android:background="@android:color/transparent"
+                    app:backgroundTint="@null" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -142,6 +144,7 @@
                 android:text="완료"
                 android:textColor="@color/white"
                 android:textSize="20sp"
+                app:backgroundTint="@null"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

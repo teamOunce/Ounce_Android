@@ -26,7 +26,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".feed.ui.TagActivity" />
         <activity android:name=".settings.SettingsIntroActivity" />
@@ -72,8 +71,9 @@
         <activity
             android:name=".login.ui.LoginActivity"
             android:exported="true" />
-        <activity android:name=".main.MainActivity" >
-        </activity>
+        <activity
+            android:name=".main.MainActivity"
+            android:exported="true" />
 
     </application>
 

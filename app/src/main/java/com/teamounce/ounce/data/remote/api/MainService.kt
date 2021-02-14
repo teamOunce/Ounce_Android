@@ -9,10 +9,10 @@ import retrofit2.http.*
 
 interface MainService {
     @GET("main")
-    fun mainViewRetrofit(@Header("token") token: String, @Query("catIndex") catIndex: Int): Call<MainViewResponseData>
+    fun mainViewRetrofit(@Query("catIndex") catIndex: Int): Call<MainViewResponseData>
 
     @GET("main/getList")
-    fun bottomSheetProfileRetrofit(@Header("token") token: String, @Query("catIndex") catIndex: Int): Call<BottomSheetResponseData>
+    fun bottomSheetProfileRetrofit(@Query("catIndex") catIndex: Int): Call<BottomSheetResponseData>
 
     @DELETE("main/profile")
     fun mainDeleteRetrofit(@Query("catIndex") catIndex: Int): Call<MainDeleteResponseData>

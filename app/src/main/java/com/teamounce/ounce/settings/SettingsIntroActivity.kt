@@ -20,6 +20,7 @@ class SettingsIntroActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_settings_intro)
+        binding.btnIntroBack.setOnClickListener { finish() }
         initViewPager()
     }
 
@@ -59,9 +60,7 @@ class SettingsIntroActivity : AppCompatActivity() {
 
         override fun createFragment(position: Int): Fragment {
             return when (position) {
-                0 -> {
-                    SettingIntroFragment(R.drawable.who_made_ounce_img_1)
-                }
+                0 -> SettingIntroFragment(R.drawable.who_made_ounce_img_1)
                 1 -> SettingIntroFragment(R.drawable.who_made_ounce_img_2)
                 else -> SettingIntroFragment(R.drawable.who_made_ounce_img_3)
             }
