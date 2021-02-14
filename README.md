@@ -9,18 +9,25 @@
 
 <p align="center">
   <h2 align="center">똑똑한 집사들을 위한 기록장 Ounce.</h2><br/>
-  고양이들은 입맛이 까다로워 집사들은 성공확률이 높은 시도를 위해 먹여둔 캣푸드를 따로 기록하고 있습니다. 이런 집사들의 고충을 해결하기 위해 Ounce는 직관적인 캣푸드 기록 기능을 제공하고 있습니다.<br/>
-  기록부터 선택까지, 온스가 함께합니다.
-  <br/>
-	<h2 align="center">Ounce, a cat food diary for smart cat caregivers.</h2>
-  Cats have a picky appetite, so guardians seperately record their cat's food for "successful" results. In order to solve these difficulties, we provide an intuitive, fascinating cat food diary application.
+  고양이들은 입맛이 까다로워 집사들은 성공확률이 높은 시도를 위해 먹여둔 캣푸드를 따로 기록하고 있습니다.<br/>
+  이런 집사들의 고충을 해결하기 위해 Ounce는 직관적인 캣푸드 기록 기능을 제공하고 있습니다.<br/>
+  기록부터 선택까지, 온스가 함께합니다.<br/>
+  <h2 align="center">Ounce, a cat food diary for smart cat caregivers.</h2>
+  Cats have a picky appetite, so guardians seperately record their cat's food for "successful" results.</br>
+  In order to solve these difficulties, we provide an intuitive, fascinating cat food diary application.</br>
+  From picking to feeding, Ounce will take your problems "once".
 </p>
 
-<h1 align="center">Who Made Oucne?</h1>
+<h1 align="center">Who Made Ounce(Android)?</h1>
 
-<img align="center" src="https://user-images.githubusercontent.com/54518925/107869693-176be080-6ed4-11eb-9699-0305e71edcaa.png"/>
+<p align="center"><img src="https://user-images.githubusercontent.com/54518925/107869693-176be080-6ed4-11eb-9699-0305e71edcaa.png"/></p>
 
-<table align="center">
+<table align="center" style = "table-layout: auto; width: 100%; table-layout: fixed;">
+  <colgroup>
+    <col style="width:33%"/>
+    <col style="width:34%"/>
+    <col style="width:33%"/>
+  </colgroup>
   <th align="center">이현우</th>
   <th align="center">강민구</th>
   <th align="center">박주예</th>
@@ -41,8 +48,7 @@
     Crecker Android Developer<br>
 		Ounce Android Developer<br>
     Sangle Android Lead Developer<br>
-    WORDATA Android Developer<br>
-		실력/외모/인성 3박자를 고루 갖춘 Ounce 안드로이드 팀의 정신적 지주<br>
+	    Ounce 안드로이드 팀의 정신적 지주<br>
     </td>
     <td>
     Ounce Android Developer<br>
