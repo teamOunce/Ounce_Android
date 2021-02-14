@@ -1,5 +1,6 @@
 package com.teamounce.ounce.feed.ui
 
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -41,13 +42,6 @@ class FeedBottomSheetDialog(private val viewModel: FeedActivityViewModel) :
     ): View {
         _binding = ItemFeedFilterBottomSheetBinding.inflate(inflater, container, false)
 
-        binding.feedBottomSheetFilterDry.isChecked = viewModel.dryCheck
-        binding.feedBottomSheetFilterWet.isChecked = viewModel.wetCheck
-
-
-        Log.e("CreateView"," dry : ${binding.feedBottomSheetFilterDry.isChecked}")
-        Log.e("CreateView"," wet : ${binding.feedBottomSheetFilterDry.isChecked}")
-
         setObserve()
         return binding.root
     }
@@ -73,6 +67,9 @@ class FeedBottomSheetDialog(private val viewModel: FeedActivityViewModel) :
             setChipGroupChanged()
             dismiss()
         }
+
+        binding.feedBottomSheetFilterDry.isChecked = viewModel.dryCheck
+        binding.feedBottomSheetFilterWet.isChecked = viewModel.wetCheck
     }
 
     private fun resetAllChip() {

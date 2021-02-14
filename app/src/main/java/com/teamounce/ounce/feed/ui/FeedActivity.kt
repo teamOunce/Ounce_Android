@@ -62,6 +62,7 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
 
     private fun setClickListener() {
         binding.feedFilterImg.setOnClickListener {
+            bottomSheet.isCancelable = false
             bottomSheet.show(supportFragmentManager,BOTTOM_SHEET_TAG)
         }
     }
