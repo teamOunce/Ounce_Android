@@ -88,7 +88,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
             android:overScrollMode="never"
-            app:setFeedList="@{viewModel.feedList}"
+            app:setFeedList="@{viewModel.responseFeedList}"
             tools:listitem="@layout/item_feed_list"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -9,13 +9,14 @@ import com.google.android.material.chip.Chip
 import com.teamounce.ounce.R
 import com.teamounce.ounce.databinding.ItemFeedListBinding
 import com.teamounce.ounce.feed.model.ResponseFeedListData
+import com.teamounce.ounce.feed.model.ResponseFeedReviewData
 import com.teamounce.ounce.util.dpFloat
 import com.teamounce.ounce.util.pixel
 import com.teamounce.ounce.util.pixelFloat
 
 class FeedListAdapter : RecyclerView.Adapter<FeedListAdapter.FeedListViewHolder>() {
 
-    var feedList = listOf<ResponseFeedListData>()
+    var feedList = listOf<ResponseFeedReviewData.Data>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedListViewHolder {
         val binding =
@@ -33,7 +34,7 @@ class FeedListAdapter : RecyclerView.Adapter<FeedListAdapter.FeedListViewHolder>
     inner class FeedListViewHolder(val binding: ItemFeedListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-            fun onBind(data : ResponseFeedListData){
+            fun onBind(data : ResponseFeedReviewData.Data){
                 binding.data = data
                 val chip = Chip(itemView.context)
                 chip.apply {

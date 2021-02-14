@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.item_feed_filter_bottom_sheet.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 @AndroidEntryPoint
@@ -39,6 +40,9 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
         }
 
         mViewModel.getBottomSheetFiltering()
+        launch {
+            mViewModel.callFeedList()
+        }
 
         setToolBar()
         setClickListener()

@@ -19,33 +19,36 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class FeedBottomSheetDialog(private val viewModel : FeedActivityViewModel) : BottomSheetDialogFragment(),CoroutineScope {
+class FeedBottomSheetDialog(private val viewModel: FeedActivityViewModel) :
+    BottomSheetDialogFragment(), CoroutineScope {
 
-    private lateinit var job : Job
+    private lateinit var job: Job
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 
-    private var _binding : ItemFeedFilterBottomSheetBinding? = null
+    private var _binding: ItemFeedFilterBottomSheetBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         job = Job()
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = ItemFeedFilterBottomSheetBinding.inflate(inflater,container,false)
-        setChip()
+        _binding = ItemFeedFilterBottomSheetBinding.inflate(inflater, container, false)
+        Log.e("Dry","viewModel : ${viewModel.dryCheck} , checkbox : ${binding.feedBottomSheetFilterDry.isChecked}")
+        Log.e("Wet","viewModel : ${viewModel.wetCheck} , checkbox : ${binding.feedBottomSheetFilterWet.isChecked}")
         setObserve()
         return binding.root
     }
 
     private fun setObserve() {
-        viewModel.filterSet.observe(viewLifecycleOwner,{
-            if (it){
+        viewModel.filterSet.observe(viewLifecycleOwner, {
+            if (it) {
                 setChip()
             }
         })
@@ -53,6 +56,9 @@ class FeedBottomSheetDialog(private val viewModel : FeedActivityViewModel) : Bot
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.feedBottomSheetFilterDry.isChecked = viewModel.dryCheck
+        binding.feedBottomSheetFilterWet.isChecked = viewModel.wetCheck
 
         binding.feedBottomSheetOkTxt.setOnClickListener {
             setChipGroupChanged()
@@ -77,29 +83,37 @@ class FeedBottomSheetDialog(private val viewModel : FeedActivityViewModel) : Bot
     }
 
     // tag 필터 적용 여부 결정
-    private fun setChipGroupChanged(){
+    private fun setChipGroupChanged() {
         launch {
             runCatching {
-                for(i in binding.feedBottomSheetTagChipGroup.children){
+                for (i in binding.feedBottomSheetTagChipGroup.children) {
                     val chip = i as Chip
                     viewModel.tagFilterList[chip.text.toString()] = chip.isChecked
                 }
 
-                for(i in binding.feedBottomSheetBrandChipGroup.children){
+                for (i in binding.feedBottomSheetBrandChipGroup.children) {
                     val chip = i as Chip
                     viewModel.brandFilterList[chip.text.toString()] = chip.isChecked
                 }
+                // 건식,습식 체크 여부
+                viewModel.dryCheck = binding.feedBottomSheetFilterDry.isChecked
+                viewModel.wetCheck = binding.feedBottomSheetFilterWet.isChecked
+                Log.e("Dry","Changed viewModel : ${viewModel.dryCheck}")
+                Log.e("Wet","Changed viewModel : ${viewModel.wetCheck}")
+
+                // 필터 체크 적용하기
+                viewModel.applicationFilter()
             }.onSuccess {
-                Log.e("FeedChip","Chip setting Success")
+                Log.e("FeedChip", "Chip setting Success")
             }.onFailure { e ->
-                Log.e("FeedChip","Tag Chip setting Fail")
+                Log.e("FeedChip", "Tag Chip setting Fail")
                 e.printStackTrace()
             }
         }
 
     }
 
-    private fun makeChipItem(i : MutableMap.MutableEntry<String,Boolean>) : Chip {
+    private fun makeChipItem(i: MutableMap.MutableEntry<String, Boolean>): Chip {
         val chip = Chip(binding.root.context)
         chip.apply {
             layoutDirection = View.LAYOUT_DIRECTION_LOCALE
@@ -114,7 +128,6 @@ class FeedBottomSheetDialog(private val viewModel : FeedActivityViewModel) : Bot
             setChipBackgroundColorResource(R.color.white)
             setRippleColorResource(R.color.orange2)
         }
-
         return chip
     }
 

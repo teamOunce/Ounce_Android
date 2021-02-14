@@ -7,7 +7,7 @@
     <data>
         <variable
             name="data"
-            type="com.teamounce.ounce.feed.model.ResponseFeedListData" />
+            type="com.teamounce.ounce.feed.model.ResponseFeedReviewData.Data" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,7 +34,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/apple_sd_gothic"
             android:lineSpacingExtra="13sp"
-            android:text="@{data.brand}"
+            android:text="@{data.manufacturer}"
             android:textColor="@color/gray2"
             android:textFontWeight="400"
             android:textSize="12sp"
@@ -52,7 +52,7 @@
             android:textFontWeight="700"
             android:textSize="14sp"
             android:layout_marginTop="4dp"
-            android:text="@{data.title}"
+            android:text="@{data.productName}"
             app:layout_constraintStart_toStartOf="@+id/feed_brand_txt"
             app:layout_constraintTop_toBottomOf="@+id/feed_brand_txt"
             tools:text="캣 사료 이름" />
@@ -82,7 +82,7 @@
             android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@{Integer.toString(data.count)}"
+            android:text="@{Integer.toString(data.preference)}"
             tools:text="4" />
 
         <HorizontalScrollView
@@ -103,13 +103,6 @@
                 app:chipSpacingHorizontal="6dp"
                 android:paddingVertical="4dp"
                 app:singleLine="true">
-
-                <com.google.android.material.chip.Chip
-                    android:theme="@style/FeedTheme"
-                    style="@style/Widget.MaterialComponents.Chip.Action"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Test"/>
 
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>

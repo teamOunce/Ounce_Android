@@ -31,6 +31,14 @@
           }
         },
         {
+          "client_id": "64083375364-uhtr4gaua8h4tjcudlclg4q961is9h4q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.teamounce.ounce",
+            "certificate_hash": "b28e4ef28f00200fe3ac2720b4314bd0ebfb9c49"
+          }
+        },
+        {
           "client_id": "64083375364-rcdspdgrjon1n5am3a4fda3d5enfoc1q.apps.googleusercontent.com",
           "client_type": 3
         }

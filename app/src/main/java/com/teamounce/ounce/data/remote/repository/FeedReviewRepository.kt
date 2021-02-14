@@ -5,9 +5,9 @@ import com.teamounce.ounce.feed.model.ResponseFilterData
 
 interface FeedReviewRepository {
     suspend fun getReviewFilterList(
-        tag : String? = null,
-    type : String? = null,
-    manu : String? = null,
+        tag : String?,
+    type : String?,
+    manu : String?,
     catIndex: Int) : ResponseFeedReviewData
 
     suspend fun getBottomSheetFilterList(
