@@ -23,11 +23,27 @@
           }
         },
         {
+          "client_id": "64083375364-72aam80h3thcnnkvcmrfkt1ql52ebtq2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.teamounce.ounce",
+            "certificate_hash": "42097f0f68d5f7b8716633eb3f4006ad393a6517"
+          }
+        },
+        {
           "client_id": "64083375364-fq8i6s4ndhgk4kkma68s58ejdjjal0d7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.teamounce.ounce",
             "certificate_hash": "87c36869e89d52afc2d79700a14a93affb1ae6f4"
+          }
+        },
+        {
+          "client_id": "64083375364-uhtr4gaua8h4tjcudlclg4q961is9h4q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.teamounce.ounce",
+            "certificate_hash": "b28e4ef28f00200fe3ac2720b4314bd0ebfb9c49"
           }
         },
         {
