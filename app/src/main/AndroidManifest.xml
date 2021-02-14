@@ -19,7 +19,8 @@
         android:theme="@style/Theme.OUNCE"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".settings.ui.CatRegisterActivity"></activity>
+        <activity android:name=".review.ui.ReviewModifyActivity"></activity>
+        <activity android:name=".settings.ui.CatRegisterActivity" />
         <activity
             android:name=".splash.SplashActivity"
             android:theme="@style/SplashTheme">

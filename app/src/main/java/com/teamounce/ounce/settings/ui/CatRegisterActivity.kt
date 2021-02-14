@@ -10,6 +10,7 @@ import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.databinding.ActivityCatRegisterBinding
 import com.teamounce.ounce.settings.ui.SettingsCareActivity.Companion.REGISTER_SUCCESS
 import com.teamounce.ounce.settings.viewmodel.CatRegisterViewModel
+import com.teamounce.ounce.util.StatusBarUtil
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -19,6 +20,7 @@ class CatRegisterActivity :
     private val registerViewModel: CatRegisterViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        StatusBarUtil.setStatusBar(this)
         binding.apply {
             viewModel = registerViewModel
             lifecycleOwner = this@CatRegisterActivity

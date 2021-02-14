@@ -6,15 +6,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.teamounce.ounce.R
 import com.teamounce.ounce.databinding.ItemCatfoodSliderBinding
+import com.teamounce.ounce.review.model.ImageInfo
 
 class CatFoodSliderAdapter : RecyclerView.Adapter<CatFoodSliderAdapter.CatFoodViewHolder>() {
-    private var catFoodUrlList = listOf<String>()
+    private var catFoodUrlList = listOf<ImageInfo>()
 
     class CatFoodViewHolder(private val binding: ItemCatfoodSliderBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(url: String, position: Int) {
-            binding.url = url
-            binding.isUrl = (position == 0)
+        fun bind(imageInfo: ImageInfo) {
+            binding.url = imageInfo.image
+            binding.isUrl = imageInfo.isUrl
         }
     }
 
@@ -26,12 +27,12 @@ class CatFoodSliderAdapter : RecyclerView.Adapter<CatFoodSliderAdapter.CatFoodVi
     }
 
     override fun onBindViewHolder(holder: CatFoodViewHolder, position: Int) {
-        holder.bind(catFoodUrlList[position], position)
+        holder.bind(catFoodUrlList[position])
     }
 
     override fun getItemCount(): Int = catFoodUrlList.size
 
-    fun replaceList(newCatFoodList: List<String>) {
+    fun replaceList(newCatFoodList: List<ImageInfo>) {
         catFoodUrlList = newCatFoodList
         notifyDataSetChanged()
     }

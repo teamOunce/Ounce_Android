@@ -1,7 +1,8 @@
 package com.teamounce.ounce.data.remote.repository
 
 import com.teamounce.ounce.data.remote.api.ReviewService
-import com.teamounce.ounce.review.model.ResponseRegisterReview
+import com.teamounce.ounce.review.model.ResponseReview
+import com.teamounce.ounce.review.model.ResponseReviewInfo
 import com.teamounce.ounce.review.model.ResponseTags
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -13,7 +14,18 @@ class ReviewRepositoryImpl @Inject constructor(
     override suspend fun registerReview(
         body: HashMap<String, RequestBody>,
         image: MultipartBody.Part?
-    ): ResponseRegisterReview = reviewService.registerReview(body, image)
+    ): ResponseReview = reviewService.registerReview(body, image)
 
     override suspend fun getTags(catIndex: Int): ResponseTags = reviewService.getTags(catIndex)
+
+    override suspend fun modifyReview(
+        body: HashMap<String, RequestBody>,
+        image: MultipartBody.Part?
+    ): ResponseReview = reviewService.modifyReview(body, image)
+
+    override suspend fun deleteReview(reviewIndex: Int): ResponseReview =
+        reviewService.deleteReview(reviewIndex)
+
+    override suspend fun getReviewIndo(reviewIndex: Int): ResponseReviewInfo =
+        reviewService.getReviewInfo(reviewIndex)
 }
