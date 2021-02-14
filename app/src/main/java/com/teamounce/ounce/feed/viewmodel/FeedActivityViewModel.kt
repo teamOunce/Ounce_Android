@@ -86,12 +86,23 @@ class FeedActivityViewModel @Inject constructor(private val repo: FeedReviewRepo
                 }
             }
 
+            if (dryCheck){
+                typeList.add("\"건식\"")
+            }
+            if (wetCheck){
+                typeList.add("\"습식\"")
+            }
+
             if (tagList.isNotEmpty()) {
                 tagString = tagList.joinToString(",")
             }
 
             if (manuList.isNotEmpty()) {
                 manuString = manuList.joinToString(",")
+            }
+
+            if (typeList.isNotEmpty()){
+                typeString = typeList.joinToString (",")
             }
         }.onSuccess {
             callFeedList(tagString, manuString, typeString)

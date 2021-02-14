@@ -40,6 +40,14 @@ class FeedBottomSheetDialog(private val viewModel: FeedActivityViewModel) :
         savedInstanceState: Bundle?
     ): View {
         _binding = ItemFeedFilterBottomSheetBinding.inflate(inflater, container, false)
+
+        binding.feedBottomSheetFilterDry.isChecked = viewModel.dryCheck
+        binding.feedBottomSheetFilterWet.isChecked = viewModel.wetCheck
+
+
+        Log.e("CreateView"," dry : ${binding.feedBottomSheetFilterDry.isChecked}")
+        Log.e("CreateView"," wet : ${binding.feedBottomSheetFilterDry.isChecked}")
+
         setObserve()
         return binding.root
     }
@@ -55,19 +63,29 @@ class FeedBottomSheetDialog(private val viewModel: FeedActivityViewModel) :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.feedBottomSheetFilterDry.isChecked = viewModel.dryCheck
-        binding.feedBottomSheetFilterWet.isChecked = viewModel.wetCheck
-
-        binding.feedBottomSheetFilterDry.setOnClickListener {
-            binding.feedBottomSheetFilterDry.isChecked = !binding.feedBottomSheetFilterDry.isChecked
-        }
-        binding.feedBottomSheetFilterWet.setOnClickListener {
-            binding.feedBottomSheetFilterWet.isChecked = !binding.feedBottomSheetFilterWet.isChecked
+        binding.feedBottomSheetResetTxt.setOnClickListener {
+            binding.feedBottomSheetFilterDry.isChecked = false
+            binding.feedBottomSheetFilterWet.isChecked = false
+            resetAllChip()
         }
 
         binding.feedBottomSheetOkTxt.setOnClickListener {
             setChipGroupChanged()
             dismiss()
+        }
+    }
+
+    private fun resetAllChip() {
+        launch {
+            for (i in binding.feedBottomSheetTagChipGroup.children) {
+                val chip = i as Chip
+                chip.isChecked = false
+            }
+
+            for (i in binding.feedBottomSheetBrandChipGroup.children) {
+                val chip = i as Chip
+                chip.isChecked = false
+            }
         }
     }
 
@@ -103,8 +121,6 @@ class FeedBottomSheetDialog(private val viewModel: FeedActivityViewModel) :
                 // 건식,습식 체크 여부
                 viewModel.dryCheck = binding.feedBottomSheetFilterDry.isChecked
                 viewModel.wetCheck = binding.feedBottomSheetFilterWet.isChecked
-                Log.e("Dry","Changed viewModel : ${viewModel.dryCheck}")
-                Log.e("Wet","Changed viewModel : ${viewModel.wetCheck}")
 
                 // 필터 체크 적용하기
                 viewModel.applicationFilter()
@@ -137,7 +153,8 @@ class FeedBottomSheetDialog(private val viewModel: FeedActivityViewModel) :
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         job.cancel()
+        Log.e("Destroy","call Destroy")
+        super.onDestroy()
     }
 }
