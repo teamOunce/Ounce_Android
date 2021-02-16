@@ -22,8 +22,10 @@ data class Review(
         val productImg: String,
         @SerializedName("productName")
         val productName: String,
-        @SerializedName("reviewMoment")
-        val reviewMoment: String,
+        @SerializedName("createdDate")
+        val createdDate: String,
+        @SerializedName("updatedDate")
+        val updatedDate: String,
         @SerializedName("tag1")
         val tag1: String,
         @SerializedName("tag2")

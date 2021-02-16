@@ -2,6 +2,7 @@ package com.teamounce.ounce.review.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
@@ -14,15 +15,18 @@ import com.google.android.material.chip.Chip
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.databinding.ActivityReviewModifyBinding
+import com.teamounce.ounce.feed.ui.FeedActivity
 import com.teamounce.ounce.review.adapter.CatFoodSliderAdapter
 import com.teamounce.ounce.review.model.ImageInfo
 import com.teamounce.ounce.review.viewmodel.ReviewViewModel
 import com.teamounce.ounce.util.ChipFactory
+import com.teamounce.ounce.util.StatusBarUtil
 import dagger.hilt.android.AndroidEntryPoint
 import gun0912.tedimagepicker.builder.TedImagePicker
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -38,8 +42,17 @@ class ReviewModifyActivity :
             lifecycleOwner = this@ReviewModifyActivity
             viewModel = reviewViewModel
         }
+        StatusBarUtil.setStatusBar(this)
         val reviewIndex = intent.getIntExtra("reviewIndex", 0)
         initView()
+        reviewViewModel.setEmptyImage(
+            MultipartBody.Part.createFormData(
+                "image",
+                "",
+                "".toRequestBody("image/png".toMediaTypeOrNull())
+            )
+        )
+        reviewViewModel.reviewIndex = reviewIndex
         reviewViewModel.getReviewInfo(reviewIndex)
         reviewViewModel.getTags()
     }
@@ -52,14 +65,12 @@ class ReviewModifyActivity :
 
     private fun setAdapter() {
         imageSliderAdapter = CatFoodSliderAdapter()
+        binding.vpRecordSlider.adapter = imageSliderAdapter
     }
 
     private fun setUIListener() {
         binding.imgReviewBack.setOnClickListener { finish() }
-        binding.ratingRecordPreference.setOnRatingChangeListener {
-            reviewViewModel.preference = it
-            binding.btnSubmit.isEnabled = true
-        }
+        binding.ratingRecordPreference.setOnRatingChangeListener { reviewViewModel.preference = it }
         binding.imgRecordAddImage.setOnClickListener {
             TedImagePicker.with(this)
                 .start { uri ->
@@ -82,6 +93,13 @@ class ReviewModifyActivity :
         reviewViewModel.reviewInfo.observe(this) {
             binding.ratingRecordPreference.setStar(it.preference.toFloat())
             binding.etRecordMemo.setText(it.memo)
+            listOf(it.productImg, it.myImg)
+                .filter { it != "" }
+                .map { ImageInfo(it, true) }
+                .also { imageSliderAdapter.replaceList(it) }
+            val selectedTag = listOf(it.tag1, it.tag2, it.tag3)
+                            .filter { it != "" }
+            reviewViewModel.initTags(selectedTag)
         }
         reviewViewModel.warningMessage.observe(this) { it.toast() }
         reviewViewModel.tagList.observe(this) {
@@ -90,6 +108,22 @@ class ReviewModifyActivity :
                 .map { it.toChip() }
                 .map { it.init() }
                 .forEach { binding.chipgroupRecordTag.addView(it) }
+        }
+        reviewViewModel.result.observe(this) {
+            if (it.data == null) {
+                Toast.makeText(this, "리뷰 등록이 실패되었습니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "리뷰 등록을 성공했습니다.", Toast.LENGTH_SHORT).show()
+                ReviewCompleteFragment(
+                    reviewViewModel.preference.toInt(),
+                    object : ReviewCompleteFragment.DisMissClickListener {
+                        override fun onClick(context: Context) {
+                            startActivity(Intent(context, FeedActivity::class.java))
+                            finish()
+                        }
+                    }
+                ).show(supportFragmentManager, "ReviewComplete")
+            }
         }
     }
 
@@ -103,13 +137,14 @@ class ReviewModifyActivity :
     private fun chipCheckedChangeListener(): CompoundButton.OnCheckedChangeListener {
         return CompoundButton.OnCheckedChangeListener { compoundButton, checked ->
             if (checked) {
-                if (reviewViewModel.isTagsFull) {
+                reviewViewModel.addTag(compoundButton.text.substring(1))
+                if (reviewViewModel.isTagEntryFull()) {
+                    Log.d("TAG", "TAG FULL ${compoundButton.text}: $checked")
                     compoundButton.isChecked = false
-                } else {
-                    reviewViewModel.addTag(compoundButton.text.toString())
+                    reviewViewModel.deleteTag(compoundButton.text.substring(1))
                 }
             } else {
-                reviewViewModel.deleteTag(compoundButton.text.toString())
+                reviewViewModel.deleteTag(compoundButton.text.substring(1))
             }
         }
     }
@@ -121,9 +156,7 @@ class ReviewModifyActivity :
     }
 
     private fun setChecked(chip: Chip) {
-        val selectedTagList =
-            with(reviewViewModel.reviewInfo.value!!) { listOf(this.tag1, this.tag2, this.tag3) }
-        chip.isSelected = selectedTagList.contains(chip.text)
+        chip.isChecked = reviewViewModel.isContained(chip.text.substring(1))
     }
 
     private fun makeMultiPartBody(uri: Uri) {

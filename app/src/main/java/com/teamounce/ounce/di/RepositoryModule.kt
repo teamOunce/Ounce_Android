@@ -13,7 +13,7 @@ import javax.inject.Singleton
 abstract class RepositoryModule {
     @Binds
     @Singleton
-    abstract fun bindFeedRepository(repository: MockFeedRepositoryImpl): FeedRepository
+    abstract fun bindFeedRepository(repository: FeedRepositoryImpl): FeedRepository
 
     @Binds
     @Singleton
