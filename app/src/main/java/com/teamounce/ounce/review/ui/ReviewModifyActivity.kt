@@ -15,6 +15,7 @@ import com.google.android.material.chip.Chip
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.databinding.ActivityReviewModifyBinding
+import com.teamounce.ounce.feed.ui.Comment
 import com.teamounce.ounce.feed.ui.FeedActivity
 import com.teamounce.ounce.review.adapter.CatFoodSliderAdapter
 import com.teamounce.ounce.review.model.ImageInfo
@@ -70,7 +71,10 @@ class ReviewModifyActivity :
 
     private fun setUIListener() {
         binding.imgReviewBack.setOnClickListener { finish() }
-        binding.ratingRecordPreference.setOnRatingChangeListener { reviewViewModel.preference = it }
+        binding.ratingRecordPreference.setOnRatingChangeListener {
+            reviewViewModel.preference = it
+            binding.txtRecordPreferenceExplain.setText(Comment.of(it.toInt()))
+        }
         binding.imgRecordAddImage.setOnClickListener {
             TedImagePicker.with(this)
                 .start { uri ->

@@ -3,6 +3,7 @@ package com.teamounce.ounce.register.ui
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,7 +39,10 @@ class CatInfoFragment : BindingFragment<FragmentCatInfoBinding>(R.layout.fragmen
 
     private fun setUIListener() {
         binding.datepickerRegister.setOnDateChangedListener { _, year, month, day ->
-            registerViewModel.meetDate.value = "$year-$month-$day"
+            when(month) {
+                in 0..8 -> registerViewModel.meetDate.value = "$year-0${month + 1}-$day"
+                else -> registerViewModel.meetDate.value = "$year-${month}-$day"
+            }
         }
         binding.btnRegisterComplete.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_registerFragment_to_welcomeFragment)
@@ -78,7 +82,9 @@ class CatInfoFragment : BindingFragment<FragmentCatInfoBinding>(R.layout.fragmen
         activity?.let {
             TedKeyboardObserver(it)
                 .listen { isShow ->
-                    if (!isShow) { binding.txtCatName.clearFocus() }
+                    if (!isShow) {
+                        binding.txtCatName.clearFocus()
+                    }
                 }
         }
     }

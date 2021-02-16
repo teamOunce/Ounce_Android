@@ -41,6 +41,21 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:tint="@color/orangey_red" />
 
+                <TextView
+                    android:id="@+id/txt_search_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanskr"
+                    android:includeFontPadding="false"
+                    android:text="기록하기"
+                    android:textColor="@color/gray3"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -95,19 +110,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/btn_layout_grid"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_search_grid" />
+                    android:background="@drawable/ic_search_grid" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/btn_layout_list"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_search_linear" />
+                    android:background="@drawable/ic_search_linear" />
 
             </LinearLayout>
 
