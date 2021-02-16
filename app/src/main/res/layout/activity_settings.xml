@@ -79,6 +79,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/notosans_bold"
         android:text="온스 소개"
+        android:textSize="16sp"
         android:textColor="@color/gray_two"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/txt_ounce"
@@ -91,6 +92,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/notosans_bold"
         android:text="현재 버전"
+        android:textSize="16sp"
         android:textColor="@color/gray_two"
         app:layout_constraintStart_toStartOf="@id/txt_ounceintro"
         app:layout_constraintTop_toBottomOf="@id/txt_ounceintro" />
@@ -116,6 +118,7 @@
         android:fontFamily="@font/notosans_bold"
         android:text="이용약관"
         android:textColor="@color/gray_two"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/txt_ouncever"
         app:layout_constraintTop_toBottomOf="@id/txt_ouncever" />
@@ -128,6 +131,7 @@
         android:fontFamily="@font/notosans_bold"
         android:text="개인정보 처리방침"
         android:textColor="@color/gray_two"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/txt_ounceagree"
         app:layout_constraintTop_toBottomOf="@id/txt_ounceagree" />
@@ -139,6 +143,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/notosans_bold"
         android:text="오픈소스 라이센스"
+        android:textSize="15sp"
         android:textColor="@color/gray_two"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/txt_ouncepolicy"
