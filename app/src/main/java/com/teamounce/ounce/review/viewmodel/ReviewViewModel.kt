@@ -94,7 +94,7 @@ class ReviewViewModel @Inject constructor(
             productData.productIndex.toString().toRequestBody("text/plain".toMediaTypeOrNull())
         val preference =
             preference.toInt().toString().toRequestBody("text/plain".toMediaTypeOrNull())
-        val memo = memo.value!!.toRequestBody("text/plain".toMediaTypeOrNull())
+        val memo = (memo.value ?: "").toRequestBody("text/plain".toMediaTypeOrNull())
         val tagList = _tagList.value!!.asSequence()
             .filter { selectedTag.contains("#${it.tag}") }
             .map { it.tag }

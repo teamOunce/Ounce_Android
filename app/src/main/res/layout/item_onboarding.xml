@@ -41,7 +41,7 @@
             android:text="@{onBoardingData.txt_onboarding_explain}"
             android:textColor="@color/text_color_gray"
             android:textFontWeight="400"
-            android:textSize="12sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/txt_onboarding_title"
             app:layout_constraintTop_toBottomOf="@+id/txt_onboarding_title"
             tools:text="우리 고양이의 입맛을 기록해요" />
@@ -52,7 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="32dp"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="6:5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
