@@ -16,9 +16,8 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:scaleType="fitXY"
-            app:layout_constraintDimensionRatio="15:8"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
             app:layout_constraintTop_toTopOf="parent"
             app:setSrcFromUrl="@{url}"
             tools:src="@drawable/img_dummy" />

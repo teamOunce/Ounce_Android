@@ -72,7 +72,7 @@ class FoodDetailActivity :
                 it.catFoodReview.tag1,
                 it.catFoodReview.tag2,
                 it.catFoodReview.tag3
-            ).filter { tag -> tag != "" }
+            ).filter { tag -> tag != " " }
             Log.d("TAG", tagList.toString())
             tagAdapter.replaceList(tagList)
             setReviewBoxTopMargin(tagList.isEmpty())
