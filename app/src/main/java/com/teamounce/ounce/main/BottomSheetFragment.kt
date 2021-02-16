@@ -65,7 +65,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
                     bottomSheetDatas = response.body()!!.data
 
                     response.body()!!.data.forEach{
-                        if(it.state) OunceLocalRepository.catIndexSelected = it.catIndex
+                        if(it.state) OunceLocalRepository.catIndex = it.catIndex
                     }
 
                     bottomSheetAdapter.bottomSheetProfileData = bottomSheetDatas
