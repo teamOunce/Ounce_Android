@@ -118,8 +118,8 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         }
         StatusBarUtil.setStatusBar(
                 this@MainActivity,
-                BackgroundColor.of(26),
-                BackgroundColor.alsoStatusBar(26)
+                BackgroundColor.of(OunceLocalRepository.reviewCount),
+                BackgroundColor.alsoStatusBar(OunceLocalRepository.reviewCount)
         )
     }
 
