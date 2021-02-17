@@ -11,7 +11,6 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
-import com.teamounce.ounce.R
 
 
 object BindingAdapters {
@@ -54,7 +53,7 @@ object BindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter("login:setLottie")
+    @BindingAdapter("setLottie")
     fun setLottieFile(view: LottieAnimationView, file: String) {
         view.setAnimation(file)
     }

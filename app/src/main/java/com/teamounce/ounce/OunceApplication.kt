@@ -12,7 +12,7 @@ class OunceApplication : Application() {
         super.onCreate()
         initPixelUtil()
         OunceLocalRepository.init(this)
-        KakaoSdk.init(this, OunceLocalRepository.getKey())
+        KakaoSdk.init(this, OunceLocalRepository.getKey(), loggingEnabled = true)
     }
 
     private fun initPixelUtil() {
