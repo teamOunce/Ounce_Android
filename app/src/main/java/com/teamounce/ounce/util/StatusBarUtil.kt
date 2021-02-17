@@ -8,7 +8,7 @@ import android.view.View
 object StatusBarUtil {
     @SuppressLint("InlinedApi")
     @Suppress("DEPRECATION")
-    fun setStatusBar(activity: Activity){
+    fun setStatusBar(activity: Activity) {
         activity.window?.decorView?.systemUiVisibility =
             View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         activity.window?.statusBarColor = Color.TRANSPARENT
@@ -19,6 +19,16 @@ object StatusBarUtil {
     fun setStatusBar(activity: Activity, color: Int) {
         activity.window?.decorView?.systemUiVisibility =
             View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        activity.window?.statusBarColor = color
+    }
+
+    @SuppressLint("InlinedApi")
+    @Suppress("DEPRECATION")
+    fun setStatusBar(activity: Activity, color: Int, lightBar: Boolean) {
+        if (!lightBar) {
+            activity.window?.decorView?.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        }
         activity.window?.statusBarColor = color
     }
 }

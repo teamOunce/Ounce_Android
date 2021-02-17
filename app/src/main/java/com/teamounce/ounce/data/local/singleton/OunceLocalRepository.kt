@@ -55,7 +55,7 @@ object OunceLocalRepository {
         set(value) = encryptedRepository.edit { it.putInt(CAT_INDEX_KEY, value) }
 
     var loginFrom: String
-        get() = encryptedRepository.getString(FROM_KEY, "error") ?: "error"
+        get() = encryptedRepository.getString(FROM_KEY, "unregistered") ?: "unregistered"
         set(value) = encryptedRepository.edit { it.putString(FROM_KEY, value) }
 
     var catName: String

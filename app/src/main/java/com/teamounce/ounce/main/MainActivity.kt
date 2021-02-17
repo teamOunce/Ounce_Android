@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import com.teamounce.ounce.R
+import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.data.remote.api.MainService
 import com.teamounce.ounce.data.remote.singleton.RetrofitObjects
@@ -23,25 +23,23 @@ import retrofit2.Call
 import retrofit2.Response
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
     val bottomSheetFragment = BottomSheetFragment()
-    lateinit var activityMainBinding: ActivityMainBinding
     private lateinit var mainViewRetrofitInterface: MainService
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(activityMainBinding.root)
+        binding.lifecycleOwner = this
+        binding.executePendingBindings()
         sharedPreferences = SharedPreferences(this)
-        StatusBarUtil.setStatusBar(this)
 
         operateBottomSheet()
         setMainViewRetrofit()
         goToSearchActivity()
         goToSettingsActivity()
         goToFeedBackActivity()
-        setBackGroundResource()
+        setBackgroundResource()
     }
 
 
@@ -56,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun goToSearchActivity() {
         //한입더! 버튼 눌렀을 때, SearchActivity
-        activityMainBinding.homeBtnRecord.setOnClickListener {
+        binding.homeBtnRecord.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
         }
@@ -64,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun goToSettingsActivity() {
         //햄버거바 눌렀을 때, SettingActivity
-        activityMainBinding.btnMenu.setOnClickListener {
+        binding.btnMenu.setOnClickListener {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
@@ -72,24 +70,32 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun operateBottomSheet() {
-        activityMainBinding.mainBackground.setOnTouchListener(object : OnSwipeTouchListener(this) {
+        binding.mainBackground.setOnTouchListener(object : OnSwipeTouchListener(this) {
             override fun onSwipeUp() {
-                super.onSwipeUp()
                 bottomSheetFragment.show(supportFragmentManager, "tag")
             }
         })
 
-        activityMainBinding.textviewCatName.setOnClickListener {
+        binding.textviewCatName.setOnClickListener {
             bottomSheetFragment.show(supportFragmentManager, "bottomsheet")
         }
 
-        activityMainBinding.imageviewDropbox.setOnClickListener {
+        binding.imageviewDropbox.setOnClickListener {
             bottomSheetFragment.show(supportFragmentManager, "bottomsheet")
         }
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    private fun setBackGroundResource() {
+    private fun setBackgroundResource() {
+//        with(binding) {
+//            lottieFile = ScreenAnimation.by(reviewCount)
+//            mainBackground.setBackgroundColor(BackgroundColor.of(reviewCount))
+//            StatusBarUtil.setStatusBar(
+//                this@MainActivity,
+//                BackgroundColor.of(reviewCount),
+//                BackgroundColor.alsoStatusBar(reviewCount)
+//            )
+//        }
         when (OunceLocalRepository.reviewCount) {
             0 -> setBackgroundHotSourcr(R.color.white, R.raw.home_img_nothing)
             in BACKGROUND_ONE_RANGE -> setBackgroundHotSourcr(
@@ -110,19 +116,24 @@ class MainActivity : AppCompatActivity() {
             )
             else -> setBackgroundHotSourcr(R.color.mainbackground_five, R.raw.home_img_step4)
         }
+        StatusBarUtil.setStatusBar(
+                this@MainActivity,
+                BackgroundColor.of(26),
+                BackgroundColor.alsoStatusBar(26)
+        )
     }
 
     private fun setBackgroundHotSourcr(backgroundColor: Int, lottieAnimation: Int) {
-        activityMainBinding.imageviewCat.setAnimation(lottieAnimation)
-        activityMainBinding.mainBackground.setBackgroundColor(getColor(backgroundColor))
+        binding.imageviewCat.setAnimation(lottieAnimation)
+        binding.mainBackground.setBackgroundColor(getColor(backgroundColor))
     }
 
     private fun setCatName(name: String) {
-        activityMainBinding.textviewCatName.text = name
+        binding.textviewCatName.text = name
     }
 
     private fun setCatDday(dday: Int) {
-        activityMainBinding.textviewCatDday.text = "만난지 ${dday}일 째"
+        binding.textviewCatDday.text = "만난지 ${dday}일 째"
     }
 
     fun setMainViewRetrofit() {
