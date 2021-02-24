@@ -26,6 +26,7 @@ class WelcomeFragment : BindingFragment<FragmentWelcomeBinding>(R.layout.fragmen
             viewModel = registerViewModel
             lifecycleOwner = viewLifecycleOwner
         }
+        binding.imgWelcomeBackground.setAnimation("welcome_img.json")
         registerViewModel.transferToMain.observe(viewLifecycleOwner) {
             if (it) {
                 val intent = Intent(requireContext(), MainActivity::class.java)

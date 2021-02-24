@@ -78,6 +78,7 @@ class SettingsActivity : AppCompatActivity() {
                             userRefreshToken = ""
                             userAccessToken = ""
                             catIndex = -1
+                            loginFrom = "unregistered"
                         }
                         startActivity(intent)
                     }
@@ -151,6 +152,7 @@ class SettingsActivity : AppCompatActivity() {
                         userRefreshToken = ""
                         userAccessToken = ""
                         catIndex = -1
+                        loginFrom = "unregistered"
                     }
                     startActivity(intent)
                 }
