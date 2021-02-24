@@ -127,6 +127,7 @@ class ReviewModifyActivity :
                         }
                     }
                 ).show(supportFragmentManager, "ReviewComplete")
+                finish()
             }
         }
     }

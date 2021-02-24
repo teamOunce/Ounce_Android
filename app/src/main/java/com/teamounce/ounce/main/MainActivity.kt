@@ -72,7 +72,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     private fun operateBottomSheet() {
         binding.mainBackground.setOnTouchListener(object : OnSwipeTouchListener(this) {
             override fun onSwipeUp() {
-                bottomSheetFragment.show(supportFragmentManager, "tag")
+                bottomSheetFragment.show(supportFragmentManager, "bottomsheet")
             }
         })
 
@@ -133,7 +133,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     private fun setCatDday(dday: Int) {
-        binding.textviewCatDday.text = "만난지 ${dday}일 째"
+        binding.textviewCatDday.text = "만난 지 ${dday}일째"
     }
 
     fun setMainViewRetrofit() {
@@ -151,7 +151,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
             ) {
                 if (response.isSuccessful) {
                     setCatName(response.body()!!.data.catName)
-                    setCatDday(response.body()!!.data.fromMeet)
+                    setCatDday((response.body()!!.data.fromMeet) + 1)
                     OunceLocalRepository.reviewCount = response.body()!!.data.reviewCount
                     OunceLocalRepository.catName = response.body()!!.data.catName
 
