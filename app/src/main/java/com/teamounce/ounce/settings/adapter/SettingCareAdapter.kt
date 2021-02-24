@@ -26,10 +26,6 @@ class SettingCareAdapter(
     private val context: Context,
     private val listener: CatDeleteButton
 ) : RecyclerView.Adapter<SettingCareViewHolder>() {
-
-    private lateinit var mainDeleteRetrofitInterface: MainService
-    private val prefs = SharedPreferences(context as SettingsCareActivity)
-
     var datas = mutableListOf<BottomSheetProfileData>()
     private val fragmentManager = (context as SettingsCareActivity).supportFragmentManager
 
@@ -121,26 +117,25 @@ class SettingCareAdapter(
     }
 
     fun setMainDeleteRetrofit(position: Int) {
-        mainDeleteRetrofitInterface = RetrofitObjects.getMainService()
-        mainDeleteRetrofitInterface.mainDeleteRetrofit(
-            datas[position].catIndex
-        ).enqueue(object : retrofit2.Callback<MainDeleteResponseData> {
-            override fun onFailure(call: Call<MainDeleteResponseData>, t: Throwable) {
-                Log.d("서버 통신 실패", "${t}")
-            }
-
-            override fun onResponse(
-                call: Call<MainDeleteResponseData>,
-                response: Response<MainDeleteResponseData>
-            ) {
-                if (response.isSuccessful) {
-                    Log.d("고양이 삭제 성공", response.body()!!.data.toString())
-                    listener.OnClickListener(position)
-                } else {
-                    Log.d("서버에러", response.body()!!.responseMessage)
+        RetrofitObjects.getMainService()
+            .mainDeleteRetrofit(datas[position].catIndex)
+            .enqueue(object : retrofit2.Callback<MainDeleteResponseData> {
+                override fun onFailure(call: Call<MainDeleteResponseData>, t: Throwable) {
+                    Log.d("서버 통신 실패", "${t}")
                 }
-            }
-        })
+
+                override fun onResponse(
+                    call: Call<MainDeleteResponseData>,
+                    response: Response<MainDeleteResponseData>
+                ) {
+                    if (response.isSuccessful) {
+                        Log.d("고양이 삭제 성공", response.body()!!.data.toString())
+                        listener.OnClickListener(position)
+                    } else {
+                        Log.d("서버에러", response.body()!!.responseMessage)
+                    }
+                }
+            })
     }
 
     interface CatDeleteButton {

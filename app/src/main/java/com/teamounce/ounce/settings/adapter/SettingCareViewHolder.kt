@@ -12,7 +12,7 @@ class SettingCareViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
 
     fun bind(bottomSheetProfileData: BottomSheetProfileData) {
         settingCatname.text = bottomSheetProfileData.catName
-        settingCatDday.text = "만난지 ${bottomSheetProfileData.fromMeet} 일 째"
+        settingCatDday.text = "만난지 ${bottomSheetProfileData.fromMeet + 1} 일 째"
     }
 }
 

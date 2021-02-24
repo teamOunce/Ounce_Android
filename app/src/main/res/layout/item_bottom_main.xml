@@ -32,7 +32,7 @@
             android:id="@+id/cat_dday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text='@{"만난지 " + bottomSheetProfileData.fromMeet+"일 째"}'
+            android:text='@{"만난지 "+(bottomSheetProfileData.fromMeet + 1)+"일 째"}'
             android:layout_marginTop="7dp"
             android:fontFamily="@font/notosans_regular"
             app:layout_constraintBottom_toBottomOf="parent"
