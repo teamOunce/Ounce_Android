@@ -27,8 +27,13 @@ class TagActivity : BindingActivity<ActivityTagBinding>(R.layout.activity_tag) {
             lifecycleOwner = this@TagActivity
             viewModel = tagViewModel
         }
+        setUIListener()
         setAdapter()
         subscribeObservers()
+    }
+
+    private fun setUIListener() {
+        binding.imgTagBack.setOnClickListener { finish() }
     }
 
     private fun setAdapter() {
@@ -46,6 +51,7 @@ class TagActivity : BindingActivity<ActivityTagBinding>(R.layout.activity_tag) {
             isTagMax.observe(this@TagActivity) {
                 if (it) { setErrorText("이미 15개가 작성되어 있어요.", orange) }
                 binding.etTagSearch.isEnabled = !it
+                binding.etTagSearch.setText("")
             }
             queryWordMax.observe(this@TagActivity) {
                 if(it) { setErrorText("최대 글자 수를 초과했어요.", orange) }

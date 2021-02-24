@@ -24,8 +24,13 @@ class SettingCustomDialogBuilder {
         dialog.negativeButton =negativebutton
         return this
     }
-    fun setSingleButton(singleButton : Boolean): SettingCustomDialogBuilder {
-        dialog.singleButton = singleButton
+    fun setDisableNegativeButton(disableNegativeButton : Boolean): SettingCustomDialogBuilder {
+        dialog.disableNegativeButton = disableNegativeButton
+        return this
+    }
+
+    fun setDisablePositiveButton(disablePositiveButton: Boolean):SettingCustomDialogBuilder{
+        dialog.disablePositiveButton = disablePositiveButton
         return this
     }
 

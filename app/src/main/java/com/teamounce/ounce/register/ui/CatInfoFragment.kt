@@ -3,6 +3,7 @@ package com.teamounce.ounce.register.ui
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import com.teamounce.ounce.databinding.FragmentCatInfoBinding
 import com.teamounce.ounce.register.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import gun0912.tedkeyboardobserver.TedKeyboardObserver
+import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
@@ -29,6 +31,10 @@ class CatInfoFragment : BindingFragment<FragmentCatInfoBinding>(R.layout.fragmen
             viewModel = registerViewModel
             lifecycleOwner = viewLifecycleOwner
         }
+        val date = Calendar.getInstance().time
+        val dateInString = date.toString("yyyy-MM-dd")
+        Log.d("TAG", dateInString)
+        registerViewModel.meetDate.value = dateInString
         setUIListener()
         setError()
         setMaxDate()
@@ -38,7 +44,10 @@ class CatInfoFragment : BindingFragment<FragmentCatInfoBinding>(R.layout.fragmen
 
     private fun setUIListener() {
         binding.datepickerRegister.setOnDateChangedListener { _, year, month, day ->
-            registerViewModel.meetDate.value = "$year-$month-$day"
+            when(month) {
+                in 0..8 -> registerViewModel.meetDate.value = "$year-0${month + 1}-$day"
+                else -> registerViewModel.meetDate.value = "$year-${month}-$day"
+            }
         }
         binding.btnRegisterComplete.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_registerFragment_to_welcomeFragment)
@@ -78,7 +87,9 @@ class CatInfoFragment : BindingFragment<FragmentCatInfoBinding>(R.layout.fragmen
         activity?.let {
             TedKeyboardObserver(it)
                 .listen { isShow ->
-                    if (!isShow) { binding.txtCatName.clearFocus() }
+                    if (!isShow) {
+                        binding.txtCatName.clearFocus()
+                    }
                 }
         }
     }
@@ -88,5 +99,10 @@ class CatInfoFragment : BindingFragment<FragmentCatInfoBinding>(R.layout.fragmen
         private const val ERROR_BLANK = "이름을 입력해주세요"
         private const val ERROR_NOT_KOREAN = "이름은 한글만 가능합니다"
         private const val ERROR_EXCESS_LENGTH = "글자수를 초과했습니다"
+    }
+
+    fun Date.toString(format: String, locale: Locale = Locale.KOREA): String {
+        val formatter = SimpleDateFormat(format, locale)
+        return formatter.format(this)
     }
 }

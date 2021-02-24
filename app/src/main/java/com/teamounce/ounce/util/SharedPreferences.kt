@@ -8,27 +8,27 @@ import com.teamounce.ounce.main.BottomSheetProfileData
 import java.text.FieldPosition
 
 class SharedPreferences(context: Context) {
-    private val prefs : SharedPreferences? =
+    private val prefs: SharedPreferences? =
         context.getSharedPreferences("prefs_name", android.content.Context.MODE_PRIVATE)
     var makeGson = GsonBuilder().create()
-    var listType : TypeToken<MutableList<BottomSheetProfileData>> = object : TypeToken
-            <MutableList<BottomSheetProfileData>>() {}
+    var listType: TypeToken<MutableList<BottomSheetProfileData>> = object : TypeToken
+    <MutableList<BottomSheetProfileData>>() {}
 
-    private fun getInt(key :String) : Int? {
-        val int = prefs?.getInt(key,-1)
+    private fun getInt(key: String): Int? {
+        val int = prefs?.getInt(key, -1)
 
-        return if (int == -1){
+        return if (int == -1) {
             null
-        }else {
+        } else {
             int
         }
     }
 
-    private fun setInt (key:String, value: Int?) {
-        if(value == null){
-            prefs?.edit()?.putInt(key,-1)?.apply()
-        }else{
-            prefs?.edit()?.putInt(key,value)?.apply()
+    private fun setInt(key: String, value: Int?) {
+        if (value == null) {
+            prefs?.edit()?.putInt(key, -1)?.apply()
+        } else {
+            prefs?.edit()?.putInt(key, value)?.apply()
         }
     }
 
@@ -64,13 +64,5 @@ class SharedPreferences(context: Context) {
 
     fun getCatPositionSelected(): Int? {
         return getInt("selectedCatPosition")
-    }
-
-    fun setCatIdx(catIndex: Int) {
-        setInt("selectedCatIdx", catIndex)
-    }
-
-    fun getSelectedCatIdx(): Int? {
-        return getInt("selectedCatIdx")
     }
 }

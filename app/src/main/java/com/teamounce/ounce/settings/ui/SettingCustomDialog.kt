@@ -16,7 +16,8 @@ class SettingCustomDialog() : DialogFragment() {
     var subtitle: String? = null
     var positiveButton: String? = null
     var negativeButton: String? = null
-    var singleButton : Boolean?= false
+    var disableNegativeButton : Boolean?= false
+    var disablePositiveButton : Boolean?= false
     var listener: SettingCustomDialogListener? = null
     private var deviceSizeX: Int? = null
 
@@ -38,12 +39,20 @@ class SettingCustomDialog() : DialogFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         view?.apply {
-            if(singleButton == true) {
+            if(disableNegativeButton == true) {
                 settingcare_dialog_no.visibility = View.GONE
+            }
+            else{
+                settingcare_dialog_no.visibility = View.VISIBLE
+            }
+
+            if(disablePositiveButton == true) {
+                settingcare_dialog_yes.visibility = View.GONE
             }
             else{
                 settingcare_dialog_yes.visibility = View.VISIBLE
             }
+
             findViewById<TextView>(R.id.dialog_title)?.text = title
 
             if(subtitle.isNullOrBlank()) {
@@ -93,7 +102,7 @@ class SettingCustomDialog() : DialogFragment() {
     }
 
     companion object{
-        private const val DIALOG_WIDTH_RATIO = 0.9
+        private const val DIALOG_WIDTH_RATIO = 0.8
     }
 
     interface SettingCustomDialogListener {

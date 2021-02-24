@@ -63,6 +63,11 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             ) {
                 if (response.isSuccessful) {
                     bottomSheetDatas = response.body()!!.data
+
+                    response.body()!!.data.forEach{
+                        if(it.state) OunceLocalRepository.catIndex = it.catIndex
+                    }
+
                     bottomSheetAdapter.bottomSheetProfileData = bottomSheetDatas
                     prefs.setCatList(bottomSheetDatas)
                     Log.d("datas", response.body()!!.data.toString())

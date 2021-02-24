@@ -48,6 +48,7 @@ class SettingCareAdapter(
 
     override fun onBindViewHolder(holder: SettingCareViewHolder, position: Int) {
         holder.bind(datas[position])
+
         if (datas[position].catIndex == OunceLocalRepository.catIndex) {
             holder.itemView.setting_catdlt.apply {
                 this.setBackgroundResource(R.drawable.ic_cat_gray_selected)
@@ -59,25 +60,13 @@ class SettingCareAdapter(
         }
 
         holder.itemView.setting_catdlt.setOnClickListener {
-            if (datas.size == 1) {
+            if(datas[position].catIndex == OunceLocalRepository.catIndex) {
                 val dialog = SettingCustomDialogBuilder()
                     .setTitle("현재 여행중인 고양이예요")
                     .setSubTitle("지우길 원한다면,\n다른 고양이로 접속해 주세요!")
                     .setNegativeButton("확인")
-                    .setSingleButton(true)
-                    .setButtonClickListener(object : SettingCustomDialogListener {
-                        override fun onClickPositiveButton() {
-
-                        }
-
-                        override fun onClickNegativeButton() {
-                            setMainDeleteRetrofit(position)
-                            Toast.makeText(context, "고양이를 삭제하지 못했습니다", Toast.LENGTH_SHORT).show()
-
-                        }
-                    })
+                    .setDisablePositiveButton(true)
                     .create()
-
                 dialog.show(fragmentManager, dialog.tag)
             } else {
                 val dialog = SettingCustomDialogBuilder()
@@ -99,6 +88,35 @@ class SettingCareAdapter(
 
                 dialog.show(fragmentManager, dialog.tag)
             }
+
+//            if (datas.size == 1) {
+//                val dialog = SettingCustomDialogBuilder()
+//                    .setTitle("현재 여행중인 고양이예요")
+//                    .setSubTitle("지우길 원한다면,\n다른 고양이로 접속해 주세요!")
+//                    .setNegativeButton("확인")
+//                    .setDisablePositiveButton(true)
+//                    .create()
+//                dialog.show(fragmentManager, dialog.tag)
+//            } else {
+//                val dialog = SettingCustomDialogBuilder()
+//                    .setTitle("정말 지우시겠어요?")
+//                    .setSubTitle("저장했던 기록들도 함께 사라져요.")
+//                    .setPositiveButton("네")
+//                    .setNegativeButton("잘못 눌렀어요")
+//                    .setButtonClickListener(object : SettingCustomDialogListener {
+//                        override fun onClickPositiveButton() {
+//                            setMainDeleteRetrofit(position)
+//                            Toast.makeText(context, "고양이를 삭제했습니다.", Toast.LENGTH_SHORT).show()
+//                        }
+//
+//                        override fun onClickNegativeButton() {
+//                            Toast.makeText(context, "", Toast.LENGTH_SHORT).show()
+//                        }
+//                    })
+//                    .create()
+//
+//                dialog.show(fragmentManager, dialog.tag)
+//            }
         }
     }
 
