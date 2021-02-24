@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout>
+    <data>
+        <variable
+            name="bottomSheetProfileData"
+            type="com.teamounce.ounce.main.BottomSheetProfileData" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+
+        android:background= "@drawable/underline_catist">
+
+        <TextView
+            android:id="@+id/cat_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosans_bold"
+            android:text="@{bottomSheetProfileData.catName}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/cat_dday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text='@{"만난지 " + bottomSheetProfileData.fromMeet+"일 째"}'
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/notosans_regular"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/cat_name"
+            app:layout_constraintTop_toBottomOf="@+id/cat_name" />
+
+
+            <RadioButton
+                android:id="@+id/cat_select_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:button="@drawable/radiobutton_true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

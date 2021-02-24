@@ -1,21 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.teamounce.ounce">
+    <!-- 인터넷 사용 권한 설정 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 네트워크 연결 상태 확인 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".OunceApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/Theme.OUNCE">
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.OUNCE"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:theme">
+        <activity android:name=".review.ui.ReviewModifyActivity"></activity>
+        <activity android:name=".settings.ui.CatRegisterActivity" />
+        <activity
+            android:name=".splash.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".feed.ui.TagActivity" />
+        <activity android:name=".settings.ui.SettingsIntroActivity" />
+        <activity android:name=".settings.ui.SettingsOpensourceActivity" />
+        <activity android:name=".settings.ui.SettingsPolicyActivity" />
+        <activity android:name=".settings.ui.SettingsAgreeActivity" />
+        <activity
+            android:name=".feed.ui.FeedActivity"
+            android:exported="true"
+            android:theme="@style/FeedTheme" />
+        <activity
+            android:name=".feed.ui.FoodDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".review.ui.ReviewActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".settings.ui.SettingsCareActivity" />
+        <activity android:name=".settings.ui.SettingsActivity" />
+        <activity
+            android:name=".review.ui.SearchActivity"
+            android:exported="true" />
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/native_app_key" />
+
+        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="oauth"
+                    android:scheme="kakao7171285de2b4a7896ab049321ffc8ed6" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".register.ui.SignUpActivity"
+            android:exported="true" />
+        <activity
+            android:name=".login.ui.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".main.MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

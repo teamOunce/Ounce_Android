@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="catFood"
+            type="com.teamounce.ounce.review.model.ResponseSearch.Data" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_item_search"
+            android:layout_width="64dp"
+            android:layout_height="0dp"
+            android:background="#FFDBCF"
+            android:scaleType="fitCenter"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setSrcFromUrl="@{catFood.productImg}"
+            tools:src="@drawable/img_dummy" />
+
+        <LinearLayout
+            android:id="@+id/linear_item_explain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/img_item_search"
+            app:layout_constraintStart_toEndOf="@+id/img_item_search"
+            app:layout_constraintTop_toTopOf="@+id/img_item_search">
+
+            <TextView
+                android:id="@+id/txt_item_company"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/notosanskr_regular"
+                android:includeFontPadding="false"
+                android:text="@{catFood.manufacturer}"
+                android:textColor="@color/text_color_gray"
+                android:textFontWeight="500"
+                android:textSize="12sp"
+                tools:text="브랜드 이름" />
+
+            <TextView
+                android:id="@+id/txt_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/notosanskr_regular"
+                android:includeFontPadding="false"
+                android:text="@{catFood.productName}"
+                android:textColor="@color/text_color_black"
+                android:textFontWeight="700"
+                android:textSize="16sp"
+                tools:text="로얄캐닌 키튼 4kg 긴 이름" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

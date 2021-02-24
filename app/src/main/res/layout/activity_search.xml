@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.teamounce.ounce.review.viewmodel.SearchViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".review.ui.SearchActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/toolbar_review_search"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            app:elevation="0dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+                <ImageView
+                    android:id="@+id/img_review_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_marginStart="12dp"
+                    android:paddingEnd="32dp"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/orangey_red" />
+
+                <TextView
+                    android:id="@+id/txt_search_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanskr"
+                    android:includeFontPadding="false"
+                    android:text="기록하기"
+                    android:textColor="@color/gray3"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <EditText
+            android:id="@+id/et_review_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/orangey_red"
+            android:hint="제조사, 상품명 입력"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:paddingStart="12dp"
+            android:singleLine="true"
+            android:text="@={viewModel.searchQuery}"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@id/img_review_search"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_review_search" />
+
+        <ImageView
+            android:id="@+id/img_review_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="20dp"
+            android:onClick="@{() -> viewModel.search()}"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="@+id/et_review_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/et_review_search"
+            app:layout_constraintTop_toTopOf="@+id/et_review_search" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_search"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_review_search"
+            tools:visibility="visible">
+
+            <LinearLayout
+                android:id="@+id/linear_review_search_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:orientation="horizontal"
+                android:paddingBottom="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageButton
+                    android:id="@+id/btn_layout_grid"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_search_grid" />
+
+                <ImageButton
+                    android:id="@+id/btn_layout_list"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_search_linear" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clayout_result"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linear_review_search_type">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="#dadada"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_review_search_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical"
+                    android:overScrollMode="never"
+                    android:paddingHorizontal="12dp"
+                    android:visibility="visible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:listitem="@layout/item_food_search_linear" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_review_search_grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingHorizontal="12dp"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:spanCount="3"
+                    tools:listitem="@layout/item_food_search_grid" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clayout_no_result"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_review_search"
+            tools:visibility="gone">
+
+            <TextView
+                android:id="@+id/txt_search_empty_explain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="찾으시는 제품이 없나요?"
+                android:textColor="@color/brown_gray"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@id/linear_search_empty_explain"
+                app:layout_constraintEnd_toEndOf="@+id/img_no_result"
+                app:layout_constraintStart_toStartOf="@+id/img_no_result" />
+
+            <LinearLayout
+                android:id="@+id/linear_search_empty_explain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="60dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/img_no_result"
+                app:layout_constraintEnd_toEndOf="@+id/img_no_result"
+                app:layout_constraintStart_toStartOf="@+id/img_no_result">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/bt_drawer" />
+
+                <ImageView
+                    android:layout_width="6dp"
+                    android:layout_height="6dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/ic_next" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="문의하기에서 알려주세요."
+                    android:textColor="@color/brown_gray"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_no_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_empty_search"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,79 @@
+{
+  "project_info": {
+    "project_number": "64083375364",
+    "firebase_url": "https://ounce-521b4.firebaseio.com",
+    "project_id": "ounce-521b4",
+    "storage_bucket": "ounce-521b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64083375364:android:154c9883a26e33c3aa0c51",
+        "android_client_info": {
+          "package_name": "com.teamounce.ounce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64083375364-6ugm69cbfabiglb8vkauomstipcoc2c7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.teamounce.ounce",
+            "certificate_hash": "6a22f793337959e6f02f20e8ee985aaf10a0aecc"
+          }
+        },
+        {
+          "client_id": "64083375364-72aam80h3thcnnkvcmrfkt1ql52ebtq2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.teamounce.ounce",
+            "certificate_hash": "42097f0f68d5f7b8716633eb3f4006ad393a6517"
+          }
+        },
+        {
+          "client_id": "64083375364-fq8i6s4ndhgk4kkma68s58ejdjjal0d7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.teamounce.ounce",
+            "certificate_hash": "87c36869e89d52afc2d79700a14a93affb1ae6f4"
+          }
+        },
+        {
+          "client_id": "64083375364-uhtr4gaua8h4tjcudlclg4q961is9h4q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.teamounce.ounce",
+            "certificate_hash": "b28e4ef28f00200fe3ac2720b4314bd0ebfb9c49"
+          }
+        },
+        {
+          "client_id": "64083375364-rcdspdgrjon1n5am3a4fda3d5enfoc1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR3ot1_qUkpUVRm027IpS3VvDnfu7HPgo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "64083375364-rcdspdgrjon1n5am3a4fda3d5enfoc1q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "64083375364-p34kh68o3vg20nh9svnhjdoj2igid5qt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "kr.Ounce"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

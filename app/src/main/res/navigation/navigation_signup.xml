@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_signup"
+    app:startDestination="@id/ownerInfoFragment">
+
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.teamounce.ounce.register.ui.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.teamounce.ounce.register.ui.CatInfoFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_cat_info" >
+        <action
+            android:id="@+id/action_registerFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/ownerInfoFragment"
+        android:name="com.teamounce.ounce.register.ui.UserInfoFragment"
+        android:label="OwnerInfoFragment" >
+        <action
+            android:id="@+id/action_ownerInfoFragment_to_registerFragment"
+            app:destination="@id/registerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+</navigation>

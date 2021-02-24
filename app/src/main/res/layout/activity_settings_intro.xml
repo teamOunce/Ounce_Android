@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ounceintro_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ounceintro_one"
+        tools:context=".settings.ui.SettingsCareActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_settings_intro"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/btn_intro_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_arrow_gray3" />
+
+            <TextView
+                android:id="@+id/intro_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:fontFamily="@font/notosans_regular"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:text="온스를 만든 사람들"
+                android:textColor="@color/gray_three"
+                android:textSize="20dp" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@id/toolbar_settings_intro"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_settings_intro">
+
+            <TextView
+                android:id="@+id/ounce_foryou"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/notosanskr_medium"
+                android:includeFontPadding="false"
+                android:text="@string/ounceintro_subtitle"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/ounce_intro"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/notosanskr"
+                android:includeFontPadding="false"
+                android:text="온스라는 하나의 목표를 두고, \n각기 다른 재능의 열두명이 모였습니다."
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ounce_foryou" />
+
+            <TextView
+                android:id="@+id/ounce_curious"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/notosanskr_medium"
+                android:includeFontPadding="false"
+                android:text="@string/ounceintro_curious"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/ounce_intro"
+                app:layout_constraintTop_toBottomOf="@id/ounce_intro" />
+
+            <ImageButton
+                android:id="@+id/btn_intro_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/ic_who_made_ounce_bt_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ounce_curious" />
+
+            <ImageButton
+                android:id="@+id/btn_intro_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="28dp"
+                android:background="@drawable/ic_who_made_ounce_bt_right"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btn_intro_left" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_intro_ounce"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
