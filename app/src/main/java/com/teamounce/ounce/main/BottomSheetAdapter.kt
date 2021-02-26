@@ -11,13 +11,43 @@ import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.databinding.ItemBottomMainBinding
 import com.teamounce.ounce.util.SharedPreferences
 
-class BottomSheetAdapter(private var context: Context) :
+class BottomSheetAdapter(context: Context) :
     RecyclerView.Adapter<BottomSheetAdapter.BottomSheetViewHolder>() {
     val mContext = getActivity(context)
     var bottomSheetProfileData = mutableListOf<BottomSheetProfileData>()
     private var checkedRadioButton: CompoundButton? = null
     private var mSelectedItem = -1
     val bottomSheetFragment = BottomSheetFragment()
+
+    inner class BottomSheetViewHolder(var binding: ItemBottomMainBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        var sharedPreferences = SharedPreferences(mContext)
+
+        fun bind(
+            bottomSheetProfileData: BottomSheetProfileData,
+            position: Int,
+            selectedPosition: Int
+        ) {
+            binding.bottomSheetProfileData = bottomSheetProfileData
+            binding.catSelectBtn.setOnCheckedChangeListener(checkedChangedListener)
+
+            if (position == sharedPreferences.getCatPositionSelected()) {
+                binding.catSelectBtn.isChecked = true
+            } else {
+                if (selectedPosition == position) {
+                    binding.catSelectBtn.isChecked = true
+                    changeCat(position)
+                    sharedPreferences.setCatPositionSelected(position)
+                } else {
+                    binding.catSelectBtn.isChecked = false
+                }
+                binding.catSelectBtn.setOnClickListener {
+                    mSelectedItem = adapterPosition
+                    notifyDataSetChanged()
+                }
+            }
+        }
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -44,7 +74,7 @@ class BottomSheetAdapter(private var context: Context) :
     fun changeCat(position: Int) {
         if (mContext is MainActivity) {
             OunceLocalRepository.catIndex = bottomSheetProfileData[position].catIndex
-            mContext.setMainViewRetrofit()
+            mContext.refreshData()
             mContext.bottomSheetFragment.dismiss()
         }
     }
@@ -64,35 +94,6 @@ class BottomSheetAdapter(private var context: Context) :
 
         }
 
-    inner class BottomSheetViewHolder(var binding: ItemBottomMainBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        var sharedPreferences = SharedPreferences(mContext)
-
-        fun bind(
-            bottomSheetProfileData: BottomSheetProfileData,
-            position: Int,
-            selectedPosition: Int
-        ) {
-            binding.bottomSheetProfileData = bottomSheetProfileData
-
-            if (position == sharedPreferences.getCatPositionSelected()) {
-                binding.catSelectBtn.isChecked = true
-            } else {
-                if (selectedPosition == position) {
-                    binding.catSelectBtn.isChecked = true
-                    changeCat(position)
-                    sharedPreferences.setCatPositionSelected(position)
-                } else {
-                    binding.catSelectBtn.isChecked = false
-                }
-                binding.catSelectBtn.setOnClickListener {
-                    mSelectedItem = adapterPosition
-                    notifyDataSetChanged()
-                }
-            }
-        }
-    }
-
     private fun getActivity(context: Context): Activity {
         return when (context) {
             is Activity -> context
@@ -101,10 +102,3 @@ class BottomSheetAdapter(private var context: Context) :
         }
     }
 }
-
-
-
-
-
-
-

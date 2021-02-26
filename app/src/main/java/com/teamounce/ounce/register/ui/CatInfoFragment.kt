@@ -15,6 +15,7 @@ import com.teamounce.ounce.databinding.FragmentCatInfoBinding
 import com.teamounce.ounce.register.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import gun0912.tedkeyboardobserver.TedKeyboardObserver
+import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
@@ -30,6 +31,10 @@ class CatInfoFragment : BindingFragment<FragmentCatInfoBinding>(R.layout.fragmen
             viewModel = registerViewModel
             lifecycleOwner = viewLifecycleOwner
         }
+        val date = Calendar.getInstance().time
+        val dateInString = date.toString("yyyy-MM-dd")
+        Log.d("TAG", dateInString)
+        registerViewModel.meetDate.value = dateInString
         setUIListener()
         setError()
         setMaxDate()
@@ -94,5 +99,10 @@ class CatInfoFragment : BindingFragment<FragmentCatInfoBinding>(R.layout.fragmen
         private const val ERROR_BLANK = "이름을 입력해주세요"
         private const val ERROR_NOT_KOREAN = "이름은 한글만 가능합니다"
         private const val ERROR_EXCESS_LENGTH = "글자수를 초과했습니다"
+    }
+
+    fun Date.toString(format: String, locale: Locale = Locale.KOREA): String {
+        val formatter = SimpleDateFormat(format, locale)
+        return formatter.format(this)
     }
 }
