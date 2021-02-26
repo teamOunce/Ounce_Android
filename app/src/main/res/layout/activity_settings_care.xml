@@ -23,12 +23,16 @@
             android:layout_marginStart="16dp"
             android:src="@drawable/ic_backicon" />
 
-        <ImageView
+        <TextView
             android:id="@+id/main_title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:src="@drawable/settings_catcare" />
+            android:text="고양이 관리"
+            android:fontFamily="@font/notosanskr_bold"
+            android:textSize="21sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/black" />
 
 
     </androidx.appcompat.widget.Toolbar>

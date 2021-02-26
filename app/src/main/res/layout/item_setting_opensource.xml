@@ -19,8 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:linksClickable="true"
-        android:textColorLink="@color/hyperlink"
         android:autoLink="web"
+        android:textColorLink="@color/hyperlink"
         app:layout_constraintStart_toStartOf="@id/setting_opensource_name"
         app:layout_constraintTop_toBottomOf="@id/setting_opensource_name" />
     <TextView

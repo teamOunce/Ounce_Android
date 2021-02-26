@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.teamounce.ounce.R
 import com.teamounce.ounce.databinding.ItemOunceintroBinding
 
+
 class SettingIntroFragment(private val src: Int) : Fragment() {
     private lateinit var binding: ItemOunceintroBinding
 

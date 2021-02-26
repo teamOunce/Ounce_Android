@@ -1,7 +1,11 @@
 package com.teamounce.ounce.settings.ui
 
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -12,16 +16,34 @@ import androidx.viewpager2.widget.ViewPager2
 import com.teamounce.ounce.R
 import com.teamounce.ounce.databinding.ActivitySettingsIntroBinding
 import com.teamounce.ounce.util.StatusBarUtil
+import gun0912.tedimagepicker.util.ToastUtil.context
+import androidx.core.content.ContextCompat.startActivity
+import kotlinx.android.synthetic.main.activity_settings_intro.*
 
 class SettingsIntroActivity : AppCompatActivity() {
     private lateinit var viewPager: ViewPager2
     private lateinit var binding: ActivitySettingsIntroBinding
+    val ounceCurious : Uri = Uri.parse("https://info.ounce.co.kr")
+    val forLink = Intent(Intent.ACTION_VIEW , ounceCurious)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_settings_intro)
         binding.btnIntroBack.setOnClickListener { finish() }
         initViewPager()
+        setLinkListener()
+
+    }
+    private fun setLinkListener(){
+        binding.ounceCurious.setOnClickListener {
+            forLink.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            try{
+                context.startActivity(forLink)
+            }catch(e: ActivityNotFoundException){
+                startActivity( context , forLink , null )
+                Log.d("activity not found", "'      ")
+            }
+        }
     }
 
     private fun initViewPager() {
@@ -53,6 +75,7 @@ class SettingsIntroActivity : AppCompatActivity() {
         binding.btnIntroRight.setOnClickListener {
             binding.vpIntroOunce.setCurrentItem(binding.vpIntroOunce.currentItem + 1, true)
         }
+
     }
 
     private inner class SettingIntroAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
@@ -73,6 +96,8 @@ class SettingsIntroActivity : AppCompatActivity() {
         binding.ounceintroBackground.setBackgroundColor(color)
         StatusBarUtil.setStatusBar(this, color)
     }
+
+
 
     companion object {
         private const val NUM_PAGES = 3
