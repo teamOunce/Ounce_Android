@@ -143,7 +143,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/notosans_bold"
         android:text="오픈소스 라이센스"
-        android:textSize="15sp"
+        android:textSize="16sp"
         android:textColor="@color/gray_two"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/txt_ouncepolicy"

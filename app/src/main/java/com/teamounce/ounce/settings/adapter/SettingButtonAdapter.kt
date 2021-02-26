@@ -19,6 +19,7 @@ class SettingButtonAdapter (private val context:Context): RecyclerView.Adapter<S
     val forApp = Intent(Intent.ACTION_VIEW , uriInsta)
 
 
+
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): SettingButtonViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_setting_btn, p0,false)
         return SettingButtonViewHolder(view)
@@ -45,11 +46,12 @@ class SettingButtonAdapter (private val context:Context): RecyclerView.Adapter<S
                     intent.type ="plain/text"
                     intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("ounceforyou@gmail.com"))
                     intent.putExtra(Intent.EXTRA_SUBJECT, "ounceforyou 문의사항")
-                    intent.putExtra(Intent.EXTRA_TEXT, "세세하게 적어주시면 빠른 처리가 가능합니다.:) \n" +
-                        "앱버전: \n" +
-                        "휴대폰 기종 및 OS: \n"+
-                        "유저: \n"+
-                        "\n"+
+                    intent.putExtra(Intent.EXTRA_TEXT,
+                        "- 기록하고 싶은 제품 제안 \n" +
+                        "- 사용 중 불편함 \n"+
+                        "- 건의사항 \n"+
+                        "* 세세하세 적어주시면 빠른 처리가 가능합니다.:) \n"+
+                        "\n" +
                         "문의 내용: \n"
                     )
                     intent.type = "message/rfc822"
