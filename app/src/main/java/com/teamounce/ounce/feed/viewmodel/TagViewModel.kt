@@ -22,8 +22,9 @@ class TagViewModel @Inject constructor(
     val isTagMax: LiveData<Boolean> = Transformations.map(tagList) { isTagMax(it.size) }
     val queryWordMax: LiveData<Boolean> = Transformations.map(tagQuery) { isQueryMax(it.length) }
     val isExistedTag: LiveData<Boolean> = Transformations.map(tagQuery) { isTagContained(it) }
+    val isContainBlank: LiveData<Boolean> = Transformations.map(tagQuery) { it.contains(" ") }
     val isAddEnabled = MediatorLiveData<Boolean>().apply {
-        addSourceList(isTagMax, queryWordMax, isExistedTag) { isButtonEnabled() }
+        addSourceList(isTagMax, queryWordMax, isExistedTag, isContainBlank) { isButtonEnabled() }
     }
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String>
@@ -83,6 +84,6 @@ class TagViewModel @Inject constructor(
     }
 
     private fun isButtonEnabled(): Boolean {
-        return !isTagMax.value!! && !queryWordMax.value!! && !isExistedTag.value!!
+        return !isTagMax.value!! && !queryWordMax.value!! && !isExistedTag.value!! && !isContainBlank.value!!
     }
 }

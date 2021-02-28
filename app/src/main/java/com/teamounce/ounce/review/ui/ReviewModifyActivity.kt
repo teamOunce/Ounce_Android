@@ -78,6 +78,7 @@ class ReviewModifyActivity :
         binding.imgRecordAddImage.setOnClickListener {
             TedImagePicker.with(this)
                 .start { uri ->
+                    Log.d("TAG URI", uri.toString())
                     imageSliderAdapter.replaceList(
                         listOf(
                             ImageInfo(reviewViewModel.reviewInfo.value!!.productImg, true),

@@ -11,6 +11,7 @@ import android.util.Log
 import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
@@ -25,6 +26,7 @@ import com.teamounce.ounce.util.ChipFactory
 import com.teamounce.ounce.util.StatusBarUtil
 import dagger.hilt.android.AndroidEntryPoint
 import gun0912.tedimagepicker.builder.TedImagePicker
+import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -155,9 +157,7 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
             File(context.filesDir.path + File.separatorChar + queryName(context, uri))
         try {
             context.contentResolver.openInputStream(uri).use { ins ->
-                if (ins != null) {
-                    createFileFromStream(ins, destinationFilename)
-                }
+                if (ins != null) { createFileFromStream(ins, destinationFilename) }
             }
         } catch (ex: Exception) {
             Log.e("Save File", ex.message!!)
