@@ -59,6 +59,9 @@ class TagActivity : BindingActivity<ActivityTagBinding>(R.layout.activity_tag) {
             isExistedTag.observe(this@TagActivity) {
                 if(it) { setErrorText("이미 등록한 태그에요.", orange) }
             }
+            isContainBlank.observe(this@TagActivity) {
+                if(it) { setErrorText("태그에 공백이 들어갈 수 없습니다.", orange) }
+            }
             isAddEnabled.observe(this@TagActivity) {
                 if(it) { setErrorText("최대 15개까지 작성할 수 있어요", gray3) }
                 binding.imgTagPlus.isEnabled = it

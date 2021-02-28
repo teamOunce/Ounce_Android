@@ -76,16 +76,18 @@ class ReviewModifyActivity :
             binding.txtRecordPreferenceExplain.setText(Comment.of(it.toInt()))
         }
         binding.imgRecordAddImage.setOnClickListener {
-            TedImagePicker.with(this)
-                .start { uri ->
-                    imageSliderAdapter.replaceList(
-                        listOf(
-                            ImageInfo(reviewViewModel.reviewInfo.value!!.productImg, true),
-                            ImageInfo(uri.toString(), false)
-                        )
-                    )
-                    makeMultiPartBody(uri)
-                }
+//            TedImagePicker.with(this)
+//                .start { uri ->
+//                    Log.d("TAG URI", uri.toString())
+//                    imageSliderAdapter.replaceList(
+//                        listOf(
+//                            ImageInfo(reviewViewModel.reviewInfo.value!!.productImg, true),
+//                            ImageInfo(uri.toString(), false)
+//                        )
+//                    )
+//                    makeMultiPartBody(uri)
+//                }
+            Toast.makeText(this, "기능 준비중입니다", Toast.LENGTH_SHORT).show()
         }
         binding.btnSubmit.setOnClickListener { reviewViewModel.modifyReview() }
         binding.imgRecordTooltip.setOnClickListener {
