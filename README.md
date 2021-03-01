@@ -9,13 +9,17 @@
 
 <p align="center">
   <h2 align="center">똑똑한 집사들을 위한 기록장 Ounce.</h2>
+  <p align="center">
   고양이들은 입맛이 까다로워 집사들은 성공확률이 높은 시도를 위해 먹여둔 캣푸드를 따로 기록하고 있습니다.<br/>
   이런 집사들의 고충을 해결하기 위해 Ounce는 직관적인 캣푸드 기록 기능을 제공하고 있습니다.<br/>
   기록부터 선택까지, 온스가 함께합니다.<br/>
+  </p>
   <h2 align="center">Ounce, a cat food diary for smart cat caregivers.</h2>
+  <p align="center">
   Cats have a picky appetite, so guardians seperately record their cat's food for "successful" results.</br>
   In order to solve these difficulties, we provide an intuitive, fascinating cat food diary application.</br>
   From picking to feeding, Ounce will take your problems "once".
+  </p>
 </p>
 <br/>
 <h1 align="center">Who Made Ounce(Android)?</h1>
