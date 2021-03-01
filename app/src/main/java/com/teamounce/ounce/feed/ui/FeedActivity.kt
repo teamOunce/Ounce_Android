@@ -3,6 +3,7 @@ package com.teamounce.ounce.feed.ui
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.teamounce.ounce.R
@@ -42,6 +43,8 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
             viewModel = mViewModel
         }
 
+        setObserve()
+
         mViewModel.getBottomSheetFiltering()
         launch {
             mViewModel.callFeedList()
@@ -63,6 +66,17 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
 
             binding.feedSwipeLayout.isRefreshing = false
         }
+    }
+
+    private fun setObserve() {
+        mViewModel.responseFeedList.observe(this,{
+            if (it.isEmpty()){
+                binding.noFeedTxt.visibility = View.VISIBLE
+            }
+            else{
+                binding.noFeedTxt.visibility = View.INVISIBLE
+            }
+        })
     }
 
     @SuppressLint("SetTextI18n")
