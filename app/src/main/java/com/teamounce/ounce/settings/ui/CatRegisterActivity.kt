@@ -12,6 +12,7 @@ import com.teamounce.ounce.settings.ui.SettingsCareActivity.Companion.REGISTER_S
 import com.teamounce.ounce.settings.viewmodel.CatRegisterViewModel
 import com.teamounce.ounce.util.StatusBarUtil
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
@@ -29,16 +30,21 @@ class CatRegisterActivity :
     }
 
     private fun initView() {
+        val dateInString = Calendar
+            .getInstance()
+            .time
+            .toString("yyyy-MM-dd")
+        registerViewModel.meetDate = dateInString
         setUIListener()
         subscribeDatas()
         setError()
     }
 
     private fun setUIListener() {
-        binding.datepickerRegister.setOnDateChangedListener { _, year, month, day ->
-            registerViewModel.meetDate = "$year-$month-$day"
-        }
         binding.datepickerRegister.maxDate = Date().time
+        binding.datepickerRegister.setOnDateChangedListener { _, year, month, day ->
+            registerViewModel.meetDate = "$year-${month + 1}-$day"
+        }
         binding.imgRegisterBack.setOnClickListener { finish() }
         binding.btnRegisterComplete.setOnClickListener { registerViewModel.registerCat() }
     }
@@ -81,6 +87,11 @@ class CatRegisterActivity :
 
             override fun afterTextChanged(catName: Editable?) {}
         })
+    }
+
+    fun Date.toString(format: String, locale: Locale = Locale.KOREA): String {
+        val formatter = SimpleDateFormat(format, locale)
+        return formatter.format(this)
     }
 
     companion object {

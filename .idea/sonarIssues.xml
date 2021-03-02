@@ -8,7 +8,132 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/answer/view/AnswerActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/base/BindingFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/explore/adapter/OtherMindsRcvAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/explore/adapter/OtherQuestionsRcvAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/explore/view/ExploreFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/following/view/FollowingFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/idsearchfollowing/adapter/IdSearchAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/idsearchfollowing/view/FollowingAfterIdSearchActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/login/view/LoginActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/main/adapter/MainViewPagerAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/main/model/Screen.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/main/model/ScreenName.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/mypage/model/CategoryFilter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/mypage/model/PublicRange.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/mypage/view/BottomWriteFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/mypage/view/MyWriteFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/notification/adapter/NoticeAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/onboarding/view/OnBoardingActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/signup/view/ImageChooseFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/signup/view/PermissionInfoFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/signup/view/PersonalInfoFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/signup/view/TermFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/util/FirebaseEventUtil.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/res/layout/activity_login.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/res/layout/activity_on_boarding.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/res/layout/fragment_my_write.xml">
           <value>
             <set />
           </value>
@@ -468,6 +593,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/settings/adapter/SettingCareViewHolder.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/settings/adapter/SettingsOpensourceAdapter.kt">
           <value>
             <set />
@@ -568,6 +698,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/util/NetworkUtil.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/util/SharedPreferences.kt">
           <value>
             <set />
@@ -618,6 +753,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/ic_icon_back.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/drawable/record_memo_background.xml">
           <value>
             <set />
@@ -629,6 +769,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_cat_register.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_feed.xml">
           <value>
             <set />
           </value>
@@ -679,6 +824,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_settings_intro.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_settings_policy.xml">
           <value>
             <set />
           </value>
@@ -738,6 +888,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_bottom_main.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_catfood_slider.xml">
           <value>
             <set />
@@ -749,6 +904,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_detail_tag.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_feed_list.xml">
           <value>
             <set />
           </value>

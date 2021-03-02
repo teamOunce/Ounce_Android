@@ -104,7 +104,7 @@ class ReviewViewModel @Inject constructor(
             if (it <= tagList.size - 1) {
                 tagMap["tag${it + 1}"] = tagList[it].toRequestBody("text/plain".toMediaTypeOrNull())
             } else {
-                tagMap["tag${it + 1}"] = " ".toRequestBody("text/plain".toMediaTypeOrNull())
+                tagMap["tag${it + 1}"] = "".toRequestBody("text/plain".toMediaTypeOrNull())
             }
         }
         val partMap = hashMapOf(
@@ -133,7 +133,7 @@ class ReviewViewModel @Inject constructor(
             if (it <= tagList.size - 1) {
                 tagMap["tag${it + 1}"] = tagList[it].toRequestBody("text/plain".toMediaTypeOrNull())
             } else {
-                tagMap["tag${it + 1}"] = " ".toRequestBody("text/plain".toMediaTypeOrNull())
+                tagMap["tag${it + 1}"] = "".toRequestBody("text/plain".toMediaTypeOrNull())
             }
         }
         val partMap = hashMapOf(
