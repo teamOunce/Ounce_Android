@@ -7,6 +7,7 @@ import android.widget.*
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import com.airbnb.lottie.LottieAnimationView
@@ -91,5 +92,12 @@ object BindingAdapters {
     @BindingAdapter("tag:enabled")
     fun isAddEnabled(view: ImageButton, enabled: MediatorLiveData<Boolean>) {
         view.isEnabled = enabled.value ?: true
+    }
+
+    @JvmStatic
+    @BindingAdapter("feed:totalSize")
+    fun setSizeText(view: TextView, size: LiveData<Int>) {
+        val sizeText = "전체 리뷰 개수(${size.value})"
+        view.text = sizeText
     }
 }

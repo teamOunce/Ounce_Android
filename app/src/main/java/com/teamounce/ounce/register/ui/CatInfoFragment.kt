@@ -46,7 +46,7 @@ class CatInfoFragment : BindingFragment<FragmentCatInfoBinding>(R.layout.fragmen
         binding.datepickerRegister.setOnDateChangedListener { _, year, month, day ->
             when(month) {
                 in 0..8 -> registerViewModel.meetDate.value = "$year-0${month + 1}-$day"
-                else -> registerViewModel.meetDate.value = "$year-${month}-$day"
+                else -> registerViewModel.meetDate.value = "$year-${month + 1}-$day"
             }
         }
         binding.btnRegisterComplete.setOnClickListener {

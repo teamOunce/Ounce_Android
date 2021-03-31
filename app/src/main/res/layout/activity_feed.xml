@@ -55,6 +55,7 @@
 
             <TextView
                 android:id="@+id/feed_all_review_count_txt"
+                feed:totalSize="@{viewModel.feedsSize}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
@@ -97,8 +98,10 @@
                 android:overScrollMode="never"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/feed_all_review_count_txt"
+                app:layout_constraintVertical_bias="0.0"
                 app:setFeedList="@{viewModel.responseFeedList}"
                 tools:listitem="@layout/item_feed_list" />
 
@@ -106,16 +109,16 @@
                 android:id="@+id/no_feed_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/brown_gray"
                 android:fontFamily="@font/apple_sd_gothic"
+                android:text="@string/no_feed_review"
+                android:textColor="@color/brown_gray"
                 android:textFontWeight="400"
                 android:textSize="16sp"
-                android:text="@string/no_feed_review"
                 android:visibility="invisible"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

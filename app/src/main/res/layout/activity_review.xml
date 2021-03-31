@@ -262,7 +262,6 @@
                     android:background="@drawable/record_memo_background"
                     android:gravity="top"
                     android:hint="최대 150자"
-                    android:inputType="text"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="8dp"
                     android:text="@={viewModel.memo}"
