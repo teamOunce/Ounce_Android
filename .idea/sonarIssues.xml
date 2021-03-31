@@ -8,6 +8,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/answer/view/AnswerActivity.kt">
           <value>
             <set />
@@ -134,6 +139,71 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../BeMe/app/src/main/res/layout/fragment_my_write.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMeroid/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMeroid/app/src/main/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMeroid/app/src/main/java/com/teambeme/bemeroid/adapter/ProjectAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMeroid/app/src/main/java/com/teambeme/bemeroid/data/api/PeopleService.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMeroid/app/src/main/java/com/teambeme/bemeroid/data/singleton/RetrofitObject.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMeroid/app/src/main/java/com/teambeme/bemeroid/model/ResponsePeople.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMeroid/app/src/main/java/com/teambeme/bemeroid/view/ContentActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MARU_Android/app/src/main/java/kr/co/marubook/data/remote/datasource/HomeDataSourceImpl.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MARU_Android/app/src/main/java/kr/co/marubook/data/remote/repository/HomeRepositoryImpl.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MARU_Android/app/src/main/java/kr/co/marubook/di/DataSourceModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MARU_Android/app/src/main/java/kr/co/marubook/di/RepositoryModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MARU_Android/app/src/main/java/kr/co/marubook/presentation/home/HomeFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/.github/workflows/build.yml">
           <value>
             <set />
           </value>
@@ -379,6 +449,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/feed/ui/TagActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/feed/viewmodel/FeedActivityViewModel.kt">
           <value>
             <set />
           </value>
@@ -753,6 +828,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/feed_background.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/drawable/ic_icon_back.xml">
           <value>
             <set />
@@ -974,6 +1054,156 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/gradle.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/build.gradle.kts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/WeathercastApplication.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/base/BindingActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/data/datasource/remote/api/WeatherApi.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/data/datasource/remote/datasource/WeatherDataSource.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/data/datasource/remote/datasource/WeatherDataSourceImpl.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/data/entity/City.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/data/entity/Forecast.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/data/entity/Weather.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/data/entity/WeatherX.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/data/repository/WeatherRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/data/repository/WeatherRepositoryImpl.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/di/ApiModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/di/DataSourceModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/di/RepositoryModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/di/RetrofitModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/presentation/MainActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/presentation/city/CityInfoActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/presentation/detail/DetailActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/presentation/detail/LoadingDialogFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/presentation/detail/WeatherViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/util/BindingAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/util/DisplayUtil.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/java/co/spoonradio/recruit/util/StatusBarUtil.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/res/layout/activity_detail.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/res/layout/dialog_loading.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/app/src/main/res/layout/fragment_loading_dialog.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/buildSrc/src/main/java/Dependencies.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../SpoonWeathercast/local.properties">
           <value>
             <set />
           </value>
