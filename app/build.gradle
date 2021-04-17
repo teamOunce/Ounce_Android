@@ -131,7 +131,7 @@ dependencies {
     implementation 'gun0912.ted:tedpermission:2.2.3'
 
     // TedImagePicker
-    implementation 'gun0912.ted:tedimagepicker:1.1.7'
+    implementation 'gun0912.ted:tedimagepicker:1.1.10'
 
     // Firebase Crashlytics
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
