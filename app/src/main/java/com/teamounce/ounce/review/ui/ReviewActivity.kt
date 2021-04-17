@@ -11,7 +11,6 @@ import android.util.Log
 import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
@@ -24,12 +23,11 @@ import com.teamounce.ounce.review.model.ResponseSearch
 import com.teamounce.ounce.review.viewmodel.ReviewViewModel
 import com.teamounce.ounce.util.ChipFactory
 import com.teamounce.ounce.util.StatusBarUtil
+import com.teamounce.ounce.util.asMultipart
 import dagger.hilt.android.AndroidEntryPoint
 import gun0912.tedimagepicker.builder.TedImagePicker
-import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.FileOutputStream
@@ -76,19 +74,19 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
         binding.ratingRecordPreference.setOnRatingChangeListener {
             reviewViewModel.preference = it
             binding.btnSubmit.isEnabled = true
-            binding.txtRecordPreferenceExplain.setText(Comment.of(it.toInt()))
+            binding.txtRecordPreferenceExplain.text = Comment.of(it.toInt())
         }
         binding.imgRecordAddImage.setOnClickListener {
-//            TedImagePicker.with(this)
-//                .start { uri ->
-//                    imageSliderAdapter.replaceList(
-//                        listOf(
-//                            ImageInfo(catFood.productImg, true),
-//                            ImageInfo(uri.toString(), false)
-//                        )
-//                    )
-//                    makeMultiPartBody(uri)
-//                }
+            TedImagePicker.with(this)
+                .start { uri ->
+                    imageSliderAdapter.replaceList(
+                        listOf(
+                            ImageInfo(catFood.productImg, true),
+                            ImageInfo(uri.toString(), false)
+                        )
+                    )
+                    makeMultiPartBody(uri)
+                }
             Toast.makeText(this, "기능 준비중입니다", Toast.LENGTH_SHORT).show()
         }
         binding.btnSubmit.setOnClickListener { reviewViewModel.registerReview(catFood) }
@@ -144,21 +142,32 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
     }
 
     private fun makeMultiPartBody(uri: Uri) {
-        val file = getFile(this, uri)
-        val part = MultipartBody.Part.createFormData(
-            "image",
-            file.name,
-            file.asRequestBody("image/png".toMediaTypeOrNull())
-        )
-        reviewViewModel.setImageFile(part)
+        // val file = getFile(this, uri)
+        val partBody = uri.asMultipart("image", contentResolver)
+        Log.d("TAG", (partBody == null).toString())
+        if (partBody != null) {
+            reviewViewModel.setImageFile(partBody)
+        }
     }
+
+//    private fun makeMultiPartBody(uri: Uri) {
+//        val file = getFile(this, uri)
+//        val part = MultipartBody.Part.createFormData(
+//            "image",
+//            file.name,
+//            file.asRequestBody("image/png".toMediaTypeOrNull())
+//        )
+//        reviewViewModel.setImageFile(part)
+//    }
 
     private fun getFile(context: Context, uri: Uri): File {
         val destinationFilename =
             File(context.filesDir.path + File.separatorChar + queryName(context, uri))
         try {
             context.contentResolver.openInputStream(uri).use { ins ->
-                if (ins != null) { createFileFromStream(ins, destinationFilename) }
+                if (ins != null) {
+                    createFileFromStream(ins, destinationFilename)
+                }
             }
         } catch (ex: Exception) {
             Log.e("Save File", ex.message!!)

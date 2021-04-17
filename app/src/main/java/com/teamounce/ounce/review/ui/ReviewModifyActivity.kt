@@ -22,6 +22,7 @@ import com.teamounce.ounce.review.model.ImageInfo
 import com.teamounce.ounce.review.viewmodel.ReviewViewModel
 import com.teamounce.ounce.util.ChipFactory
 import com.teamounce.ounce.util.StatusBarUtil
+import com.teamounce.ounce.util.asMultipart
 import dagger.hilt.android.AndroidEntryPoint
 import gun0912.tedimagepicker.builder.TedImagePicker
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -76,17 +77,17 @@ class ReviewModifyActivity :
             binding.txtRecordPreferenceExplain.setText(Comment.of(it.toInt()))
         }
         binding.imgRecordAddImage.setOnClickListener {
-//            TedImagePicker.with(this)
-//                .start { uri ->
-//                    Log.d("TAG URI", uri.toString())
-//                    imageSliderAdapter.replaceList(
-//                        listOf(
-//                            ImageInfo(reviewViewModel.reviewInfo.value!!.productImg, true),
-//                            ImageInfo(uri.toString(), false)
-//                        )
-//                    )
-//                    makeMultiPartBody(uri)
-//                }
+            TedImagePicker.with(this)
+                .start { uri ->
+                    Log.d("TAG URI", uri.toString())
+                    imageSliderAdapter.replaceList(
+                        listOf(
+                            ImageInfo(reviewViewModel.reviewInfo.value!!.productImg, true),
+                            ImageInfo(uri.toString(), false)
+                        )
+                    )
+                    makeMultiPartBody(uri)
+                }
             Toast.makeText(this, "기능 준비중입니다", Toast.LENGTH_SHORT).show()
         }
         binding.btnSubmit.setOnClickListener { reviewViewModel.modifyReview() }
@@ -167,14 +168,23 @@ class ReviewModifyActivity :
     }
 
     private fun makeMultiPartBody(uri: Uri) {
-        val file = getFile(this, uri)
-        val part = MultipartBody.Part.createFormData(
-            "image",
-            file.name,
-            file.asRequestBody("image/png".toMediaTypeOrNull())
-        )
-        reviewViewModel.setImageFile(part)
+        // val file = getFile(this, uri)
+        val partBody = uri.asMultipart("image", contentResolver)
+        Log.d("TAG", (partBody == null).toString())
+        if (partBody != null) {
+            reviewViewModel.setImageFile(partBody)
+        }
     }
+
+//    private fun makeMultiPartBody(uri: Uri) {
+//        val file = getFile(this, uri)
+//        val part = MultipartBody.Part.createFormData(
+//            "image",
+//            file.name,
+//            file.asRequestBody("image/png".toMediaTypeOrNull())
+//        )
+//        reviewViewModel.setImageFile(part)
+//    }
 
     private fun getFile(context: Context, uri: Uri): File {
         val destinationFilename =

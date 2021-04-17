@@ -178,6 +178,41 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../HyunWooRoid/app/src/main/java/com/l2hyunwoo/android/presentation/signup/SignUpActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HyunWooRoid/app/src/main/java/com/l2hyunwoo/android/presentation/signup/SignUpViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HyunWooRoid/app/src/main/java/com/l2hyunwoo/android/presentation/util/LiveDataUtil.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HyunWooRoid/app/src/main/res/drawable/button_background.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HyunWooRoid/app/src/main/res/drawable/signup_button_background.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HyunWooRoid/app/src/main/res/layout/activity_sign_up.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HyunWooRoid/app/src/main/res/values/styles.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../MARU_Android/app/src/main/java/kr/co/marubook/data/remote/datasource/HomeDataSourceImpl.kt">
           <value>
             <set />
@@ -789,6 +824,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/util/Uri.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/teamounce/ounce/util/UriUtil.kt">
           <value>
             <set />
           </value>
