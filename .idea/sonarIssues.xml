@@ -123,7 +123,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/signup/viewmodel/SignUpViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/util/FirebaseEventUtil.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../BeMe/app/src/main/java/com/teambeme/beme/util/LiveDataUtil.kt">
           <value>
             <set />
           </value>
