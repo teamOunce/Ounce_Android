@@ -2,6 +2,7 @@ package com.teamounce.ounce.feed.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
@@ -21,6 +22,7 @@ class FeedActivityViewModel @Inject constructor(private val repo: FeedReviewRepo
 
     // 기록 리스트로 보여줄 리스트들
     var responseFeedList = MutableLiveData<List<ResponseFeedReviewData.Data>>(listOf())
+    val feedsSize = Transformations.map(responseFeedList) { it.size }
 
 
     var tagFilterList = mutableMapOf<String, Boolean>()

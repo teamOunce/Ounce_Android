@@ -29,7 +29,7 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
         get() = Dispatchers.Main + job
 
     private val mViewModel: FeedActivityViewModel by viewModels()
-    private val bottomSheet : FeedBottomSheetDialog by lazy {
+    private val bottomSheet: FeedBottomSheetDialog by lazy {
         FeedBottomSheetDialog(mViewModel)
     }
 
@@ -57,23 +57,30 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
             val intent = Intent(this, TagActivity::class.java)
             startActivity(intent)
         }
-        binding.feedSwipeLayout.setColorSchemeColors(ContextCompat.getColor(this,R.color.orange))
+        binding.feedSwipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.orange))
         binding.feedSwipeLayout.setOnRefreshListener {
             val intent = Intent(this, FeedActivity::class.java)
             finish()
-            overridePendingTransition(0,0)
+            overridePendingTransition(0, 0)
             startActivity(intent)
 
             binding.feedSwipeLayout.isRefreshing = false
         }
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        val intent = Intent(this, FeedActivity::class.java)
+        finish()
+        overridePendingTransition(0, 0)
+        startActivity(intent)
+    }
+
     private fun setObserve() {
-        mViewModel.responseFeedList.observe(this,{
-            if (it.isEmpty()){
+        mViewModel.responseFeedList.observe(this, {
+            if (it.isEmpty()) {
                 binding.noFeedTxt.visibility = View.VISIBLE
-            }
-            else{
+            } else {
                 binding.noFeedTxt.visibility = View.INVISIBLE
             }
         })
@@ -87,7 +94,7 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
     private fun setClickListener() {
         binding.feedFilterImg.setOnClickListener {
             bottomSheet.isCancelable = false
-            bottomSheet.show(supportFragmentManager,BOTTOM_SHEET_TAG)
+            bottomSheet.show(supportFragmentManager, BOTTOM_SHEET_TAG)
         }
     }
 

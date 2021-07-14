@@ -5,13 +5,17 @@ import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.util.Log
 import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
@@ -22,8 +26,7 @@ import com.teamounce.ounce.review.adapter.CatFoodSliderAdapter
 import com.teamounce.ounce.review.model.ImageInfo
 import com.teamounce.ounce.review.model.ResponseSearch
 import com.teamounce.ounce.review.viewmodel.ReviewViewModel
-import com.teamounce.ounce.util.ChipFactory
-import com.teamounce.ounce.util.StatusBarUtil
+import com.teamounce.ounce.util.*
 import dagger.hilt.android.AndroidEntryPoint
 import gun0912.tedimagepicker.builder.TedImagePicker
 import kotlinx.coroutines.launch
@@ -76,22 +79,25 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
         binding.ratingRecordPreference.setOnRatingChangeListener {
             reviewViewModel.preference = it
             binding.btnSubmit.isEnabled = true
-            binding.txtRecordPreferenceExplain.setText(Comment.of(it.toInt()))
+            binding.txtRecordPreferenceExplain.text = Comment.of(it.toInt())
         }
         binding.imgRecordAddImage.setOnClickListener {
-//            TedImagePicker.with(this)
-//                .start { uri ->
-//                    imageSliderAdapter.replaceList(
-//                        listOf(
-//                            ImageInfo(catFood.productImg, true),
-//                            ImageInfo(uri.toString(), false)
-//                        )
-//                    )
-//                    makeMultiPartBody(uri)
-//                }
-            Toast.makeText(this, "기능 준비중입니다", Toast.LENGTH_SHORT).show()
+            TedImagePicker.with(this)
+                .start { uri ->
+                    imageSliderAdapter.replaceList(
+                        listOf(
+                            ImageInfo(catFood.productImg, true),
+                            ImageInfo(uri.toString(), false)
+                        )
+                    )
+                    makeMultiPartBody(uri)
+                }
+//            Toast.makeText(this, "기능 준비중입니다", Toast.LENGTH_SHORT).show()
         }
-        binding.btnSubmit.setOnClickListener { reviewViewModel.registerReview(catFood) }
+        binding.btnSubmit.setOnClickListener {
+            Log.e("Click", "Call Register")
+            reviewViewModel.registerReview(catFood)
+        }
         binding.imgRecordTooltip.setOnClickListener {
             ToolTipFragment().show(supportFragmentManager, "ToolTip")
         }
@@ -144,55 +150,24 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
     }
 
     private fun makeMultiPartBody(uri: Uri) {
-        val file = getFile(this, uri)
-        val part = MultipartBody.Part.createFormData(
-            "image",
-            file.name,
-            file.asRequestBody("image/png".toMediaTypeOrNull())
-        )
-        reviewViewModel.setImageFile(part)
-    }
-
-    private fun getFile(context: Context, uri: Uri): File {
-        val destinationFilename =
-            File(context.filesDir.path + File.separatorChar + queryName(context, uri))
-        try {
-            context.contentResolver.openInputStream(uri).use { ins ->
-                if (ins != null) { createFileFromStream(ins, destinationFilename) }
-            }
-        } catch (ex: Exception) {
-            Log.e("Save File", ex.message!!)
-            ex.printStackTrace()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            Log.i("TAG","MY BUILD SDK 29 UP")
+            val partBody = uri.asMultipart("image", contentResolver)
+            if (partBody != null)
+                reviewViewModel.setImageFile(partBody)
+            else
+                Log.i("TAG", "29 UP MULTI PART NULL")
         }
-        return destinationFilename
-    }
-
-    private fun createFileFromStream(ins: InputStream, destination: File?) {
-        try {
-            FileOutputStream(destination).use { os ->
-                val buffer = ByteArray(4096)
-                var length: Int
-                length = ins.read(buffer)
-                while (length > 0) {
-                    os.write(buffer, 0, length)
-                    length = ins.read(buffer)
-                }
-                os.flush()
+        else {
+            Log.i("TAG","MY BUILD SDK 29 DOWN")
+            lifecycleScope.launch {
+                val result = uri.makeMultiPart(this@ReviewActivity)
+                if (result != null)
+                    reviewViewModel.setImageFile(result)
             }
-        } catch (ex: Exception) {
-            Log.e("Save File", ex.message!!)
-            ex.printStackTrace()
         }
+
     }
 
-    @SuppressLint("Recycle")
-    private fun queryName(context: Context, uri: Uri): String {
-        val returnCursor: Cursor =
-            context.contentResolver.query(uri, null, null, null, null)!!
-        val nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-        returnCursor.moveToFirst()
-        val name = returnCursor.getString(nameIndex)
-        returnCursor.close()
-        return name
-    }
+
 }

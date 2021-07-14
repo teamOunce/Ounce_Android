@@ -17,6 +17,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import retrofit2.HttpException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -74,16 +75,24 @@ class ReviewViewModel @Inject constructor(
         multiPartFile = part
     }
 
-    fun registerReview(productData: ResponseSearch.Data) = viewModelScope.launch {
-        runCatching {
-            reviewRepository.registerReview(
-                body = providePartMap(productData),
-                image = multiPartFile ?: emptyImage
-            )
-        }.onSuccess {
-            _registerResult.value = it
-        }.onFailure {
-            Log.d("TAG", it.stackTraceToString())
+    fun registerReview(productData: ResponseSearch.Data) {
+        Log.e("Call register", "Call Register")
+        viewModelScope.launch {
+            runCatching {
+                reviewRepository.registerReview(
+                    body = providePartMap(productData),
+                    image = multiPartFile ?: emptyImage
+                )
+            }.onSuccess {
+                _registerResult.value = it
+            }.onFailure {
+                when(it) {
+                    is HttpException -> {
+                        Log.d("TAG", it.code().toString())
+                    }
+                }
+                Log.d("TAG", it.stackTraceToString())
+            }
         }
     }
 
