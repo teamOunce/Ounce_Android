@@ -134,6 +134,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                     response: Response<MainViewResponseData>
                 ) {
                     if (response.isSuccessful) {
+                        Log.i("메인 서버 데이터", response.body()?.data.toString())
                         setCatName(response.body()!!.data.catName)
                         setCatDday((response.body()!!.data.fromMeet) + 1)
                         OunceLocalRepository.reviewCount = response.body()!!.data.reviewCount
@@ -141,7 +142,6 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                         if (sharedPreferences.getCatPositionSelected() == null) {
                             sharedPreferences.setCatPositionSelected(0)
                         }
-                        Log.d("이것은 서버통신 성공", "이것이 서버")
                         Log.d("고양이 review count", response.body()!!.data.reviewCount.toString())
                         Log.d("local review count", OunceLocalRepository.reviewCount.toString())
                         setBackgroundResource()
