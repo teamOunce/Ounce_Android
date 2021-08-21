@@ -78,8 +78,8 @@ class FoodDetailActivity :
             setReviewBoxTopMargin(tagList.isEmpty())
 
             val imageUrlList = listOf(
-                it.catFoodReview.productImg,
-                it.catFoodReview.myImg
+                it.catFoodReview.myImg,
+                it.catFoodReview.productImg
             ).filter { url -> url != "" }
             foodImageSliderAdapter.replaceList(imageUrlList)
             if (imageUrlList.size == 2) {

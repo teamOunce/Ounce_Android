@@ -68,6 +68,7 @@ class ReviewModifyActivity :
     private fun setAdapter() {
         imageSliderAdapter = CatFoodSliderAdapter()
         binding.vpRecordSlider.adapter = imageSliderAdapter
+        Log.i("리뷰 수정", "adapter 세팅 완료")
     }
 
     private fun setUIListener() {
@@ -100,13 +101,16 @@ class ReviewModifyActivity :
         reviewViewModel.reviewInfo.observe(this) {
             binding.ratingRecordPreference.setStar(it.preference.toFloat())
             binding.etRecordMemo.setText(it.memo)
-            listOf(it.productImg, it.myImg)
-                .filter { it != "" }
-                .map { ImageInfo(it, true) }
-                .also { imageSliderAdapter.replaceList(it) }
+            listOf(it.myImg, it.productImg)
+                .filter { imgString -> imgString != "" }
+                .map { notNullImgString -> ImageInfo(notNullImgString, true) }
+                .also { img ->
+                    imageSliderAdapter.replaceList(img)
+                }
             val selectedTag = listOf(it.tag1, it.tag2, it.tag3)
-                            .filter { it != "" }
+                .filter { tag -> tag != "" }
             reviewViewModel.initTags(selectedTag)
+            Log.i("리뷰 수정", "리뷰 인포 데이터 세팅 완")
         }
         reviewViewModel.warningMessage.observe(this) { it.toast() }
         reviewViewModel.tagList.observe(this) {
