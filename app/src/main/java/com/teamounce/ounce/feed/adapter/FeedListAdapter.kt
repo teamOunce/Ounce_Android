@@ -36,6 +36,9 @@ class FeedListAdapter : RecyclerView.Adapter<FeedListAdapter.FeedListViewHolder>
 
         fun onBind(data: ResponseFeedReviewData.Data) {
             binding.data = data
+
+            binding.feedChipGroup.removeAllViews()
+
             if (data.tag1.isNotBlank()) {
                 val chip = setChip(data.tag1)
                 binding.feedChipGroup.addView(chip)
