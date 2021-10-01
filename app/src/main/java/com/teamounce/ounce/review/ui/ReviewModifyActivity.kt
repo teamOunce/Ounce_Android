@@ -1,30 +1,37 @@
 package com.teamounce.ounce.review.ui
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.OpenableColumns
 import android.util.Log
+import android.view.MotionEvent
 import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.databinding.ActivityReviewModifyBinding
 import com.teamounce.ounce.feed.ui.Comment
 import com.teamounce.ounce.feed.ui.FeedActivity
+import com.teamounce.ounce.feed.ui.FoodDetailActivity
 import com.teamounce.ounce.review.adapter.CatFoodSliderAdapter
 import com.teamounce.ounce.review.model.ImageInfo
 import com.teamounce.ounce.review.viewmodel.ReviewViewModel
 import com.teamounce.ounce.util.ChipFactory
 import com.teamounce.ounce.util.StatusBarUtil
 import com.teamounce.ounce.util.asMultipart
+import com.teamounce.ounce.util.makeMultiPart
 import dagger.hilt.android.AndroidEntryPoint
 import gun0912.tedimagepicker.builder.TedImagePicker
+import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -68,8 +75,10 @@ class ReviewModifyActivity :
     private fun setAdapter() {
         imageSliderAdapter = CatFoodSliderAdapter()
         binding.vpRecordSlider.adapter = imageSliderAdapter
+        Log.i("리뷰 수정", "adapter 세팅 완료")
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setUIListener() {
         binding.imgReviewBack.setOnClickListener { finish() }
         binding.ratingRecordPreference.setOnRatingChangeListener {
@@ -88,11 +97,18 @@ class ReviewModifyActivity :
                     )
                     makeMultiPartBody(uri)
                 }
-            Toast.makeText(this, "기능 준비중입니다", Toast.LENGTH_SHORT).show()
         }
         binding.btnSubmit.setOnClickListener { reviewViewModel.modifyReview() }
         binding.imgRecordTooltip.setOnClickListener {
             ToolTipFragment().show(supportFragmentManager, "ToolTip")
+        }
+
+        binding.etRecordMemo.setOnTouchListener { v, event ->
+            v.parent.requestDisallowInterceptTouchEvent(true)
+            when (event.action and MotionEvent.ACTION_MASK) {
+                MotionEvent.ACTION_UP -> v.parent.requestDisallowInterceptTouchEvent(false)
+            }
+            false
         }
     }
 
@@ -101,12 +117,19 @@ class ReviewModifyActivity :
             binding.ratingRecordPreference.setStar(it.preference.toFloat())
             binding.etRecordMemo.setText(it.memo)
             listOf(it.productImg, it.myImg)
-                .filter { it != "" }
-                .map { ImageInfo(it, true) }
-                .also { imageSliderAdapter.replaceList(it) }
+                .filter { imgString -> imgString != "" }
+                .map { notNullImgString -> ImageInfo(notNullImgString, true) }
+                .also { img ->
+                    imageSliderAdapter.replaceList(img)
+                    if (img.size > 1)
+                        binding.vpRecordSlider.post {
+                            binding.vpRecordSlider.setCurrentItem(img.size - 1, false)
+                        }
+                }
             val selectedTag = listOf(it.tag1, it.tag2, it.tag3)
-                            .filter { it != "" }
+                .filter { tag -> tag != "" }
             reviewViewModel.initTags(selectedTag)
+            Log.i("리뷰 수정", "리뷰 인포 데이터 세팅 완")
         }
         reviewViewModel.warningMessage.observe(this) { it.toast() }
         reviewViewModel.tagList.observe(this) {
@@ -125,12 +148,12 @@ class ReviewModifyActivity :
                     reviewViewModel.preference.toInt(),
                     object : ReviewCompleteFragment.DisMissClickListener {
                         override fun onClick(context: Context) {
-                            startActivity(Intent(context, FeedActivity::class.java))
+                            setResult(Activity.RESULT_OK)
                             finish()
                         }
                     }
                 ).show(supportFragmentManager, "ReviewComplete")
-                finish()
+//                finish()
             }
         }
     }
@@ -169,10 +192,22 @@ class ReviewModifyActivity :
 
     private fun makeMultiPartBody(uri: Uri) {
         // val file = getFile(this, uri)
-        val partBody = uri.asMultipart("image", contentResolver)
-        Log.d("TAG", (partBody == null).toString())
-        if (partBody != null) {
-            reviewViewModel.setImageFile(partBody)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            val partBody = uri.asMultipart("image", contentResolver)
+            Log.d("TAG", (partBody == null).toString())
+            if (partBody != null) {
+                reviewViewModel.setImageFile(partBody)
+            }
+        } else {
+            lifecycleScope.launch {
+                try {
+                    val result = uri.makeMultiPart(this@ReviewModifyActivity)
+                    if (result != null)
+                        reviewViewModel.setImageFile(result)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
         }
     }
 

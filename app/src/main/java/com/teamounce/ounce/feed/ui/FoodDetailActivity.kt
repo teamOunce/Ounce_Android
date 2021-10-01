@@ -1,10 +1,13 @@
 package com.teamounce.ounce.feed.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +24,7 @@ import com.teamounce.ounce.settings.util.SettingCustomDialogBuilder
 import com.teamounce.ounce.settings.util.SettingCustomDialogListener
 import com.teamounce.ounce.util.StatusBarUtil
 import com.teamounce.ounce.util.dp
+import com.teamounce.ounce.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,11 +32,15 @@ class FoodDetailActivity :
     BindingActivity<ActivityFoodDetailBinding>(R.layout.activity_food_detail) {
 
     private val feedViewModel: FeedViewModel by viewModels()
+    private var reviewIndex: Int = -1
+
+    private lateinit var resultModifyActivity: ActivityResultLauncher<Intent>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         StatusBarUtil.setStatusBar(this)
         binding.lifecycleOwner = this
-        val reviewIndex = intent.getIntExtra("reviewIndex", 0)
+        reviewIndex = intent.getIntExtra("reviewIndex", -1)
         feedViewModel.fetchReviewData(reviewIndex)
         setUIListener(reviewIndex)
         val tagAdapter = ReviewTagAdapter()
@@ -82,6 +90,11 @@ class FoodDetailActivity :
                 it.catFoodReview.myImg
             ).filter { url -> url != "" }
             foodImageSliderAdapter.replaceList(imageUrlList)
+            if (imageUrlList.size > 1)
+                binding.vpDetailImageSlider.post {
+                    binding.vpDetailImageSlider.setCurrentItem(imageUrlList.size - 1, false)
+                }
+
             if (imageUrlList.size == 2) {
                 binding.vpDetailImageSlider.registerOnPageChangeCallback(providePageChangeCallback())
             } else {
@@ -91,6 +104,8 @@ class FoodDetailActivity :
 
             binding.txtDetailCreatedDate.setText(setDateText(it.catFoodReview))
         }
+
+        setActivityResult()
     }
 
     private fun setUIListener(reviewIndex: Int) {
@@ -174,7 +189,7 @@ class FoodDetailActivity :
             override fun OnEditClickListener(reviewIndex: Int) {
                 val intent = Intent(this@FoodDetailActivity, ReviewModifyActivity::class.java)
                 intent.putExtra("reviewIndex", reviewIndex)
-                startActivity(intent)
+                resultModifyActivity.launch(intent)
             }
 
             override fun OnDeleteClickListener(reviewIndex: Int, viewModel: FeedViewModel) {
@@ -193,6 +208,16 @@ class FoodDetailActivity :
                     .create()
 
                 dialog.show(supportFragmentManager, "DeleteDialog")
+            }
+        }
+    }
+
+    private fun setActivityResult() {
+        resultModifyActivity = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                feedViewModel.fetchReviewData(reviewIndex)
             }
         }
     }

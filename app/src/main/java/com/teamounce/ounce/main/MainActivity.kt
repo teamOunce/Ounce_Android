@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import com.airbnb.lottie.LottieDrawable
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
@@ -109,7 +110,15 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     private fun setBackgroundHotSourcr(backgroundColor: Int, lottieAnimation: Int) {
-        binding.imageviewCat.setAnimation(lottieAnimation)
+        binding.imageviewCat.run {
+            setAnimation(lottieAnimation)
+            repeatMode = LottieDrawable.REVERSE
+            repeatCount = LottieDrawable.INFINITE
+        }
+
+        binding.imageviewCat.post {
+            binding.imageviewCat.playAnimation()
+        }
         binding.mainBackground.setBackgroundColor(getColor(backgroundColor))
     }
 
