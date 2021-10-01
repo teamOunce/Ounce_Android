@@ -47,9 +47,9 @@ class UserInfoFragment : BindingFragment<FragmentUserInfoBinding>(R.layout.fragm
         }
         binding.pickerOwnerBornYear.apply {
             maxValue = 2020
-            minValue = 1985
+            minValue = 1950
             value = 1990
-            displayedValues = (1985..2020).map { "$it 년" }.toTypedArray()
+            displayedValues = (1950..2020).map { "$it 년" }.toTypedArray()
         }
         val textUserInfo = "개인정보 처리방침에 동의합니다"
         val spannableTextUserInfo = SpannableString(textUserInfo)

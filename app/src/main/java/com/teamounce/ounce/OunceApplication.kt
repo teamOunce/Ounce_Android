@@ -2,6 +2,7 @@ package com.teamounce.ounce
 
 import android.app.Application
 import android.content.Context
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.multidex.MultiDex
 import com.kakao.sdk.common.KakaoSdk
 import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
@@ -17,6 +18,8 @@ class OunceApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        // 다크모드 설정 해제
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         initPixelUtil()
         OunceLocalRepository.init(this)
         KakaoSdk.init(this, OunceLocalRepository.getKey(), loggingEnabled = true)
