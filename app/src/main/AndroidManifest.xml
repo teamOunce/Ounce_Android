@@ -18,7 +18,9 @@
         android:theme="@style/Theme.OUNCE"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".review.ui.ReviewModifyActivity" />
+        <activity android:name=".review.ui.ReviewModifyActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".settings.ui.CatRegisterActivity" />
         <activity
             android:name=".splash.SplashActivity"

@@ -10,6 +10,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.OpenableColumns
 import android.util.Log
+import android.view.MotionEvent
 import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -77,6 +78,7 @@ class ReviewModifyActivity :
         Log.i("리뷰 수정", "adapter 세팅 완료")
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setUIListener() {
         binding.imgReviewBack.setOnClickListener { finish() }
         binding.ratingRecordPreference.setOnRatingChangeListener {
@@ -99,6 +101,14 @@ class ReviewModifyActivity :
         binding.btnSubmit.setOnClickListener { reviewViewModel.modifyReview() }
         binding.imgRecordTooltip.setOnClickListener {
             ToolTipFragment().show(supportFragmentManager, "ToolTip")
+        }
+
+        binding.etRecordMemo.setOnTouchListener { v, event ->
+            v.parent.requestDisallowInterceptTouchEvent(true)
+            when (event.action and MotionEvent.ACTION_MASK) {
+                MotionEvent.ACTION_UP -> v.parent.requestDisallowInterceptTouchEvent(false)
+            }
+            false
         }
     }
 
