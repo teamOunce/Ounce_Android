@@ -56,23 +56,16 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/notosans_bold"
             android:textSize="26sp"
+            android:textColor="@color/main_grey"
+            android:drawablePadding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.098"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/toolbar_register"
             app:layout_constraintVertical_bias="0.1"
-            tools:text="이겨울" />
-
-        <ImageView
-            android:id="@+id/imageview_dropbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="9dp"
-            android:src="@drawable/polygon"
-            app:layout_constraintBottom_toBottomOf="@id/textview_cat_name"
-            app:layout_constraintStart_toEndOf="@id/textview_cat_name"
-            app:layout_constraintTop_toTopOf="@id/textview_cat_name" />
+            tools:text="이겨울"
+            app:drawableEndCompat="@drawable/ic_arrow_below_fill_orange" />
 
         <TextView
             android:id="@+id/textview_cat_dday"
