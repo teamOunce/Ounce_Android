@@ -42,7 +42,6 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
                     val intent = Intent(this@SearchActivity, ReviewActivity::class.java)
                     intent.putExtra("catFood", catFood)
                     startActivity(intent)
-                    finish()
                 }
             })
         binding.rvReviewSearchLinear.apply {
@@ -83,7 +82,10 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
                 else -> view.background.setTint(resources.getColor(R.color.gray2, null))
             }
         }
-        binding.imgReviewBack.setOnClickListener { finish() }
+        binding.imgReviewBack.setOnClickListener {
+            mImm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+            finish()
+        }
         binding.etReviewSearch.setOnKeyListener { _, keyCode, keyEvent ->
             if (keyEvent.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                 searchViewModel.search()
