@@ -39,7 +39,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/gray1" />
+                    app:tint="@color/gray1.5" />
 
                 <TextView
                     android:id="@+id/txt_search_title"
@@ -87,7 +87,6 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="20dp"
             android:src="@drawable/ic_search"
-            app:layout_constraintBottom_toBottomOf="@+id/et_review_search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/et_review_search"
             app:layout_constraintTop_toTopOf="@+id/et_review_search" />
