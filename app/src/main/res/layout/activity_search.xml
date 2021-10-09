@@ -33,13 +33,13 @@
                     android:id="@+id/img_review_back"
                     android:layout_width="wrap_content"
                     android:layout_height="?attr/actionBarSize"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="16dp"
                     android:paddingEnd="32dp"
                     android:src="@drawable/ic_back"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/orangey_red" />
+                    app:tint="@color/gray1" />
 
                 <TextView
                     android:id="@+id/txt_search_title"
@@ -65,7 +65,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
-            android:backgroundTint="@color/orangey_red"
             android:hint="제조사, 상품명 입력"
             android:imeOptions="actionSearch"
             android:inputType="text"
@@ -73,9 +72,13 @@
             android:singleLine="true"
             android:text="@={viewModel.searchQuery}"
             android:textSize="16sp"
+            android:theme="@style/OrangeEditTextTheme"
             app:layout_constraintEnd_toStartOf="@id/img_review_search"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_review_search" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_review_search">
+
+            <requestFocus />
+        </EditText>
 
         <ImageView
             android:id="@+id/img_review_search"
@@ -83,7 +86,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="20dp"
-            android:onClick="@{() -> viewModel.search()}"
             android:src="@drawable/ic_search"
             app:layout_constraintBottom_toBottomOf="@+id/et_review_search"
             app:layout_constraintEnd_toEndOf="parent"

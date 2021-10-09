@@ -65,9 +65,6 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
             textviewCatName.setOnClickListener {
                 bottomSheetFragment.show(supportFragmentManager, "bottomsheet")
             }
-            imageviewDropbox.setOnClickListener {
-                bottomSheetFragment.show(supportFragmentManager, "bottomsheet")
-            }
         }
     }
 
