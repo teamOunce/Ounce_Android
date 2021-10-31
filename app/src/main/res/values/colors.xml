@@ -50,4 +50,14 @@
     <color name="color_transparent">#00ff0000</color>
 
     <color name="main_grey">#343434</color>
+
+    <color name="home_0">#FFEAD9</color>
+    <color name="home_1_1">#F87F6E</color>
+    <color name="home_1_2">#FFE6DC</color>
+    <color name="home_2_1">#3187BA</color>
+    <color name="home_2_2">#DFE8F1</color>
+    <color name="home_3_1">#7E9194</color>
+    <color name="home_3_2">#E3E3E5</color>
+    <color name="home_4_1">#82A69A</color>
+    <color name="home_4_2">#D8E1E0</color>
 </resources>
