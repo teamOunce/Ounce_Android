@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.core.content.ContextCompat
 import com.airbnb.lottie.LottieDrawable
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
@@ -68,7 +69,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         }
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @SuppressLint("UseCompatLoadingForDrawables", "SetTextI18n")
     private fun setBackgroundResource() {
 //        with(binding) {
 //            lottieFile = ScreenAnimation.by(reviewCount)
@@ -80,25 +81,40 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 //            )
 //        }
         when (OunceLocalRepository.reviewCount) {
-            0 -> setBackgroundHotSourcr(R.color.white, R.raw.home_img_nothing)
-            in BACKGROUND_ONE_RANGE -> setBackgroundHotSourcr(
-                R.color.mainbackground_one,
-                R.raw.home_img_step0
-            )
-            in BACKGROUND_TWO_RANGE -> setBackgroundHotSourcr(
-                R.color.mainbackground_two,
-                R.raw.home_img_step1
-            )
-            in BACKGROUND_THREE_RANGE -> setBackgroundHotSourcr(
-                R.color.mainbackground_three,
-                R.raw.home_img_step2
-            )
-            in BACKGROUND_FOUR_RANGE -> setBackgroundHotSourcr(
-                R.color.mainbackground_four,
-                R.raw.home_img_step3
-            )
-            else -> setBackgroundHotSourcr(R.color.mainbackground_five, R.raw.home_img_step4)
+            0 -> {
+                setBackgroundHotSourcr(R.color.white, R.raw.home_img_nothing)
+            }
+            in BACKGROUND_ONE_RANGE ->  {
+                setBackgroundHotSourcr(
+                    R.color.mainbackground_one,
+                    R.raw.home_img_step0
+                )
+            }
+            in BACKGROUND_TWO_RANGE ->  {
+                setBackgroundHotSourcr(
+                    R.color.mainbackground_two,
+                    R.raw.home_img_step1
+                )
+            }
+            in BACKGROUND_THREE_RANGE ->  {
+                setBackgroundHotSourcr(
+                    R.color.mainbackground_three,
+                    R.raw.home_img_step2
+                )
+            }
+            in BACKGROUND_FOUR_RANGE ->  {
+                setBackgroundHotSourcr(
+                    R.color.mainbackground_four,
+                    R.raw.home_img_step3
+                )
+            }
+            else ->  {
+                setBackgroundHotSourcr(R.color.mainbackground_five, R.raw.home_img_step4)
+            }
         }
+
+        setReviewCountProgress(OunceLocalRepository.reviewCount)
+
         StatusBarUtil.setStatusBar(
             this@MainActivity,
             BackgroundColor.of(OunceLocalRepository.reviewCount),
@@ -117,6 +133,68 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
             binding.imageviewCat.playAnimation()
         }
         binding.mainBackground.setBackgroundColor(getColor(backgroundColor))
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setReviewCountProgress(reviewCount: Int) {
+        binding.txtReviewCount.text = reviewCount.toString()
+        when(reviewCount) {
+            0 -> {
+                binding.txtProgressMaxCount.text = "0"
+                binding.reviewCountProgress.run {
+                    trackColor = ContextCompat.getColor(this@MainActivity, R.color.home_progress_default)
+                }
+            }
+            in BACKGROUND_ONE_RANGE -> {
+                binding.txtProgressMaxCount.text = "5"
+                binding.reviewCountProgress.run {
+                    trackColor = ContextCompat.getColor(this@MainActivity, R.color.home_0)
+                    setIndicatorColor(ContextCompat.getColor(this@MainActivity, R.color.orange))
+                    max = 5
+                    setProgressCompat(reviewCount, true)
+                }
+            }
+
+            in BACKGROUND_TWO_RANGE -> {
+                binding.txtProgressMaxCount.text = "10"
+                binding.reviewCountProgress.run {
+                    trackColor = ContextCompat.getColor(this@MainActivity, R.color.home_1_2)
+                    setIndicatorColor(ContextCompat.getColor(this@MainActivity, R.color.home_1_1))
+                    max = 10
+                    setProgressCompat(reviewCount, true)
+                }
+            }
+
+            in BACKGROUND_THREE_RANGE -> {
+                binding.txtProgressMaxCount.text = "15"
+                binding.reviewCountProgress.run {
+                    trackColor = ContextCompat.getColor(this@MainActivity, R.color.home_2_2)
+                    setIndicatorColor(ContextCompat.getColor(this@MainActivity, R.color.home_2_1))
+                    max = 15
+                    setProgressCompat(reviewCount, true)
+                }
+            }
+
+            in BACKGROUND_FOUR_RANGE -> {
+                binding.txtProgressMaxCount.text = "20"
+                binding.reviewCountProgress.run {
+                    trackColor = ContextCompat.getColor(this@MainActivity, R.color.home_3_2)
+                    setIndicatorColor(ContextCompat.getColor(this@MainActivity, R.color.home_3_1))
+                    max = 20
+                    setProgressCompat(reviewCount, true)
+                }
+            }
+
+            else -> {
+                binding.txtProgressMaxCount.text = "25"
+                binding.reviewCountProgress.run {
+                    trackColor = ContextCompat.getColor(this@MainActivity, R.color.home_4_2)
+                    setIndicatorColor(ContextCompat.getColor(this@MainActivity, R.color.home_4_1))
+                    max = 25
+                    setProgressCompat(reviewCount, true)
+                }
+            }
+        }
     }
 
     private fun setCatName(name: String) {

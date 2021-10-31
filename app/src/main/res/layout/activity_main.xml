@@ -80,29 +80,99 @@
             app:layout_constraintVertical_bias="0.0"
             tools:text="만난지 1000일 째" />
 
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/review_count_progress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_review_count"
+            app:layout_constraintEnd_toStartOf="@id/txt_review_count"
+            app:layout_constraintStart_toStartOf="@+id/textview_cat_dday"
+            app:layout_constraintTop_toTopOf="@+id/txt_review_count"
+            app:trackColor="#eeeeee"
+            app:trackCornerRadius="10dp"
+            app:trackThickness="18dp"
+            tools:progress="50" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_review_count"
+            tools:text="0"
+            android:fontFamily="@font/notosans_bold"
+            android:textSize="20sp"
+            android:textColor="@color/gray3"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toStartOf="@id/txt_slash"
+            app:layout_constraintTop_toTopOf="@id/txt_slash"
+            app:layout_constraintBottom_toBottomOf="@id/txt_slash"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_slash"
+            android:text="/"
+            tools:ignore="HardcodedText"
+            android:fontFamily="@font/notosans_bold"
+            android:textSize="20sp"
+            android:textColor="@color/gray1"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toStartOf="@id/txt_progress_max_count"
+            app:layout_constraintTop_toTopOf="@id/txt_progress_max_count"
+            app:layout_constraintBottom_toBottomOf="@id/txt_progress_max_count"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_progress_max_count"
+            tools:text="15"
+            tools:ignore="HardcodedText"
+            android:fontFamily="@font/notosans_bold"
+            android:textSize="20sp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/orange"
+            app:layout_constraintEnd_toStartOf="@id/btn_review_tool_tip"
+            app:layout_constraintTop_toTopOf="@id/btn_review_tool_tip"
+            app:layout_constraintBottom_toBottomOf="@id/btn_review_tool_tip"/>
+
+        <ImageView
+            android:id="@+id/btn_review_tool_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="?attr/actionBarItemBackground"
+            app:layout_constraintWidth_percent="0.04"
+            app:layout_constraintDimensionRatio="1"
+            android:src="@drawable/ic_review_count_tooltop"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintTop_toBottomOf="@id/textview_cat_dday"/>
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/imageview_cat"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintBottom_toTopOf="@id/home_btn_record"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textview_cat_dday"
-            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintTop_toBottomOf="@id/review_count_progress"
             app:lottie_enableMergePathsForKitKatAndAbove="true"
+            android:layout_marginVertical="36dp"
+            android:scaleType="centerInside"
             app:lottie_loop="true" />
 
         <ImageView
             android:id="@+id/home_btn_record"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
             android:background="@drawable/home_bt_record"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageview_cat"
-            app:layout_constraintVertical_bias="0.308" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.308"
+            android:layout_marginBottom="100dp"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
