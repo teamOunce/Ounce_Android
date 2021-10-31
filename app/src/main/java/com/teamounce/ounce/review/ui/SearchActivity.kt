@@ -1,9 +1,11 @@
 package com.teamounce.ounce.review.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +24,10 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
     private val searchViewModel: SearchViewModel by viewModels()
     private lateinit var searchAdapter: SearchAdapter
 
+    private val mImm by lazy {
+        getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         StatusBarUtil.setStatusBar(this)
@@ -36,7 +42,6 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
                     val intent = Intent(this@SearchActivity, ReviewActivity::class.java)
                     intent.putExtra("catFood", catFood)
                     startActivity(intent)
-                    finish()
                 }
             })
         binding.rvReviewSearchLinear.apply {
@@ -47,6 +52,8 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
         setObserver()
         setUIListener()
         setSearchTypeChangeListener()
+
+        focusSearchEdt()
     }
 
     private fun setObserver() {
@@ -75,14 +82,25 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
                 else -> view.background.setTint(resources.getColor(R.color.gray2, null))
             }
         }
-        binding.imgReviewBack.setOnClickListener { finish() }
+        binding.imgReviewBack.setOnClickListener {
+            mImm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+            finish()
+        }
         binding.etReviewSearch.setOnKeyListener { _, keyCode, keyEvent ->
             if (keyEvent.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                 searchViewModel.search()
+                mImm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+                binding.etReviewSearch.clearFocus()
                 true
             } else {
                 false
             }
+        }
+
+        binding.imgReviewSearch.setOnClickListener {
+            searchViewModel.search()
+            mImm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+            binding.etReviewSearch.clearFocus()
         }
     }
 
@@ -96,6 +114,13 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
             searchAdapter.changeLayout(SearchAdapter.TYPE_GRID)
             binding.rvReviewSearchLinear.layoutManager = GridLayoutManager(this, 3)
         }
+    }
+
+    private fun focusSearchEdt() {
+        binding.etReviewSearch.requestFocus()
+
+        mImm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+
     }
 
 }

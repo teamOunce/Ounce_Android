@@ -36,13 +36,13 @@
                     android:id="@+id/img_review_back"
                     android:layout_width="wrap_content"
                     android:layout_height="?attr/actionBarSize"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="14dp"
                     android:paddingEnd="40dp"
                     android:src="@drawable/ic_back"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/orangey_red" />
+                    app:tint="@color/gray1.5" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
                     android:text="기록하기"
                     android:textColor="@color/text_color_black"
                     android:textFontWeight="700"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -76,9 +76,10 @@
                     android:id="@+id/vp_record_slider"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginHorizontal="80dp"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintDimensionRatio="1"
+                    android:overScrollMode="never"
+                    android:layout_marginHorizontal="80dp"
+                    app:layout_constraintHeight_percent="0.24"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -150,7 +151,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="14dp"
                     android:fontFamily="@font/notosanskr_regular"
                     android:includeFontPadding="false"
                     android:text="기호도"
@@ -167,7 +168,7 @@
                     android:layout_marginTop="8dp"
                     android:text="기호도를 선택하세요"
                     android:textColor="@color/gray1.5"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txt_record_preference"
@@ -202,11 +203,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/notosanskr_bold"
+                        android:fontFamily="@font/notosanskr_regular"
                         android:includeFontPadding="false"
                         android:text="태그"
                         android:textColor="@color/orange"
-                        android:textFontWeight="700"
+                        android:textFontWeight="600"
                         android:textSize="16sp" />
 
                     <TextView

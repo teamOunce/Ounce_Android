@@ -48,4 +48,6 @@
     <color name="tag_view_background">#19ff8762</color>
     <color name="setting_care_gray">#80343434</color>
     <color name="color_transparent">#00ff0000</color>
+
+    <color name="main_grey">#343434</color>
 </resources>
