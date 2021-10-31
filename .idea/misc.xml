@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bottom_round_16dp.xml" value="0.3671875" />
+        <entry key="app/src/main/res/drawable/bottom_sheet_box.xml" value="0.3671875" />
         <entry key="app/src/main/res/drawable/feed_background.xml" value="0.2109375" />
         <entry key="app/src/main/res/drawable/ic_foot_empty.xml" value="0.3671875" />
         <entry key="app/src/main/res/layout/activity_cat_register.xml" value="0.35104166666666664" />
@@ -19,12 +21,20 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/layout/activity_tag.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/layout/bottom_sheet_main.xml" value="0.35104166666666664" />
+        <entry key="app/src/main/res/layout/bottom_sheet_review_count_explain.xml" value="0.3723538233092873" />
         <entry key="app/src/main/res/layout/fragment_cat_info.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/layout/fragment_image_slider.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/layout/fragment_review_complete.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/layout/fragment_user_info.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/layout/fragment_user_info_term.xml" value="0.35104166666666664" />
+        <entry key="app/src/main/res/layout/item_bottom_main.xml" value="0.35104166666666664" />
+        <entry key="app/src/main/res/layout/item_catfood_slider.xml" value="0.35104166666666664" />
+        <entry key="app/src/main/res/layout/item_detail_food.xml" value="0.35104166666666664" />
+        <entry key="app/src/main/res/layout/item_detail_tag.xml" value="0.35104166666666664" />
+        <entry key="app/src/main/res/layout/item_feed_filter_bottom_sheet.xml" value="0.35104166666666664" />
+        <entry key="app/src/main/res/layout/item_feed_list.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/layout/item_food_search_grid.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/item_setting_btn.xml" value="0.35104166666666664" />
       </map>
     </option>
   </component>

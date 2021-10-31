@@ -91,7 +91,7 @@
             app:layout_constraintTop_toTopOf="@+id/txt_review_count"
             app:trackColor="#eeeeee"
             app:trackCornerRadius="10dp"
-            app:trackThickness="18dp"
+            app:trackThickness="14dp"
             tools:progress="50" />
 
         <TextView

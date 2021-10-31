@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="26dp"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/notosans_bold"
+        android:text="입맛 찾아 삼만리, 어디까지 왔나요?"
+        android:textColor="@color/gray3"
+        android:textSize="16sp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_contents"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="1:0.52"
+        android:src="@drawable/ic_review_count_toggle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_title" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_contents"
+        android:text="기호도가 4점 이상인 캣푸드를 더 찾아보세요.\n취향 저격 캣푸드를 발견하면 새로운 장소로 이동할 수 있어요!"
+        android:fontFamily="@font/notosanskr_medium"
+        android:textColor="@color/gray1.5"
+        android:includeFontPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/img_contents"
+        android:layout_marginTop="12dp"/>
+
+    <TextView
+        android:id="@+id/btn_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_enabled"
+        android:fontFamily="@font/notosanskr_medium"
+        android:includeFontPadding="false"
+        android:gravity="center"
+        android:paddingVertical="12dp"
+        android:text="확인"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintTop_toBottomOf="@id/txt_contents"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

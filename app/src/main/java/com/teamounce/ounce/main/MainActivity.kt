@@ -12,6 +12,7 @@ import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.data.remote.singleton.RetrofitObjects
 import com.teamounce.ounce.databinding.ActivityMainBinding
 import com.teamounce.ounce.feed.ui.FeedActivity
+import com.teamounce.ounce.main.bottomsheet.ReviewCountTipBottomSheet
 import com.teamounce.ounce.review.ui.SearchActivity
 import com.teamounce.ounce.settings.ui.SettingsActivity
 import com.teamounce.ounce.util.OnSwipeTouchListener
@@ -27,6 +28,9 @@ import retrofit2.Response
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
     val bottomSheetFragment = BottomSheetFragment()
     private lateinit var sharedPreferences: SharedPreferences
+    private val reviewCountToolTip by lazy {
+        ReviewCountTipBottomSheet()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +69,10 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
             })
             textviewCatName.setOnClickListener {
                 bottomSheetFragment.show(supportFragmentManager, "bottomsheet")
+            }
+
+            btnReviewToolTip.setOnClickListener {
+                reviewCountToolTip.show(supportFragmentManager, "review_tool_tip")
             }
         }
     }
