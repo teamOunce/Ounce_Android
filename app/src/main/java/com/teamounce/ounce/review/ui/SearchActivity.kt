@@ -2,6 +2,7 @@ package com.teamounce.ounce.review.ui
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
@@ -101,6 +102,13 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
             searchViewModel.search()
             mImm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
             binding.etReviewSearch.clearFocus()
+        }
+
+        /** 건의하기 버튼 클릭 시 구글 폼 이동 */
+        binding.btnSuggestCatFood.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("https://forms.gle/GL6r3kNrr32e5xFR6")
+            })
         }
     }
 
