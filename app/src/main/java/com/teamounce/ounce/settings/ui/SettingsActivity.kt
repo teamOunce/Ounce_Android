@@ -189,14 +189,7 @@ class SettingsActivity : AppCompatActivity() {
             add(
                 SettingButtonData(
                     R.drawable.ic__question,
-                    "문의하기"
-                )
-            )
-
-            add(
-                SettingButtonData(
-                    R.drawable.ic_backup,
-                    "기록 백업 및 복원"
+                    "건의함"
                 )
             )
 
