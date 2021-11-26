@@ -33,13 +33,13 @@
                     android:id="@+id/img_review_back"
                     android:layout_width="wrap_content"
                     android:layout_height="?attr/actionBarSize"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="16dp"
                     android:paddingEnd="32dp"
                     android:src="@drawable/ic_back"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/orangey_red" />
+                    app:tint="@color/gray1.5" />
 
                 <TextView
                     android:id="@+id/txt_search_title"
@@ -64,8 +64,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/orangey_red"
+            android:layout_marginTop="4dp"
             android:hint="제조사, 상품명 입력"
             android:imeOptions="actionSearch"
             android:inputType="text"
@@ -73,9 +72,13 @@
             android:singleLine="true"
             android:text="@={viewModel.searchQuery}"
             android:textSize="16sp"
+            android:theme="@style/OrangeEditTextTheme"
             app:layout_constraintEnd_toStartOf="@id/img_review_search"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_review_search" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_review_search">
+
+            <requestFocus />
+        </EditText>
 
         <ImageView
             android:id="@+id/img_review_search"
@@ -83,9 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="20dp"
-            android:onClick="@{() -> viewModel.search()}"
             android:src="@drawable/ic_search"
-            app:layout_constraintBottom_toBottomOf="@+id/et_review_search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/et_review_search"
             app:layout_constraintTop_toTopOf="@+id/et_review_search" />
@@ -174,54 +175,52 @@
             android:id="@+id/clayout_no_result"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:background="@color/white"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_review_search"
-            tools:visibility="gone">
+            app:layout_constraintTop_toBottomOf="@+id/et_review_search">
 
             <TextView
                 android:id="@+id/txt_search_empty_explain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="찾으시는 제품이 없나요?"
+                android:gravity="center"
+                android:text="검색 결과가 없습니다.\n 찾으시는 캣푸드를 온스에 알려주세요!"
                 android:textColor="@color/brown_gray"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@id/linear_search_empty_explain"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/img_no_result"
-                app:layout_constraintStart_toStartOf="@+id/img_no_result" />
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/img_no_result"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/btn_suggest_cat_food"
+                app:layout_constraintVertical_chainStyle="packed"/>
 
-            <LinearLayout
-                android:id="@+id/linear_search_empty_explain"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_suggest_cat_food"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="60dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/img_no_result"
-                app:layout_constraintEnd_toEndOf="@+id/img_no_result"
-                app:layout_constraintStart_toStartOf="@+id/img_no_result">
-
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/bt_drawer" />
-
-                <ImageView
-                    android:layout_width="6dp"
-                    android:layout_height="6dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="12dp"
-                    android:src="@drawable/ic_next" />
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/gray_three"
+                app:cardCornerRadius="36dp"
+                app:cardElevation="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="52dp"
+                app:layout_constraintVertical_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/img_no_result"
+                app:layout_constraintTop_toBottomOf="@id/txt_search_empty_explain">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="문의하기에서 알려주세요."
-                    android:textColor="@color/brown_gray"
+                    android:paddingHorizontal="32dp"
+                    android:paddingVertical="4dp"
+                    android:text="건의하기"
+                    android:textColor="@color/white"
                     android:textSize="16sp" />
 
-            </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <ImageView
                 android:id="@+id/img_no_result"
@@ -230,8 +229,9 @@
                 android:src="@drawable/ic_empty_search"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_suggest_cat_food" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

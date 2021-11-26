@@ -11,17 +11,17 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/img_item_search"
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
-            android:background="#FFDBCF"
-            app:layout_constraintDimensionRatio="1"
+            android:background="@drawable/feed_background"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintDimensionRatio="1"
             app:layout_constraintTop_toTopOf="parent"
             app:setSrcFromUrl="@{catFood.productImg}"
             tools:src="@drawable/img_dummy" />
@@ -36,10 +36,11 @@
             android:text="@{catFood.manufacturer}"
             android:textColor="@color/text_color_gray"
             android:textFontWeight="500"
+            android:lineSpacingExtra="-2sp"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/img_item_search"
             app:layout_constraintTop_toBottomOf="@+id/img_item_search"
-            tools:text="브랜드 이름" />
+            tools:text="브랜드 이름\n브랜드 이름" />
 
         <TextView
             android:id="@+id/txt_item_name"
@@ -50,7 +51,7 @@
             android:text="@{catFood.productName}"
             android:textColor="@color/text_color_black"
             android:textFontWeight="700"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@+id/img_item_search"
             app:layout_constraintStart_toStartOf="@+id/img_item_search"
             app:layout_constraintTop_toBottomOf="@+id/txt_item_company"
