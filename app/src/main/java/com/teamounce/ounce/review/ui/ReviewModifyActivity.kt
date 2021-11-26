@@ -151,6 +151,11 @@ class ReviewModifyActivity :
                             setResult(Activity.RESULT_OK)
                             finish()
                         }
+
+                        override fun onClickMoreReview() {
+                            setResult(Activity.RESULT_OK)
+                            finish()
+                        }
                     }
                 ).show(supportFragmentManager, "ReviewComplete")
 //                finish()

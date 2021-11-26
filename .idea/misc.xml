@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable/ic__question.xml" value="0.3671875" />
         <entry key="app/src/main/res/drawable/ic_foot_empty.xml" value="0.3671875" />
         <entry key="app/src/main/res/font/apple_sd_gothic.xml" value="0.2" />
+        <entry key="app/src/main/res/font/notosanskr.xml" value="0.36041666666666666" />
         <entry key="app/src/main/res/layout/activity_cat_register.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/layout/activity_feed.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/layout/activity_food_detail.xml" value="0.35104166666666664" />

@@ -33,8 +33,28 @@
         app:layout_constraintTop_toBottomOf="@+id/img_review_complete" />
 
     <Button
+        android:id="@+id/btn_more_review_write"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/gray0.5"
+        android:fontFamily="@font/notosanskr"
+        android:includeFontPadding="false"
+        android:insetTop="0dp"
+        android:text="또 쓰러가기"
+        android:textColor="@color/gray3"
+        android:textFontWeight="700"
+        android:textSize="16sp"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toStartOf="@+id/btn_review_complete"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_reivew_complete"
+        tools:ignore="UnusedAttribute" />
+
+    <Button
         android:id="@+id/btn_review_complete"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@color/orange2"
@@ -43,8 +63,13 @@
         android:insetTop="0dp"
         android:text="확인"
         android:textColor="@color/white"
+        android:textFontWeight="700"
         android:textSize="16sp"
         app:backgroundTint="@null"
-        app:layout_constraintTop_toBottomOf="@+id/txt_reivew_complete" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_more_review_write"
+        app:layout_constraintTop_toBottomOf="@+id/txt_reivew_complete"
+        tools:ignore="UnusedAttribute" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
