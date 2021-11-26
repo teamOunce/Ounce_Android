@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.airbnb.lottie.LottieDrawable
 import com.teamounce.ounce.R
@@ -31,6 +33,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     private val reviewCountToolTip by lazy {
         ReviewCountTipBottomSheet()
     }
+    private var closeTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -248,6 +251,16 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         val e = error ?: return
         val ob = JSONObject(e.string())
         Log.d("errorbody ----> ", ob.getString("status"))
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (System.currentTimeMillis() <= closeTime + 2000) {
+            ActivityCompat.finishAffinity(this)
+        } else {
+            Toast.makeText(this, "종료하려면 한번 더 누르세요", Toast.LENGTH_SHORT).show()
+            closeTime = System.currentTimeMillis()
+        }
     }
 
     companion object {
