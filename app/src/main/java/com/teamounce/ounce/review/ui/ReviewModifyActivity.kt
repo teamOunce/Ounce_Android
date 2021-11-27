@@ -2,6 +2,7 @@ package com.teamounce.ounce.review.ui
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
@@ -18,6 +19,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
+import com.teamounce.ounce.component.OunceOneButtonDialog
 import com.teamounce.ounce.databinding.ActivityReviewModifyBinding
 import com.teamounce.ounce.feed.ui.Comment
 import com.teamounce.ounce.feed.ui.FeedActivity
@@ -45,6 +47,17 @@ class ReviewModifyActivity :
     BindingActivity<ActivityReviewModifyBinding>(R.layout.activity_review_modify) {
     private val reviewViewModel by viewModels<ReviewViewModel>()
     private lateinit var imageSliderAdapter: CatFoodSliderAdapter
+
+    private val reviewModifySuccessDialog by lazy {
+        OunceOneButtonDialog(
+            this,
+            "수정 완료되었습니다!",
+            "",
+            "확인",
+            false
+        )
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.apply {
@@ -144,21 +157,29 @@ class ReviewModifyActivity :
                 Toast.makeText(this, "리뷰 등록이 실패되었습니다.", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "리뷰 등록을 성공했습니다.", Toast.LENGTH_SHORT).show()
-                ReviewCompleteFragment(
-                    reviewViewModel.preference.toInt(),
-                    object : ReviewCompleteFragment.DisMissClickListener {
-                        override fun onClick(context: Context) {
+//                ReviewCompleteFragment(
+//                    reviewViewModel.preference.toInt(),
+//                    object : ReviewCompleteFragment.DisMissClickListener {
+//                        override fun onClick(context: Context) {
+//                            setResult(Activity.RESULT_OK)
+//                            finish()
+//                        }
+//
+//                        override fun onClickMoreReview() {
+//                            setResult(Activity.RESULT_OK)
+//                            finish()
+//                        }
+//                    }
+//                ).show(supportFragmentManager, "ReviewComplete")
+                reviewModifySuccessDialog.apply {
+                    setOnDialogClickListener(object : OunceOneButtonDialog.ClickListener {
+                        override fun setOnClickOk(dialog: Dialog) {
+                            dialog.dismiss()
                             setResult(Activity.RESULT_OK)
                             finish()
                         }
-
-                        override fun onClickMoreReview() {
-                            setResult(Activity.RESULT_OK)
-                            finish()
-                        }
-                    }
-                ).show(supportFragmentManager, "ReviewComplete")
-//                finish()
+                    })
+                }.show()
             }
         }
     }

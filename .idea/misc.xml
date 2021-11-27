@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/bottom_round_16dp.xml" value="0.3671875" />
         <entry key="app/src/main/res/drawable/bottom_sheet_box.xml" value="0.3671875" />
+        <entry key="app/src/main/res/drawable/dialog_background.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/feed_background.xml" value="0.2109375" />
         <entry key="app/src/main/res/drawable/ic__question.xml" value="0.3671875" />
         <entry key="app/src/main/res/drawable/ic_foot_empty.xml" value="0.3671875" />
@@ -26,6 +27,7 @@
         <entry key="app/src/main/res/layout/activity_tag.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/layout/bottom_sheet_main.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/layout/bottom_sheet_review_count_explain.xml" value="0.3723538233092873" />
+        <entry key="app/src/main/res/layout/dialog_ounce_one_button.xml" value="0.25" />
         <entry key="app/src/main/res/layout/dialog_review_modify.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_cat_info.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/layout/fragment_image_slider.xml" value="0.35104166666666664" />
