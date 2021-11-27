@@ -26,7 +26,7 @@
         android:fontFamily="@font/notosanskr"
         android:includeFontPadding="false"
         android:text="기록이 완료되었습니다!"
-        android:textColor="@color/gray3"
+        android:textColor="@color/gray1.5"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/img_review_complete"
         app:layout_constraintStart_toStartOf="@+id/img_review_complete"
