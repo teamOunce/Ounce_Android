@@ -126,7 +126,12 @@ class FeedActivityViewModel @Inject constructor(private val repo: FeedReviewRepo
                     tag = tag,
                     type = type,
                     manu = manu,
-                    catIndex = OunceLocalRepository.catIndex
+                    catIndex = OunceLocalRepository.catIndex,
+                    sort = when(feedSortEnum) {
+                        EnumFeedSort.WRITE -> null
+                        EnumFeedSort.PREFERENCE_LOW -> "reverse_like"
+                        EnumFeedSort.PREFERENCE_HIGH -> "like"
+                    }
                 )
             }.onSuccess {
                 if (it.data.isNullOrEmpty()){
@@ -145,7 +150,13 @@ class FeedActivityViewModel @Inject constructor(private val repo: FeedReviewRepo
 
 
     fun changeSort(status: EnumFeedSort) {
-        _feedSortState.value = status.title
-        feedSortEnum = status
+        viewModelScope.launch {
+            launch {
+                _feedSortState.postValue(status.title)
+                feedSortEnum = status
+            }.join()
+
+            applicationFilter()
+        }
     }
 }
