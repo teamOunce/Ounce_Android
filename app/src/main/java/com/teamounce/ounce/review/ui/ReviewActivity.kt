@@ -126,6 +126,10 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
                             startActivity(Intent(context, FeedActivity::class.java))
                             finish()
                         }
+
+                        override fun onClickMoreReview() {
+                            finish()
+                        }
                     }
                 ).show(supportFragmentManager, "ReviewComplete")
             }

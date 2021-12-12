@@ -1,9 +1,7 @@
 package com.teamounce.ounce.feed.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.teamounce.ounce.data.enum.EnumFeedSort
 import com.teamounce.ounce.feed.model.RequestReview
 import com.teamounce.ounce.feed.model.Review
 import com.teamounce.ounce.data.remote.repository.FeedRepository
@@ -32,7 +30,7 @@ class FeedViewModel @Inject constructor(
         viewModelScope.launch {
             runCatching { feedRepository.deleteReview(reviewIndex) }
                 .onSuccess { _isSuccess.value = true }
-                .onFailure {  }
+                .onFailure { }
         }
     }
 }

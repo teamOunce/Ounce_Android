@@ -19,7 +19,8 @@ interface FeedService {
         @Query("tag") tag : String?,
         @Query("type") type : String?,
         @Query("manu") manu : String?,
-        @Query("catIndex") catIndex : Int
+        @Query("catIndex") catIndex : Int,
+        @Query("sort") sort: String?
     ) : ResponseFeedReviewData
 
     // 필터링 목록 api

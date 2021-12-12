@@ -12,9 +12,10 @@ class FeedReviewRepositoryImpl @Inject constructor(private val feedService: Feed
         tag: String?,
         type: String?,
         manu: String?,
-        catIndex: Int
+        catIndex: Int,
+        sort: String?
     ): ResponseFeedReviewData =
-        feedService.getFeedList(tag = tag, type = type, manu = manu, catIndex = catIndex)
+        feedService.getFeedList(tag = tag, type = type, manu = manu, catIndex = catIndex, sort = sort)
 
     override suspend fun getBottomSheetFilterList(catIndex: Int)
             : ResponseFilterData = feedService.getFiltering(catIndex)

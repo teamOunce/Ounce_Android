@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="52dp"
+        android:layout_gravity="center"
+        tools:ignore="UnusedAttribute">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#F1F1F1">
+
+                <TextView
+                    android:id="@+id/txt_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/notosanskr"
+                    android:gravity="center"
+                    android:textColor="@color/gray3"
+                    android:textFontWeight="700"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="다이얼로그 타이틀" />
+
+                <TextView
+                    android:id="@+id/txt_body"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/notosanskr"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/gray2"
+                    android:textFontWeight="400"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_title"
+                    app:layout_constraintStart_toStartOf="@+id/txt_title"
+                    app:layout_constraintTop_toBottomOf="@id/txt_title"
+                    tools:text="다이얼로그 바디 문구" />
+
+                <TextView
+                    android:id="@+id/btn_ok"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/orange2"
+                    android:fontFamily="@font/notosanskr"
+                    android:gravity="center"
+                    android:text="확인"
+                    android:textColor="@color/white"
+                    android:textFontWeight="700"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txt_body" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

@@ -8,7 +8,8 @@ interface FeedReviewRepository {
         tag : String?,
     type : String?,
     manu : String?,
-    catIndex: Int) : ResponseFeedReviewData
+    catIndex: Int,
+    sort: String? = null) : ResponseFeedReviewData
 
     suspend fun getBottomSheetFilterList(
         catIndex : Int
