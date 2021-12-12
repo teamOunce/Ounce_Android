@@ -1,10 +1,8 @@
 package com.teamounce.ounce.feed.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.teamounce.ounce.data.enum.EnumFeedSort
 import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.data.remote.repository.FeedReviewRepository
 import com.teamounce.ounce.feed.model.ResponseFeedListData
@@ -34,6 +32,15 @@ class FeedActivityViewModel @Inject constructor(private val repo: FeedReviewRepo
 
     // BottomSheetFilter Check Parameter
     var filterSet = MutableLiveData(false)
+
+    private val _feedSortState = MutableLiveData<String>()
+    val feedSortStateTxtLiveData: LiveData<String> = _feedSortState
+    var feedSortEnum: EnumFeedSort
+
+    init {
+        _feedSortState.value = EnumFeedSort.WRITE.title
+        feedSortEnum = EnumFeedSort.WRITE
+    }
 
     fun getBottomSheetFiltering() {
         viewModelScope.launch {
@@ -134,5 +141,11 @@ class FeedActivityViewModel @Inject constructor(private val repo: FeedReviewRepo
                 println(it.printStackTrace())
             }
         }
+    }
+
+
+    fun changeSort(status: EnumFeedSort) {
+        _feedSortState.value = status.title
+        feedSortEnum = status
     }
 }
