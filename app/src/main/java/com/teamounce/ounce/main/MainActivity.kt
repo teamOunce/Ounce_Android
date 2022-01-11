@@ -95,31 +95,31 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
             0 -> {
                 setBackgroundHotSourcr(R.color.white, R.raw.home_img_nothing)
             }
-            in BACKGROUND_ONE_RANGE ->  {
+            in BACKGROUND_ONE_RANGE -> {
                 setBackgroundHotSourcr(
                     R.color.mainbackground_one,
                     R.raw.home_img_step0
                 )
             }
-            in BACKGROUND_TWO_RANGE ->  {
+            in BACKGROUND_TWO_RANGE -> {
                 setBackgroundHotSourcr(
                     R.color.mainbackground_two,
                     R.raw.home_img_step1
                 )
             }
-            in BACKGROUND_THREE_RANGE ->  {
+            in BACKGROUND_THREE_RANGE -> {
                 setBackgroundHotSourcr(
                     R.color.mainbackground_three,
                     R.raw.home_img_step2
                 )
             }
-            in BACKGROUND_FOUR_RANGE ->  {
+            in BACKGROUND_FOUR_RANGE -> {
                 setBackgroundHotSourcr(
                     R.color.mainbackground_four,
                     R.raw.home_img_step3
                 )
             }
-            else ->  {
+            else -> {
                 setBackgroundHotSourcr(R.color.mainbackground_five, R.raw.home_img_step4)
             }
         }
@@ -149,11 +149,12 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     @SuppressLint("SetTextI18n")
     private fun setReviewCountProgress(reviewCount: Int) {
         binding.txtReviewCount.text = reviewCount.toString()
-        when(reviewCount) {
+        when (reviewCount) {
             0 -> {
                 binding.txtProgressMaxCount.text = "0"
                 binding.reviewCountProgress.run {
-                    trackColor = ContextCompat.getColor(this@MainActivity, R.color.home_progress_default)
+                    trackColor =
+                        ContextCompat.getColor(this@MainActivity, R.color.home_progress_default)
                 }
             }
             in BACKGROUND_ONE_RANGE -> {
@@ -254,7 +255,6 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
         if (System.currentTimeMillis() <= closeTime + 2000) {
             ActivityCompat.finishAffinity(this)
         } else {
