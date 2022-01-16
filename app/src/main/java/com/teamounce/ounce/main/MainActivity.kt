@@ -20,7 +20,6 @@ import com.teamounce.ounce.settings.ui.SettingsActivity
 import com.teamounce.ounce.util.OnSwipeTouchListener
 import com.teamounce.ounce.util.SharedPreferences
 import com.teamounce.ounce.util.StatusBarUtil
-import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
@@ -52,7 +51,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
             //수첩 아이콘 눌렀을 때, FeedActivity
             btnDrawer.setOnClickListener {
                 val intent = Intent(this@MainActivity, FeedActivity::class.java)
-                intent.putExtra("catName", textview_cat_name.text.toString())
+                intent.putExtra("catName", binding.textviewCatName.text.toString())
                 startActivity(intent)
             }
             //한입더! 버튼 눌렀을 때, SearchActivity

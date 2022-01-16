@@ -1,6 +1,5 @@
 package com.teamounce.ounce.settings.ui
 
-
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
@@ -18,7 +17,6 @@ import com.teamounce.ounce.databinding.ActivitySettingsIntroBinding
 import com.teamounce.ounce.util.StatusBarUtil
 import gun0912.tedimagepicker.util.ToastUtil.context
 import androidx.core.content.ContextCompat.startActivity
-import kotlinx.android.synthetic.main.activity_settings_intro.*
 
 class SettingsIntroActivity : AppCompatActivity() {
     private lateinit var viewPager: ViewPager2

@@ -20,7 +20,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
 import com.teamounce.ounce.R
@@ -118,10 +117,10 @@ class SplashActivity : AppCompatActivity() {
                 requestAdditionalUserInfo()
             }
         }
-        if (LoginClient.instance.isKakaoTalkLoginAvailable(context)) {
-            LoginClient.instance.loginWithKakaoTalk(context, callback = callback)
+        if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {
+            UserApiClient.instance.loginWithKakaoTalk(context, callback = callback)
         }
-        else LoginClient.instance.loginWithKakaoAccount(context, callback = callback)
+        else UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

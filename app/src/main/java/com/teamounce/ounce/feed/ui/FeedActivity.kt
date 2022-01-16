@@ -15,7 +15,6 @@ import com.teamounce.ounce.feed.adapter.FeedSortAdapter
 import com.teamounce.ounce.feed.viewmodel.FeedActivityViewModel
 import com.teamounce.ounce.util.StatusBarUtil
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.item_feed_filter_bottom_sheet.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
