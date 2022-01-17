@@ -24,7 +24,6 @@ import com.teamounce.ounce.settings.util.SettingCustomDialogBuilder
 import com.teamounce.ounce.settings.util.SettingCustomDialogListener
 import com.teamounce.ounce.util.StatusBarUtil
 import com.teamounce.ounce.util.dp
-import com.teamounce.ounce.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

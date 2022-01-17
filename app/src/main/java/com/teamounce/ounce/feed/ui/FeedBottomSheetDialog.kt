@@ -13,7 +13,6 @@ import com.teamounce.ounce.R
 import com.teamounce.ounce.databinding.ItemFeedFilterBottomSheetBinding
 import com.teamounce.ounce.feed.viewmodel.FeedActivityViewModel
 import com.teamounce.ounce.util.dpFloat
-import kotlinx.android.synthetic.main.item_feed_filter_bottom_sheet.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -151,7 +150,7 @@ class FeedBottomSheetDialog(private val viewModel: FeedActivityViewModel) :
 
     override fun onDestroy() {
         job.cancel()
-        Log.e("Destroy","call Destroy")
+        Log.e("Destroy", "call Destroy")
         super.onDestroy()
     }
 }

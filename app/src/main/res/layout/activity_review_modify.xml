@@ -90,13 +90,13 @@
                     android:fontFamily="@font/notosanskr_regular"
                     android:includeFontPadding="false"
                     android:text="@{viewModel.reviewInfo.manufacturer}"
-                    tools:text="브랜드 이름"
                     android:textColor="@color/gray2"
                     android:textFontWeight="500"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/vp_record_slider" />
+                    app:layout_constraintTop_toBottomOf="@+id/vp_record_slider"
+                    tools:text="브랜드 이름" />
 
                 <TextView
                     android:id="@+id/txt_record_food"
@@ -105,13 +105,13 @@
                     android:fontFamily="@font/notosanskr_regular"
                     android:includeFontPadding="false"
                     android:text="@{viewModel.reviewInfo.productName}"
-                    tools:text="로얄캐닌 키튼 4kg 긴 이름"
                     android:textColor="@color/text_color_black"
                     android:textFontWeight="700"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="@+id/txt_record_brand"
                     app:layout_constraintStart_toStartOf="@+id/txt_record_brand"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_record_brand" />
+                    app:layout_constraintTop_toBottomOf="@+id/txt_record_brand"
+                    tools:text="로얄캐닌 키튼 4kg 긴 이름" />
 
                 <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
                     android:id="@+id/dotsIndicator"
@@ -174,7 +174,7 @@
                     app:layout_constraintTop_toBottomOf="@id/txt_record_preference"
                     tools:text="기호도를 선택하세요" />
 
-                <com.hedgehog.ratingbar.RatingBar
+                <com.teamounce.ounce.component.RatingBar
                     android:id="@+id/rating_record_preference"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
