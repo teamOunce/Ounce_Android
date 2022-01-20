@@ -1,6 +1,7 @@
 package com.teamounce.ounce.review.ui
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
@@ -128,6 +129,7 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
                         }
 
                         override fun onClickMoreReview() {
+                            setResult(Activity.RESULT_OK)
                             finish()
                         }
                     }
