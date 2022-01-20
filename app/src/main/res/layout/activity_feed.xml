@@ -54,20 +54,23 @@
             </com.google.android.material.appbar.AppBarLayout>
 
             <TextView
-                android:id="@+id/feed_all_review_count_txt"
-                feed:totalSize="@{viewModel.feedsSize}"
+                android:id="@+id/txt_feed_sort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/apple_sd_gothic"
-                android:lineSpacingExtra="13sp"
-                android:textColor="@color/gray1.5"
+                android:background="?actionBarItemBackground"
+                android:drawablePadding="4dp"
+                android:fontFamily="@font/notosanskr"
+                android:includeFontPadding="false"
+                android:padding="4dp"
+                android:textColor="@color/gray3"
                 android:textFontWeight="400"
-                android:textSize="12sp"
+                app:drawableEndCompat="@drawable/ic_sort"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-                tools:text="전체 리뷰 개수(18)" />
+                app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+                android:text="@{viewModel.feedSortStateTxtLiveData}"
+                tools:text="작성일자 순" />
 
             <ImageView
                 android:id="@+id/feed_hash_tag_img"
@@ -100,7 +103,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/feed_all_review_count_txt"
+                app:layout_constraintTop_toBottomOf="@+id/txt_feed_sort"
                 app:layout_constraintVertical_bias="0.0"
                 app:setFeedList="@{viewModel.responseFeedList}"
                 tools:listitem="@layout/item_feed_list" />

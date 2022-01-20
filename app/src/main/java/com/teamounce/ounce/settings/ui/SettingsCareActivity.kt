@@ -6,13 +6,13 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.teamounce.ounce.R
+import com.teamounce.ounce.databinding.ActivitySettingsCareBinding
 import com.teamounce.ounce.main.BottomSheetProfileData
 import com.teamounce.ounce.settings.adapter.SettingCareAdapter
 import com.teamounce.ounce.settings.viewmodel.CatProfileViewModel
 import com.teamounce.ounce.util.SharedPreferences
 import com.teamounce.ounce.util.StatusBarUtil
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_settings_care.*
 
 @AndroidEntryPoint
 class SettingsCareActivity : AppCompatActivity() {
@@ -20,10 +20,12 @@ class SettingsCareActivity : AppCompatActivity() {
     private var catList = mutableListOf<BottomSheetProfileData>()
     private lateinit var prefs: SharedPreferences
     private val catProfileViewModel by viewModels<CatProfileViewModel>()
+    private lateinit var binding: ActivitySettingsCareBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings_care)
+        binding = ActivitySettingsCareBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         StatusBarUtil.setStatusBar(this)
         setUIListener()
         initSettingCareRecyclerView()
@@ -39,8 +41,8 @@ class SettingsCareActivity : AppCompatActivity() {
     }
 
     private fun setUIListener() {
-        btn_setting_back.setOnClickListener { finish() }
-        btn_catcare_add.setOnClickListener {
+        binding.btnSettingBack.setOnClickListener { finish() }
+        binding.btnSettingBack.setOnClickListener {
             if (catList.size >= MAX_CAT_RESISTERED) {
                 Toast.makeText(this, "고양이는 최대 4마리까지 등록 가능합니다.", Toast.LENGTH_SHORT).show()
             } else {
@@ -53,7 +55,7 @@ class SettingsCareActivity : AppCompatActivity() {
     private fun initSettingCareRecyclerView() {
         prefs = SharedPreferences(this)
         settingcareAdapter = SettingCareAdapter(this, provideDeleteButtonClickListener())
-        settings_recyclerview_list.adapter = settingcareAdapter
+        binding.settingsRecyclerviewList.adapter = settingcareAdapter
     }
 
     private fun loadDatas() { catProfileViewModel.getCatProfiles() }

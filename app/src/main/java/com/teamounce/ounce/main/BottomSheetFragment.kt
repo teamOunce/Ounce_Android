@@ -11,7 +11,6 @@ import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.data.remote.singleton.RetrofitObjects
 import com.teamounce.ounce.databinding.BottomSheetMainBinding
 import com.teamounce.ounce.util.SharedPreferences
-import kotlinx.android.synthetic.main.bottom_sheet_main.*
 import retrofit2.Call
 import retrofit2.Response
 

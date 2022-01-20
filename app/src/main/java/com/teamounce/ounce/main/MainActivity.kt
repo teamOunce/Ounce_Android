@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.airbnb.lottie.LottieDrawable
 import com.teamounce.ounce.R
@@ -18,7 +20,6 @@ import com.teamounce.ounce.settings.ui.SettingsActivity
 import com.teamounce.ounce.util.OnSwipeTouchListener
 import com.teamounce.ounce.util.SharedPreferences
 import com.teamounce.ounce.util.StatusBarUtil
-import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
@@ -31,6 +32,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     private val reviewCountToolTip by lazy {
         ReviewCountTipBottomSheet()
     }
+    private var closeTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +51,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
             //수첩 아이콘 눌렀을 때, FeedActivity
             btnDrawer.setOnClickListener {
                 val intent = Intent(this@MainActivity, FeedActivity::class.java)
-                intent.putExtra("catName", textview_cat_name.text.toString())
+                intent.putExtra("catName", binding.textviewCatName.text.toString())
                 startActivity(intent)
             }
             //한입더! 버튼 눌렀을 때, SearchActivity
@@ -92,31 +94,31 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
             0 -> {
                 setBackgroundHotSourcr(R.color.white, R.raw.home_img_nothing)
             }
-            in BACKGROUND_ONE_RANGE ->  {
+            in BACKGROUND_ONE_RANGE -> {
                 setBackgroundHotSourcr(
                     R.color.mainbackground_one,
                     R.raw.home_img_step0
                 )
             }
-            in BACKGROUND_TWO_RANGE ->  {
+            in BACKGROUND_TWO_RANGE -> {
                 setBackgroundHotSourcr(
                     R.color.mainbackground_two,
                     R.raw.home_img_step1
                 )
             }
-            in BACKGROUND_THREE_RANGE ->  {
+            in BACKGROUND_THREE_RANGE -> {
                 setBackgroundHotSourcr(
                     R.color.mainbackground_three,
                     R.raw.home_img_step2
                 )
             }
-            in BACKGROUND_FOUR_RANGE ->  {
+            in BACKGROUND_FOUR_RANGE -> {
                 setBackgroundHotSourcr(
                     R.color.mainbackground_four,
                     R.raw.home_img_step3
                 )
             }
-            else ->  {
+            else -> {
                 setBackgroundHotSourcr(R.color.mainbackground_five, R.raw.home_img_step4)
             }
         }
@@ -146,11 +148,12 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     @SuppressLint("SetTextI18n")
     private fun setReviewCountProgress(reviewCount: Int) {
         binding.txtReviewCount.text = reviewCount.toString()
-        when(reviewCount) {
+        when (reviewCount) {
             0 -> {
                 binding.txtProgressMaxCount.text = "0"
                 binding.reviewCountProgress.run {
-                    trackColor = ContextCompat.getColor(this@MainActivity, R.color.home_progress_default)
+                    trackColor =
+                        ContextCompat.getColor(this@MainActivity, R.color.home_progress_default)
                 }
             }
             in BACKGROUND_ONE_RANGE -> {
@@ -248,6 +251,15 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         val e = error ?: return
         val ob = JSONObject(e.string())
         Log.d("errorbody ----> ", ob.getString("status"))
+    }
+
+    override fun onBackPressed() {
+        if (System.currentTimeMillis() <= closeTime + 2000) {
+            ActivityCompat.finishAffinity(this)
+        } else {
+            Toast.makeText(this, "종료하려면 한번 더 누르세요", Toast.LENGTH_SHORT).show()
+            closeTime = System.currentTimeMillis()
+        }
     }
 
     companion object {

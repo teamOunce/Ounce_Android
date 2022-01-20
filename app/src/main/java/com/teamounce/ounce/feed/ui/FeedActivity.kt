@@ -8,12 +8,14 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
+import com.teamounce.ounce.data.enum.EnumFeedSort
 import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.databinding.ActivityFeedBinding
+import com.teamounce.ounce.feed.adapter.FeedSortAdapter
 import com.teamounce.ounce.feed.viewmodel.FeedActivityViewModel
+import com.teamounce.ounce.main.MainActivity
 import com.teamounce.ounce.util.StatusBarUtil
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.item_feed_filter_bottom_sheet.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -33,6 +35,10 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
         FeedBottomSheetDialog(mViewModel)
     }
 
+    private val feedBottomSheet: FeedSortBottomSheet by lazy {
+        FeedSortBottomSheet()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         job = Job()
@@ -49,6 +55,8 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
         launch {
             mViewModel.callFeedList()
         }
+
+        initSortBottomSheet()
 
         getCatNameAndSetTitle()
         setToolBar()
@@ -86,6 +94,17 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
         })
     }
 
+    private fun initSortBottomSheet() {
+        feedBottomSheet.run {
+            setSortListener(object : FeedSortAdapter.ItemListener {
+                override fun clickSortStatus(status: EnumFeedSort) {
+                    mViewModel.changeSort(status)
+                    dismiss()
+                }
+            })
+        }
+    }
+
     @SuppressLint("SetTextI18n")
     private fun getCatNameAndSetTitle() {
         binding.feedToolTitle.text = "${OunceLocalRepository.catName}의 기록"
@@ -96,11 +115,24 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
             bottomSheet.isCancelable = false
             bottomSheet.show(supportFragmentManager, BOTTOM_SHEET_TAG)
         }
+
+        binding.txtFeedSort.setOnClickListener {
+            feedBottomSheet.showSortBottomSheet(this, mViewModel.feedSortEnum)
+        }
     }
 
     private fun setToolBar() {
         binding.feedToolBar.setNavigationOnClickListener {
             finish()
         }
+    }
+
+    override fun finish() {
+        startActivity(
+            Intent(this, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            }
+        )
+        super.finish()
     }
 }

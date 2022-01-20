@@ -27,6 +27,7 @@ class ReviewCompleteFragment(
             false
         )
         initView()
+        isCancelable = false
         return binding.root
     }
 
@@ -37,7 +38,14 @@ class ReviewCompleteFragment(
     }
 
     private fun setUIListener() {
-        binding.btnReviewComplete.setOnClickListener { dismiss() }
+        binding.btnReviewComplete.setOnClickListener {
+            dismiss()
+            disMissClickListener.onClick(requireContext())
+        }
+        binding.btnMoreReviewWrite.setOnClickListener {
+            dismiss()
+            disMissClickListener.onClickMoreReview()
+        }
     }
 
     private fun setDialogBackgroundImage() {
@@ -45,11 +53,6 @@ class ReviewCompleteFragment(
             in 1..3 -> binding.imgReviewComplete.setImageResource(R.drawable.ic_complete_not_enough)
             else -> binding.imgReviewComplete.setImageResource(R.drawable.ic_complete_enough)
         }
-    }
-
-    override fun dismiss() {
-        super.dismiss()
-        disMissClickListener.onClick(requireContext())
     }
 
     override fun onStart() {
@@ -65,5 +68,6 @@ class ReviewCompleteFragment(
 
     interface DisMissClickListener {
         fun onClick(context: Context)
+        fun onClickMoreReview()
     }
 }

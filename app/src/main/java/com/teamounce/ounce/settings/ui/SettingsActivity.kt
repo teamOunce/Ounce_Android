@@ -12,6 +12,7 @@ import com.kakao.sdk.user.UserApiClient
 import com.teamounce.ounce.R
 import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.data.remote.singleton.RetrofitObjects
+import com.teamounce.ounce.databinding.ActivitySettingsBinding
 import com.teamounce.ounce.login.ui.LoginActivity
 import com.teamounce.ounce.settings.util.SettingCustomDialogBuilder
 import com.teamounce.ounce.settings.util.SettingCustomDialogListener
@@ -20,8 +21,6 @@ import com.teamounce.ounce.settings.model.ResponseExpire
 import com.teamounce.ounce.settings.model.SettingButtonData
 import com.teamounce.ounce.util.StatusBarUtil
 import com.teamounce.ounce.util.VerticalItemDecoration
-import kotlinx.android.synthetic.main.activity_settings.*
-import kotlinx.android.synthetic.main.fragment_setting_catdltdialog.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,40 +28,41 @@ import retrofit2.Response
 class SettingsActivity : AppCompatActivity() {
     lateinit var settingButtonAdapter: SettingButtonAdapter
     val datas = mutableListOf<SettingButtonData>()
+    private lateinit var binding: ActivitySettingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         StatusBarUtil.setStatusBar(this)
 
         settingButton()
         ounceversion(this)
 
         //설정뷰에 오른쪽 화살표 눌렀을때 MainActivity
-        btn_drawer.setOnClickListener { finish() }
+        binding.btnDrawer.setOnClickListener { finish() }
 
-        txt_ounceagree.setOnClickListener {
+        binding.txtOunceagree.setOnClickListener {
             val intent = Intent(this, SettingsAgreeActivity::class.java)
             startActivity(intent)
         }
-
-        txt_ouncepolicy.setOnClickListener {
+        binding.txtOuncepolicy.setOnClickListener {
             val intent = Intent(this, SettingsPolicyActivity::class.java)
             startActivity(intent)
         }
 
-        txt_ounceopensrc.setOnClickListener {
+        binding.txtOunceopensrc.setOnClickListener {
             val intent = Intent(this, SettingsOpensourceActivity::class.java)
             startActivity(intent)
         }
-        txt_ounceintro.setOnClickListener {
+        binding.txtOunceintro.setOnClickListener {
             val intent = Intent(this, SettingsIntroActivity::class.java)
             startActivity(intent)
         }
 
 
         //로그아웃 버튼 눌렀을 때
-        txt_ouncelogout.setOnClickListener {
+        binding.txtOuncelogout.setOnClickListener {
             val dialog = SettingCustomDialogBuilder()
                 .setTitle("로그아웃 하시겠어요?")
                 .setPositiveButton("네")
@@ -90,7 +90,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         //탈퇴하기 버튼 눌렀을 때
-        txt_ounceout.setOnClickListener {
+        binding.txtOunceout.setOnClickListener {
             val dialog = SettingCustomDialogBuilder()
                 .setTitle("탈퇴 시 계정 정보,기록 등\n모든 것이 삭제돼요.\n정말 탈퇴하시겠어요?")
                 .setPositiveButton("네")
@@ -165,8 +165,8 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun settingButton() {
         settingButtonAdapter = SettingButtonAdapter(this)
-        recyclerview_setting_buttons.adapter = settingButtonAdapter
-        recyclerview_setting_buttons.addItemDecoration(VerticalItemDecoration(12))
+        binding.recyclerviewSettingButtons.adapter = settingButtonAdapter
+        binding.recyclerviewSettingButtons.addItemDecoration(VerticalItemDecoration(12))
         loadSettingButton()
     }
 
@@ -202,6 +202,6 @@ class SettingsActivity : AppCompatActivity() {
         val info: PackageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
         val version = info.versionName
 
-        txt_ounceversion.text = version
+        binding.txtOunceversion.text = version
     }
 }

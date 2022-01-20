@@ -9,17 +9,20 @@ import android.view.*
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.teamounce.ounce.R
-import kotlinx.android.synthetic.main.fragment_setting_catdltdialog.*
+import com.teamounce.ounce.databinding.FragmentSettingCatdltdialogBinding
 
 class SettingCustomDialog() : DialogFragment() {
     var title: String? = null
     var subtitle: String? = null
     var positiveButton: String? = null
     var negativeButton: String? = null
-    var disableNegativeButton : Boolean?= false
-    var disablePositiveButton : Boolean?= false
+    var disableNegativeButton: Boolean? = false
+    var disablePositiveButton: Boolean? = false
     var listener: SettingCustomDialogListener? = null
     private var deviceSizeX: Int? = null
+    private var _binding: FragmentSettingCatdltdialogBinding? = null
+    private val binding: FragmentSettingCatdltdialogBinding
+        get() = requireNotNull(_binding)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,38 +30,36 @@ class SettingCustomDialog() : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        val view = inflater.inflate(R.layout.fragment_setting_catdltdialog, container, false)
+        _binding = FragmentSettingCatdltdialogBinding.inflate(inflater, container, false)
 
         //customdialog
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
 
-        return view.rootView
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         view?.apply {
-            if(disableNegativeButton == true) {
-                settingcare_dialog_no.visibility = View.GONE
-            }
-            else{
-                settingcare_dialog_no.visibility = View.VISIBLE
+            if (disableNegativeButton == true) {
+                binding.settingcareDialogNo.visibility = View.GONE
+            } else {
+                binding.settingcareDialogNo.visibility = View.VISIBLE
             }
 
-            if(disablePositiveButton == true) {
-                settingcare_dialog_yes.visibility = View.GONE
-            }
-            else{
-                settingcare_dialog_yes.visibility = View.VISIBLE
+            if (disablePositiveButton == true) {
+                binding.settingcareDialogYes.visibility = View.GONE
+            } else {
+                binding.settingcareDialogYes.visibility = View.VISIBLE
             }
 
             findViewById<TextView>(R.id.dialog_title)?.text = title
 
-            if(subtitle.isNullOrBlank()) {
-                dialog_subtitle.visibility = View.GONE
+            if (subtitle.isNullOrBlank()) {
+                binding.dialogSubtitle.visibility = View.GONE
             } else {
-                dialog_subtitle.visibility = View.VISIBLE
+                binding.dialogSubtitle.visibility = View.VISIBLE
                 findViewById<TextView>(R.id.dialog_subtitle)?.text = subtitle
             }
 
@@ -81,27 +82,27 @@ class SettingCustomDialog() : DialogFragment() {
     override fun onResume() {
         super.onResume()
         if (deviceSizeX == null) {
-            if(context == null) {
+            if (context == null) {
                 return
             }
             val size = Point()
-            if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R){
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
                 context?.display
-            } else{
+            } else {
                 (context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
             }?.getRealSize(size)
             deviceSizeX = size.x
         }
-        if(deviceSizeX == null){
+        if (deviceSizeX == null) {
             return
         }
         val params = dialog?.window?.attributes
-        params?.width = (deviceSizeX!!* DIALOG_WIDTH_RATIO).toInt()
+        params?.width = (deviceSizeX!! * DIALOG_WIDTH_RATIO).toInt()
         dialog?.window?.attributes = params as WindowManager.LayoutParams
 
     }
 
-    companion object{
+    companion object {
         private const val DIALOG_WIDTH_RATIO = 0.8
     }
 

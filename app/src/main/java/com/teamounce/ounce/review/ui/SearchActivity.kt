@@ -1,5 +1,6 @@
 package com.teamounce.ounce.review.ui
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -7,6 +8,9 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_search) {
     private val searchViewModel: SearchViewModel by viewModels()
     private lateinit var searchAdapter: SearchAdapter
+    private lateinit var requestReviewActivity: ActivityResultLauncher<Intent>
 
     private val mImm by lazy {
         getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -42,7 +47,11 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
                 override fun setOnClickListener(catFood: ResponseSearch.Data) {
                     val intent = Intent(this@SearchActivity, ReviewActivity::class.java)
                     intent.putExtra("catFood", catFood)
-                    startActivity(intent)
+                    if (this@SearchActivity::requestReviewActivity.isInitialized) {
+                        requestReviewActivity.launch(intent)
+                    } else {
+                        startActivity(intent)
+                    }
                 }
             })
         binding.rvReviewSearchLinear.apply {
@@ -55,6 +64,7 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
         setSearchTypeChangeListener()
 
         focusSearchEdt()
+        initActivityResult()
     }
 
     private fun setObserver() {
@@ -129,6 +139,18 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
 
         mImm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
 
+    }
+
+    private fun initActivityResult() {
+        requestReviewActivity = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+
+            if (result.resultCode == Activity.RESULT_OK) {
+                searchViewModel.search()
+            }
+
+        }
     }
 
 }

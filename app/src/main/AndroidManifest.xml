@@ -57,7 +57,8 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/native_app_key" />
 
-        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
+        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 

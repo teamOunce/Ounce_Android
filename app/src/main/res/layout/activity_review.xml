@@ -174,7 +174,7 @@
                     app:layout_constraintTop_toBottomOf="@id/txt_record_preference"
                     tools:text="기호도를 선택하세요" />
 
-                <com.hedgehog.ratingbar.RatingBar
+                <com.teamounce.ounce.component.RatingBar
                     android:id="@+id/rating_record_preference"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
