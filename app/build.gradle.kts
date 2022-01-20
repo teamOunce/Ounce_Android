@@ -40,6 +40,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = Versions.javaVersion
         targetCompatibility = Versions.javaVersion

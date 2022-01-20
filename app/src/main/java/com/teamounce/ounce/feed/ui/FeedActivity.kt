@@ -13,6 +13,7 @@ import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.databinding.ActivityFeedBinding
 import com.teamounce.ounce.feed.adapter.FeedSortAdapter
 import com.teamounce.ounce.feed.viewmodel.FeedActivityViewModel
+import com.teamounce.ounce.main.MainActivity
 import com.teamounce.ounce.util.StatusBarUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -124,5 +125,14 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
         binding.feedToolBar.setNavigationOnClickListener {
             finish()
         }
+    }
+
+    override fun finish() {
+        startActivity(
+            Intent(this, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            }
+        )
+        super.finish()
     }
 }
