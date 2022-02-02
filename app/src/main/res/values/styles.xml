@@ -43,7 +43,7 @@
         <item name="fontFamily">@font/apple_sd_gothic</item>
         <item name="fontWeight">400</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/gray1.5</item>
+        <item name="android:textColor">@color/orange2</item>
         <item name="android:includeFontPadding">false</item>
     </style>
 

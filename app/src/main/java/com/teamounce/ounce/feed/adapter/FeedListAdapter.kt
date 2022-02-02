@@ -2,6 +2,7 @@ package com.teamounce.ounce.feed.adapter
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import com.teamounce.ounce.databinding.ItemFeedListBinding
 import com.teamounce.ounce.feed.model.ResponseFeedReviewData
 import com.teamounce.ounce.feed.ui.FoodDetailActivity
 import com.teamounce.ounce.review.ui.ReviewModifyActivity
+import com.teamounce.ounce.util.dp
 import com.teamounce.ounce.util.dpFloat
 
 class FeedListAdapter : RecyclerView.Adapter<FeedListAdapter.FeedListViewHolder>() {
@@ -68,10 +70,9 @@ class FeedListAdapter : RecyclerView.Adapter<FeedListAdapter.FeedListViewHolder>
                 layoutDirection = View.LAYOUT_DIRECTION_LOCALE
                 text = "#${tag}"
                 textAlignment = View.TEXT_ALIGNMENT_CENTER
-                chipStrokeWidth = 1.dpFloat
-                setChipStrokeColorResource(R.color.orange2)
+                gravity = Gravity.CENTER
                 setTextAppearanceResource(R.style.filterTextStyle)
-                setChipBackgroundColorResource(R.color.white)
+                setChipBackgroundColorResource(R.color.orange_20)
             }
             return chip
         }
