@@ -1,6 +1,5 @@
 package com.teamounce.ounce.feed.ui
 
-import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,8 +11,7 @@ import com.google.android.material.chip.Chip
 import com.teamounce.ounce.R
 import com.teamounce.ounce.databinding.ItemFeedFilterBottomSheetBinding
 import com.teamounce.ounce.feed.viewmodel.FeedActivityViewModel
-import com.teamounce.ounce.util.ChipFactory
-import com.teamounce.ounce.util.dpFloat
+import com.teamounce.ounce.util.ChipClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -132,7 +130,7 @@ class FeedBottomSheetDialog(private val viewModel: FeedActivityViewModel) :
     }
 
     private fun makeChipItem(i: MutableMap.MutableEntry<String, Boolean>): Chip {
-        return ChipFactory.create(layoutInflater).apply {
+        return ChipClient.create(layoutInflater).apply {
             text = i.key
             setRippleColorResource(R.color.orange2)
         }

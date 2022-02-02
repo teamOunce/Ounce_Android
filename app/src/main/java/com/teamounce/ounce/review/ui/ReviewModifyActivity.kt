@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
-import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.os.Build
@@ -22,12 +21,10 @@ import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.component.OunceOneButtonDialog
 import com.teamounce.ounce.databinding.ActivityReviewModifyBinding
 import com.teamounce.ounce.feed.ui.Comment
-import com.teamounce.ounce.feed.ui.FeedActivity
-import com.teamounce.ounce.feed.ui.FoodDetailActivity
 import com.teamounce.ounce.review.adapter.CatFoodSliderAdapter
 import com.teamounce.ounce.review.model.ImageInfo
 import com.teamounce.ounce.review.viewmodel.ReviewViewModel
-import com.teamounce.ounce.util.ChipFactory
+import com.teamounce.ounce.util.ChipClient
 import com.teamounce.ounce.util.StatusBarUtil
 import com.teamounce.ounce.util.asMultipart
 import com.teamounce.ounce.util.makeMultiPart
@@ -36,7 +33,6 @@ import gun0912.tedimagepicker.builder.TedImagePicker
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.FileOutputStream
@@ -189,7 +185,7 @@ class ReviewModifyActivity :
     }
 
     private fun String.toChip(): Chip =
-        ChipFactory.create(layoutInflater).also { it.text = this }
+        ChipClient.create(layoutInflater).also { it.text = this }
 
     private fun chipCheckedChangeListener(): CompoundButton.OnCheckedChangeListener {
         return CompoundButton.OnCheckedChangeListener { compoundButton, checked ->

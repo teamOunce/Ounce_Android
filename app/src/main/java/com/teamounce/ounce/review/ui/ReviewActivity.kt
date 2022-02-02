@@ -1,22 +1,16 @@
 package com.teamounce.ounce.review.ui
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.database.Cursor
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
-import android.provider.OpenableColumns
 import android.util.Log
 import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
@@ -33,11 +27,7 @@ import gun0912.tedimagepicker.builder.TedImagePicker
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import java.io.File
-import java.io.FileOutputStream
-import java.io.InputStream
 
 
 @AndroidEntryPoint
@@ -139,7 +129,7 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
     }
 
     private fun String.toChip(): Chip =
-        ChipFactory.create(layoutInflater).also { it.text = this }
+        ChipClient.create(layoutInflater).also { it.text = this }
 
     private fun chipCheckedChangeListener(): CompoundButton.OnCheckedChangeListener {
         return CompoundButton.OnCheckedChangeListener { compoundButton, checked ->
