@@ -12,9 +12,7 @@
     app:chipMinTouchTargetSize="0dp"
     android:textAppearance="@style/ChipTextAppearance"
     android:textColor="@color/chip_selector"
-    app:chipBackgroundColor="@color/white"
+    app:chipBackgroundColor="@color/chip_background_selector"
     app:chipCornerRadius="30dp"
     app:chipIcon="@null"
-    app:chipStrokeColor="@color/chip_selector"
-    app:chipStrokeWidth="1dp"
     app:chipSurfaceColor="@color/white" />
