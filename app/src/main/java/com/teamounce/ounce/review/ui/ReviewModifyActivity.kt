@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.provider.OpenableColumns
 import android.util.Log
 import android.view.MotionEvent
+import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -43,6 +44,8 @@ class ReviewModifyActivity :
     BindingActivity<ActivityReviewModifyBinding>(R.layout.activity_review_modify) {
     private val reviewViewModel by viewModels<ReviewViewModel>()
     private lateinit var imageSliderAdapter: CatFoodSliderAdapter
+    private val preferenceCheckBoxList = mutableListOf<CheckBox>()
+
 
     private val reviewModifySuccessDialog by lazy {
         OunceOneButtonDialog(
@@ -58,6 +61,7 @@ class ReviewModifyActivity :
         super.onCreate(savedInstanceState)
         binding.apply {
             lifecycleOwner = this@ReviewModifyActivity
+            activity = this@ReviewModifyActivity
             viewModel = reviewViewModel
         }
         StatusBarUtil.setStatusBar(this)
@@ -90,10 +94,6 @@ class ReviewModifyActivity :
     @SuppressLint("ClickableViewAccessibility")
     private fun setUIListener() {
         binding.imgReviewBack.setOnClickListener { finish() }
-        binding.ratingRecordPreference.setOnRatingChangeListener {
-            reviewViewModel.preference = it
-            binding.txtRecordPreferenceExplain.setText(Comment.of(it.toInt()))
-        }
         binding.imgRecordAddImage.setOnClickListener {
             TedImagePicker.with(this)
                 .start { uri ->
@@ -123,7 +123,7 @@ class ReviewModifyActivity :
 
     private fun subscribeData() {
         reviewViewModel.reviewInfo.observe(this) {
-            binding.ratingRecordPreference.setStar(it.preference.toFloat())
+            addCheckBoxView(it.preference)
             binding.etRecordMemo.setText(it.memo)
             listOf(it.productImg, it.myImg)
                 .filter { imgString -> imgString != "" }
@@ -286,5 +286,29 @@ class ReviewModifyActivity :
         val name = returnCursor.getString(nameIndex)
         returnCursor.close()
         return name
+    }
+
+    /** Add CheckBox View */
+    private fun addCheckBoxView(preference: Int) {
+        preferenceCheckBoxList.run {
+            add(binding.checkboxPreference1.apply { isChecked = preference >= 1 })
+            add(binding.checkboxPreference2.apply { isChecked = preference >= 2 })
+            add(binding.checkboxPreference3.apply { isChecked = preference >= 3 })
+            add(binding.checkboxPreference4.apply { isChecked = preference >= 4 })
+            add(binding.checkboxPreference5.apply { isChecked = preference >= 5 })
+        }
+    }
+
+
+    fun onClickPreferenceCheckBox(preference: Int?) {
+        if (preference == null || preferenceCheckBoxList.size < preference)
+            return
+
+        reviewViewModel.preference = preference.toFloat()
+        binding.txtRecordPreferenceExplain.text = Comment.of(preference)
+
+        preferenceCheckBoxList.forEachIndexed { index, checkBox ->
+            checkBox.isChecked = index < preference
+        }
     }
 }
