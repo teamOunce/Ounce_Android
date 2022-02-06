@@ -39,6 +39,7 @@ class FoodDetailActivity :
         super.onCreate(savedInstanceState)
         StatusBarUtil.setStatusBar(this)
         binding.lifecycleOwner = this
+        binding.viewModel = feedViewModel
         reviewIndex = intent.getIntExtra("reviewIndex", -1)
         feedViewModel.fetchReviewData(reviewIndex)
         setUIListener(reviewIndex)
@@ -71,9 +72,7 @@ class FoodDetailActivity :
             setDateTopMargin(it.catFoodReview.memo.isEmpty())
             with(it.catFoodReview.preference) {
                 setCommentText(this)
-                binding.ratingbarDetailRating.setStar(this.toFloat())
             }
-            binding.ratingbarDetailRating.setmClickable(false)
 
             val tagList = listOf(
                 it.catFoodReview.tag1,

@@ -73,17 +73,8 @@ class FeedListAdapter : RecyclerView.Adapter<FeedListAdapter.FeedListViewHolder>
                 isChecked = true
                 isClickable = false
                 isFocusable = false
+                isEnabled = false
             }
-//            val chip = Chip(itemView.context)
-//            chip.apply {
-//                layoutDirection = View.LAYOUT_DIRECTION_LOCALE
-//                text = "#${tag}"
-//                textAlignment = View.TEXT_ALIGNMENT_CENTER
-//                gravity = Gravity.CENTER
-//                setTextAppearanceResource(R.style.filterTextStyle)
-//                setChipBackgroundColorResource(R.color.orange_20)
-//            }
-//            return chip
         }
     }
 }

@@ -20,6 +20,12 @@ class FeedViewModel @Inject constructor(
     val isSuccess: LiveData<Boolean>
         get() = _isSuccess
 
+    val preferenceLiveData= _foodReview.map {
+        it?.let {
+            return@map it.catFoodReview.preference
+        } ?: 0
+    }
+
     fun fetchReviewData(reviewIndex: Int) {
         viewModelScope.launch {
             _foodReview.value = feedRepository.getFoodReviewList(RequestReview(reviewIndex))

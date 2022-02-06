@@ -11,6 +11,7 @@ object Versions {
     const val fragmentKtxVersion = "1.4.0"
     const val securityVersion = "1.0.0"
     const val lifecycleVersion = "2.4.0"
+    const val lifeCycleLiveDataVersion = "2.3.1"
     const val ossPluginVersion = "0.10.4"
     const val ossVersion = "17.0.0"
     const val multiDexVerion = "2.0.1"

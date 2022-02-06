@@ -68,6 +68,7 @@ dependencies {
     implementation(AndroidXDependencies.security)
     implementation(AndroidXDependencies.legacy)
     implementation(AndroidXDependencies.lifeCycleKtx)
+    implementation(AndroidXDependencies.livedataLifeCycle)
     implementation(AndroidXDependencies.lifecycleJava8)
 
     // Material Design
