@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:hedgehog="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -13,6 +12,10 @@
         <variable
             name="viewModel"
             type="com.teamounce.ounce.review.viewmodel.ReviewViewModel" />
+
+        <variable
+            name="activity"
+            type="com.teamounce.ounce.review.ui.ReviewActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -189,36 +192,41 @@
                         android:id="@+id/checkbox_preference_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:button="null"
-                        android:drawableStart="@drawable/selector_preference_1" />
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_preference_1"
+                        android:onClick="@{() -> activity.onClickPreferenceCheckBox(1)}"/>
 
                     <CheckBox
                         android:id="@+id/checkbox_preference_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:button="null"
-                        android:drawableStart="@drawable/selector_preference_2" />
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_preference_2"
+                        android:onClick="@{() -> activity.onClickPreferenceCheckBox(2)}"/>
 
                     <CheckBox
                         android:id="@+id/checkbox_preference_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:button="null"
-                        android:drawableStart="@drawable/selector_preference_3" />
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_preference_3"
+                        android:onClick="@{() -> activity.onClickPreferenceCheckBox(3)}"/>
 
                     <CheckBox
                         android:id="@+id/checkbox_preference_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:button="null"
-                        android:drawableStart="@drawable/selector_preference_4" />
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_preference_4"
+                        android:onClick="@{() -> activity.onClickPreferenceCheckBox(4)}"/>
 
                     <CheckBox
                         android:id="@+id/checkbox_preference_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:button="null"
-                        android:drawableStart="@drawable/selector_preference_5" />
+                        android:button="@null"
+                        android:drawableStart="@drawable/selector_preference_5"
+                        android:onClick="@{() -> activity.onClickPreferenceCheckBox(5)}"/>
 
                 </LinearLayout>
 
