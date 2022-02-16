@@ -57,7 +57,7 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
                         }
                     } else {
                         startActivity(
-                            Intent(this@SearchActivity, FeedActivity::class.java)
+                            Intent(this@SearchActivity, FoodDetailActivity::class.java)
                                 .apply {
                                     putExtra("reviewIndex", catFood.reviewIndex)
                                 }

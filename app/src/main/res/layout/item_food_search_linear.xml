@@ -30,11 +30,13 @@
 
         <LinearLayout
             android:id="@+id/linear_item_explain"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_marginEnd="8dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/img_item_search"
+            app:layout_constraintEnd_toStartOf="@+id/img_record_complete"
             app:layout_constraintStart_toEndOf="@+id/img_item_search"
             app:layout_constraintTop_toTopOf="@+id/img_item_search">
 
@@ -66,8 +68,8 @@
         </LinearLayout>
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="72dp"
+            android:layout_height="56dp"
             android:id="@+id/img_record_complete"
             android:src="@drawable/ic_record_complete"
             app:layout_constraintEnd_toEndOf="parent"
