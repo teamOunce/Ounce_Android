@@ -61,19 +61,13 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
         }
         setObserver()
         setUIListener()
-        setSearchTypeChangeListener()
 
         focusSearchEdt()
         initActivityResult()
     }
 
     private fun setObserver() {
-        searchViewModel.isListSearch.observe(this) { isList ->
-            binding.apply {
-                btnLayoutList.isActivated = isList
-                btnLayoutGrid.isActivated = !isList
-            }
-        }
+
         searchViewModel.resultList.observe(this) {
             if (it.isEmpty()) {
                 binding.clayoutNoResult.visibility = View.VISIBLE
@@ -119,18 +113,6 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 data = Uri.parse("https://forms.gle/GL6r3kNrr32e5xFR6")
             })
-        }
-    }
-
-    private fun setSearchTypeChangeListener() {
-        binding.btnLayoutList.setOnClickListener {
-            searchAdapter.changeLayout(SearchAdapter.TYPE_LINEAR)
-            binding.rvReviewSearchLinear.layoutManager = LinearLayoutManager(this)
-        }
-
-        binding.btnLayoutGrid.setOnClickListener {
-            searchAdapter.changeLayout(SearchAdapter.TYPE_GRID)
-            binding.rvReviewSearchLinear.layoutManager = GridLayoutManager(this, 3)
         }
     }
 

@@ -16,9 +16,7 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(
     private val searchRepository: SearchRepository
 ) : ViewModel() {
-    private val _isListSearch = MutableLiveData(true)
-    val isListSearch: LiveData<Boolean>
-        get() = _isListSearch
+
     val searchQuery = MutableLiveData<String>()
     private val _resultList = MutableLiveData<List<ResponseSearch.Data>>()
     val resultList: LiveData<List<ResponseSearch.Data>>

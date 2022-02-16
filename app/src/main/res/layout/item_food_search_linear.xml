@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
         <variable
             name="catFood"
             type="com.teamounce.ounce.review.model.ResponseSearch.Data" />
@@ -62,6 +64,16 @@
                 tools:text="로얄캐닌 키튼 4kg 긴 이름" />
 
         </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_record_complete"
+            android:src="@drawable/ic_record_complete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="@{catFood.record ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
