@@ -85,13 +85,13 @@ class FeedActivity : BindingActivity<ActivityFeedBinding>(R.layout.activity_feed
     }
 
     private fun setObserve() {
-        mViewModel.responseFeedList.observe(this, {
+        mViewModel.responseFeedList.observe(this) {
             if (it.isEmpty()) {
                 binding.noFeedTxt.visibility = View.VISIBLE
             } else {
                 binding.noFeedTxt.visibility = View.INVISIBLE
             }
-        })
+        }
     }
 
     private fun initSortBottomSheet() {
