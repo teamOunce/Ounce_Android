@@ -101,45 +101,18 @@
             app:layout_constraintTop_toBottomOf="@+id/et_review_search"
             tools:visibility="visible">
 
-            <LinearLayout
-                android:id="@+id/linear_review_search_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:orientation="horizontal"
-                android:paddingBottom="4dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageButton
-                    android:id="@+id/btn_layout_grid"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/ic_search_grid" />
-
-                <ImageButton
-                    android:id="@+id/btn_layout_list"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/ic_search_linear" />
-
-            </LinearLayout>
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clayout_result"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linear_review_search_type">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginHorizontal="16dp"
-                    android:background="#dadada"
+                    android:layout_height="8dp"
+                    android:background="#f4f4f4"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -147,9 +120,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:clipToPadding="false"
                     android:orientation="vertical"
                     android:overScrollMode="never"
                     android:paddingHorizontal="12dp"
+                    android:paddingTop="8dp"
                     android:visibility="visible"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toTopOf="parent"
@@ -188,28 +163,28 @@
                 android:text="검색 결과가 없습니다.\n 찾으시는 캣푸드를 온스에 알려주세요!"
                 android:textColor="@color/brown_gray"
                 android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@id/btn_suggest_cat_food"
                 app:layout_constraintEnd_toEndOf="@+id/img_no_result"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/img_no_result"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/btn_suggest_cat_food"
-                app:layout_constraintVertical_chainStyle="packed"/>
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_suggest_cat_food"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="52dp"
                 android:foreground="?attr/selectableItemBackground"
                 app:cardBackgroundColor="@color/gray_three"
                 app:cardCornerRadius="36dp"
                 app:cardElevation="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="52dp"
-                app:layout_constraintVertical_bias="0.5"
+                app:layout_constraintBottom_toTopOf="@id/img_no_result"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/img_no_result"
-                app:layout_constraintTop_toBottomOf="@id/txt_search_empty_explain">
+                app:layout_constraintTop_toBottomOf="@id/txt_search_empty_explain"
+                app:layout_constraintVertical_bias="0.5">
 
                 <TextView
                     android:layout_width="wrap_content"

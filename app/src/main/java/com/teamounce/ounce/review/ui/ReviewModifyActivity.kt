@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
-import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.os.Build
@@ -12,6 +11,7 @@ import android.os.Bundle
 import android.provider.OpenableColumns
 import android.util.Log
 import android.view.MotionEvent
+import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -22,12 +22,10 @@ import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.component.OunceOneButtonDialog
 import com.teamounce.ounce.databinding.ActivityReviewModifyBinding
 import com.teamounce.ounce.feed.ui.Comment
-import com.teamounce.ounce.feed.ui.FeedActivity
-import com.teamounce.ounce.feed.ui.FoodDetailActivity
 import com.teamounce.ounce.review.adapter.CatFoodSliderAdapter
 import com.teamounce.ounce.review.model.ImageInfo
 import com.teamounce.ounce.review.viewmodel.ReviewViewModel
-import com.teamounce.ounce.util.ChipFactory
+import com.teamounce.ounce.util.ChipClient
 import com.teamounce.ounce.util.StatusBarUtil
 import com.teamounce.ounce.util.asMultipart
 import com.teamounce.ounce.util.makeMultiPart
@@ -36,7 +34,6 @@ import gun0912.tedimagepicker.builder.TedImagePicker
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.FileOutputStream
@@ -47,6 +44,8 @@ class ReviewModifyActivity :
     BindingActivity<ActivityReviewModifyBinding>(R.layout.activity_review_modify) {
     private val reviewViewModel by viewModels<ReviewViewModel>()
     private lateinit var imageSliderAdapter: CatFoodSliderAdapter
+    private val preferenceCheckBoxList = mutableListOf<CheckBox>()
+
 
     private val reviewModifySuccessDialog by lazy {
         OunceOneButtonDialog(
@@ -62,6 +61,7 @@ class ReviewModifyActivity :
         super.onCreate(savedInstanceState)
         binding.apply {
             lifecycleOwner = this@ReviewModifyActivity
+            activity = this@ReviewModifyActivity
             viewModel = reviewViewModel
         }
         StatusBarUtil.setStatusBar(this)
@@ -94,10 +94,6 @@ class ReviewModifyActivity :
     @SuppressLint("ClickableViewAccessibility")
     private fun setUIListener() {
         binding.imgReviewBack.setOnClickListener { finish() }
-        binding.ratingRecordPreference.setOnRatingChangeListener {
-            reviewViewModel.preference = it
-            binding.txtRecordPreferenceExplain.setText(Comment.of(it.toInt()))
-        }
         binding.imgRecordAddImage.setOnClickListener {
             TedImagePicker.with(this)
                 .start { uri ->
@@ -127,7 +123,7 @@ class ReviewModifyActivity :
 
     private fun subscribeData() {
         reviewViewModel.reviewInfo.observe(this) {
-            binding.ratingRecordPreference.setStar(it.preference.toFloat())
+            addCheckBoxView(it.preference)
             binding.etRecordMemo.setText(it.memo)
             listOf(it.productImg, it.myImg)
                 .filter { imgString -> imgString != "" }
@@ -189,7 +185,7 @@ class ReviewModifyActivity :
     }
 
     private fun String.toChip(): Chip =
-        ChipFactory.create(layoutInflater).also { it.text = this }
+        ChipClient.create(layoutInflater).also { it.text = this }
 
     private fun chipCheckedChangeListener(): CompoundButton.OnCheckedChangeListener {
         return CompoundButton.OnCheckedChangeListener { compoundButton, checked ->
@@ -290,5 +286,29 @@ class ReviewModifyActivity :
         val name = returnCursor.getString(nameIndex)
         returnCursor.close()
         return name
+    }
+
+    /** Add CheckBox View */
+    private fun addCheckBoxView(preference: Int) {
+        preferenceCheckBoxList.run {
+            add(binding.checkboxPreference1.apply { isChecked = preference >= 1 })
+            add(binding.checkboxPreference2.apply { isChecked = preference >= 2 })
+            add(binding.checkboxPreference3.apply { isChecked = preference >= 3 })
+            add(binding.checkboxPreference4.apply { isChecked = preference >= 4 })
+            add(binding.checkboxPreference5.apply { isChecked = preference >= 5 })
+        }
+    }
+
+
+    fun onClickPreferenceCheckBox(preference: Int?) {
+        if (preference == null || preferenceCheckBoxList.size < preference)
+            return
+
+        reviewViewModel.preference = preference.toFloat()
+        binding.txtRecordPreferenceExplain.text = Comment.of(preference)
+
+        preferenceCheckBoxList.forEachIndexed { index, checkBox ->
+            checkBox.isChecked = index < preference
+        }
     }
 }

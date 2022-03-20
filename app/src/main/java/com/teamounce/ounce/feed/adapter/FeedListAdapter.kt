@@ -1,7 +1,9 @@
 package com.teamounce.ounce.feed.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +14,9 @@ import com.teamounce.ounce.databinding.ItemFeedListBinding
 import com.teamounce.ounce.feed.model.ResponseFeedReviewData
 import com.teamounce.ounce.feed.ui.FoodDetailActivity
 import com.teamounce.ounce.review.ui.ReviewModifyActivity
+import com.teamounce.ounce.util.ChipClient
+import com.teamounce.ounce.util.SmallChipFactory
+import com.teamounce.ounce.util.dp
 import com.teamounce.ounce.util.dpFloat
 
 class FeedListAdapter : RecyclerView.Adapter<FeedListAdapter.FeedListViewHolder>() {
@@ -22,7 +27,7 @@ class FeedListAdapter : RecyclerView.Adapter<FeedListAdapter.FeedListViewHolder>
         val binding =
             ItemFeedListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return FeedListViewHolder(binding)
+        return FeedListViewHolder(binding, parent.context)
     }
 
     override fun getItemCount(): Int = feedList.size
@@ -31,7 +36,7 @@ class FeedListAdapter : RecyclerView.Adapter<FeedListAdapter.FeedListViewHolder>
         holder.onBind(feedList[position])
     }
 
-    inner class FeedListViewHolder(val binding: ItemFeedListBinding) :
+    inner class FeedListViewHolder(val binding: ItemFeedListBinding, val context: Context) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(data: ResponseFeedReviewData.Data) {
@@ -63,17 +68,13 @@ class FeedListAdapter : RecyclerView.Adapter<FeedListAdapter.FeedListViewHolder>
 
         @SuppressLint("SetTextI18n")
         private fun setChip(tag: String): Chip {
-            val chip = Chip(itemView.context)
-            chip.apply {
-                layoutDirection = View.LAYOUT_DIRECTION_LOCALE
+            return ChipClient.create(LayoutInflater.from(context), SmallChipFactory()).apply {
                 text = "#${tag}"
-                textAlignment = View.TEXT_ALIGNMENT_CENTER
-                chipStrokeWidth = 1.dpFloat
-                setChipStrokeColorResource(R.color.orange2)
-                setTextAppearanceResource(R.style.filterTextStyle)
-                setChipBackgroundColorResource(R.color.white)
+                isChecked = true
+                isClickable = false
+                isFocusable = false
+                isEnabled = false
             }
-            return chip
         }
     }
 }

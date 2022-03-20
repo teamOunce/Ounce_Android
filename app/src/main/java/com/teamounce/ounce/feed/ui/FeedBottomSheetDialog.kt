@@ -1,6 +1,5 @@
 package com.teamounce.ounce.feed.ui
 
-import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,7 +11,7 @@ import com.google.android.material.chip.Chip
 import com.teamounce.ounce.R
 import com.teamounce.ounce.databinding.ItemFeedFilterBottomSheetBinding
 import com.teamounce.ounce.feed.viewmodel.FeedActivityViewModel
-import com.teamounce.ounce.util.dpFloat
+import com.teamounce.ounce.util.ChipClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -46,11 +45,11 @@ class FeedBottomSheetDialog(private val viewModel: FeedActivityViewModel) :
     }
 
     private fun setObserve() {
-        viewModel.filterSet.observe(viewLifecycleOwner, {
+        viewModel.filterSet.observe(viewLifecycleOwner) {
             if (it) {
                 setChip()
             }
-        })
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -131,21 +130,10 @@ class FeedBottomSheetDialog(private val viewModel: FeedActivityViewModel) :
     }
 
     private fun makeChipItem(i: MutableMap.MutableEntry<String, Boolean>): Chip {
-        val chip = Chip(binding.root.context)
-        chip.apply {
-            layoutDirection = View.LAYOUT_DIRECTION_LOCALE
+        return ChipClient.create(layoutInflater).apply {
             text = i.key
-            textAlignment = View.TEXT_ALIGNMENT_CENTER
-            chipStrokeWidth = 1.dpFloat
-            isCheckable = true
-            isChecked = i.value
-            isCheckedIconVisible = false
-            setChipStrokeColorResource(R.color.feed_bottom_sheet_select_color)
-            setTextAppearanceResource(R.style.Feed_BottomSheet_Text)
-            setChipBackgroundColorResource(R.color.white)
             setRippleColorResource(R.color.orange2)
         }
-        return chip
     }
 
     override fun onDestroy() {

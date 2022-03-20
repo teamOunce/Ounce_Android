@@ -26,7 +26,7 @@ fun RecyclerView.setFeedList(data: List<ResponseFeedReviewData.Data>) {
 fun ImageView.setGlideImg(url: String) {
     Glide.with(this)
         .load(url)
-        .placeholder(R.drawable.ic_record_gellary)
-        .error(R.drawable.ic_record_gellary)
+        .placeholder(R.drawable.ic_empty)
+        .error(R.drawable.ic_empty)
         .into(this)
 }

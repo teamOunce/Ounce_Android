@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
 import com.teamounce.ounce.databinding.ActivitySearchBinding
+import com.teamounce.ounce.feed.ui.FeedActivity
+import com.teamounce.ounce.feed.ui.FoodDetailActivity
 import com.teamounce.ounce.review.adapter.ResultItemDecoration
 import com.teamounce.ounce.review.adapter.SearchAdapter
 import com.teamounce.ounce.review.model.ResponseSearch
@@ -45,12 +47,21 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
             layoutType = SearchAdapter.TYPE_LINEAR,
             itemClickListener = object : SearchAdapter.ItemClickListener {
                 override fun setOnClickListener(catFood: ResponseSearch.Data) {
-                    val intent = Intent(this@SearchActivity, ReviewActivity::class.java)
-                    intent.putExtra("catFood", catFood)
-                    if (this@SearchActivity::requestReviewActivity.isInitialized) {
-                        requestReviewActivity.launch(intent)
+                    if (catFood.reviewIndex == null) {
+                        val intent = Intent(this@SearchActivity, ReviewActivity::class.java)
+                        intent.putExtra("catFood", catFood)
+                        if (this@SearchActivity::requestReviewActivity.isInitialized) {
+                            requestReviewActivity.launch(intent)
+                        } else {
+                            startActivity(intent)
+                        }
                     } else {
-                        startActivity(intent)
+                        startActivity(
+                            Intent(this@SearchActivity, FoodDetailActivity::class.java)
+                                .apply {
+                                    putExtra("reviewIndex", catFood.reviewIndex)
+                                }
+                        )
                     }
                 }
             })
@@ -61,19 +72,13 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
         }
         setObserver()
         setUIListener()
-        setSearchTypeChangeListener()
 
         focusSearchEdt()
         initActivityResult()
     }
 
     private fun setObserver() {
-        searchViewModel.isListSearch.observe(this) { isList ->
-            binding.apply {
-                btnLayoutList.isActivated = isList
-                btnLayoutGrid.isActivated = !isList
-            }
-        }
+
         searchViewModel.resultList.observe(this) {
             if (it.isEmpty()) {
                 binding.clayoutNoResult.visibility = View.VISIBLE
@@ -119,18 +124,6 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 data = Uri.parse("https://forms.gle/GL6r3kNrr32e5xFR6")
             })
-        }
-    }
-
-    private fun setSearchTypeChangeListener() {
-        binding.btnLayoutList.setOnClickListener {
-            searchAdapter.changeLayout(SearchAdapter.TYPE_LINEAR)
-            binding.rvReviewSearchLinear.layoutManager = LinearLayoutManager(this)
-        }
-
-        binding.btnLayoutGrid.setOnClickListener {
-            searchAdapter.changeLayout(SearchAdapter.TYPE_GRID)
-            binding.rvReviewSearchLinear.layoutManager = GridLayoutManager(this, 3)
         }
     }
 

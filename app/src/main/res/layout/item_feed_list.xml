@@ -63,7 +63,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_foot_fill"
+            android:src="@drawable/ic_preference"
             android:layout_marginEnd="4dp"
             app:layout_constraintBottom_toBottomOf="@+id/feed_list_count_txt"
             app:layout_constraintDimensionRatio="1"
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/apple_sd_gothic"
-            android:textColor="@color/gray1"
+            android:textColor="@color/orange2"
             android:textFontWeight="700"
             android:textSize="14sp"
             android:layout_marginEnd="14dp"
@@ -91,7 +91,7 @@
             android:layout_height="0dp"
             android:overScrollMode="never"
             android:scrollbars="none"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/feed_img"
             app:layout_constraintEnd_toEndOf="@+id/feed_list_count_txt"
             app:layout_constraintStart_toStartOf="@+id/feed_title_txt"
             app:layout_constraintTop_toBottomOf="@+id/feed_title_txt">
@@ -100,9 +100,9 @@
                 android:id="@+id/feed_chip_group"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
                 android:layoutDirection="locale"
-                app:chipSpacingHorizontal="6dp"
-                android:paddingVertical="4dp"
+                app:chipSpacingHorizontal="4dp"
                 app:singleLine="true">
 
             </com.google.android.material.chip.ChipGroup>

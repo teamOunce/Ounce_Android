@@ -1,22 +1,18 @@
 package com.teamounce.ounce.review.ui
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.database.Cursor
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
-import android.provider.OpenableColumns
 import android.util.Log
+import android.view.View
+import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
@@ -33,20 +29,19 @@ import gun0912.tedimagepicker.builder.TedImagePicker
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import java.io.File
-import java.io.FileOutputStream
-import java.io.InputStream
 
 
 @AndroidEntryPoint
 class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_review) {
     private val reviewViewModel: ReviewViewModel by viewModels()
     private lateinit var imageSliderAdapter: CatFoodSliderAdapter
+    private val preferenceCheckBoxList = mutableListOf<CheckBox>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.lifecycleOwner = this
+        binding.activity = this
         binding.viewModel = reviewViewModel
         StatusBarUtil.setStatusBar(this)
         val initCatFoodData = intent.getParcelableExtra<ResponseSearch.Data>("catFood")
@@ -63,6 +58,7 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
         reviewViewModel.getTags()
         imageSliderAdapter = CatFoodSliderAdapter()
         initSetting(initCatFoodData)
+        addCheckBoxView()
     }
 
     private fun initSetting(catFood: ResponseSearch.Data) {
@@ -77,11 +73,11 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
 
     private fun setUIListener(catFood: ResponseSearch.Data) {
         binding.imgReviewBack.setOnClickListener { finish() }
-        binding.ratingRecordPreference.setOnRatingChangeListener {
-            reviewViewModel.preference = it
-            binding.btnSubmit.isEnabled = true
-            binding.txtRecordPreferenceExplain.text = Comment.of(it.toInt())
-        }
+//        binding.ratingRecordPreference.setOnRatingChangeListener {
+//            reviewViewModel.preference = it
+//            binding.btnSubmit.isEnabled = true
+//            binding.txtRecordPreferenceExplain.text = Comment.of(it.toInt())
+//        }
         binding.imgRecordAddImage.setOnClickListener {
             TedImagePicker.with(this)
                 .start { uri ->
@@ -139,7 +135,7 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
     }
 
     private fun String.toChip(): Chip =
-        ChipFactory.create(layoutInflater).also { it.text = this }
+        ChipClient.create(layoutInflater).also { it.text = this }
 
     private fun chipCheckedChangeListener(): CompoundButton.OnCheckedChangeListener {
         return CompoundButton.OnCheckedChangeListener { compoundButton, checked ->
@@ -175,5 +171,29 @@ class ReviewActivity : BindingActivity<ActivityReviewBinding>(R.layout.activity_
 
     }
 
+    /** Add CheckBox View */
+    private fun addCheckBoxView() {
+        preferenceCheckBoxList.run {
+            add(binding.checkboxPreference1)
+            add(binding.checkboxPreference2)
+            add(binding.checkboxPreference3)
+            add(binding.checkboxPreference4)
+            add(binding.checkboxPreference5)
+        }
+    }
+
+
+    fun onClickPreferenceCheckBox(preference: Int?) {
+        if (preference == null || preferenceCheckBoxList.size < preference)
+            return
+
+        reviewViewModel.preference = preference.toFloat()
+        binding.btnSubmit.isEnabled = true
+        binding.txtRecordPreferenceExplain.text = Comment.of(preference)
+
+        preferenceCheckBoxList.forEachIndexed { index, checkBox ->
+            checkBox.isChecked = index < preference
+        }
+    }
 
 }

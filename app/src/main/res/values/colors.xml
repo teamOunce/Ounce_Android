@@ -61,4 +61,7 @@
     <color name="home_3_2">#E3E3E5</color>
     <color name="home_4_1">#82A69A</color>
     <color name="home_4_2">#D8E1E0</color>
+
+    <color name="orange_20">#33F1987D</color>
+    <color name="warm_grey">#F3F2F1</color>
 </resources>

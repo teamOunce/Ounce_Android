@@ -12,6 +12,7 @@ object AndroidXDependencies {
     const val legacy = "androidx.legacy:legacy-support-v4:${Versions.legacySupportVersion}"
     const val security = "androidx.security:security-crypto:${Versions.securityVersion}"
     const val lifeCycleKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleVersion}"
+    const val livedataLifeCycle = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifeCycleLiveDataVersion}"
     const val lifecycleJava8 =
         "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycleVersion}"
 }

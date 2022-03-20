@@ -3,7 +3,7 @@ package com.teamounce.ounce.review.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 data class ResponseSearch(
     @SerializedName("data")
@@ -22,6 +22,10 @@ data class ResponseSearch(
         @SerializedName("productName")
         val productName: String,
         @SerializedName("type")
-        val type: String
+        val type: String,
+        @SerializedName("isRecord")
+        val record: Boolean,
+        @SerializedName("reviewIndex")
+        val reviewIndex: Int?
     ) : Parcelable
 }
