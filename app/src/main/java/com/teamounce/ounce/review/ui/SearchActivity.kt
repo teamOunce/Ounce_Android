@@ -80,6 +80,7 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
     private fun setObserver() {
 
         searchViewModel.resultList.observe(this) {
+            dismissLoadingDialog()
             if (it.isEmpty()) {
                 binding.clayoutNoResult.visibility = View.VISIBLE
                 binding.clayoutSearch.visibility = View.GONE
@@ -104,9 +105,7 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
         }
         binding.etReviewSearch.setOnKeyListener { _, keyCode, keyEvent ->
             if (keyEvent.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-                searchViewModel.search()
-                mImm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
-                binding.etReviewSearch.clearFocus()
+                searchFood()
                 true
             } else {
                 false
@@ -114,9 +113,7 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
         }
 
         binding.imgReviewSearch.setOnClickListener {
-            searchViewModel.search()
-            mImm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
-            binding.etReviewSearch.clearFocus()
+            searchFood()
         }
 
         /** 건의하기 버튼 클릭 시 구글 폼 이동 */
@@ -125,6 +122,13 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
                 data = Uri.parse("https://forms.gle/GL6r3kNrr32e5xFR6")
             })
         }
+    }
+
+    private fun searchFood() {
+        showLoadingDialog()
+        searchViewModel.search()
+        mImm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+        binding.etReviewSearch.clearFocus()
     }
 
     private fun focusSearchEdt() {
