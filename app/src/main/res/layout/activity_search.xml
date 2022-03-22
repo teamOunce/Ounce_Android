@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="4dp"
-            android:hint="제조사, 상품명 입력"
+            android:hint="제조사 또는 상품명 입력"
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:paddingStart="12dp"

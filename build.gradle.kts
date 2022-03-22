@@ -1,12 +1,15 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+
+    extra["kotlin_version"] = Versions.kotlinVersion
+
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:${Versions.gradleVersion}")
+        classpath("com.android.tools.build:gradle:7.1.2")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}")
         classpath(ClassPathPlugins.hilt)
         classpath(ClassPathPlugins.oss)
