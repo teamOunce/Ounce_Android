@@ -124,6 +124,7 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
         }
     }
 
+
     private fun searchFood() {
         showLoadingDialog()
         searchViewModel.search()
