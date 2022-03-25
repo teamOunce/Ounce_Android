@@ -9,7 +9,8 @@
 
     <application
         android:name=".OunceApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
+        android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -18,9 +19,10 @@
         android:theme="@style/Theme.OUNCE"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".review.ui.ReviewModifyActivity"
+        <activity
+            android:name=".review.ui.ReviewModifyActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".settings.ui.CatRegisterActivity" />
         <activity
             android:name=".splash.SplashActivity"
@@ -57,7 +59,8 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/native_app_key" />
 
-        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
