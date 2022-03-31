@@ -6,9 +6,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.*
 import com.teamounce.ounce.component.LoadingDialog
 
 abstract class BindingActivity<T : ViewDataBinding>(@LayoutRes private val layoutResId: Int) :
@@ -29,13 +27,17 @@ abstract class BindingActivity<T : ViewDataBinding>(@LayoutRes private val layou
         super.onDestroy()
     }
 
-    protected inner class LifeCycleEventLogger(private val className: String) : LifecycleObserver {
+    protected inner class LifeCycleEventLogger(
+        private val className: String
+    ) : LifecycleEventObserver {
         fun registerLogger(lifecycle: Lifecycle) {
             lifecycle.addObserver(this)
         }
 
-        @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
-        fun log() {
+        override fun onStateChanged(
+            source: LifecycleOwner,
+            event: Lifecycle.Event
+        ) {
             Log.d("${className}LifeCycleEvent", "${lifecycle.currentState}")
         }
     }
@@ -44,13 +46,15 @@ abstract class BindingActivity<T : ViewDataBinding>(@LayoutRes private val layou
         try {
             if (!loadingDialog.isShowing)
                 loadingDialog.show()
-        } catch (e: Exception) {}
+        } catch (e: Exception) {
+        }
     }
 
     fun dismissLoadingDialog() {
         try {
             if (loadingDialog.isShowing)
                 loadingDialog.dismiss()
-        } catch (e: Exception) {}
+        } catch (e: Exception) {
+        }
     }
 }
