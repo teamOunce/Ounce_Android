@@ -12,12 +12,14 @@ import com.teamounce.ounce.settings.viewmodel.CatProfileViewModel
 import com.teamounce.ounce.util.CatInfoStore
 import com.teamounce.ounce.util.StatusBarUtil
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SettingsCareActivity : AppCompatActivity() {
+    @Inject
+    lateinit var prefs: CatInfoStore
     lateinit var settingcareAdapter: SettingCareAdapter
     private var catList = mutableListOf<BottomSheetProfileData>()
-    private lateinit var prefs: CatInfoStore
     private val catProfileViewModel by viewModels<CatProfileViewModel>()
     private lateinit var binding: ActivitySettingsCareBinding
 
@@ -57,12 +59,16 @@ class SettingsCareActivity : AppCompatActivity() {
         binding.settingsRecyclerviewList.adapter = settingcareAdapter
     }
 
-    private fun loadDatas() { catProfileViewModel.getCatProfiles() }
+    private fun loadDatas() {
+        catProfileViewModel.getCatProfiles()
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == CAT_REGISTER) {
-            if (resultCode == REGISTER_SUCCESS) { catProfileViewModel.getCatProfiles() }
+            if (resultCode == REGISTER_SUCCESS) {
+                catProfileViewModel.getCatProfiles()
+            }
         }
     }
 
