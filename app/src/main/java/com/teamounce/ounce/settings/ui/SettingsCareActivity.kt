@@ -5,20 +5,21 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.teamounce.ounce.R
 import com.teamounce.ounce.databinding.ActivitySettingsCareBinding
 import com.teamounce.ounce.main.BottomSheetProfileData
 import com.teamounce.ounce.settings.adapter.SettingCareAdapter
 import com.teamounce.ounce.settings.viewmodel.CatProfileViewModel
-import com.teamounce.ounce.util.SharedPreferences
+import com.teamounce.ounce.util.CatInfoStore
 import com.teamounce.ounce.util.StatusBarUtil
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SettingsCareActivity : AppCompatActivity() {
+    @Inject
+    lateinit var prefs: CatInfoStore
     lateinit var settingcareAdapter: SettingCareAdapter
     private var catList = mutableListOf<BottomSheetProfileData>()
-    private lateinit var prefs: SharedPreferences
     private val catProfileViewModel by viewModels<CatProfileViewModel>()
     private lateinit var binding: ActivitySettingsCareBinding
 
@@ -53,17 +54,21 @@ class SettingsCareActivity : AppCompatActivity() {
     }
 
     private fun initSettingCareRecyclerView() {
-        prefs = SharedPreferences(this)
+        prefs = CatInfoStore(this)
         settingcareAdapter = SettingCareAdapter(this, provideDeleteButtonClickListener())
         binding.settingsRecyclerviewList.adapter = settingcareAdapter
     }
 
-    private fun loadDatas() { catProfileViewModel.getCatProfiles() }
+    private fun loadDatas() {
+        catProfileViewModel.getCatProfiles()
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == CAT_REGISTER) {
-            if (resultCode == REGISTER_SUCCESS) { catProfileViewModel.getCatProfiles() }
+            if (resultCode == REGISTER_SUCCESS) {
+                catProfileViewModel.getCatProfiles()
+            }
         }
     }
 

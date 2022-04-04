@@ -5,14 +5,17 @@ import android.content.SharedPreferences
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import com.teamounce.ounce.main.BottomSheetProfileData
-import java.text.FieldPosition
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class SharedPreferences(context: Context) {
+class CatInfoStore @Inject constructor(
+    @ApplicationContext private val context: Context
+) {
     private val prefs: SharedPreferences? =
-        context.getSharedPreferences("prefs_name", android.content.Context.MODE_PRIVATE)
+        context.getSharedPreferences("prefs_name", Context.MODE_PRIVATE)
     var makeGson = GsonBuilder().create()
-    var listType: TypeToken<MutableList<BottomSheetProfileData>> = object : TypeToken
-    <MutableList<BottomSheetProfileData>>() {}
+    var listType: TypeToken<MutableList<BottomSheetProfileData>> =
+        object : TypeToken<MutableList<BottomSheetProfileData>>() {}
 
     private fun getInt(key: String): Int? {
         val int = prefs?.getInt(key, -1)
@@ -47,15 +50,13 @@ class SharedPreferences(context: Context) {
     }
 
     fun setCatList(value: MutableList<BottomSheetProfileData>) {
-        var listToString = makeGson.toJson(value, listType.type)
+        val listToString = makeGson.toJson(value, listType.type)
         setString("your_cat_list", listToString)
     }
 
     fun getCatList(): MutableList<BottomSheetProfileData> {
-        var catListToString = getString("your_cat_list")
-        var catList: MutableList<BottomSheetProfileData> =
-            makeGson.fromJson(catListToString, listType.type)
-        return catList
+        val catListToString = getString("your_cat_list")
+        return makeGson.fromJson(catListToString, listType.type)
     }
 
     fun setCatPositionSelected(position: Int) {
