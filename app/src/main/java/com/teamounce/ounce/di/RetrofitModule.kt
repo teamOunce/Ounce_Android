@@ -53,6 +53,6 @@ class RetrofitModule {
     }
 
     companion object {
-        private const val BASE_URL = "http://13.125.2.249:8080"
+        private const val BASE_URL = "http://13.124.242.76:8080"
     }
 }
