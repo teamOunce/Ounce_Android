@@ -1,5 +1,6 @@
 package com.teamounce.ounce.data.remote.singleton
 
+import com.teamounce.ounce.data.local.singleton.BaseValue
 import com.teamounce.ounce.data.remote.api.MainService
 import com.teamounce.ounce.util.AuthInterceptor
 import okhttp3.OkHttpClient
@@ -8,7 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitObjects {
-    private const val BASE_URL = "http://13.125.2.249:8080"
+    private const val BASE_URL = BaseValue.baseUrl
     private fun httpLoggingInterceptor(): HttpLoggingInterceptor {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY

@@ -1,5 +1,6 @@
 package com.teamounce.ounce.di
 
+import com.teamounce.ounce.data.local.singleton.BaseValue
 import com.teamounce.ounce.util.AuthInterceptor
 import com.teamounce.ounce.util.TokenRefreshInterceptor
 import dagger.Module
@@ -53,6 +54,6 @@ class RetrofitModule {
     }
 
     companion object {
-        private const val BASE_URL = "http://3.39.215.185:8080"
+        private const val BASE_URL = BaseValue.baseUrl
     }
 }
