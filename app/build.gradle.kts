@@ -48,6 +48,11 @@ android {
             isMinifyEnabled = false
             isShrinkResources = false
         }
+
+        getByName("debug") {
+            isMinifyEnabled = false
+            isShrinkResources = false
+        }
     }
 
     compileOptions {
