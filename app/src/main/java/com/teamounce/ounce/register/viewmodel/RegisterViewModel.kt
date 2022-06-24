@@ -56,7 +56,7 @@ class RegisterViewModel @Inject constructor(
                     OunceLocalRepository.catIndex = it.data
                     _transferToMain.value = true
                 } else {
-                    _errorMessage.value = it.responseMessage
+                    _errorMessage.value = it.responseMessage ?: ""
                 }
             }.onFailure {}
         }

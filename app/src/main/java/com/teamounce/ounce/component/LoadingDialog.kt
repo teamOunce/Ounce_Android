@@ -27,6 +27,5 @@ class LoadingDialog(context: Context, isCancelable: Boolean = false) : Dialog(co
         setCancelable(isCancelable)
 
         setContentView(R.layout.dialog_loading)
-
     }
 }

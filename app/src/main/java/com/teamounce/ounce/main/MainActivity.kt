@@ -17,18 +17,21 @@ import com.teamounce.ounce.feed.ui.FeedActivity
 import com.teamounce.ounce.main.bottomsheet.ReviewCountTipBottomSheet
 import com.teamounce.ounce.review.ui.SearchActivity
 import com.teamounce.ounce.settings.ui.SettingsActivity
+import com.teamounce.ounce.util.CatInfoStore
 import com.teamounce.ounce.util.OnSwipeTouchListener
-import com.teamounce.ounce.util.SharedPreferences
 import com.teamounce.ounce.util.StatusBarUtil
+import com.teamounce.ounce.util.showToast
+import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Response
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
-    val bottomSheetFragment = BottomSheetFragment()
-    private lateinit var sharedPreferences: SharedPreferences
+    @Inject
+    lateinit var catInfoStore: CatInfoStore
     private val reviewCountToolTip by lazy {
         ReviewCountTipBottomSheet()
     }
@@ -37,9 +40,8 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.lifecycleOwner = this
-        LifeCycleEventLogger(javaClass.name).log()
         binding.executePendingBindings()
-        sharedPreferences = SharedPreferences(this)
+        catInfoStore = CatInfoStore(this)
         setUIListener()
         refreshData()
         setBackgroundResource()
@@ -66,11 +68,13 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
             }
             mainBackground.setOnTouchListener(object : OnSwipeTouchListener(this@MainActivity) {
                 override fun onSwipeUp() {
-                    bottomSheetFragment.show(supportFragmentManager, "bottomsheet")
+                    BottomSheetFragment.newInstance { refreshData() }
+                        .show(supportFragmentManager, "bottomsheet")
                 }
             })
             textviewCatName.setOnClickListener {
-                bottomSheetFragment.show(supportFragmentManager, "bottomsheet")
+                BottomSheetFragment.newInstance { refreshData() }
+                    .show(supportFragmentManager, "bottomsheet")
             }
 
             btnReviewToolTip.setOnClickListener {
@@ -81,15 +85,6 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
     @SuppressLint("UseCompatLoadingForDrawables", "SetTextI18n")
     private fun setBackgroundResource() {
-//        with(binding) {
-//            lottieFile = ScreenAnimation.by(reviewCount)
-//            mainBackground.setBackgroundColor(BackgroundColor.of(reviewCount))
-//            StatusBarUtil.setStatusBar(
-//                this@MainActivity,
-//                BackgroundColor.of(reviewCount),
-//                BackgroundColor.alsoStatusBar(reviewCount)
-//            )
-//        }
         when (OunceLocalRepository.reviewCount) {
             0 -> {
                 setBackgroundHotSourcr(R.color.white, R.raw.home_img_nothing)
@@ -230,16 +225,20 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                 ) {
                     if (response.isSuccessful) {
                         Log.i("메인 서버 데이터", response.body()?.data.toString())
-                        setCatName(response.body()!!.data.catName)
-                        setCatDday((response.body()!!.data.fromMeet) + 1)
-                        OunceLocalRepository.reviewCount = response.body()!!.data.reviewCount
-                        OunceLocalRepository.catName = response.body()!!.data.catName
-                        if (sharedPreferences.getCatPositionSelected() == null) {
-                            sharedPreferences.setCatPositionSelected(0)
-                        }
-                        Log.d("고양이 review count", response.body()!!.data.reviewCount.toString())
-                        Log.d("local review count", OunceLocalRepository.reviewCount.toString())
-                        setBackgroundResource()
+
+                        response.body()?.let {
+                            it.data.run {
+                                setCatName(catName)
+                                setCatDday(fromMeet + 1)
+                                OunceLocalRepository.reviewCount = reviewCount
+                                OunceLocalRepository.catName = catName
+                                if (catInfoStore.getCatPositionSelected() == null) {
+                                    catInfoStore.setCatPositionSelected(0)
+                                }
+                                setBackgroundResource()
+                            }
+                        } ?: showToast("고양이 정보를 불러오는데 실패했어요")
+
                     } else {
                         showError(response.errorBody())
                     }

@@ -1,19 +1,21 @@
 package com.teamounce.ounce.main
 
-import android.app.Activity
-import android.content.Context
-import android.content.ContextWrapper
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.recyclerview.widget.RecyclerView
 import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.databinding.ItemBottomMainBinding
-import com.teamounce.ounce.util.SharedPreferences
+import com.teamounce.ounce.util.CatInfoStore
 
-class BottomSheetAdapter(context: Context) :
-    RecyclerView.Adapter<BottomSheetAdapter.BottomSheetViewHolder>() {
-    val mContext = getActivity(context)
+class BottomSheetAdapter(
+    private val catInfoStore: CatInfoStore,
+    private val listener: OnRefreshListener
+) : RecyclerView.Adapter<BottomSheetAdapter.BottomSheetViewHolder>() {
+    fun interface OnRefreshListener {
+        fun update()
+    }
+
     var bottomSheetProfileData = mutableListOf<BottomSheetProfileData>()
     private var checkedRadioButton: CompoundButton? = null
     private var mSelectedItem = -1
@@ -21,7 +23,6 @@ class BottomSheetAdapter(context: Context) :
 
     inner class BottomSheetViewHolder(var binding: ItemBottomMainBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        var sharedPreferences = SharedPreferences(mContext)
 
         fun bind(
             bottomSheetProfileData: BottomSheetProfileData,
@@ -31,13 +32,13 @@ class BottomSheetAdapter(context: Context) :
             binding.bottomSheetProfileData = bottomSheetProfileData
             binding.catSelectBtn.setOnCheckedChangeListener(checkedChangedListener)
 
-            if (position == sharedPreferences.getCatPositionSelected()) {
+            if (position == catInfoStore.getCatPositionSelected()) {
                 binding.catSelectBtn.isChecked = true
             } else {
                 if (selectedPosition == position) {
                     binding.catSelectBtn.isChecked = true
                     changeCat(position)
-                    sharedPreferences.setCatPositionSelected(position)
+                    catInfoStore.setCatPositionSelected(position)
                 } else {
                     binding.catSelectBtn.isChecked = false
                 }
@@ -72,11 +73,8 @@ class BottomSheetAdapter(context: Context) :
     }
 
     fun changeCat(position: Int) {
-        if (mContext is MainActivity) {
-            OunceLocalRepository.catIndex = bottomSheetProfileData[position].catIndex
-            mContext.refreshData()
-            mContext.bottomSheetFragment.dismiss()
-        }
+        OunceLocalRepository.catIndex = bottomSheetProfileData[position].catIndex
+        listener.update()
     }
 
     private val checkedChangedListener =
@@ -93,12 +91,4 @@ class BottomSheetAdapter(context: Context) :
             }
 
         }
-
-    private fun getActivity(context: Context): Activity {
-        return when (context) {
-            is Activity -> context
-            is ContextWrapper -> getActivity(context.getBaseContext())
-            else -> error("Non Activity based context")
-        }
-    }
 }

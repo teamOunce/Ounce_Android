@@ -1,3 +1,8 @@
 package com.teamounce.ounce.login.model
 
-data class RequestGoogleLogin(val token: String)
+import com.google.gson.annotations.SerializedName
+
+data class RequestGoogleLogin(
+    @SerializedName("token")
+    val token: String
+)

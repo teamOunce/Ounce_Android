@@ -75,6 +75,7 @@ class LoginViewModel @Inject constructor(
 
     fun googleLogin(token: String) = viewModelScope.launch {
         runCatching {
+            Log.d("google token : ", token)
             loginRepository.googleLogin(token)
         }.onSuccess {
             OunceLocalRepository.apply {
