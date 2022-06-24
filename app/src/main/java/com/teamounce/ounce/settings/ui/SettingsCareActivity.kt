@@ -43,7 +43,7 @@ class SettingsCareActivity : AppCompatActivity() {
 
     private fun setUIListener() {
         binding.btnSettingBack.setOnClickListener { finish() }
-        binding.btnSettingBack.setOnClickListener {
+        binding.btnCatcareAdd.setOnClickListener {
             if (catList.size >= MAX_CAT_RESISTERED) {
                 Toast.makeText(this, "고양이는 최대 4마리까지 등록 가능합니다.", Toast.LENGTH_SHORT).show()
             } else {
