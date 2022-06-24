@@ -128,15 +128,17 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     private fun setBackgroundHotSourcr(backgroundColor: Int, lottieAnimation: Int) {
-        binding.imageviewCat.run {
-            setAnimation(lottieAnimation)
-            repeatMode = LottieDrawable.REVERSE
-            repeatCount = LottieDrawable.INFINITE
+        binding.imageviewCat.post {
+            binding.imageviewCat.run {
+                cancelAnimation()
+                setAnimation(lottieAnimation)
+                repeatMode = LottieDrawable.REVERSE
+                repeatCount = LottieDrawable.INFINITE
+                playAnimation()
+
+            }
         }
 
-        binding.imageviewCat.post {
-            binding.imageviewCat.playAnimation()
-        }
         binding.mainBackground.setBackgroundColor(getColor(backgroundColor))
     }
 
@@ -149,6 +151,8 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                 binding.reviewCountProgress.run {
                     trackColor =
                         ContextCompat.getColor(this@MainActivity, R.color.home_progress_default)
+                    max = 1
+                    setProgressCompat(reviewCount, false)
                 }
             }
             in BACKGROUND_ONE_RANGE -> {
