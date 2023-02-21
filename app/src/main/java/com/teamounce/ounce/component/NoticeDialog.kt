@@ -3,10 +3,12 @@ package com.teamounce.ounce.component
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
+import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
+import android.text.style.StyleSpan
 import android.text.style.TextAppearanceSpan
 import android.view.WindowManager
 import com.teamounce.ounce.R
@@ -42,9 +44,9 @@ class NoticeDialog(context: Context): Dialog(context) {
 
         spannable.run {
             setSpan(
-                TextAppearanceSpan(context, R.font.notosans_bold),
+                StyleSpan(Typeface.BOLD),
                 startIndex,
-                startIndex + pointText.length - 1,
+                startIndex + pointText.length,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
         }
