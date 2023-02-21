@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import com.airbnb.lottie.LottieDrawable
 import com.teamounce.ounce.R
 import com.teamounce.ounce.base.BindingActivity
+import com.teamounce.ounce.component.NoticeDialog
 import com.teamounce.ounce.data.local.singleton.OunceLocalRepository
 import com.teamounce.ounce.data.remote.singleton.RetrofitObjects
 import com.teamounce.ounce.databinding.ActivityMainBinding
@@ -45,6 +46,8 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         setUIListener()
         refreshData()
         setBackgroundResource()
+
+        NoticeDialog(this).show()
     }
 
     @SuppressLint("ClickableViewAccessibility")
